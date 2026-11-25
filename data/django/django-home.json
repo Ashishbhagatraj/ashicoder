@@ -1,0 +1,517 @@
+{
+  "meta": {
+    "title": "Django Framework Guide: Request-Response Lifecycle, ORM & Why 'Batteries Included' Matters (2026)",
+    "description": "How does a Django URL actually turn into a database query and an HTML page? This guide traces the full request-response cycle, the ORM's N+1 query trap, migrations, and honest trade-offs against FastAPI and Flask, with exact error messages and admin-panel internals.",
+    "keywords": "django tutorial, what is django, django mvt architecture, django orm explained, django vs fastapi, django vs flask, django migrations, django admin panel, django request response cycle, django n+1 query problem, learn django 2026",
+    "author": "Tech Sustainify",
+    "canonical": "https://techsustainify.com/django/django-home/",
+    "ogTitle": "Django Home — Request Lifecycle, ORM Internals & Framework Trade-Offs | Tech Sustainify",
+    "ogDescription": "A Django walkthrough built around what happens between a browser request and a rendered page — middleware, URL resolution, the ORM, and where Django genuinely beats (and loses to) FastAPI.",
+    "ogUrl": "https://techsustainify.com/django/django-home/",
+    "ogSiteName": "Tech Sustainify",
+    "twitterReadingTime": "17 minutes",
+    "twitterLevel": "Beginner to Intermediate",
+    "schemaDatePublished": "2024-04-18",
+    "schemaDateModified": "2026-05-06",
+    "schemaProficiencyLevel": "Beginner",
+    "schemaWordCount": 4700
+  },
+
+  "breadcrumbs": [
+    { "position": 1, "name": "Home", "path": "/" },
+    { "position": 2, "name": "Django Tutorial", "path": "/django/django-home/" },
+    { "position": 3, "name": "What is Django?" }
+  ],
+
+  "articleHeader": {
+    "badge": "🎸 Django",
+  "title": "Learn Django the Right Way — From Basics to Advanced",
+  "subtitle": "Build a strong foundation by understanding how Django processes every request. Explore URLs, views, templates, models, middleware, authentication, ORM, REST APIs, deployment, and everything you need to become a confident Django developer."
+},
+
+  "infoCards": [
+    { "icon": "📅", "label": "Last Updated", "isTime": true, "dateTime": "2026-05-06", "value": "May 2026" },
+    { "icon": "⏱️", "label": "Read Time", "value": "17 min" },
+    { "icon": "🎯", "label": "Level", "value": "Beginner → Intermediate" }
+  ],
+
+  "sections": [
+
+    {
+      "sectionId": "what-is-django",
+      "title": "What Is Django, Beyond \"a Python Web Framework\"",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "<strong>Django</strong> is a high-level Python web framework built by a team at the <strong>Lawrence Journal-World</strong> newspaper in Lawrence, Kansas, and released as open source in <strong>July 2005</strong>. It was named after jazz guitarist <strong>Django Reinhardt</strong>. The framework was born under newsroom deadline pressure — journalists needed new features shipped in hours, not weeks — and that origin explains almost everything about Django's design philosophy: it is deliberately opinionated and comes with far more built in than a minimal framework like Flask."
+        },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "Django calls itself <strong>\"the web framework for perfectionists with deadlines,\"</strong> and the phrase that matters more for understanding its architecture is <strong>\"batteries included.\"</strong> Out of the box you get an ORM, an admin interface, a user authentication system, a templating engine, form handling with built-in CSRF protection, and a migration system — all pre-integrated, not bolted on separately. Flask and FastAPI give you a thin core and expect you to pick your own ORM, auth library, and admin tooling; Django hands you an opinionated, working default for all of it."
+        },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "That trade-off — less initial flexibility in exchange for far less setup decision-making — is the single thing to understand before writing a line of Django code. Everything else in this guide is really just consequences of that one choice."
+        }
+      ]
+    },
+
+    {
+      "sectionId": "mvt-architecture",
+      "title": "MVT, Not MVC — And the Difference Actually Matters",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "Django's own documentation calls its architecture <strong>MVT (Model-View-Template)</strong> rather than the more familiar MVC. The naming isn't just marketing — the roles genuinely map differently. In Django, the <strong>Model</strong> defines your data (same idea as MVC). The <strong>Template</strong> is what MVC calls the View — the HTML rendering layer. And Django's <strong>View</strong> is actually what MVC calls the Controller — the Python function or class that receives a request and decides what data to fetch and which template to render."
+        },
+        {
+          "type": "comparisonTable",
+          "headers": ["Django Term", "Traditional MVC Equivalent", "What It Actually Does"],
+          "rows": [
+            ["Model", "Model", "Defines database schema as Python classes; Django's ORM turns them into SQL"],
+            ["Template", "View", "HTML files with Django Template Language tags — the presentation layer"],
+            ["View", "Controller", "Python function/class that processes a request and returns a response"],
+            ["URL dispatcher", "Router", "urls.py maps incoming URL patterns to specific view functions"]
+          ]
+        },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "If you've read Rails or Laravel tutorials before touching Django, this naming mismatch is exactly why a Django \"View\" felt backwards at first — it isn't the HTML-rendering piece at all, it's the logic layer that decides what to render."
+        }
+      ]
+    },
+
+    {
+      "sectionId": "request-response-lifecycle",
+      "title": "The Full Journey: URL Typed → Page Rendered",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "This is the part that actually explains most \"why isn't my view running\" and \"why is this data stale\" confusion. A single browser request passes through a specific, ordered pipeline before HTML ever comes back."
+        },
+        {
+          "type": "flowchart",
+          "nodes": [
+            { "id": "1", "label": "🌐 Browser Request", "sublabel": "GET /products/42/", "type": "start" },
+            { "id": "2", "label": "🚦 WSGI/ASGI Server", "sublabel": "Gunicorn/Uvicorn hands off to Django", "type": "process" },
+            { "id": "3", "label": "🧱 Middleware Stack (inbound)", "sublabel": "Security, Session, CSRF, Auth — in order", "type": "process" },
+            { "id": "4", "label": "🗺️ URL Resolver", "sublabel": "urls.py matches pattern → view function", "type": "decision" },
+            { "id": "5", "label": "⚙️ View Function", "sublabel": "Queries the ORM, builds context dict", "type": "process" },
+            { "id": "6", "label": "🗄️ Model / ORM Layer", "sublabel": "Product.objects.get(id=42) → SQL", "type": "data" },
+            { "id": "7", "label": "📄 Template Engine", "sublabel": "Renders context into HTML via product.html", "type": "process" },
+            { "id": "8", "label": "🧱 Middleware Stack (outbound)", "sublabel": "Response headers, session cookie set", "type": "process" },
+            { "id": "9", "label": "🖨️ HTTP Response", "sublabel": "Rendered HTML sent to browser", "type": "end" }
+          ],
+          "edges": [
+            { "from": "1", "to": "2", "label": "TCP connection" },
+            { "from": "2", "to": "3", "label": "request object built" },
+            { "from": "3", "to": "4", "label": "passed inbound" },
+            { "from": "4", "to": "5", "label": "match found" },
+            { "from": "5", "to": "6", "label": "query needed" },
+            { "from": "6", "to": "7", "label": "queryset returned" },
+            { "from": "7", "to": "8", "label": "HttpResponse built" },
+            { "from": "8", "to": "9", "label": "outbound processing" }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "Middleware order in <code>settings.py</code>'s <code>MIDDLEWARE</code> list genuinely matters and is a common source of confusing bugs: it runs top-to-bottom on the way in, then bottom-to-top on the way out. Put <code>AuthenticationMiddleware</code> before something that depends on <code>request.user</code> existing, and it works fine. Get the order wrong, and you'll hit an <code>AttributeError: 'WSGIRequest' object has no attribute 'user'</code> that has nothing to do with your view code at all — the actual bug is three lines away in a settings file most beginners never think to check."
+        }
+      ]
+    },
+
+    {
+      "sectionId": "orm-and-n-plus-one",
+      "title": "The ORM's Best Feature Is Also Its Most Common Trap",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "Django's ORM lets you write <code>Book.objects.filter(author__country=\"India\")</code> instead of raw SQL, and it's genuinely one of the better ORMs in any language — readable, chainable, and it generates reasonably efficient SQL by default. The trap almost every intermediate Django developer hits at least once is the <strong>N+1 query problem</strong>, and it's sneaky specifically because the code that causes it looks completely innocent."
+        },
+        {
+          "type": "codeBox",
+          "lang": "🐍 Python (views.py)",
+          "label": "orders_list_n_plus_one.py",
+          "lines": [
+            "# Looks fine. Runs 1 query for the orders...",
+            "orders = Order.objects.filter(status='pending')",
+            "",
+            "for order in orders:",
+            "    # ...but THIS line runs a fresh query for EVERY single order,",
+            "    # because order.customer wasn't fetched upfront.",
+            "    # 50 pending orders = 1 + 50 = 51 queries for one page load.",
+            "    print(order.customer.email)"
+          ]
+        },
+        {
+          "type": "codeBox",
+          "lang": "🐍 Python (views.py)",
+          "label": "orders_list_fixed.py",
+          "lines": [
+            "# select_related() does a SQL JOIN upfront for foreign-key relations,",
+            "# fetching customer data in the SAME query as the orders.",
+            "orders = Order.objects.filter(status='pending').select_related('customer')",
+            "",
+            "for order in orders:",
+            "    print(order.customer.email)  # No extra query — already loaded",
+            "",
+            "# For many-to-many or reverse foreign-key relations, use prefetch_related()",
+            "# instead — select_related() only works for forward FK/OneToOne fields."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "This isn't a rare edge case — it's specifically the kind of bug that passes code review, works fine on your laptop with 8 test rows in the database, and then quietly turns a dashboard page from a 40ms response into an 1,800ms response once a client has a few thousand real orders. Django's <strong>debug toolbar</strong> (<code>django-debug-toolbar</code>) shows exact query counts per page and is worth installing before you need it, not after a production slowdown ticket."
+        }
+      ]
+    },
+
+    {
+      "sectionId": "migrations-deep-dive",
+      "title": "Migrations — Why Django Won't Let You Just Edit the Database",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "When you change a model — add a field, rename a column, add an index — Django doesn't touch the database directly. It generates a <strong>migration file</strong>, a Python script describing exactly how to transform the schema, via <code>python manage.py makemigrations</code>. You then apply it with <code>python manage.py migrate</code>. This two-step separation exists so schema changes are version-controlled, reviewable in a pull request, and reversible."
+        },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "The error every Django beginner eventually hits, usually in their first week deploying to a shared staging database, is:"
+        },
+        {
+          "type": "outputBox",
+          "lines": [
+            "django.db.utils.ProgrammingError: relation \"orders_order\" does not exist",
+            "LINE 1: SELECT ... FROM \"orders_order\" WHERE ...",
+            "                       ^"
+          ]
+        },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "This nearly always means one thing: you wrote a model and ran the server, but never ran <code>makemigrations</code> and <code>migrate</code> — Django's models exist in Python, but the actual PostgreSQL/MySQL table they describe was never created. The fix is almost always exactly those two commands, in that order, and it's worth checking <code>python manage.py showmigrations</code> first to see which migrations are recorded as applied versus pending before assuming anything more exotic is wrong."
+        }
+      ]
+    },
+
+    {
+      "sectionId": "django-vs-others",
+      "title": "Django vs FastAPI vs Flask — An Honest Comparison",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "This gets asked in nearly every Indian product-company interview for a backend role, and the honest answer isn't \"it depends\" dressed up politely — the three frameworks genuinely optimize for different things."
+        },
+        {
+          "type": "comparisonTable",
+          "headers": ["Aspect", "Django", "FastAPI", "Flask"],
+          "rows": [
+            ["Philosophy", "Batteries included, opinionated", "Minimal core + async-first, typed", "Minimal core, unopinionated"],
+            ["Built-in ORM", "Yes (Django ORM)", "No — pair with SQLAlchemy/Tortoise", "No — pair with SQLAlchemy"],
+            ["Admin panel", "Yes, auto-generated from models", "No", "No"],
+            ["Async support", "Since 4.1 (2022), improving each release", "Native, async-first from day one", "Limited, bolted on"],
+            ["Auto API docs", "No (needs Django REST Framework + drf-spectacular)", "Yes, built-in (Swagger/OpenAPI)", "No"],
+            ["Best fit", "Content-heavy sites, internal tools, CMS-style apps", "High-throughput APIs, microservices", "Small services, prototypes, learning"],
+            ["Time to first working CRUD app", "Fast, once you accept its conventions", "Fast for APIs specifically", "Fast but you assemble more yourself"]
+          ]
+        },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "My honest take: for an internal admin tool or a content-driven product where you'll spend real time in the admin panel managing data, I'd pick Django every time — the auto-generated admin alone saves days of throwaway CRUD-screen work. For a pure JSON API backing a mobile app or a microservice under genuine throughput pressure, FastAPI's native async handling and automatic OpenAPI docs usually win, and Django REST Framework on top of Django starts to feel like reassembling what FastAPI gives you natively. Flask's niche has narrowed the most of the three — it's still excellent for small, focused services, but FastAPI has taken a lot of the \"lightweight and modern\" ground Flask used to own alone."
+        }
+      ]
+    },
+
+    {
+      "sectionId": "why-django",
+      "title": "Where Django's \"Batteries Included\" Actually Pays Off",
+      "blocks": [
+        {
+          "type": "featureCards",
+          "items": [
+            { "icon": "🛠️", "title": "Auto-Generated Admin Panel", "text": "Register a model with admin.site.register(Product) and you get a full working CRUD interface — search, filters, inline editing — with zero HTML written. For internal tools and content management, this alone can save a genuine week or two of throwaway front-end work." },
+            { "icon": "🗄️", "title": "The ORM", "text": "Model changes become Python objects, not raw SQL strings. Combined with the migration system, schema evolution is trackable in git and reviewable like any other code change." },
+            { "icon": "🔐", "title": "Security Defaults Baked In", "text": "CSRF protection, XSS-escaping in templates by default, clickjacking protection via X-Frame-Options, and SQL injection protection through parameterized queries are all on by default — not opt-in extras a busy team might skip." },
+            { "icon": "👤", "title": "Built-In Authentication", "text": "User model, login/logout views, password hashing (PBKDF2 by default, configurable to Argon2), permission and group systems — ready to use without picking and wiring together a third-party auth library." },
+            { "icon": "📝", "title": "Forms & Validation", "text": "Django Forms handle rendering, server-side validation, and CSRF tokens together, keeping validation logic in one place instead of scattered between client-side JS and ad hoc server checks." },
+            { "icon": "🧩", "title": "Reusable App Structure", "text": "Django encourages splitting a project into self-contained 'apps' (accounts, orders, catalog) that can, in principle, be lifted into another project — a structural discipline many minimal frameworks leave entirely up to the team." },
+            { "icon": "🌍", "title": "Internationalization Out of the Box", "text": "Built-in i18n/l10n support with translation files (.po/.mo) and locale-aware formatting is genuinely useful for products targeting multiple Indian language markets without bolting on a separate library." },
+            { "icon": "📦", "title": "Massive, Mature Package Ecosystem", "text": "Django REST Framework for APIs, django-allauth for social login, celery integration for background jobs, django-storages for S3/cloud file storage — the ecosystem around Django is unusually mature for a framework its age." }
+          ]
+        }
+      ]
+    },
+
+    {
+      "sectionId": "hello-world",
+      "title": "Your First Django View",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "Unlike a single-file Flask app, a minimal Django project always has at least three moving pieces wired together: a URL pattern, a view function, and the project's <code>urls.py</code> routing table."
+        },
+        {
+          "type": "codeBox",
+          "lang": "🐍 Python (views.py)",
+          "label": "views.py",
+          "lines": [
+            "from django.http import HttpResponse",
+            "",
+            "def greet_visitor(request):",
+            "    return HttpResponse(\"Hello, World!\")"
+          ]
+        },
+        {
+          "type": "codeBox",
+          "lang": "🐍 Python (urls.py)",
+          "label": "urls.py",
+          "lines": [
+            "from django.urls import path",
+            "from . import views",
+            "",
+            "urlpatterns = [",
+            "    path('hello/', views.greet_visitor, name='greet-visitor'),",
+            "]"
+          ]
+        },
+        {
+          "type": "outputBox",
+          "lines": [
+            "$ python manage.py runserver",
+            "Visiting http://127.0.0.1:8000/hello/ shows: Hello, World!"
+          ]
+        },
+        {
+          "type": "subHeading",
+          "text": "Practice This Code — Live Editor"
+        },
+        {
+          "type": "liveEditor",
+          "initialCode": "from django.http import HttpResponse\n\ndef greet_visitor(request):\n    return HttpResponse(\"Hello, World! Ashish\")"
+        }
+      ]
+    },
+
+    {
+      "sectionId": "advantages-disadvantages",
+      "title": "The Trade-Offs, Stated Plainly",
+      "blocks": [
+        {
+          "type": "prosConsTable",
+          "pros": [
+            { "title": "Extremely Fast to Build Standard CRUD Apps", "text": "Model, admin registration, and a form together get a working create-read-update-delete interface running in under an hour for straightforward data — hard to match without Django's specific combination of pieces." },
+            { "title": "Security Defaults Reduce Common Mistakes", "text": "CSRF, XSS escaping, and SQL injection protection being on by default means a rushed junior developer under deadline pressure is far less likely to accidentally ship a critical vulnerability than in a bare-metal framework." },
+            { "title": "The ORM Scales Well With Discipline", "text": "select_related/prefetch_related, database indexes via Meta.indexes, and query annotation cover the vast majority of real-world performance needs without dropping to raw SQL." },
+            { "title": "Enormous, Stable Ecosystem", "text": "Django REST Framework alone has effectively become the default way to build REST APIs in the Python world, with a plugin ecosystem built around it spanning a decade-plus." },
+            { "title": "Excellent Documentation", "text": "Django's official docs are frequently held up as a model for other open-source projects to follow — thorough, example-driven, and kept genuinely current with each release." }
+          ],
+          "cons": [
+            { "title": "Monolithic by Default", "text": "Django nudges you toward a single deployable application. Splitting a Django project into microservices later is more friction than starting with a framework designed API-first from day one." },
+            { "title": "ORM Abstraction Can Hide Expensive Queries", "text": "The N+1 problem covered earlier is exactly this risk in practice — the ORM's readability can mask what's actually happening at the database level until it becomes a production performance issue." },
+            { "title": "Async Support Is Still Maturing", "text": "Django gained async views in 4.1, but large parts of the ORM remain effectively synchronous under the hood, so a fully async Django stack still has rough edges compared to a framework built async-first." },
+            { "title": "Steeper Initial Learning Curve Than Flask", "text": "Understanding the full request-response pipeline, app structure conventions, and the ORM's query API takes longer to absorb than Flask's much smaller surface area." },
+            { "title": "Can Feel Heavy for Tiny Projects", "text": "Spinning up Django's full project structure for a 50-line internal script or a single-endpoint microservice is often more scaffolding than the task actually needs." }
+          ]
+        }
+      ]
+    },
+
+    {
+      "sectionId": "where-django-used",
+      "title": "Companies Actually Running Django in Production",
+      "blocks": [
+        {
+          "type": "bulletList",
+          "items": [
+            { "strong": "📸 Instagram", "text": " — historically ran (and largely still runs) on Django at extraordinary scale, and has been a major upstream contributor of async-related performance work back to the framework itself." },
+            { "strong": "🎧 Spotify", "text": " — uses Django for parts of its internal tooling and backend services, valuing the speed of building reliable internal admin and data-management tools." },
+            { "strong": "🧳 Disqus & Bitbucket", "text": " — both built core parts of their platforms on Django during periods of very rapid user growth, leaning on its batteries-included stability under scale pressure." },
+            { "strong": "🏦 Indian Fintech & Edtech Backends", "text": " — a large share of Series A–C Indian startups (lending platforms, D2C-adjacent SaaS, edtech content platforms) default to Django + DRF for their core backend specifically because a small team can ship a secure, admin-manageable product fast without hiring a dedicated DevOps-heavy platform team early on." },
+            { "strong": "🏛️ Government & Public Sector Portals", "text": "— Django's built-in security defaults and mature admin tooling make it a common choice for public-facing government portals and internal case-management systems where auditability and a reviewable admin trail matter as much as raw performance." }
+          ]
+        }
+      ]
+    },
+
+    {
+      "sectionId": "interview-questions",
+      "title": "Django Interview Questions Companies Actually Ask",
+      "blocks": [
+        {
+          "type": "interviewQA",
+          "items": [
+            {
+              "q": "Q1. What is the difference between Django's MVT architecture and traditional MVC?",
+              "a": "The roles map differently than the names suggest: Django's Model matches MVC's Model, but Django's Template corresponds to MVC's View (the rendering layer), and Django's View actually plays the role of MVC's Controller (the logic that decides what data to fetch and how to respond). Django itself handles the URL-routing piece that a traditional MVC framework might leave to the Controller.",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q2. What is the N+1 query problem, and how does Django's ORM help avoid it?",
+              "a": "It occurs when code fetches a list of objects with one query, then triggers a separate query for each object's related data inside a loop — turning what should be 1-2 queries into N+1. Django's select_related() (for foreign-key/one-to-one relations, using SQL JOINs) and prefetch_related() (for many-to-many and reverse foreign-key relations, using a second batched query) solve this by fetching related data upfront.",
+              "tag": "Frequently Asked"
+            },
+            {
+              "q": "Q3. What are migrations, and why does Django separate makemigrations from migrate?",
+              "a": "makemigrations inspects your models and generates Python files describing the schema changes needed — it doesn't touch the database. migrate actually applies those changes to the configured database. Separating them lets migration files be reviewed in pull requests like any other code change, and lets the same migration be applied consistently across development, staging, and production databases.",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q4. How does Django protect against CSRF attacks by default?",
+              "a": "Django's CsrfViewMiddleware requires a valid, per-session CSRF token to be submitted with any state-changing POST/PUT/DELETE request. Django Template Language's {% csrf_token %} tag injects this token into forms automatically, and Django rejects requests missing a valid token with a 403 Forbidden response — this protection is on by default for all views unless explicitly exempted.",
+              "tag": "Frequently Asked"
+            },
+            {
+              "q": "Q5. What's the difference between a Django project and a Django app?",
+              "a": "A project is the overall Django installation — settings, root URL configuration, WSGI/ASGI entry point — for one deployable site. An app is a self-contained module handling one specific piece of functionality (e.g., 'orders', 'accounts', 'catalog'), designed in principle to be reusable across different projects. One project typically contains several apps.",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q6. What is Django's ORM, and what's a QuerySet?",
+              "a": "The ORM (Object-Relational Mapper) lets you interact with the database using Python classes and methods instead of raw SQL — a model class maps to a database table, and an instance maps to a row. A QuerySet is a lazy, chainable representation of a database query — Model.objects.filter(...) doesn't hit the database until the QuerySet is actually evaluated (iterated, sliced, or cast to a list), which lets you chain multiple filters efficiently before the final SQL is generated.",
+              "tag": "Frequently Asked"
+            },
+            {
+              "q": "Q7. What is middleware in Django, and can you give a real example of when order matters?",
+              "a": "Middleware is a chain of components that process every request on the way in and every response on the way out, in the order listed in settings.py's MIDDLEWARE list. A concrete example: AuthenticationMiddleware must run before any middleware or view that reads request.user, since it's the one that actually attaches the user object to the request. Placing it after such a dependency causes an AttributeError at runtime.",
+              "tag": "Common Trap"
+            },
+            {
+              "q": "Q8. What's the difference between Django's function-based views (FBVs) and class-based views (CBVs)?",
+              "a": "A function-based view is a plain Python function taking a request and returning a response — explicit and easy to read for simple logic. A class-based view (like ListView, DetailView, or a custom View subclass) uses inheritance to reuse common patterns (pagination, permission checks, HTTP-method dispatch) across many views, trading some directness for less repeated boilerplate on standard CRUD-style views.",
+              "tag": "Frequently Asked"
+            }
+          ]
+        }
+      ]
+    },
+
+    {
+      "sectionId": "practice-questions",
+      "title": "Practice Questions",
+      "blocks": [
+        {
+          "type": "practiceQuestions",
+          "items": [
+            {
+              "q": "1. A view runs Order.objects.filter(status='shipped') and then loops over the result printing order.customer.name for each order. Django Debug Toolbar shows 41 queries for 40 orders. What's happening, and how do you fix it?",
+              "a": "This is the N+1 query problem: 1 query fetches the orders, then 1 additional query runs per order to fetch its related customer. Fix it by adding .select_related('customer') to the original queryset, which fetches customer data via a SQL JOIN in the same initial query, collapsing 41 queries down to 1.",
+              "difficulty": "Medium"
+            },
+            {
+              "q": "2. You add a new field to a model and immediately run the server. It throws django.db.utils.ProgrammingError: relation \"blog_post\" does not exist. What did you skip?",
+              "a": "You never ran makemigrations and migrate after changing the model. The Python model class was updated, but the actual database table structure it maps to was never created or altered to match — Django's ORM describes the schema, it doesn't apply it automatically on server start.",
+              "difficulty": "Easy"
+            },
+            {
+              "q": "3. Why does Django hash passwords with PBKDF2 (or Argon2) by default instead of storing them with a simple SHA-256 hash?",
+              "a": "Simple fast hashes like SHA-256 are exactly what makes brute-force and rainbow-table attacks feasible — a modern GPU can compute billions of SHA-256 hashes per second. PBKDF2 and Argon2 are deliberately slow, computationally expensive hashing algorithms (with configurable iteration counts/memory cost) specifically designed to make large-scale password-cracking attempts impractically slow, even if a database of hashes leaks.",
+              "difficulty": "Medium"
+            },
+            {
+              "q": "4. What's the practical difference between get_object_or_404() and Model.objects.get() in a view?",
+              "a": "Model.objects.get() raises a DoesNotExist exception if no matching row is found, which — if uncaught — becomes an ugly, unhandled 500 server error for the end user. get_object_or_404() wraps the same lookup and automatically converts that missing-object case into a clean 404 Not Found response, which is almost always the correct user-facing behavior for a 'fetch this specific record' view.",
+              "difficulty": "Easy"
+            },
+            {
+              "q": "5. A junior developer disables CSRF protection on a POST endpoint using @csrf_exempt because 'it kept failing in Postman.' What's actually going wrong, and is disabling it the right fix?",
+              "a": "Postman doesn't automatically carry the CSRF cookie and token the way a real browser session does, so the request fails validation — that's the middleware doing exactly its job. Disabling CSRF protection removes a real defense against cross-site request forgery for actual end users. The correct fix is including the CSRF token in the Postman request (fetch it from the session first) for testing, or, for a genuine external API endpoint, using Django REST Framework's token/session authentication instead of exempting a regular form-based view.",
+              "difficulty": "Hard"
+            },
+            {
+              "q": "6. Why might grid... — actually, why does Django recommend prefetch_related() instead of select_related() for a ManyToManyField?",
+              "a": "select_related() works by generating a SQL JOIN, which only makes sense for relationships that resolve to a single related row per object — ForeignKey and OneToOneField. A ManyToManyField (or reverse ForeignKey) can match multiple rows per object, which a single JOIN can't cleanly represent without duplicating the parent row. prefetch_related() instead runs a second, separate query for the related objects and joins them together in Python, which correctly handles the one-to-many/many-to-many shape.",
+              "difficulty": "Hard"
+            }
+          ]
+        }
+      ]
+    },
+
+    {
+      "sectionId": "conclusion-heading",
+      "title": "Is Django the Right Call for Your Next Project?",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "The question worth asking isn't \"is Django good\" — at this point, with two decades of production hardening behind it, that's settled. The real question is whether your project's shape matches what Django optimizes for: a data-heavy application where an admin interface, a relational database, and server-rendered or lightly API-driven pages are the core of the product. If that describes what you're building, Django will very likely get you to a secure, working product faster than assembling the equivalent from smaller pieces yourself."
+        },
+        {
+          "type": "comparisonTable",
+          "headers": ["Your Situation", "Should You Reach for Django?"],
+          "rows": [
+            ["Content-heavy site or internal admin tool", "✅ Yes — the admin panel alone is a major head start"],
+            ["Startup MVP needing to ship fast with a small team", "✅ Yes — batteries-included means fewer early decisions"],
+            ["High-throughput async API / real-time service", "⚠️ Consider FastAPI — async support is improving but not yet as native"],
+            ["Tiny single-purpose microservice", "⚠️ Flask or FastAPI will likely feel lighter"],
+            ["Team already fluent in Python wanting a proven, stable stack", "✅ Yes — Django's stability track record is genuinely strong"]
+          ]
+        },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "Whatever you decide, the request-response pipeline covered earlier — middleware, URL resolution, views, ORM, templates — is the mental model that makes every future Django bug report readable instead of mysterious. Learn that pipeline properly before memorizing shortcuts, and most of what looks like 'Django being unpredictable' later turns out to be one specific, findable step in that chain."
+        }
+      ]
+    }
+
+  ],
+
+  "faq": {
+    "sectionId": "faq-heading",
+    "title": "Frequently Asked Questions (FAQ)",
+    "items": [
+      {
+        "q": "Is Django good for beginners, or should I learn Flask first?",
+        "a": "Django has more upfront concepts to learn (project structure, the ORM, migrations, the admin), but it also removes a lot of decisions a beginner isn't equipped to make well yet, like which ORM or auth library to pick. Flask teaches you more of the underlying HTTP/routing mechanics directly since there's less abstraction. Neither order is wrong — Django-first suits people who want to ship a real working app quickly; Flask-first suits people who want to understand the plumbing before the framework hides it."
+      },
+      {
+        "q": "Can Django be used to build a REST API, or is it only for full server-rendered websites?",
+        "a": "Yes, extensively — Django REST Framework (DRF), built on top of Django, is one of the most widely used ways to build production REST APIs in Python. Many real-world apps use Django + DRF as a pure JSON backend with a completely separate React or Vue frontend, using Django's templating only for the admin panel."
+      },
+      {
+        "q": "Does Django support async views and async database queries in 2026?",
+        "a": "Async views have been supported since Django 4.1 (2022), and each release has continued extending async support further into the ORM and middleware layers. It's genuinely usable for mixed workloads now, but a fully async-first application still tends to feel more natural in a framework like FastAPI that was designed async-native from its first release."
+      },
+      {
+        "q": "What database does Django use by default?",
+        "a": "Django ships configured for SQLite by default in a fresh project, purely because it requires zero setup for local development. For any real production deployment, PostgreSQL is the most common and generally recommended choice — Django's ORM supports PostgreSQL-specific features (like ArrayField and JSONField with indexing) that other databases don't offer equivalents for."
+      }
+    ]
+  },
+
+  "nav": {
+    "prev": { "label": "← Previous", "path": "/django/django-home/" },
+    "next": { "label": "Next: Django Models & Migrations Deep Dive →", "path": "/django/django-intro/" }
+  },
+
+  "sidebar": {
+    "quickFacts": [
+      { "dt": "Created by", "dd": "Lawrence Journal-World web team" },
+      { "dt": "Released", "dd": "July 2005" },
+      { "dt": "Maintained by", "dd": "Django Software Foundation" },
+      { "dt": "Architecture", "dd": "MVT (Model-View-Template)" },
+      { "dt": "Written in", "dd": "Python" },
+      { "dt": "Latest Major Version", "dd": "Django 5.x" }
+    ],
+    "tags": ["ORM","Migrations","Middleware","Admin Panel","DRF","CSRF","QuerySet","N+1 Problem","Authentication","MVT","WSGI","ASGI"]
+  },
+
+  "seriesLinking": {
+    "note": "This page should link forward to a 'Django Models & Migrations Deep Dive' page (migrations are only introduced at a conceptual level here — makemigrations internals, data migrations, and squashing deserve their own page) and to a 'Django REST Framework' page, since DRF is mentioned repeatedly here as the API layer but never explained in depth. Avoid reusing the CSS series' cascade/specificity framing or the C++ series' compilation-pipeline framing as the anchor concept — Django's defining beginner confusion is the request-response lifecycle through middleware and the ORM's N+1 trap, which is a genuinely distinct mental model worth keeping as this series' own anchor."
+  }
+}

@@ -1,0 +1,744 @@
+{
+  "meta": {
+    "title": "C Syntax | Basic Syntax Rules of C Programming Explained 2026 | Tech Sustainify",
+    "description": "Complete guide to C syntax for beginners in 2026. Learn statement and expression syntax, semicolons and braces, declaration syntax, function syntax, comment syntax, preprocessor directive syntax, whitespace rules, and the most common syntax errors with fixes.",
+    "keywords": "c syntax, basic syntax of c, c programming syntax rules, statements vs expressions c, semicolon rule c, curly braces c, declaration syntax c, function syntax c, c syntax errors, whitespace in c, preprocessor directive syntax",
+    "author": "Tech Sustainify",
+    "canonical": "https://techsustainify.com/c/c-syntax/",
+    "ogTitle": "C Syntax | Basic Syntax Rules of C Programming Explained 2026 | Tech Sustainify",
+    "ogDescription": "Every fundamental syntax rule of C explained — statements, expressions, semicolons, braces, declarations, functions, comments, and preprocessor directives — with examples and common error fixes.",
+    "ogUrl": "https://techsustainify.com/c/c-syntax/",
+    "ogSiteName": "Tech Sustainify",
+    "twitterReadingTime": "23 minutes",
+    "twitterLevel": "Beginner",
+    "schemaDatePublished": "2024-01-20",
+    "schemaDateModified": "2026-03-30",
+    "schemaProficiencyLevel": "Beginner",
+    "schemaWordCount": 8100
+  },
+
+  "breadcrumbs": [
+    { "position": 1, "name": "Home",       "path": "/" },
+    { "position": 2, "name": "C Tutorial", "path": "/c/c-home/" },
+    { "position": 3, "name": "C Syntax" }
+  ],
+
+  "articleHeader": {
+    "badge": "📐 C Syntax",
+    "title": "Basic Syntax of C Programming Language",
+    "subtitle": "Every fundamental grammar rule of C explained — statements, expressions, semicolons, braces, declarations, functions, comments, and preprocessor directives — with real examples and the most common beginner syntax errors."
+  },
+
+  "infoCards": [
+    { "icon": "📅", "label": "Last Updated", "isTime": true, "dateTime": "2026-03-30", "value": "March 2026" },
+    { "icon": "⏱️", "label": "Read Time",    "value": "23 min" },
+    { "icon": "🎯", "label": "Level",         "value": "Beginner" }
+  ],
+
+  "sections": [
+
+    {
+      "sectionId": "what-is-syntax",
+      "title": "What is Syntax in C?",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "<strong>Syntax</strong> is the complete set of grammar rules that define what counts as a structurally valid C program — independent of whether that program actually does anything sensible. Just as English grammar dictates that a sentence needs a subject and a verb arranged in a particular order, C's syntax dictates that a statement needs a semicolon, a function needs matching parentheses, and a block needs matching curly braces."
+        },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "It is important to separate syntax from meaning. The line <code>int total = \"hello\";</code> is <strong>syntactically perfect</strong> — a type keyword, an identifier, an equals sign, a string literal, and a semicolon, arranged in exactly the pattern C's grammar expects for a declaration with initialisation. It is only <em>semantically</em> wrong, because assigning text to an integer variable violates C's type rules — a completely separate kind of check, covered by the compiler's semantic analysis phase rather than its syntax analysis phase."
+        },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "This chapter focuses purely on the grammar layer: the rules that determine whether your code even parses at all, before the compiler has any opportunity to judge whether it makes sense. Mastering C's syntax means you will almost never again stare confused at a wall of red compiler errors — you will instead recognise instantly which specific rule your code violated, and exactly where."
+        }
+      ]
+    },
+
+    {
+      "sectionId": "statements-vs-expressions",
+      "title": "Statements vs. Expressions — The Two Fundamental Units",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "Every line of meaningful C code is built from two related but distinct grammatical units: <strong>expressions</strong> and <strong>statements</strong>. Confusing the two is one of the most common sources of subtle syntax mistakes for beginners."
+        },
+        {
+          "type": "comparisonTable",
+          "headers": ["Aspect", "Expression", "Statement"],
+          "rows": [
+            ["Definition", "Any combination of values, variables, and operators that evaluates to a single value", "A complete, standalone instruction telling the computer to do something"],
+            ["Does it produce a value?", "✅ Yes, always", "❌ Not necessarily — a statement's job is to act, not to evaluate"],
+            ["Ends with a semicolon?", "Not on its own — only when turned into a statement", "✅ Yes (except for compound and control statements)"],
+            ["Examples", "5 + 3, x * y, calculateArea(l, w), x > 10", "int total = 5 + 3;, if (x > 10) { ... }, return 0;"],
+            ["Can it stand alone as a full line?", "Only as an 'expression statement' with a semicolon appended", "✅ Yes, that is its entire purpose"]
+          ]
+        },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "In practice, C blurs these two concepts together conveniently through the <strong>expression statement</strong> — any expression followed by a semicolon automatically becomes a valid statement. <code>x + 1;</code> is perfectly legal C syntax, even though it calculates a value and then throws it away entirely, since nothing captures the result. This is rarely useful on its own, but it explains why <code>x = 5;</code> — an assignment <em>expression</em> (which itself evaluates to the assigned value, 5) followed by a semicolon — is technically an expression statement, not a fundamentally different kind of grammar."
+        }
+      ]
+    },
+
+    {
+      "sectionId": "semicolon-rules",
+      "title": "The Semicolon — C's Statement Terminator",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "The semicolon (<code>;</code>) is arguably the single most important punctuation mark in C's syntax, and forgetting one is the most common beginner mistake in the entire language. Its job is simple but absolute: it marks the definitive end of a statement."
+        },
+        {
+          "type": "bulletList",
+          "items": [
+            { "strong": "Required after simple statements", "text": " — Declarations (int x;), assignments (x = 5;), function calls used as statements (printf(\"Hi\");), and jump statements (return 0; break; continue;) all require a terminating semicolon." },
+            { "strong": "Not required after compound statements", "text": " — A block enclosed in { } — such as the body of a function, if, or loop — does not itself need a trailing semicolon, since the closing brace } already marks its end unambiguously." },
+            { "strong": "Not required after control statement headers", "text": " — The line if (x > 5) or for (int i = 0; i < 10; i++) never ends in a semicolon itself, since it is immediately followed by the statement or block it controls." },
+            { "strong": "A lone semicolon is a valid, empty statement", "text": " — Writing just ; on its own line is legal C, representing a statement that does absolutely nothing — occasionally used deliberately (though rarely) as an empty loop body." }
+          ]
+        },
+        {
+          "type": "codeBox",
+          "lang": "🖥️ C",
+          "label": "semicolon_rules.c",
+          "lines": [
+            "#include <stdio.h>",
+            "",
+            "int main() {",
+            "    int total = 100;        // ✅ Required: simple declaration statement",
+            "    printf(\"%d\\n\", total);  // ✅ Required: function call statement",
+            "",
+            "    if (total > 50) {        // ❌ No semicolon after the if() header itself",
+            "        printf(\"High\\n\");     // ✅ Required: statement inside the block",
+            "    }                         // ❌ No semicolon after a closing brace",
+            "",
+            "    ;                         // ✅ Legal but pointless: an empty statement",
+            "",
+            "    return 0;                // ✅ Required: jump statement",
+            "}"
+          ]
+        },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "One classic beginner trap combines the last two rules dangerously: writing <code>if (total > 50);</code> with an accidental semicolon immediately after the condition. This creates an empty statement as the if's entire body, so the block that follows in braces executes <strong>unconditionally</strong>, regardless of the condition — a bug that compiles cleanly and produces no warning on many compiler configurations, making it especially sneaky."
+        }
+      ]
+    },
+
+    {
+      "sectionId": "curly-braces",
+      "title": "Curly Braces — Defining Blocks",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "Curly braces <code>{ }</code> group multiple statements into a single <strong>compound statement</strong> (also called a block), which C's grammar then treats as one unit wherever a single statement is expected — as the body of a function, an if, a loop, or a switch."
+        },
+        {
+          "type": "bulletList",
+          "items": [
+            { "strong": "Every function body requires braces", "text": " — int main() { ... } — even a function containing just one statement must still enclose it in braces." },
+            { "strong": "Control statements with exactly one statement can omit braces", "text": " — if (x > 5) printf(\"Big\\n\"); is legal without braces, since a single statement already counts as valid syntax on its own." },
+            { "strong": "Adding a second statement without braces is a common bug source", "text": " — Only the very next single statement is considered part of an if or loop without braces; any additional lines afterward execute unconditionally, regardless of indentation." },
+            { "strong": "Braces must always be balanced", "text": " — Every opening { must have a matching closing }, anywhere in the file; an unmatched brace produces a cascade of confusing errors, often reported far from where the actual mistake occurred." }
+          ]
+        },
+        {
+          "type": "codeBox",
+          "lang": "🖥️ C",
+          "label": "brace_trap.c",
+          "lines": [
+            "#include <stdio.h>",
+            "",
+            "int main() {",
+            "    int score = 40;",
+            "",
+            "    if (score > 50)",
+            "        printf(\"Pass\\n\");     // Only this line belongs to the if",
+            "        printf(\"Well done\\n\"); // This ALWAYS runs — indentation is misleading!",
+            "",
+            "    return 0;",
+            "}"
+          ]
+        },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "This example compiles with zero errors and zero warnings, yet prints <strong>'Well done'</strong> even though <code>score</code> is only 40 — because indentation is purely cosmetic to the compiler, and only the single statement <code>printf(\"Pass\\n\");</code> is actually part of the if. This exact trap is precisely why professional style guides almost universally recommend using braces around <strong>every</strong> control statement body, even single-line ones, purely to prevent this class of bug."
+        }
+      ]
+    },
+
+    {
+      "sectionId": "flowchart-heading",
+      "title": "How the Parser Reads a C Statement — Flowchart",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "It helps to see, step by step, how the compiler's syntax analyser processes a token stream to decide whether it forms a valid statement, and what happens when it does not."
+        },
+        {
+          "type": "flowchart",
+          "nodes": [
+            { "id": "1", "label": "🔤 Token Stream Arrives",     "sublabel": "From the lexical analyser",           "type": "start" },
+            { "id": "2", "label": "🔍 Identify Statement Type",   "sublabel": "Declaration? Assignment? Control?",   "type": "decision" },
+            { "id": "3", "label": "🌳 Match Against Grammar Rule", "sublabel": "Compare token order to C's grammar",  "type": "process" },
+            { "id": "4", "label": "❓ Terminator Found?",          "sublabel": "Semicolon or closing brace expected",  "type": "decision" },
+            { "id": "5", "label": "❌ Report Syntax Error",        "sublabel": "e.g. 'expected ; before ...'",          "type": "process" },
+            { "id": "6", "label": "🌲 Build Parse Tree Node",     "sublabel": "Statement added to the AST",           "type": "process" },
+            { "id": "7", "label": "➡️ Continue to Next Token",     "sublabel": "Repeat for the rest of the program",   "type": "end" }
+          ],
+          "edges": [
+            { "from": "1", "to": "2", "label": "read next tokens" },
+            { "from": "2", "to": "3", "label": "candidate structure chosen" },
+            { "from": "3", "to": "4", "label": "structure matches so far" },
+            { "from": "4", "to": "5", "label": "terminator missing" },
+            { "from": "4", "to": "6", "label": "terminator present" },
+            { "from": "6", "to": "7", "label": "node added successfully" }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "This is precisely why a missing semicolon on one line often produces an error message pointing to the <strong>following</strong> line — the parser keeps consuming tokens, expecting to eventually find the terminator it needs, and only reports failure once it encounters something that clearly cannot continue the current statement, which is frequently one or more lines further down than where the actual mistake occurred."
+        }
+      ]
+    },
+
+    {
+      "sectionId": "declaration-syntax",
+      "title": "Declaration Syntax",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "A <strong>declaration</strong> introduces a new identifier to the compiler, specifying its type and, optionally, giving it an initial value. C's declaration grammar follows a consistent, predictable pattern across variables, arrays, pointers, and functions."
+        },
+        {
+          "type": "bulletList",
+          "items": [
+            { "strong": "Basic form", "text": " — type identifier;, such as int total; — introduces total as an int with no defined initial value yet." },
+            { "strong": "Declaration with initialisation", "text": " — type identifier = value;, such as int total = 0; — declares and assigns an initial value in a single statement." },
+            { "strong": "Multiple declarations sharing one type", "text": " — type id1, id2, id3;, such as int x, y, z; — declares three separate int variables in one statement, saving repetition." },
+            { "strong": "Mixed initialisation in a multi-declaration", "text": " — int x = 1, y, z = 3; is legal — some identifiers in the same statement can be initialised while others are not." },
+            { "strong": "Array declaration", "text": " — type identifier[size];, such as int scores[5]; — the square brackets specify how many elements the array holds." },
+            { "strong": "Pointer declaration", "text": " — type *identifier;, such as int *ptr; — the asterisk marks the identifier as a pointer to that type, rather than a value of that type directly." }
+          ]
+        },
+        {
+          "type": "codeBox",
+          "lang": "🖥️ C",
+          "label": "declaration_syntax.c",
+          "lines": [
+            "int total;                 // Basic declaration, no initial value",
+            "int count = 0;             // Declaration with initialisation",
+            "int x, y, z;                // Multiple declarations sharing one type",
+            "int a = 1, b, c = 3;        // Mixed: some initialised, some not",
+            "int scores[5];               // Array declaration: 5 int elements",
+            "int *ptr;                    // Pointer declaration: points to an int",
+            "const float PI = 3.14159;   // Qualified declaration with a modifier keyword"
+          ]
+        }
+      ]
+    },
+
+    {
+      "sectionId": "function-syntax",
+      "title": "Function Syntax — Declaration, Definition, and Call",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "Functions have three distinct syntactic forms in C, and beginners frequently mix up the terminology for each — a habit worth correcting early, since interviewers and error messages both use these exact terms precisely."
+        },
+        {
+          "type": "comparisonTable",
+          "headers": ["Form", "Syntax Pattern", "Purpose", "Example"],
+          "rows": [
+            ["Function prototype (declaration)", "returnType name(paramTypes);", "Tells the compiler a function exists, its return type, and parameter types, without providing its body", "int add(int, int);"],
+            ["Function definition", "returnType name(params) { body }", "Provides the actual, complete implementation of the function", "int add(int a, int b) { return a + b; }"],
+            ["Function call", "name(arguments);", "Invokes an already-declared or already-defined function, passing specific argument values", "int sum = add(5, 3);"]
+          ]
+        },
+        {
+          "type": "codeBox",
+          "lang": "🖥️ C",
+          "label": "function_syntax.c",
+          "lines": [
+            "#include <stdio.h>",
+            "",
+            "int add(int a, int b);        // Function prototype (declaration only)",
+            "",
+            "int main(void) {",
+            "    int result = add(5, 3);    // Function call",
+            "    printf(\"%d\\n\", result);",
+            "    return 0;",
+            "}",
+            "",
+            "int add(int a, int b) {       // Function definition",
+            "    return a + b;",
+            "}"
+          ]
+        },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "Notice the prototype and the definition's first line are nearly identical, except the prototype ends in a semicolon (making it a complete statement on its own) while the definition is immediately followed by a brace-enclosed body (making it a compound statement instead) — the presence or absence of that opening brace is precisely what tells the parser which of the two it is looking at."
+        }
+      ]
+    },
+
+    {
+      "sectionId": "comment-syntax",
+      "title": "Comment Syntax",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "Comments are text the compiler entirely ignores, existing purely to explain code to human readers. C's grammar supports two distinct comment syntaxes."
+        },
+        {
+          "type": "bulletList",
+          "items": [
+            { "html": "<code>/* comment text */</code> — Block comments. Everything between the opening <code>/*</code> and the first following <code>*/</code> is ignored, including across multiple lines. Block comments cannot be nested — the first <code>*/</code> encountered closes the comment, regardless of any <code>/*</code> that might appear inside it." },
+            { "html": "<code>// comment text</code> — Line comments, formally part of the standard since C99 (though supported as an extension by most compilers even earlier). Everything from <code>//</code> to the end of that physical line is ignored." }
+          ]
+        },
+        {
+          "type": "codeBox",
+          "lang": "🖥️ C",
+          "label": "comment_syntax.c",
+          "lines": [
+            "/*",
+            "   This is a multi-line block comment.",
+            "   Everything here is ignored by the compiler.",
+            "*/",
+            "",
+            "int total = 0;   // This is a single-line comment",
+            "",
+            "/* int nested = /* this fails */ 5; */   // INVALID: block comments don't nest —",
+            "                                          // the FIRST */ closes the comment early"
+          ]
+        },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "The nested-comment trap shown above is a genuinely common source of confusing errors — the compiler closes the block comment at the first <code>*/</code> it finds, leaving the remaining text (<code>5; */</code>) to be parsed as actual code, which usually produces a syntax error at a location that looks completely unrelated to the real mistake."
+        }
+      ]
+    },
+
+    {
+      "sectionId": "preprocessor-directive-syntax",
+      "title": "Preprocessor Directive Syntax",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "Preprocessor directives are instructions to the <strong>preprocessor</strong>, not the compiler proper, and they follow their own distinct syntax rules, separate from ordinary C statements — most importantly, they never end with a semicolon."
+        },
+        {
+          "type": "bulletList",
+          "items": [
+            { "strong": "Always begin with a # symbol", "text": " — At the start of a line (optionally preceded only by whitespace), marking it as a preprocessor directive rather than an ordinary statement." },
+            { "strong": "Never end with a semicolon", "text": " — #include <stdio.h> and #define PI 3.14 both terminate at the end of their physical line, not with a semicolon; adding one accidentally becomes part of the substituted text itself for #define." },
+            { "strong": "Can span multiple lines using a backslash", "text": " — A trailing backslash (\\) at the very end of a line tells the preprocessor the directive continues onto the next line, useful for long macro definitions." },
+            { "strong": "Macro substitution is pure text replacement", "text": " — #define SQUARE(x) ((x) * (x)) literally replaces every occurrence of SQUARE(anything) with that exact expanded text, before real compilation ever begins." }
+          ]
+        },
+        {
+          "type": "codeBox",
+          "lang": "🖥️ C",
+          "label": "preprocessor_syntax.c",
+          "lines": [
+            "#include <stdio.h>              // No semicolon at the end",
+            "#define MAX_SCORE 100          // No semicolon — becomes part of the substitution!",
+            "#define SQUARE(x) ((x) * (x))  // Parameterised macro",
+            "",
+            "int main() {",
+            "    int score = MAX_SCORE;",
+            "    int area = SQUARE(5);      // Expands to: ((5) * (5))",
+            "    printf(\"%d %d\\n\", score, area);",
+            "    return 0;",
+            "}",
+            "",
+            "// #define MAX_SCORE 100;     <- BUG if a semicolon is added:",
+            "//                            every usage becomes '100;', potentially breaking syntax"
+          ]
+        }
+      ]
+    },
+
+    {
+      "sectionId": "operator-syntax-overview",
+      "title": "Operator Syntax and Expression Structure",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "Expressions combine values and identifiers using operators, and C's grammar defines strict rules for how operators combine — specifically <strong>precedence</strong> (which operator is evaluated first when several appear together) and <strong>associativity</strong> (the order operators of equal precedence are evaluated in, left-to-right or right-to-left)."
+        },
+        {
+          "type": "comparisonTable",
+          "headers": ["Expression", "How It Is Actually Parsed", "Result"],
+          "rows": [
+            ["5 + 3 * 2", "5 + (3 * 2) — multiplication binds tighter than addition", "11, not 16"],
+            ["10 - 4 - 2", "(10 - 4) - 2 — subtraction is left-associative", "4, not 8"],
+            ["a = b = 5", "a = (b = 5) — assignment is right-associative", "Both a and b become 5"],
+            ["!x > 5", "(!x) > 5 — logical NOT binds tighter than the comparison", "Depends on !x, then compared to 5"],
+            ["x + y == z", "(x + y) == z — addition binds tighter than equality comparison", "Adds first, compares the sum to z"]
+          ]
+        },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "Getting precedence and associativity wrong is a semantic/logical concern more than a strict syntax one — the expressions above are all syntactically valid regardless of how you mentally group them — but misunderstanding these rules is an extremely common source of bugs that <em>look</em> like syntax mistakes to a beginner, since the code compiles fine yet produces an unexpected result. When in doubt, adding explicit parentheses, like <code>5 + (3 * 2)</code>, costs nothing and removes all ambiguity for both the compiler and future readers."
+        }
+      ]
+    },
+
+    {
+      "sectionId": "whitespace-and-layout",
+      "title": "Whitespace, Indentation, and Free-Form Layout",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "C is a <strong>free-form language</strong>: whitespace (spaces, tabs, and newlines) between tokens is almost entirely insignificant to the compiler, existing only to separate one token from the next. This is fundamentally different from languages like Python, where indentation itself carries grammatical meaning."
+        },
+        {
+          "type": "codeBox",
+          "lang": "🖥️ C",
+          "label": "whitespace_equivalence.c",
+          "lines": [
+            "// These two blocks are IDENTICAL to the compiler:",
+            "",
+            "int total=5;if(total>0){printf(\"positive\\n\");}",
+            "",
+            "int total = 5;",
+            "if (total > 0)",
+            "{",
+            "    printf(\"positive\\n\");",
+            "}"
+          ]
+        },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "Despite this freedom, consistent indentation remains essential for <strong>human</strong> readers — the earlier curly-brace trap example demonstrated exactly how misleading indentation can be precisely because the compiler does not enforce any relationship between visual layout and actual grammatical structure. Professional style guides always specify a consistent indentation convention (commonly 4 spaces, or a single tab) purely as a team discipline, entirely separate from any compiler requirement."
+        }
+      ]
+    },
+
+    {
+      "sectionId": "syntax-error-categories",
+      "title": "Common Categories of Syntax Errors",
+      "blocks": [
+        {
+          "type": "prosConsTable",
+          "pros": [
+            { "title": "Reading the First Error First", "text": "When a program has multiple errors, the very first one reported is almost always the genuine root cause — later ones are frequently confused side effects of the parser trying to recover from the first mistake." },
+            { "title": "Checking the Reported Line and the One Before It", "text": "Because missing terminators are often only detected on the following line, checking the line immediately above a reported error location resolves a large share of syntax error confusion instantly." },
+            { "title": "Counting Braces and Parentheses Deliberately", "text": "For deeply nested code, deliberately counting opening and closing braces/parentheses (or relying on an editor's bracket-matching highlight) quickly locates an unbalanced pair." },
+            { "title": "Compiling Frequently in Small Increments", "text": "Compiling after every few lines added, rather than writing an entire large program before compiling even once, isolates new syntax errors to a small, recently-written section of code." }
+          ],
+          "cons": [
+            { "title": "Missing Semicolon", "text": "By far the most frequent syntax error of all — omitted after a declaration, assignment, or function call statement." },
+            { "title": "Mismatched Parentheses or Braces", "text": "An unclosed ( or { anywhere in a file can cause a long, confusing cascade of unrelated-looking errors, often reported far from the actual missing character." },
+            { "title": "Misplaced Semicolon After a Control Header", "text": "Writing if (condition); or for (...); accidentally turns the loop or condition's body into an empty statement, silently changing the program's behaviour without any compiler warning by default." },
+            { "title": "Using = Instead of == in a Condition", "text": "A subtle syntax-adjacent trap: if (x = 5) is grammatically valid (an assignment expression used as a condition), so the compiler accepts it silently unless extra warnings like -Wall are enabled." },
+            { "title": "Incorrect Function Call Syntax", "text": "Forgetting parentheses entirely (printf \"Hi\";) or mismatching argument counts against a prototype produces clear, specific syntax or semantic errors depending on the exact mistake." },
+            { "title": "Attempting Nested Block Comments", "text": "Placing /* inside an already-open block comment does not nest — the first */ encountered closes the comment early, often leaving stray code fragments to be parsed unexpectedly." }
+          ]
+        }
+      ]
+    },
+
+    {
+      "sectionId": "syntax-error-messages-table",
+      "title": "Decoding Common GCC Syntax Error Messages",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Compiler error messages follow fairly predictable patterns once you know what to look for. This table translates several of GCC's most common syntax-related messages into plain English."
+        },
+        {
+          "type": "comparisonTable",
+          "headers": ["GCC Error Message", "Plain-English Meaning", "Typical Cause"],
+          "rows": [
+            ["expected ';' before 'return'", "A statement is missing its terminating semicolon", "Forgotten semicolon on the line just above the reported one"],
+            ["expected ')' before '{' token", "An opening parenthesis was never closed", "Missing closing ) in a function call, if, or for header"],
+            ["expected identifier or '(' before 'int'", "A keyword was used where a variable/function name was expected", "Attempting to use int, float, etc. as an identifier"],
+            ["expected declaration or statement at end of input", "The file ended with an unclosed brace somewhere earlier", "A missing closing } left one or more blocks technically still open"],
+            ["stray '\\' in program", "An unexpected backslash character appeared outside a string or valid escape", "Often caused by an unintended line-continuation character"],
+            ["redefinition of 'x'", "The same identifier was declared twice in the same scope", "Copy-paste mistake, or the same variable declared in two overlapping places"]
+          ]
+        }
+      ]
+    },
+
+    {
+      "sectionId": "grammar-summary-diagram",
+      "title": "C's Grammar Building Blocks — Summary Architecture",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "It helps to see how all the syntax elements covered in this chapter nest inside one another, from the smallest token up to a complete program file."
+        },
+        {
+          "type": "architectureDiagram",
+          "layers": [
+            {
+              "label": "Tokens (Smallest Units)",
+              "color": "#6366f1",
+              "items": ["Keywords, identifiers, constants", "Operators, special symbols", "String and character literals"]
+            },
+            {
+              "label": "Expressions",
+              "color": "#0ea5e9",
+              "items": ["Combine tokens using operators", "Always evaluate to a single value", "Governed by precedence & associativity"]
+            },
+            {
+              "label": "Statements",
+              "color": "#10b981",
+              "items": ["Expression statements (expr;)", "Declaration statements", "Control statements (if, for, while, switch)", "Jump statements (return, break, continue)"]
+            },
+            {
+              "label": "Compound Statements (Blocks)",
+              "color": "#f59e0b",
+              "items": ["{ statement; statement; ... }", "Function bodies", "Loop and conditional bodies"]
+            },
+            {
+              "label": "Functions",
+              "color": "#ef4444",
+              "items": ["Prototypes (declarations)", "Definitions (with a body)", "Calls (invocations)"]
+            },
+            {
+              "label": "Translation Unit (Complete File)",
+              "color": "#8b5cf6",
+              "items": ["Preprocessor directives", "Global declarations", "One or more function definitions"]
+            }
+          ]
+        }
+      ]
+    },
+
+    {
+      "sectionId": "interview-questions",
+      "title": "C Syntax — Interview Questions",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "Syntax-focused questions are extremely common in <strong>entry-level technical interviews and academic exams</strong>, since precise grammar knowledge quickly reveals whether a candidate has actually written and debugged real C code."
+        },
+        {
+          "type": "interviewQA",
+          "items": [
+            {
+              "q": "Q1. What is the difference between syntax and semantics in C?",
+              "a": "Syntax refers to the grammatical structure of code — whether tokens are arranged in a pattern the language's grammar permits, such as correct semicolon placement and balanced braces. Semantics refers to whether that grammatically valid code actually makes logical sense — for example, whether the types involved in an operation are compatible. Code can be syntactically perfect while still being semantically invalid, such as int x = \"hello\";, which follows correct declaration grammar but violates C's type rules.",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q2. What is the difference between an expression and a statement in C?",
+              "a": "An expression is any combination of values, variables, and operators that evaluates to a single value, such as 5 + 3 or calculateArea(l, w). A statement is a complete instruction telling the computer to perform an action, and does not necessarily produce a usable value itself. Adding a semicolon after an expression, like x + 1;, technically turns it into a valid 'expression statement', even though the resulting value is simply discarded.",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q3. Why does the statement if (x > 5); { printf(\"Big\\n\"); } always print 'Big', regardless of x's value?",
+              "a": "The semicolon immediately after the if condition creates an empty statement as the entire body of the if — meaning the if effectively does nothing at all, successfully or not. The following brace-enclosed block is then simply an ordinary, unconditional compound statement that executes every time, completely unrelated to the if statement that precedes it, despite how the code visually appears to be connected.",
+              "tag": "Common Trap"
+            },
+            {
+              "q": "Q4. Are curly braces always required around the body of an if statement or loop in C?",
+              "a": "No — if a control statement's body consists of exactly one statement, braces can be omitted, since a single statement is already valid syntax on its own. However, without braces, only that immediately following single statement is considered part of the if or loop; any additional statements afterward, regardless of indentation, execute unconditionally — which is precisely why most professional style guides recommend always using braces, even for single-line bodies.",
+              "tag": "Frequently Asked"
+            },
+            {
+              "q": "Q5. Why do preprocessor directives like #define and #include never end with a semicolon?",
+              "a": "Preprocessor directives are not ordinary C statements at all — they are instructions to the preprocessor, a separate text-substitution stage that runs before real compilation. Their syntax terminates simply at the end of the physical line (unless explicitly continued with a trailing backslash). Adding a semicolon to a #define directive is a common bug, since that semicolon becomes part of the substituted text itself, potentially breaking every place the macro is subsequently used.",
+              "tag": "Frequently Asked"
+            },
+            {
+              "q": "Q6. Can block comments (/* ... */) be nested inside one another in C?",
+              "a": "No. The first closing */ the compiler encounters ends the block comment immediately, regardless of any /* that appears to open a new comment inside it. Attempting to nest block comments typically leaves a fragment of what was intended to be commented-out code exposed as real, active code, often causing confusing syntax errors elsewhere.",
+              "tag": "Common Trap"
+            },
+            {
+              "q": "Q7. What is the difference between a function prototype and a function definition, syntactically?",
+              "a": "A function prototype ends directly in a semicolon, such as int add(int, int);, and provides only the function's signature without any implementation. A function definition instead is immediately followed by a brace-enclosed body containing the actual implementation, such as int add(int a, int b) { return a + b; } — the presence of that opening brace, rather than a semicolon, is exactly what distinguishes the two forms grammatically.",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q8. Does indentation affect how a C program is compiled?",
+              "a": "No. C is a free-form language, meaning whitespace — including indentation, extra spaces, and blank lines — carries no grammatical meaning to the compiler beyond separating one token from the next. Two programs with identical tokens but wildly different indentation and spacing compile to exactly the same result; indentation exists purely as a readability convention for human programmers.",
+              "tag": "Frequently Asked"
+            },
+            {
+              "q": "Q9. Why might a single missing semicolon cause an error message to appear on a completely different, later line of code?",
+              "a": "The parser keeps consuming subsequent tokens, still expecting to eventually find the terminator (semicolon) it needs to complete the current statement. It typically only reports a failure once it encounters something that clearly cannot possibly continue that statement — which may be an entire line, or even several lines, further down in the file than where the missing semicolon actually belongs.",
+              "tag": "Common Trap"
+            },
+            {
+              "q": "Q10. What is the difference between if (x = 5) and if (x == 5) in terms of syntax validity?",
+              "a": "Both are completely valid C syntax — an assignment expression and an equality comparison expression are both legal conditions for an if statement, since C conditions simply need to evaluate to a numeric value. The difference is entirely semantic and logical rather than syntactic: if (x = 5) assigns 5 to x and then always evaluates as true (since 5 is non-zero), while if (x == 5) genuinely compares x's current value against 5 without modifying it.",
+              "tag": "Frequently Asked"
+            }
+          ]
+        }
+      ]
+    },
+
+    {
+      "sectionId": "practice-questions",
+      "title": "Practice Questions — Test Your Understanding",
+      "blocks": [
+        {
+          "type": "practiceQuestions",
+          "items": [
+            {
+              "q": "1. Identify the syntax error in: int total = 5 printf(\"%d\", total);",
+              "a": "There is a missing semicolon after 5, which should terminate the declaration statement int total = 5;. Without it, the parser cannot tell where that statement ends and the next one (the printf call) begins, resulting in a syntax error typically reported as something like 'expected ; before printf'.",
+              "difficulty": "Easy"
+            },
+            {
+              "q": "2. What is the output of the following code, and why? int x = 10; if (x > 5); printf(\"Greater\\n\");",
+              "a": "It prints 'Greater' regardless of x's actual value. The semicolon immediately after if (x > 5) creates an empty statement as the if's entire body, meaning the if effectively controls nothing at all. The printf statement afterward is a completely separate, unconditional statement that always executes — unrelated to the if despite appearing connected.",
+              "difficulty": "Medium"
+            },
+            {
+              "q": "3. Is the following code syntactically valid? Explain why or why not: int a, b = 5, c;",
+              "a": "Yes, this is perfectly valid syntax. C allows multiple identifiers of the same type to be declared in one statement, separated by commas, with some initialised and others left uninitialised. Here, a and c are declared without initial values, while b is declared and initialised to 5 in the same combined statement.",
+              "difficulty": "Easy"
+            },
+            {
+              "q": "4. Why does the following code fail to compile: int total 5;?",
+              "a": "This is missing the assignment operator = between the identifier and the value. C's declaration-with-initialisation grammar requires exactly type identifier = value;, and without the =, the parser cannot make sense of total 5 as two consecutive tokens with no operator connecting them, producing a syntax error.",
+              "difficulty": "Easy"
+            },
+            {
+              "q": "5. What is wrong, syntactically, with this attempted nested comment: /* Outer comment /* inner comment */ still outer? */",
+              "a": "Block comments cannot nest in C. The first */ encountered — immediately after 'inner comment' — closes the entire comment right there. Everything after it, including 'still outer? */', is then parsed as actual, active code rather than a comment, almost certainly producing one or more syntax errors, since that leftover text does not form any valid C statement.",
+              "difficulty": "Medium"
+            },
+            {
+              "q": "6. Explain why #define MAX 100; (with a trailing semicolon) can introduce a subtle bug rather than a compile error.",
+              "a": "The preprocessor performs pure text substitution, replacing every occurrence of MAX with exactly 100; (including the semicolon), since that entire trailing text is part of what follows #define MAX. In many simple usages like int total = MAX;, this expands to int total = 100;;, which happens to still compile (the extra semicolon just becomes an empty statement) — but in other contexts, such as inside a for loop header or an expression, that extra semicolon can break the surrounding syntax entirely, sometimes producing a confusing error far from the actual #define line.",
+              "difficulty": "Hard"
+            },
+            {
+              "q": "7. What is the grammatical difference between a function prototype and a variable declaration that makes one require a semicolon differently from a function definition?",
+              "a": "Both a function prototype (int add(int, int);) and a variable declaration (int total;) are simple statements that end directly with a semicolon, with no brace-enclosed body following them. A function definition, by contrast, is immediately followed by an opening brace introducing its body — a compound statement — and compound statements never require a trailing semicolon of their own, since the closing brace itself unambiguously marks their end.",
+              "difficulty": "Hard"
+            },
+            {
+              "q": "8. Why is int x=5;if(x>0){printf(\"positive\");} considered valid, fully compilable C, despite having almost no whitespace at all?",
+              "a": "C is a free-form language, meaning the compiler's parser relies entirely on tokens and punctuation (semicolons, braces, parentheses) to understand structure, not on whitespace or line breaks. As long as every token remains distinguishable from its neighbours (which it does here, since keywords, identifiers, and symbols are already unambiguous without extra spacing), the compiler parses this identically to a more conventionally formatted version of the same code — though such compressed formatting is strongly discouraged for human readability.",
+              "difficulty": "Medium"
+            }
+          ]
+        }
+      ]
+    },
+
+    {
+      "sectionId": "conclusion-heading",
+      "title": "Conclusion — Grammar Is the Skeleton of Every C Program",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "C's syntax is remarkably small and consistent once broken into its component pieces — statements and expressions, the semicolon's precise role, how curly braces group code into blocks, the distinct grammar of declarations, functions, comments, and preprocessor directives, and the free-form treatment of whitespace that makes indentation a purely human convenience rather than a compiler requirement."
+        },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "Every syntax error you will ever encounter maps back to one of the rules covered in this chapter — a missing terminator, an unbalanced brace or parenthesis, a keyword misused as a name, or a misplaced semicolon quietly changing what a control statement actually controls. Recognising which specific rule was broken, rather than treating compiler errors as an opaque wall of red text, is what separates confident debugging from frustrated guesswork."
+        },
+        {
+          "type": "comparisonTable",
+          "headers": ["Syntax Concept Covered", "Most Common Related Error"],
+          "rows": [
+            ["Semicolon rules", "'expected ; before ...' — the most frequent beginner error of all"],
+            ["Curly brace rules", "Unintended unconditional execution due to a missing brace"],
+            ["Declaration syntax", "Missing = in a combined declaration-and-initialisation"],
+            ["Function prototype vs definition", "'undefined reference' at the linking stage, not syntax analysis"],
+            ["Comment syntax", "Accidentally closing a block comment early via a nested /* */"],
+            ["Preprocessor directive syntax", "A stray semicolon silently breaking every macro usage"]
+          ]
+        },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "The natural next step is <strong>C Variables and Data Types</strong>, where you will apply this grammar knowledge directly to writing real, working declarations, assignments, and calculations — the very first genuinely useful programs of your C journey."
+        },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "<strong>Grammar is invisible when it's right, and obvious the moment it's wrong.</strong> Master these rules once, and the vast majority of your future compiler errors will feel instantly familiar rather than mysterious. 📐"
+        }
+      ]
+    }
+
+  ],
+
+  "faq": {
+    "sectionId": "faq-heading",
+    "title": "Frequently Asked Questions (FAQ)",
+    "items": [
+      {
+        "q": "Does C care about indentation the way Python does?",
+        "a": "No. C is a free-form language where whitespace, including indentation, carries no grammatical meaning to the compiler at all — only tokens and punctuation like semicolons and braces matter. This is fundamentally different from Python, where indentation itself defines block structure. Consistent indentation in C is purely a readability convention for human programmers, entirely optional as far as the compiler is concerned."
+      },
+      {
+        "q": "Why does forgetting a semicolon sometimes produce an error on the wrong line?",
+        "a": "The compiler's parser keeps reading subsequent tokens, still expecting to eventually find the terminator it needs to complete the current statement. It typically only reports failure once it encounters something that clearly cannot continue that statement — which is often one or more lines further down than where the missing semicolon actually belongs, since everything in between still looked plausible to the parser as it searched."
+      },
+      {
+        "q": "Is it ever acceptable to skip curly braces around a single-statement if body?",
+        "a": "It is legal, compiling syntax, but strongly discouraged in professional practice, since it creates a well-known trap: adding a second statement later without also adding braces silently makes that new statement execute unconditionally, regardless of misleading indentation. Most style guides recommend using braces around every control statement body, even ones containing just a single line, specifically to prevent this class of bug."
+      },
+      {
+        "q": "What is the difference between a syntax error and a linker error like 'undefined reference'?",
+        "a": "A syntax error means the code itself does not follow C's grammar rules and is caught during the compiler's syntax analysis phase, before any object code is even generated. An 'undefined reference' error happens much later, during linking, and means the code was grammatically and semantically fine, but the linker could not find the actual compiled implementation of a function or variable you referenced — often because a required source file, object file, or library was not included in the build."
+      },
+      {
+        "q": "Can preprocessor directive syntax mistakes cause errors that look like ordinary C syntax errors?",
+        "a": "Yes, very often. Since the preprocessor performs pure text substitution before real compilation begins, a mistake in a #define macro (like an accidental trailing semicolon) can silently corrupt the text of every line that uses that macro, producing a confusing syntax error reported at a completely different location than the actual #define line where the real mistake was introduced."
+      },
+      {
+        "q": "Are all C compilers equally strict about syntax rules?",
+        "a": "The fundamental grammar rules themselves are defined by the ISO C standard and are consistent across conforming compilers like GCC, Clang, and MSVC. However, compilers can differ in exactly which non-standard extensions they additionally permit, how strictly they enforce a specific standard version when requested (via flags like -std=c17), and how detailed or precise their error messages are for the same underlying mistake."
+      }
+    ]
+  },
+
+  "nav": {
+    "prev": { "label": "← C Identifiers",      "path": "/c/c-identifier/" },
+    "next": { "label": "Next: C Comments →",   "path": "/c/c-comments/" }
+  },
+
+  "sidebar": {
+    "quickFacts": [
+      { "dt": "Statement terminator",   "dd": "Semicolon ;" },
+      { "dt": "Block delimiters",      "dd": "{ } curly braces" },
+      { "dt": "Whitespace significance", "dd": "None — free-form language" },
+      { "dt": "Line comment",          "dd": "// (since C99)" },
+      { "dt": "Block comment",         "dd": "/* ... */ (never nests)" },
+      { "dt": "Preprocessor terminator", "dd": "End of line (no semicolon)" }
+    ],
+    "tags": ["Syntax","Statements","Expressions","Semicolon","Curly Braces","Declarations","Function Syntax","Comments","Preprocessor Directives","Whitespace","Operator Precedence","Syntax Errors"]
+  }
+}

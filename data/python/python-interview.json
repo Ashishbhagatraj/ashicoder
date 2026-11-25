@@ -1,0 +1,871 @@
+{
+  "meta": {
+    "title": "Python Interview Questions | 100 Questions All Levels 2026 | Tech Sustainify",
+    "titleTemplate": "%s | Tech Sustainify",
+    "description": "Master Python interviews with 100 comprehensive questions covering all levels — Fresher, Mid, and Senior. Topics include Python basics, OOP, Data Structures, Exception Handling, Decorators, Generators, the GIL, Threading, Multiprocessing, Asyncio, CPython Internals, Design Patterns, and Django/FastAPI. Every question includes a detailed professional answer. Updated July 2026.",
+    "keywords": "python interview questions 2026, python interview questions for freshers, python interview questions mid level, python senior developer interview, python data structures interview questions, python oops interview questions, python gil interview questions, python multithreading interview questions, python decorators interview questions, python generators interview questions, python asyncio interview questions, python cpython internals interview, python interview preparation 2026",
+    "author": "Tech Sustainify",
+    "publisher": "Tech Sustainify",
+    "publisherUrl": "https://techsustainify.com",
+    "copyright": "© 2026 Tech Sustainify. All rights reserved.",
+    "language": "en-IN",
+    "locale": "en_IN",
+    "canonical": "https://techsustainify.com/python/python-interview/",
+    "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+    "googlebot": "index, follow",
+    "bingbot": "index, follow",
+    "revisitAfter": "7 days",
+    "rating": "general",
+    "category": "Technology / Programming / Python"
+  },
+
+  "breadcrumbs": [
+    { "position": 1, "name": "Home",            "path": "/" },
+    { "position": 2, "name": "Python Tutorial", "path": "/python/python-home/" },
+    { "position": 3, "name": "Python Interview Questions" }
+  ],
+
+  "articleHeader": {
+    "badge": "🐍 Python",
+    "title": "Python Interview Questions — 100 Q&A All Levels",
+    "subtitle": "A complete set of 100 Python interview questions and detailed answers for Fresher, Mid-Level, and Senior developers — covering Python basics, OOP, Data Structures, Exception Handling, Decorators, Generators, the GIL, Threading, Multiprocessing, Asyncio, CPython Internals, Design Patterns, and Django/FastAPI."
+  },
+
+  "infoCards": [
+    { "icon": "📅", "label": "Last Updated", "isTime": true, "dateTime": "2026-07-20", "value": "July 2026" },
+    { "icon": "❓", "label": "Questions",     "value": "100 Q&A" },
+    { "icon": "🎯", "label": "Level",         "value": "Fresher + Mid + Senior" }
+  ],
+
+  "sections": [
+
+    {
+      "sectionId": "intro-heading",
+      "title": "How to Use This Guide",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "This guide contains <strong>100 Python interview questions</strong> organized by level and topic. Each question includes a <strong>detailed, professional answer</strong> that covers not just the what, but also the why — exactly what interviewers expect from strong candidates."
+        },
+        {
+          "type": "comparisonTable",
+          "headers": ["Level", "Questions", "Experience", "Topics Covered"],
+          "rows": [
+            ["🟢 Fresher",   "Q1–Q25",   "0–1 year",  "Basics, Data Types, OOP Fundamentals, Memory Model"],
+            ["🟡 Mid-Level", "Q26–Q70",  "1–3 years", "Data Structures, Exceptions, Decorators, Generators"],
+            ["🔴 Senior",    "Q71–Q100", "3–6+ years","GIL, Concurrency, CPython Internals, Design Patterns, Frameworks"]
+          ]
+        },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "<strong>Pro tip:</strong> Read each answer fully even if you think you know it — senior interviewers follow up on surface answers with deeper questions. Understanding the <em>why</em> behind every concept separates average candidates from top performers."
+        }
+      ]
+    },
+
+    {
+      "sectionId": "fresher-basics",
+      "title": "Fresher Level — Python Basics & Core Concepts (Q1–Q15)",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "These are the most commonly asked questions in <strong>campus placements and entry-level Python interviews</strong>. Every fresher must know all 15 of these cold."
+        },
+        {
+          "type": "interviewQA",
+          "items": [
+            {
+              "q": "Q1. What is Python and why is it called an interpreted, high-level language?",
+              "a": "Python is a high-level, general-purpose, dynamically typed programming language created by Guido van Rossum, first released in 1991. It is called 'interpreted' because CPython compiles source code to bytecode and then executes it line by line inside the Python Virtual Machine, rather than compiling directly to native machine code ahead of time. 'High-level' means it abstracts away memory management and low-level hardware details, letting developers focus on logic rather than pointers or manual allocation.",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q2. What is the difference between CPython, PyPy, Jython, and IronPython?",
+              "a": "CPython is the official, most widely-used reference implementation, written in C — downloading Python from python.org gives you CPython. PyPy is an alternative implementation with a Just-In-Time compiler that can run pure Python code significantly faster for long-running programs. Jython compiles Python to Java bytecode and runs on the JVM, giving access to Java libraries. IronPython targets the .NET Common Language Runtime. Interviewers usually expect you to know CPython is the default and that alternatives exist for specific interoperability or performance needs.",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q3. What are Python's built-in data types? Which are mutable and which are immutable?",
+              "a": "Python's core built-in types are: int, float, complex (numeric); str (text); bool; list, dict, set (mutable containers); tuple, frozenset (immutable containers); and bytes/bytearray for binary data. Immutable types — int, float, str, tuple, frozenset, bool — cannot be changed after creation; any 'modification' creates a new object. Mutable types — list, dict, set, bytearray — can be changed in place. This distinction matters directly for hashability: only immutable, hashable objects can be used as dictionary keys or set elements.",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q4. What is the difference between == and is in Python?",
+              "a": "== is the equality operator — it checks whether two objects have the SAME VALUE by calling the object's __eq__ method. is is the identity operator — it checks whether two variables point to the exact SAME OBJECT in memory (equivalent to comparing id() values). Example: a = [1,2,3]; b = [1,2,3] — a == b is True (same content) but a is b is False (different list objects). Classic trap: small integers (-5 to 256) and short string literals are cached/interned by CPython, so is can misleadingly return True for them — always use == for value comparison.",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q5. How does Python manage memory? Explain reference counting briefly.",
+              "a": "CPython manages memory primarily through reference counting: every object carries a count of how many references point to it, incremented on assignment and decremented when a reference goes out of scope or is deleted. When the count reaches zero, the object's memory is immediately freed. Reference counting alone cannot detect reference cycles (two objects referencing each other), so CPython supplements it with a generational garbage collector (the gc module) that periodically scans for and collects unreachable cycles.",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q6. Why is a tuple immutable but a list mutable? What is the practical impact?",
+              "a": "A tuple's internal C structure stores a fixed-size array of object pointers set once at creation and never resized, while a list's structure supports resizing, insertion, and item replacement — this is a deliberate design choice, not an accident. Practical impact: tuples are hashable (since their content never changes, their hash value is stable), so they can be used as dictionary keys or set elements — lists cannot. Tuples are also slightly faster to create and iterate, and signal to other developers that the data shouldn't change.",
+              "tag": "Frequently Asked"
+            },
+            {
+              "q": "Q7. What is the difference between list, tuple, set, and dict?",
+              "a": "list: ordered, mutable, allows duplicates — [1, 2, 2, 3]. tuple: ordered, immutable, allows duplicates — (1, 2, 2, 3). set: unordered, mutable, no duplicates, elements must be hashable — {1, 2, 3}. dict: ordered (since Python 3.7, insertion order preserved), mutable, unique keys mapping to values — {'a': 1, 'b': 2}. Choosing between them depends on whether you need order, uniqueness, mutability, or key-value pairing — this is one of the most common practical decisions in day-to-day Python code.",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q8. What is a Python namespace and scope? Explain the LEGB rule.",
+              "a": "A namespace is a mapping from names to objects — Python maintains separate namespaces for local, enclosing, global, and built-in scopes. The LEGB rule defines the order Python searches when resolving a name: Local (inside the current function), Enclosing (any enclosing function, relevant for closures), Global (module-level), Built-in (Python's built-in names like len, print). Python searches these in order and stops at the first match. The global keyword lets a function assign to a global variable rather than creating a new local one; nonlocal does the same for an enclosing function's variable.",
+              "tag": "Frequently Asked"
+            },
+            {
+              "q": "Q9. What is the difference between shallow copy and deep copy in Python?",
+              "a": "A shallow copy (copy.copy() or list slicing lst[:]) creates a new outer object but inserts references to the same nested objects found in the original — modifying a nested mutable object affects both copies. A deep copy (copy.deepcopy()) recursively copies all nested objects, producing a completely independent structure with no shared references. For a flat list of immutable elements, shallow copy behaves identically to deep copy since there's nothing nested to share.",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q10. What is *args and **kwargs in Python?",
+              "a": "*args collects any number of extra positional arguments into a tuple inside the function. Example: def f(*args): called as f(1, 2, 3) gives args = (1, 2, 3). **kwargs collects any number of extra keyword arguments into a dictionary. Example: def f(**kwargs): called as f(name='Alice', age=30) gives kwargs = {'name': 'Alice', 'age': 30}. Both can be combined in a single function signature — def f(a, *args, **kwargs) — and are heavily used for flexible APIs, decorators, and wrapper functions.",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q11. What is the difference between a Python module and a package?",
+              "a": "A module is a single .py file containing Python definitions and statements — you import it with import module_name. A package is a directory containing multiple related modules, identified by an __init__.py file (optional but conventional since Python 3.3's implicit namespace packages) that Python treats as a namespace. Packages allow organizing large codebases hierarchically, e.g., import mypackage.submodule. Both are units of code reuse, but a package is essentially a folder of modules grouped under one importable namespace.",
+              "tag": "Frequently Asked"
+            },
+            {
+              "q": "Q12. What is PEP 8 and why does it matter?",
+              "a": "PEP 8 is Python's official Style Guide, defining conventions for writing readable, consistent Python code — 4-space indentation, snake_case for variables and functions, PascalCase for classes, a soft line-length limit, whitespace rules, and import ordering. It matters because Python's readability is one of its core strengths, and consistent style across a codebase or team dramatically reduces the cognitive overhead of reading unfamiliar code. Tools like flake8, black, and ruff automatically enforce or auto-format code to PEP 8 standards in professional projects.",
+              "tag": "Frequently Asked"
+            },
+            {
+              "q": "Q13. What is the difference between local and global variables? What does the global keyword do?",
+              "a": "A local variable is defined inside a function and only accessible within that function's scope — it is created when the function runs and destroyed when it returns. A global variable is defined at module level and accessible throughout the module, including inside functions for READING. However, assigning to a name inside a function creates a new LOCAL variable by default, even if a global with the same name exists — the global keyword explicitly tells Python that an assignment inside the function should modify the module-level variable instead of shadowing it.",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q14. What is type casting in Python? Explain implicit vs explicit casting.",
+              "a": "Type casting converts a value from one type to another. Implicit casting happens automatically when Python promotes a smaller/less precise type to a larger one without data loss — for example, 5 + 2.0 automatically produces the float 7.0. Explicit casting requires the developer to call a conversion function: int('42'), float('3.14'), str(100), list('abc'). Explicit casting can raise a ValueError if the conversion isn't valid, such as int('abc'), so it's common to wrap risky conversions in a try/except block.",
+              "tag": "Frequently Asked"
+            },
+            {
+              "q": "Q15. What is the difference between break, continue, and pass in Python?",
+              "a": "break: immediately exits the current loop entirely — execution jumps to the statement right after the loop. continue: skips the rest of the current iteration and moves to the next iteration of the loop. pass: a null operation — it does literally nothing, used as a placeholder where syntax requires a statement but no action is needed yet, such as an empty function body, class stub, or unimplemented branch during development. Interview trap: forgetting that break only exits the innermost loop when loops are nested — a flag variable or function return is typically used to exit multiple levels.",
+              "tag": "Frequently Asked"
+            }
+          ]
+        }
+      ]
+    },
+
+    {
+      "sectionId": "fresher-oop",
+      "title": "Fresher Level — OOP Concepts (Q16–Q25)",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "OOP is <strong>heavily tested</strong> in Python fresher interviews. These 10 questions cover the four pillars, Python's unique overloading rules, and duck typing — master every one."
+        },
+        {
+          "type": "interviewQA",
+          "items": [
+            {
+              "q": "Q16. What are the four pillars of OOP in Python?",
+              "a": "Encapsulation: bundling data and methods together in a class, restricting direct access using naming conventions (_protected, __private via name mangling) since Python has no true access modifiers. Inheritance: a child class acquires attributes and methods of a parent using class Child(Parent):. Python supports multiple inheritance directly, unlike single-inheritance languages. Polymorphism: the same method name behaves differently depending on the object — achieved through duck typing and method overriding rather than compile-time overloading. Abstraction: hiding implementation details, exposing only essential behavior, achieved via the abc module's abstract base classes.",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q17. Does Python support method overloading? How is it different from method overriding?",
+              "a": "Python does NOT support traditional method overloading — defining multiple methods with the same name but different parameters in the same class simply means the LAST definition silently replaces earlier ones. Instead, Python achieves similar flexibility using default arguments, *args/**kwargs, or the functools.singledispatch decorator for type-based dispatch. Method OVERRIDING, however, works exactly as expected: a subclass defines a method with the same name as a parent class method, and the subclass's version executes when called on a subclass instance — this is resolved at runtime based on the actual object type.",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q18. What is an abstract class in Python? How do you create one?",
+              "a": "An abstract class cannot be instantiated directly and typically declares methods that subclasses MUST implement. Python provides this via the abc module: from abc import ABC, abstractmethod; class Shape(ABC): @abstractmethod def area(self): pass. Any subclass that doesn't override every abstract method also cannot be instantiated — Python raises a TypeError. Abstract classes can also contain concrete (fully implemented) methods that subclasses inherit as-is. They're used when related classes should share a common interface and possibly some shared implementation.",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q19. What is duck typing? How does it relate to interfaces in Python?",
+              "a": "Duck typing is Python's dynamic-typing philosophy summarized as 'if it walks like a duck and quacks like a duck, it's a duck' — an object's suitability is determined by whether it has the needed methods/attributes at runtime, not by its declared type or explicit interface implementation. Unlike Java's interface keyword, Python has no formal interface construct; instead, any object that implements the expected methods (like __len__, __iter__, or a custom .quack() method) can be used interchangeably. Type hints with typing.Protocol (Python 3.8+) now allow structural typing checks without inheritance, formalizing duck typing for static analysis tools like mypy.",
+              "tag": "Frequently Asked"
+            },
+            {
+              "q": "Q20. What is runtime polymorphism in Python? Give an example.",
+              "a": "Runtime polymorphism means the correct method implementation is selected based on the actual object's type at the moment the method is called, not the variable's declared type (which Python doesn't enforce anyway). Example: class Animal: def sound(self): print('Animal') ; class Dog(Animal): def sound(self): print('Woof'). Calling animal.sound() where animal actually references a Dog instance prints 'Woof'. This lets you write generic code — like calling shape.area() in a loop over a list of different Shape subclasses — without needing to know each object's exact type.",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q21. What is the difference between an abstract class and Python's informal 'interface' concept?",
+              "a": "An abstract class (via ABC) can have constructors, instance state, concrete methods with real implementations, and abstract methods that subclasses must implement — it represents an IS-A relationship with shared code. Python has no dedicated interface keyword; the closest equivalents are an ABC with ONLY abstract methods and no state (a 'pure' abstract base class), or a typing.Protocol which checks structurally (duck typing) without requiring explicit inheritance at all. Use an ABC when subclasses share implementation; use a Protocol when you just want to describe a shape/contract that any class can satisfy without a formal inheritance relationship.",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q22. Can you override a static method or a name-mangled private method in Python?",
+              "a": "Static methods (defined with @staticmethod) CAN technically be redefined in a subclass with the same name, and the subclass version will be used when called on the subclass — but since static methods don't receive self or cls, there's no true polymorphic dispatch involved, it's simple name shadowing. 'Private' attributes prefixed with double underscore (__value) undergo name mangling — Python internally renames them to _ClassName__value — which means a subclass defining __value creates an entirely separate attribute rather than overriding the parent's, since the mangled names differ.",
+              "tag": "Frequently Asked"
+            },
+            {
+              "q": "Q23. What is encapsulation in Python? How is it implemented without true access modifiers?",
+              "a": "Encapsulation bundles data and the methods that operate on it within a class, restricting direct external access to internal state. Python has no enforced private/protected/public keywords — instead it uses NAMING CONVENTIONS: a single leading underscore (_value) signals 'internal use, please don't touch' by convention only (nothing stops external access). A double leading underscore (__value) triggers name mangling, making accidental external access harder (though still technically possible via the mangled name). Properties (@property, @value.setter) are the idiomatic way to add validation logic to attribute access while keeping a simple attribute-like syntax for callers.",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q24. What is the difference between __init__ and __new__? What does super() do in constructor chaining?",
+              "a": "__new__ is the actual object CONSTRUCTOR — a static method that creates and returns a new instance, called before __init__. __init__ is the INITIALIZER — it receives the already-created instance (self) and sets up its initial state, returning nothing. You almost never need to override __new__ except for immutable types (subclassing tuple/str) or implementing patterns like Singleton. super().__init__(...) calls the parent class's initializer explicitly, ensuring the parent's setup logic runs before or alongside the child's — essential in multi-level inheritance hierarchies to avoid skipping parent initialization.",
+              "tag": "Frequently Asked"
+            },
+            {
+              "q": "Q25. What is the difference between composition and inheritance in Python?",
+              "a": "Inheritance (IS-A) uses class Child(Parent): to acquire a parent's attributes and behavior — Python uniquely supports MULTIPLE inheritance directly, resolved via the Method Resolution Order (MRO, C3 linearization algorithm). Composition (HAS-A) has one class hold an instance of another as an attribute: class Car: def __init__(self): self.engine = Engine() — a Car HAS-A Engine, and delegates to it rather than inheriting its behavior. Python culture generally favors composition for flexibility and testability (easy to inject mock dependencies), reserving inheritance for genuine, stable IS-A relationships, especially given how deep multiple-inheritance hierarchies can quickly become hard to reason about.",
+              "tag": "Frequently Asked"
+            }
+          ]
+        }
+      ]
+    },
+
+    {
+      "sectionId": "mid-collections",
+      "title": "Mid Level — Data Structures & Collections (Q26–Q38)",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "Data structure questions are asked in <strong>virtually every Python interview</strong> at mid-level. Interviewers expect you to know not just the API but the <em>internal implementation</em> and performance characteristics."
+        },
+        {
+          "type": "interviewQA",
+          "items": [
+            {
+              "q": "Q26. What is Python's built-in data structure ecosystem, and what does the collections module add?",
+              "a": "Python's core built-in structures are list, tuple, set, and dict — covering ordered mutable sequences, ordered immutable sequences, unique unordered collections, and key-value mappings respectively. The collections module extends this with specialized, optimized structures: deque (fast appends/pops from both ends), Counter (counting hashable items), defaultdict (dict with automatic default values), OrderedDict (explicit order-tracking dict, less necessary since Python 3.7's dicts preserve insertion order natively), and namedtuple (lightweight, immutable, field-named tuple subclass).",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q27. What is the performance difference between list and tuple?",
+              "a": "Tuples are generally slightly faster to create because CPython can allocate a fixed, exact-size block of memory upfront, while lists over-allocate extra capacity to amortize future growth. Tuples also have a smaller memory footprint per element since they don't need to track resizing metadata. For iteration, both are close in speed since both are contiguous arrays of pointers. In practice, the difference is small for most applications — the primary reason to choose a tuple is semantic immutability and hashability, not raw performance.",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q28. How does a Python dict work internally?",
+              "a": "CPython's dict is implemented as an open-addressing hash table. On insertion, Python computes hash(key), uses part of that hash to select a slot index, and stores the key-value pair there. On collision, it probes to a different slot using a pseudo-random probing sequence derived from the hash. Since Python 3.7, dict internally maintains a separate compact array preserving insertion order alongside the hash table, which is why iterating a dict yields keys in the order they were inserted. Lookups, insertions, and deletions are O(1) average case, degrading to O(n) worst case only under pathological hash collisions.",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q29. What is the difference between dict, OrderedDict, and defaultdict?",
+              "a": "dict (Python 3.7+): preserves insertion order natively, standard general-purpose mapping. OrderedDict (collections.OrderedDict): historically needed for guaranteed order before 3.7; still useful today for its move_to_end() method and order-sensitive equality comparison (two OrderedDicts are equal only if order also matches, unlike plain dicts). defaultdict (collections.defaultdict): automatically creates a default value (via a factory function like list or int) for any missing key on first access, eliminating repetitive key-existence checks — e.g., defaultdict(list)['key'].append(value) works even if 'key' didn't exist yet.",
+              "tag": "Frequently Asked"
+            },
+            {
+              "q": "Q30. What is the difference between set and frozenset?",
+              "a": "set is a mutable, unordered collection of unique, hashable elements — supports add(), remove(), and set operations like union and intersection. frozenset is its immutable counterpart — created once and never modified afterward, which makes it hashable itself, meaning a frozenset can be used as a dictionary key or nested inside another set (a plain set cannot, since it's unhashable). Both provide O(1) average membership testing (in operator), making them far faster than lists for 'does this exist' checks on large collections.",
+              "tag": "Frequently Asked"
+            },
+            {
+              "q": "Q31. What is the difference between an iterator and an iterable in Python?",
+              "a": "An iterable is any object that implements __iter__() and returns an iterator — lists, tuples, dicts, strings, sets are all iterable, and you can call iter() on them repeatedly to get fresh iterators. An iterator is an object that implements BOTH __iter__() (returning itself) and __next__() (returning the next value or raising StopIteration when exhausted) — it maintains internal state about where it currently is in the sequence. Every iterator is an iterable, but not every iterable is an iterator; a list is iterable but is not itself an iterator (calling next() directly on a list raises a TypeError).",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q32. What is a generator in Python? How does yield differ from return?",
+              "a": "A generator is a special kind of function that produces a lazy sequence of values using yield instead of return. Calling a generator function doesn't execute its body immediately — it returns a generator object. Each call to next() (or each iteration in a for loop) resumes execution from exactly where it paused at the last yield, preserving all local variable state. return inside a generator simply raises StopIteration to signal completion. Generators are memory-efficient because they compute values on demand rather than building an entire list in memory upfront, which matters enormously for large or infinite sequences.",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q33. How do you safely remove elements from a list while iterating over it?",
+              "a": "Wrong approach: for item in my_list: if condition(item): my_list.remove(item) — this silently skips elements because the list shrinks while the loop's internal index keeps advancing, so some items are never checked. Correct approaches: list comprehension to build a new filtered list — my_list = [x for x in my_list if not condition(x)]; iterating over a copy — for item in my_list[:]: — safe because you're iterating the copy while modifying the original; or filter()/generator expressions for a non-mutating functional style. The list comprehension approach is generally the most idiomatic and readable in modern Python.",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q34. Roughly how does CPython's dict resize, and why does it matter for performance?",
+              "a": "CPython's dict starts with a small internal table (historically 8 slots) and resizes — typically growing to roughly 4x the current size when the table is about two-thirds full — to keep collision rates and lookup times low. Resizing involves reallocating the underlying table and re-inserting every existing entry, an O(n) operation, though it happens infrequently enough that insertions remain O(1) amortized. Practical implication: if you know you'll insert a very large number of items upfront, some Python versions/implementations benefit from pre-sizing hints, though CPython's dict doesn't expose a direct pre-sizing parameter the way some other languages do.",
+              "tag": "Advanced"
+            },
+            {
+              "q": "Q35. What is the difference between deque.popleft() and list.pop(0)?",
+              "a": "list.pop(0) removes the first element of a list, but because a list is a contiguous array, every remaining element must shift one position to the left afterward — an O(n) operation. collections.deque.popleft() removes the first element of a double-ended queue in O(1) time, because deque is implemented as a doubly-linked block structure optimized for fast operations at both ends. For any queue-like usage where you frequently add/remove from the front, deque is significantly more efficient than a plain list, especially as size grows.",
+              "tag": "Frequently Asked"
+            },
+            {
+              "q": "Q36. How do you sort a list of custom objects in Python? What is the role of key=?",
+              "a": "sorted(iterable, key=..., reverse=...) or list.sort(key=..., reverse=...) both accept a key function that extracts a comparison value from each element rather than comparing objects directly. Example: sorted(students, key=lambda s: s.roll_no) sorts by roll number without needing to define __lt__ on the Student class. For multi-level sorting, return a tuple from the key function: key=lambda s: (s.grade, s.name). For legacy comparator-style functions (returning negative/zero/positive), functools.cmp_to_key() converts them into a key= compatible function. Python's Timsort algorithm underlying sort() is stable — equal elements retain their relative original order.",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q37. What is Python's famous 'mutable default argument' pitfall?",
+              "a": "def add_item(item, lst=[]): the default empty list is created ONCE, at function definition time, not on every call — so all calls that rely on the default share the SAME list object. Calling add_item(1) then add_item(2) results in the shared list becoming [1, 2] on the second call instead of the expected [2], because the first call's append persisted. The idiomatic fix: def add_item(item, lst=None): if lst is None: lst = [] — this creates a fresh list on every call where the caller doesn't supply one. This applies to any mutable default (list, dict, set), not just lists.",
+              "tag": "Common Trap"
+            },
+            {
+              "q": "Q38. What is the difference between list.sort(), sorted(), and a list comprehension vs generator expression?",
+              "a": "list.sort() sorts a list IN PLACE and returns None — only works on lists. sorted() works on ANY iterable and returns a NEW sorted list, leaving the original untouched. For comprehensions: a list comprehension [x*x for x in range(10)] eagerly builds the entire list in memory immediately. A generator expression (x*x for x in range(10)) — same syntax but with parentheses — produces values lazily, one at a time, without materializing the full sequence, making it far more memory-efficient when you only need to iterate once over a large or infinite sequence.",
+              "tag": "Frequently Asked"
+            }
+          ]
+        }
+      ]
+    },
+
+    {
+      "sectionId": "mid-exception",
+      "title": "Mid Level — Exception Handling (Q39–Q48)",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "Exception handling questions test your understanding of Python's <strong>error model, resource cleanup, and idiomatic error-handling philosophy</strong>. These come up in virtually every technical round."
+        },
+        {
+          "type": "interviewQA",
+          "items": [
+            {
+              "q": "Q39. What is Python's exception hierarchy?",
+              "a": "BaseException is the root of ALL exceptions, including ones you should rarely catch directly: SystemExit (raised by sys.exit()), KeyboardInterrupt (Ctrl+C), and GeneratorExit. Exception is the subclass that almost everything else derives from and is what you should typically catch. Common built-in subclasses include: ValueError (right type, invalid value), TypeError (wrong type entirely), KeyError (missing dict key), IndexError (out-of-range sequence index), AttributeError (missing attribute), FileNotFoundError, ZeroDivisionError, and StopIteration (used internally by iterators). catch except Exception: rather than except BaseException: unless you specifically need to intercept system-level signals.",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q40. What is the difference between raise and raise ... from ...?",
+              "a": "raise SomeException('message') raises a new exception, optionally from inside an except block, where Python automatically records the currently-handled exception as the __context__ (shown as 'During handling of the above exception, another exception occurred'). raise SomeException('message') from original_exception explicitly sets the __cause__, producing a clearer chain in the traceback ('The above exception was the direct cause of the following exception') and signaling intentional exception translation rather than an accidental side effect. Use raise ... from ... when deliberately wrapping a low-level exception into a more meaningful domain-specific one.",
+              "tag": "Frequently Asked"
+            },
+            {
+              "q": "Q41. What does the finally block do? When does it NOT execute?",
+              "a": "The finally block executes ALWAYS after try/except, whether an exception was raised, caught, uncaught, or no exception occurred at all — its primary purpose is guaranteed cleanup (closing files, releasing locks, closing DB connections). It even executes if try or except contains a return statement — Python runs finally before actually returning. finally does NOT execute if the interpreter process itself is killed (os._exit(), a segmentation fault, or the machine loses power) — but it DOES execute even for sys.exit(), since SystemExit is just a regular (though special) exception that finally still catches on its way out.",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q42. What is a context manager and the with statement? How does it relate to try/finally?",
+              "a": "A context manager is any object implementing __enter__() and __exit__(), used with the with statement to guarantee setup and cleanup around a block of code, even if an exception occurs — with open('file.txt') as f: automatically closes the file when the block exits, replacing a manual try/finally: f.close() pattern. __exit__() receives exception details (type, value, traceback) if one occurred and can suppress it by returning True. The contextlib.contextmanager decorator lets you write a context manager as a generator function with a single yield instead of a full class with __enter__/__exit__.",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q43. What are exception groups (except*) introduced in Python 3.11?",
+              "a": "Python 3.11 introduced ExceptionGroup and the except* syntax to handle situations where MULTIPLE unrelated exceptions need to be raised and handled together — common in concurrent code (e.g., asyncio.TaskGroup) where several tasks might fail independently and simultaneously. try: ... except* ValueError as eg: handle_value_errors(eg.exceptions) — eg is an ExceptionGroup containing all matching sub-exceptions, and unmatched exception types propagate to outer handlers. Before 3.11, only ONE exception could be in flight at a time, making concurrent multi-failure scenarios awkward to represent accurately.",
+              "tag": "Advanced"
+            },
+            {
+              "q": "Q44. How do you create a custom exception in Python?",
+              "a": "class InsufficientFundsError(Exception): def __init__(self, amount): super().__init__(f'Insufficient funds: required {amount}'); self.amount = amount. Custom exceptions should always inherit from Exception (or a more specific built-in exception when appropriate) rather than BaseException directly. Best practices: always call super().__init__(message) so str(exception) and default tracebacks work correctly; add domain-specific attributes (like .amount above) so calling code can programmatically inspect failure details rather than parsing a message string; name exceptions clearly, typically ending in 'Error' or 'Exception'; and organize related custom exceptions under a common base exception class for the module or package.",
+              "tag": "Frequently Asked"
+            },
+            {
+              "q": "Q45. What is the purpose of the else clause in a try/except/else block?",
+              "a": "The else block runs ONLY if the try block completes WITHOUT raising an exception, executing AFTER try but BEFORE finally. It exists to clearly separate 'code that might raise an exception I'm handling' from 'code that should only run on success' — without else, you might accidentally place success-only logic inside the try block itself, where it could inadvertently raise an exception that gets misleadingly caught by an except clause meant for a different, earlier operation. Example: try: value = risky_lookup(key) except KeyError: handle_missing() else: process(value) — process() only runs if the lookup actually succeeded.",
+              "tag": "Frequently Asked"
+            },
+            {
+              "q": "Q46. Should you ever catch SystemExit or KeyboardInterrupt? What's the risk?",
+              "a": "You technically CAN catch them since they inherit from BaseException, but doing so casually with a broad except: (bare except, which catches BaseException) is a well-known anti-pattern — it can silently swallow a user's Ctrl+C interrupt or prevent sys.exit() from actually terminating the program, leading to confusing, unresponsive applications. Legitimate cases exist, like a CLI tool performing emergency cleanup before genuinely re-raising KeyboardInterrupt, but as a rule, always catch specific exception types (except ValueError, except Exception) rather than bare except:, and never suppress these two without deliberately re-raising them afterward.",
+              "tag": "Advanced"
+            },
+            {
+              "q": "Q47. What is EAFP vs LBYL in Python's exception philosophy?",
+              "a": "EAFP ('Easier to Ask Forgiveness than Permission') is Python's preferred idiom: attempt the operation directly inside a try block and handle the exception if it fails — try: value = my_dict[key] except KeyError: value = default. LBYL ('Look Before You Leap') checks preconditions first — if key in my_dict: value = my_dict[key] else: value = default. Python culture favors EAFP because it's often faster in the common (success) case, avoids race conditions in concurrent code (the check and the action aren't separate steps), and reads more naturally for many operations — though LBYL remains appropriate when the check itself is cheap and exceptions would be genuinely expensive or semantically wrong.",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q48. What is the assert statement, and why shouldn't you rely on it for input validation?",
+              "a": "assert condition, 'message' raises an AssertionError with the given message if the condition is False — it's intended for internal sanity checks and catching programmer bugs during development and testing, not for validating external user input or enforcing business logic. Critical risk: assert statements are COMPLETELY STRIPPED OUT when Python runs with the -O (optimize) flag, meaning any validation logic inside an assert silently vanishes in optimized production runs — a security-critical check like assert user.is_authenticated could be bypassed entirely. Use explicit if/raise ValueError(...) for anything that must always be enforced.",
+              "tag": "Common Trap"
+            }
+          ]
+        }
+      ]
+    },
+
+    {
+      "sectionId": "mid-features",
+      "title": "Mid Level — Decorators, Generators & Modern Python (Q49–Q58)",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "These features define <strong>idiomatic, modern Python</strong>. Decorators, generators, type hints, and pattern matching are asked in almost every Python interview above fresher level."
+        },
+        {
+          "type": "interviewQA",
+          "items": [
+            {
+              "q": "Q49. What are decorators in Python? Write a simple example.",
+              "a": "A decorator is a function that takes another function (or class) as input, wraps it with additional behavior, and returns the wrapped version — applied using @decorator_name syntax directly above a function definition. Example: def log_calls(func): def wrapper(*args, **kwargs): print(f'Calling {func.__name__}'); return func(*args, **kwargs); return wrapper; @log_calls def greet(name): print(f'Hello {name}'). Calling greet('Ashish') now also prints the log line automatically. Built-in decorators include @staticmethod, @classmethod, and @property. functools.wraps should always be used inside a custom decorator's wrapper to preserve the original function's name and docstring.",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q50. What are generator expressions, and how do they differ from list comprehensions in memory use?",
+              "a": "A generator expression uses the same comprehension syntax as a list comprehension but with parentheses instead of square brackets: (x*x for x in range(1000000)). Unlike a list comprehension, which eagerly computes and stores every value in memory immediately, a generator expression computes each value lazily, on demand, as you iterate — meaning it uses effectively constant memory regardless of how large the underlying sequence is. This makes generator expressions the preferred choice when you're only going to iterate over the result once and don't need random access or to know the length upfront.",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q51. What is functional programming support in Python — explain map(), filter(), and functools.reduce().",
+              "a": "map(function, iterable) applies a function to every element and returns a lazy map object (iterator) of results — list(map(str.upper, ['a','b'])) → ['A','B']. filter(function, iterable) keeps only elements for which the function returns truthy — list(filter(lambda x: x % 2 == 0, range(10))) → even numbers. functools.reduce(function, iterable, initializer) cumulatively applies a two-argument function to reduce the iterable to a single value — reduce(lambda a, b: a + b, [1,2,3,4]) → 10. In modern Python, list/generator comprehensions are often preferred over map()/filter() for readability, but reduce() remains genuinely useful for cumulative aggregation.",
+              "tag": "Frequently Asked"
+            },
+            {
+              "q": "Q52. What is a lambda function? What are its limitations compared to a regular function?",
+              "a": "A lambda is an anonymous, single-expression function: lambda x, y: x + y, commonly used inline as a key= argument for sorted(), or as a short callback. Limitations: a lambda body must be a SINGLE EXPRESSION — no statements, no multiple lines, no assignment statements (though the walrus operator := can sneak limited assignment into an expression), and no docstrings. For anything beyond a trivial one-liner, a regular named def function is clearer, easier to debug (better tracebacks/naming), and more testable — PEP 8 explicitly recommends avoiding assigning a lambda to a variable name in favor of def.",
+              "tag": "Frequently Asked"
+            },
+            {
+              "q": "Q53. What are type hints in Python? Do they affect runtime behavior?",
+              "a": "Type hints (PEP 484, the typing module) let you annotate expected types: def add(a: int, b: int) -> int: return a + b. They do NOT affect runtime behavior at all by default — Python remains fully dynamically typed, and passing a string where an int is hinted will not raise an error at runtime. Their value comes from static type checkers like mypy or pyright, which catch type mismatches before running the code, plus significantly improved IDE autocomplete and self-documenting function signatures. Modern syntax (Python 3.9+) allows built-in generics directly: list[int] instead of the older typing.List[int].",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q54. How has string formatting evolved in Python — % formatting, .format(), and f-strings?",
+              "a": "% formatting (oldest, C-style): 'Hello %s, you are %d' % (name, age) — still works but considered legacy. str.format() (Python 2.6+): 'Hello {}, you are {}'.format(name, age) — more flexible, supports named placeholders and format specs. f-strings (Python 3.6+, PEP 498): f'Hello {name}, you are {age}' — evaluated inline, fastest at runtime since the expression is compiled directly rather than parsed from a separate string, and supports arbitrary expressions and even calling functions inside the braces: f'{value:.2f}' or f'{name!r}'. f-strings are the current idiomatic standard for nearly all string formatting in modern Python code.",
+              "tag": "Frequently Asked"
+            },
+            {
+              "q": "Q55. What is the walrus operator (:=) introduced in Python 3.8?",
+              "a": "The walrus operator (PEP 572) allows assignment as part of an EXPRESSION rather than requiring a separate statement — useful for avoiding repeated computation or awkward restructuring. Example: while (chunk := file.read(1024)): process(chunk) — reads and assigns in the same line, avoiding a separate read-then-check-then-loop pattern. Also useful in comprehensions: results = [y for x in data if (y := expensive(x)) is not None] — computes expensive(x) once instead of twice. It doesn't add new capability so much as remove the need for awkward workarounds in specific common patterns.",
+              "tag": "Frequently Asked"
+            },
+            {
+              "q": "Q56. What are dataclasses in Python? How do they reduce boilerplate?",
+              "a": "The dataclasses module (Python 3.7+, PEP 557) auto-generates common boilerplate for classes primarily used to store data. @dataclass class Point: x: int; y: int — this single decorator automatically generates __init__ (with x and y as parameters), __repr__ (readable string representation), and __eq__ (compares all fields) without writing them manually. Additional options: @dataclass(frozen=True) makes instances immutable (raises on attempted attribute assignment); field(default_factory=list) handles mutable default values safely, avoiding the classic mutable-default-argument trap. Dataclasses are commonly compared with namedtuple (lighter, tuple-based, immutable) and Pydantic's BaseModel (adds runtime validation on top of similar syntax).",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q57. What is structural pattern matching (match-case), introduced in Python 3.10?",
+              "a": "match-case (PEP 634) brings pattern matching to Python, going well beyond a simple switch statement. match command.split(): case ['go', direction]: move(direction); case ['look']: describe_room(); case _: print('Unknown command') — the underscore _ acts as a wildcard/default case. It supports destructuring of sequences, dicts, and objects (including matching against class instance attributes), literal value matching, OR-patterns using |, and guard conditions with if. This is especially powerful for parsing structured data, implementing simple interpreters/state machines, and replacing long if/elif/else chains with more declarative, readable code.",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q58. How do you write a context manager using contextlib instead of a full class?",
+              "a": "The @contextlib.contextmanager decorator lets you define a context manager as a generator function with exactly one yield, dramatically reducing boilerplate compared to writing a full class with __enter__/__exit__. Example: from contextlib import contextmanager; @contextmanager def open_resource(name): resource = acquire(name); try: yield resource; finally: release(resource). Code before the yield runs as __enter__, the yielded value becomes the 'as' variable, and code after yield (typically in a finally) runs as __exit__ — including cleanup even if an exception occurs inside the with block. contextlib also offers suppress() (ignore specific exceptions) and ExitStack (manage a dynamic number of context managers).",
+              "tag": "Frequently Asked"
+            }
+          ]
+        }
+      ]
+    },
+
+    {
+      "sectionId": "senior-concurrency",
+      "title": "Senior Level — GIL, Threading & Concurrency (Q59–Q70)",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "Concurrency questions separate <strong>mid-level from senior candidates</strong>. Interviewers expect deep understanding of the GIL, thread safety, and choosing the right concurrency model for the job."
+        },
+        {
+          "type": "interviewQA",
+          "items": [
+            {
+              "q": "Q59. What are the three main ways to achieve concurrency in Python?",
+              "a": "Threading (threading module): multiple threads within one process, sharing memory, best for I/O-bound work — blocked by the GIL for CPU-bound work. Multiprocessing (multiprocessing module): multiple independent OS processes, each with its own interpreter and GIL, enabling true CPU parallelism at the cost of higher memory usage and IPC overhead. Asyncio (asyncio module): a single-threaded event loop cooperatively scheduling coroutines, extremely efficient for handling thousands of concurrent I/O-bound operations (network calls, database queries) without the overhead of threads or processes at all.",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q60. What is the GIL (Global Interpreter Lock)?",
+              "a": "The Global Interpreter Lock is a mutex in CPython that allows only ONE thread to execute Python bytecode at any given instant, even on a multi-core machine. It exists primarily because CPython's memory management (reference counting) is not thread-safe by default, and the GIL provides a simple way to avoid race conditions on every object's reference count without fine-grained locking everywhere. Practical consequence: Python threads cannot achieve true parallel speedup for CPU-bound work; the GIL is released during I/O waits and some C-extension operations (NumPy, for example), which is why threading still works well for I/O-bound concurrency.",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q61. How do you create and manage a thread using the threading module?",
+              "a": "from threading import Thread; t = Thread(target=worker_function, args=(x,)); t.start(); t.join(). start() launches the thread, which then runs worker_function concurrently with the main thread. join() blocks the calling thread until the target thread finishes — without join(), the main program could exit before background threads complete. Threads can also be created by subclassing Thread and overriding run(), though composing a plain function with Thread(target=...) is generally preferred for the same reason Runnable is preferred over subclassing in other languages: it separates the task from the execution mechanism.",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q62. When would you choose multiprocessing over threading in Python?",
+              "a": "Choose multiprocessing when the workload is CPU-bound — heavy computation, image processing, numerical simulation — because the GIL prevents threads from using more than one core for pure Python bytecode, while separate processes each get their own interpreter and GIL, enabling genuine parallel execution across cores. Choose threading when the workload is I/O-bound — network requests, file reads, database queries — since threads are much cheaper to create than processes, share memory directly without serialization overhead, and the GIL is released during blocking I/O anyway, so multiple threads can usefully overlap their waiting time.",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q63. What is asyncio? Explain the event loop and async/await.",
+              "a": "asyncio provides single-threaded, cooperative concurrency using an event loop that manages many coroutines, switching between them whenever one hits an await point on an I/O operation, rather than relying on OS-level thread scheduling. async def defines a coroutine function; calling it returns a coroutine object rather than running the body immediately — it must be awaited or scheduled on the event loop (asyncio.run(main()), asyncio.create_task()). await pauses the current coroutine until the awaited operation completes, yielding control back to the event loop so other coroutines can run in the meantime. This model scales to tens of thousands of concurrent I/O-bound tasks far more efficiently than one-thread-per-task would.",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q64. What synchronization primitives does threading provide, and when do you need them?",
+              "a": "Lock (mutex): only one thread can hold it at a time — used with a with lock: block to protect a critical section accessing shared mutable state. RLock (reentrant lock): can be acquired multiple times by the SAME thread without deadlocking itself, useful for recursive functions that need locking. Semaphore: allows a limited NUMBER of concurrent holders, useful for capping concurrent access to a limited resource (like a connection pool). Event: a simple flag that one thread sets and others wait on, for signaling. Condition: combines a lock with the ability to wait for and notify about a specific condition, forming the basis of producer-consumer patterns.",
+              "tag": "Frequently Asked"
+            },
+            {
+              "q": "Q65. How do you implement a thread-safe producer-consumer pattern in Python?",
+              "a": "The queue.Queue class is the recommended approach — it's internally thread-safe, handling all locking for you. from queue import Queue; q = Queue(maxsize=100); producer: q.put(item) — blocks if the queue is full; consumer: item = q.get() — blocks if the queue is empty; call q.task_done() after processing so q.join() can know when all items have been processed. This eliminates the need for manual Lock/Condition management that a naive implementation would require, and is the standard, idiomatic building block for coordinating work between producer and consumer threads in Python.",
+              "tag": "Frequently Asked"
+            },
+            {
+              "q": "Q66. What is concurrent.futures? Compare ThreadPoolExecutor and ProcessPoolExecutor.",
+              "a": "concurrent.futures provides a high-level, unified API for both thread-based and process-based parallelism using the same interface: submit() returns a Future you can check with .done() or block on with .result(), and map() applies a function across an iterable in parallel. ThreadPoolExecutor(max_workers=n) runs tasks in a pool of threads — ideal for I/O-bound work, subject to the same GIL limitations as manual threading. ProcessPoolExecutor(max_workers=n) runs tasks in a pool of separate processes — ideal for CPU-bound work, bypassing the GIL entirely, but with the same pickling/IPC overhead considerations as the multiprocessing module it's built on.",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q67. What is a race condition in Python? Give an example and a fix.",
+              "a": "A race condition occurs when multiple threads access and modify shared state without proper synchronization, and the final result depends unpredictably on the exact timing of execution. Example: counter = 0; def increment(): global counter; counter += 1 — even though the GIL prevents true simultaneous bytecode execution, counter += 1 actually compiles to multiple bytecode instructions (read, add, write), so a thread can be interrupted mid-operation, causing lost updates when many threads increment concurrently. Fix: wrap the operation in a Lock: with lock: counter += 1, or use threading-safe primitives designed for atomic updates.",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q68. What is a deadlock in Python threading? How do you prevent it?",
+              "a": "A deadlock occurs when two or more threads are each waiting to acquire a lock held by the other, permanently blocking all of them. Classic example: Thread-1 holds Lock-A and waits for Lock-B; Thread-2 holds Lock-B and waits for Lock-A — neither can proceed. Prevention strategies: always acquire multiple locks in a consistent global order across all code paths (eliminates circular waiting); use lock.acquire(timeout=n) to fail gracefully instead of waiting forever; keep critical sections as short as possible; and prefer higher-level, deadlock-resistant constructs like queue.Queue over manually coordinating multiple raw locks whenever possible.",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q69. What is the difference between a regular generator and an async generator?",
+              "a": "A regular generator uses def with yield and is consumed with a normal for loop or next() — it's purely synchronous. An async generator uses async def with yield inside it (not to be confused with a coroutine, which uses await instead) and is consumed with async for — it can await other coroutines between yields, making it suitable for streaming data from an asynchronous source, like paginated results from an async database driver or API client, without blocking the event loop while waiting for each chunk. Async generators require Python 3.6+ and are commonly used with libraries like aiohttp or async database drivers.",
+              "tag": "Advanced"
+            },
+            {
+              "q": "Q70. What is the experimental free-threaded (no-GIL) build of Python, and how does it change concurrency?",
+              "a": "Starting with Python 3.13, CPython offers an experimental free-threaded build (PEP 703) that removes the Global Interpreter Lock entirely, using per-object fine-grained locking and a biased reference counting scheme instead. This allows Python threads to achieve genuine CPU-bound parallelism for the first time without needing multiprocessing. As of 2026 it remains experimental — some C extensions aren't yet compatible, and single-threaded performance can be somewhat lower due to the overhead of fine-grained locking. It's an important direction to be aware of in interviews, but multiprocessing and asyncio remain the practical, production-proven default choices for most real-world Python concurrency today.",
+              "tag": "Advanced"
+            }
+          ]
+        }
+      ]
+    },
+
+    {
+      "sectionId": "senior-internals",
+      "title": "Senior Level — CPython Internals & Memory Management (Q71–Q80)",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "CPython internals questions demonstrate that you understand what happens <strong>below the language level</strong> — essential for performance tuning, diagnosing production issues, and senior/lead roles."
+        },
+        {
+          "type": "interviewQA",
+          "items": [
+            {
+              "q": "Q71. How does CPython manage memory? Explain reference counting and the generational garbage collector together.",
+              "a": "CPython uses reference counting as its primary memory management mechanism — every object has a count of references pointing to it, incremented on assignment and decremented when a reference is removed; when the count hits zero, the object is immediately deallocated. This alone can't collect REFERENCE CYCLES (e.g., two objects referencing each other, so neither count ever reaches zero even though nothing external references them). To handle this, CPython adds a supplementary generational garbage collector (the gc module) that periodically scans for and breaks unreachable cycles, organizing objects into three generations (0, 1, 2) based on survival — newer objects are collected more frequently, following the same 'most objects die young' hypothesis used in other generational GCs.",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q72. What is the Python Virtual Machine (PVM), and how can you inspect bytecode?",
+              "a": "The PVM is the runtime component inside CPython that actually executes compiled bytecode — CPython first compiles your .py source into bytecode (cached as .pyc files in __pycache__), then the PVM's evaluation loop (ceval.c) interprets that bytecode instruction by instruction. You can inspect the bytecode any function compiles to using the dis module: import dis; dis.dis(my_function) — this prints the low-level operations (LOAD_FAST, BINARY_ADD, RETURN_VALUE, etc.), which is genuinely useful for understanding performance characteristics, debugging subtle behavior differences, or verifying what an optimization actually changed at the instruction level.",
+              "tag": "Advanced"
+            },
+            {
+              "q": "Q73. What is interning in Python? Explain small integer caching and string interning.",
+              "a": "Interning is CPython's optimization of reusing existing immutable objects instead of creating duplicates for identical values. Small integer caching: CPython pre-creates and caches integers from -5 to 256 at startup — any reference to an int in that range points to the SAME cached object, which is why a = 100; b = 100; a is b returns True, but a = 1000; b = 1000; a is b is unreliable (often False). String interning: simple string literals that look like identifiers (no spaces/special characters) are often automatically interned, and sys.intern() can force it manually — useful when comparing many repeated strings by identity for a performance boost, since is comparison is faster than ==.",
+              "tag": "Frequently Asked"
+            },
+            {
+              "q": "Q74. What is __slots__ and why does it save memory?",
+              "a": "By default, Python instances store their attributes in a per-instance __dict__, which itself has non-trivial memory overhead (a full hash table) even for a handful of attributes. Declaring __slots__ = ('x', 'y') on a class tells Python to allocate a fixed, compact storage layout for exactly those named attributes instead of a dynamic __dict__ — significantly reducing per-instance memory usage, which matters when creating millions of small objects (e.g., points in a large dataset, nodes in a big tree). Trade-offs: you can no longer dynamically add new attributes not listed in __slots__, and it complicates multiple inheritance between slotted and non-slotted classes.",
+              "tag": "Advanced"
+            },
+            {
+              "q": "Q75. How do you diagnose a memory leak in a long-running Python application?",
+              "a": "Memory leak signs: continuously growing RSS (resident memory) over time without corresponding load growth, eventual MemoryError. Diagnosis tools: tracemalloc (built into the standard library) — take periodic memory snapshots and diff them to see exactly which lines of code are allocating the most un-freed memory over time. objgraph — visualizes reference graphs to find what's unexpectedly still referencing an object you expected to be garbage collected. gc.get_objects() / gc.get_referrers() — manually inspect what the garbage collector currently tracks. Common causes: growing module-level caches/lists with no eviction, forgotten event listener registrations, circular references involving objects with __del__ (historically uncollectable pre-3.4, now handled but still worth avoiding), and unclosed file/socket/DB resources — always prefer with blocks or explicit close() in a finally.",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q76. What are weak references in Python? When do you use the weakref module?",
+              "a": "A weak reference (weakref module) refers to an object WITHOUT increasing its reference count, meaning the object can still be garbage collected even while a weak reference to it exists — calling the weak reference afterward returns None (or raises, depending on the type used) instead of keeping the object alive artificially. Common uses: caches that shouldn't prevent their cached objects from being freed when nothing else needs them (weakref.WeakValueDictionary); observer/callback registries where you don't want the registry itself to keep listener objects alive forever, avoiding a specific class of memory leak; and breaking reference cycles deliberately in parent-child object relationships (e.g., a child holding a weak reference back to its parent).",
+              "tag": "Advanced"
+            },
+            {
+              "q": "Q77. Explain the three generations of Python's garbage collector.",
+              "a": "The gc module organizes tracked objects into three generations (0, 1, 2) based on the 'most objects die young' hypothesis. New objects start in generation 0; if they survive a generation-0 collection (something else still references them), they're promoted to generation 1, and if they survive that, promoted to generation 2. Generation 0 is collected most frequently (cheap, catches most short-lived garbage quickly), generation 2 least frequently (expensive, scans long-lived objects). Each generation has a threshold count of allocations that triggers its collection — configurable via gc.set_threshold(). This tiered approach avoids repeatedly re-scanning long-lived objects that are very unlikely to have become garbage since the last check.",
+              "tag": "Advanced"
+            },
+            {
+              "q": "Q78. When would you reach for Cython or PyPy instead of standard CPython?",
+              "a": "Cython lets you write Python-like code with optional static type declarations that compiles to C, dramatically speeding up CPU-bound hot loops (often 10-100x) while still interoperating seamlessly with the rest of your Python/NumPy ecosystem — widely used for performance-critical inner loops in scientific computing and data libraries. PyPy is a drop-in ALTERNATIVE interpreter with a Just-In-Time compiler that can significantly speed up long-running, computation-heavy PURE-Python programs without any code changes, though it has historically had weaker compatibility with C-extension-heavy libraries (though this has improved substantially). Choose Cython for surgical optimization of specific hot paths within a CPython app; choose PyPy when your entire application is long-running, CPU-bound, and doesn't depend heavily on C extensions.",
+              "tag": "Advanced"
+            },
+            {
+              "q": "Q79. How does Python's import system and module caching work?",
+              "a": "When you import a module, Python first checks sys.modules — a dictionary cache of already-imported modules — and if found, reuses that cached module object instantly rather than re-executing the file. If not cached, Python searches sys.path (current directory, PYTHONPATH, installed site-packages, in that order) using its finders/loaders machinery, executes the module's top-level code exactly once, and stores the resulting module object in sys.modules before returning it. This is why importing the same module in different files doesn't re-run its top-level code multiple times, and why circular imports can cause subtle bugs — a partially-initialized module can end up cached and referenced before it finishes executing.",
+              "tag": "Frequently Asked"
+            },
+            {
+              "q": "Q80. What is monkey patching in Python? What are its risks?",
+              "a": "Monkey patching is dynamically modifying or replacing a class's or module's attributes/methods at runtime, after they've already been defined — Python's dynamic nature makes this trivially possible: SomeClass.method = new_implementation. Legitimate uses: unit testing (mocking a method temporarily via unittest.mock.patch), applying targeted bug fixes to third-party libraries without forking them, and adding compatibility shims. Risks: it can make code behavior surprising and hard to trace, since a method's actual implementation might differ from what's defined in its source file depending on what monkey patches happened to run before it; it can silently break with library upgrades; and overuse in production code (as opposed to tests) is generally considered a code smell.",
+              "tag": "Frequently Asked"
+            }
+          ]
+        }
+      ]
+    },
+
+    {
+      "sectionId": "senior-advanced",
+      "title": "Senior Level — Advanced & Modern Python (Q81–Q100)",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "These questions cover <strong>modern Python (3.10–3.13), design patterns, frameworks, system design scenarios</strong>, and best practices expected from senior/lead developers."
+        },
+        {
+          "type": "interviewQA",
+          "items": [
+            {
+              "q": "Q81. How does match-case with class patterns enable more exhaustive, readable dispatch than long if/elif chains?",
+              "a": "Beyond matching literals and sequences, match-case can destructure objects directly by their attributes: match shape: case Circle(radius=r): area = 3.14159 * r * r; case Rectangle(width=w, height=h): area = w * h; case _: raise ValueError('Unknown shape'). Combined with dataclasses or simple classes exposing __match_args__, this replaces a long chain of isinstance() checks and manual attribute access with a single, declarative block. While Python doesn't have exhaustiveness CHECKING at the type-checker level the way sealed classes do in some other languages, the pattern remains far more readable and maintainable than nested if/elif/isinstance chains for dispatching on object shape.",
+              "tag": "Advanced"
+            },
+            {
+              "q": "Q82. What are the common ways to implement the Singleton pattern in Python?",
+              "a": "Module-level singleton (most Pythonic): since a module is only ever imported/executed once and cached in sys.modules, simply defining an instance at module scope (config = Config()) and importing that instance elsewhere naturally gives you a singleton with no extra machinery. Decorator-based: a @singleton class decorator that stores the first instance created and returns it on subsequent instantiation attempts. Metaclass-based: overriding __call__ on a custom metaclass to control instance creation for any class using it. __new__ override: checking a class-level 'instance' attribute inside __new__ and returning the existing instance if already set. In practice, the module-level approach is favored in idiomatic Python for its simplicity.",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q83. How would you implement the Builder pattern in Python? Is it commonly needed?",
+              "a": "class PizzaBuilder: def __init__(self): self._size = None; self._toppings = []; def size(self, s): self._size = s; return self; def add_topping(self, t): self._toppings.append(t); return self; def build(self): return Pizza(self._size, self._toppings) — used as PizzaBuilder().size('L').add_topping('cheese').build(). In practice, Python's support for keyword arguments and default values means the Builder pattern is needed FAR less often than in languages without them — a well-designed __init__(self, size=None, toppings=None) or a dataclass often suffices. Builder remains useful for genuinely complex, multi-step, conditional construction logic, or for maintaining a clean fluent API.",
+              "tag": "Frequently Asked"
+            },
+            {
+              "q": "Q84. What are the key language differences between Python 3.8 and Python 3.13 every senior developer should know?",
+              "a": "Language features: walrus operator := (3.8); positional-only parameters with / in function signatures (3.8); dataclasses stabilized; structural pattern matching match-case (3.10); union types with | instead of typing.Union (3.10); exception groups and except* (3.11); improved, more precise error messages pinpointing the exact sub-expression that failed (3.11+); type parameter syntax PEP 695 — def first[T](l: list[T]) -> T (3.12); improved f-string parsing allowing more complex expressions and reused quote characters (3.12). Platform: experimental free-threaded no-GIL build (3.13, PEP 703); a basic JIT compiler experiment (3.13); significant interpreter performance improvements across the 3.11-3.13 line (the 'Faster CPython' project).",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q85. What are the SOLID principles? Give a Python example for each.",
+              "a": "S — Single Responsibility: a class has ONE reason to change. Bad: UserService handles both user data and sending emails. Good: separate UserService and EmailService. O — Open/Closed: open for extension, closed for modification — use an abstract PaymentProcessor base class and add new payment types as new subclasses rather than editing an existing if/elif chain. L — Liskov Substitution: subtypes must be usable wherever the base type is expected without breaking behavior — a Square(Rectangle) that forces width and height to always match violates Rectangle's implied independence of the two. I — Interface Segregation: prefer several small Protocols/ABCs over one bloated interface clients are forced to implement in full. D — Dependency Inversion: high-level code should depend on abstractions (an interface/Protocol) rather than concrete classes — inject a Repository interface into a service rather than hardcoding a specific database class inside it.",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q86. What is a metaclass in Python?",
+              "a": "A metaclass is 'the class of a class' — just as an instance is created by calling its class, a class itself is created by calling its metaclass, which defaults to type. class MyClass(metaclass=MyMeta): ... means MyMeta.__call__ (or more precisely, __new__/__init__ on the metaclass) controls exactly how MyClass itself is constructed — its attributes, methods, and bases can be inspected or modified at class-creation time, before any instance exists. Common real-world uses: ORMs like Django's models use metaclasses to auto-register model fields; ABCMeta enforces abstract method implementation; frameworks use metaclasses for plugin auto-registration. Metaclasses are powerful but rarely needed directly — class decorators or __init_subclass__ often achieve similar goals more simply.",
+              "tag": "Advanced"
+            },
+            {
+              "q": "Q87. How does Dependency Injection work in Python, e.g., with FastAPI's Depends()?",
+              "a": "Dependency Injection means a component receives its dependencies from the outside rather than constructing them internally, improving testability (dependencies can be swapped for mocks) and decoupling. Python has no built-in DI container the way some frameworks do, but FastAPI's Depends() provides a clean, explicit mechanism: def get_db(): db = SessionLocal(); try: yield db; finally: db.close(); @app.get('/users') def list_users(db: Session = Depends(get_db)): return db.query(User).all(). FastAPI automatically calls get_db(), manages its lifecycle (including cleanup via the yield-based generator pattern), and injects the result as the db parameter — dependencies can themselves depend on other dependencies, forming a resolvable graph.",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q88. Django vs Flask vs FastAPI — how do you choose?",
+              "a": "Django: a full 'batteries-included' framework — built-in ORM, admin panel, authentication, forms, migrations — ideal for content-heavy sites and applications needing rapid full-stack development with strong conventions (Instagram, Pinterest were built on it). Flask: a lightweight microframework giving you a routing layer and little else by design — you choose your own ORM, auth, and structure, ideal for small services, APIs, or when you want maximum control over architecture. FastAPI: a modern, async-first framework built on Starlette and Pydantic — automatic request validation from type hints, automatic OpenAPI/Swagger docs generation, and native async/await support, making it the current default choice for high-performance REST APIs and microservices in 2026.",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q89. What is the N+1 query problem in Django ORM or SQLAlchemy, and how do you fix it?",
+              "a": "N+1 problem: fetching N parent records with 1 query, then triggering N additional separate queries for each parent's related child records due to lazy loading — e.g., 100 orders each triggering a separate query for their customer = 101 total queries. Django fix: use select_related('customer') for one-to-one/foreign-key relations (SQL JOIN, single query) and prefetch_related('items') for many-to-many/reverse-foreign-key relations (a second batched query, then joined in Python). SQLAlchemy fix: joinedload() or selectinload() options on a query, achieving the same batching effect. Detection: enable query logging (Django's DEBUG toolbar, SQLAlchemy's echo=True) and count actual queries executed per request during development.",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q90. How would you design a high-throughput REST API in Python?",
+              "a": "Framework: FastAPI with async def endpoints for I/O-bound routes, letting a single process handle thousands of concurrent requests via the event loop instead of blocking a worker thread per request. Server: Uvicorn/Gunicorn with multiple worker processes (bypassing the GIL across cores) fronted by a reverse proxy like Nginx. Database: connection pooling (SQLAlchemy's pool, asyncpg for async Postgres), proper indexing, avoiding N+1 via select_related/prefetch_related or explicit joins. Caching: Redis for frequently-read, slow-changing data, with appropriate TTLs. Background work: offload non-critical tasks (emails, notifications) to Celery or a message queue rather than blocking the request thread. Observability: structured logging, Prometheus metrics, and distributed tracing (OpenTelemetry) to find real bottlenecks rather than guessing.",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q91. How do you design an immutable class in Python?",
+              "a": "Several idiomatic options exist depending on need: collections.namedtuple('Point', ['x', 'y']) — lightweight, tuple-based, immutable, unpackable. typing.NamedTuple — same idea with type hints. @dataclass(frozen=True) — modern, flexible, raises FrozenInstanceError on attempted mutation after construction, supports default values and methods. For a hand-rolled class: override __setattr__ to raise an exception after __init__ completes, or store values in a private attribute set only once inside __init__. Immutable objects are inherently thread-safe (no synchronization needed for reads), safe to use as dict keys if also hashable, and easier to reason about since their state can never change unexpectedly after creation.",
+              "tag": "Frequently Asked"
+            },
+            {
+              "q": "Q92. What is the difference between a staticmethod, a classmethod, and a regular instance method?",
+              "a": "Instance method (def method(self, ...)): receives the specific instance as self, can read/modify instance state — the default and most common kind. @classmethod (def method(cls, ...)): receives the CLASS itself as cls rather than an instance, commonly used for alternative constructors — Person.from_birth_year(cls, name, year) — and it correctly receives the SUBCLASS when called on a subclass, unlike a hardcoded reference to the base class name would. @staticmethod (def method(...)): receives neither self nor cls — it's essentially a regular function namespaced inside the class for organizational purposes, with no access to instance or class state unless explicitly passed in as an argument.",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q93. How is the Proxy design pattern implemented using Python decorators?",
+              "a": "A decorator function inherently implements the Proxy pattern — it wraps the original function/callable, intercepting every call to add behavior (logging, caching, authorization, rate limiting) before or after delegating to the real implementation, without the caller needing to know a proxy is involved. Example: a @requires_auth decorator wraps a view function, checking authentication before ever calling the real handler — functionally identical to a classic object-oriented Proxy that implements the same interface as the real subject and controls access to it. functools.lru_cache is a built-in example of a caching proxy decorator, transparently intercepting calls and returning a cached result instead of re-executing the wrapped function when arguments repeat.",
+              "tag": "Frequently Asked"
+            },
+            {
+              "q": "Q94. What are mixins in Python, and how does Method Resolution Order (MRO) work with multiple inheritance?",
+              "a": "A mixin is a small class designed to be combined with others via multiple inheritance to add a specific piece of reusable behavior, without representing a standalone IS-A relationship on its own — e.g., class JSONSerializableMixin: def to_json(self): return json.dumps(self.__dict__), combined as class User(JSONSerializableMixin, Model):. Python resolves attribute/method lookup order across multiple base classes using the C3 linearization algorithm, viewable via ClassName.__mro__ or ClassName.mro() — it guarantees a consistent, predictable order that respects each parent's own inheritance order (local precedence) while ensuring no class appears before one of its own subclasses in the chain, which classic depth-first search couldn't reliably guarantee.",
+              "tag": "Advanced"
+            },
+            {
+              "q": "Q95. What tools do you use for Python dependency and virtual environment management, and how do they compare?",
+              "a": "venv (standard library): creates an isolated environment with its own site-packages, the baseline every Python developer should know — python -m venv .venv. pip + requirements.txt: the traditional approach for installing and pinning dependencies, simple but lacks true dependency resolution and lockfiles. Poetry: manages dependencies, virtual environments, packaging, and publishing together, with a pyproject.toml manifest and a proper lockfile for reproducible installs. uv: a newer, Rust-based tool that reimplements pip/venv/Poetry-like workflows with dramatically faster install and resolution speeds, rapidly gaining adoption in 2025-2026 for both scripts and larger projects. Senior developers are expected to know why lockfiles matter for reproducible deployments, not just how to run pip install.",
+              "tag": "Frequently Asked"
+            },
+            {
+              "q": "Q96. What is event-driven architecture in Python, and how does Celery fit in?",
+              "a": "Event-driven architecture has services communicate asynchronously via events published to a broker rather than direct synchronous calls — producers publish events (OrderPlaced), independent consumers subscribe and react, decoupling services from each other's availability and pace. Celery is Python's most widely used distributed task queue, typically backed by Redis or RabbitMQ as the message broker: @app.task def send_email(user_id): ... — called elsewhere with send_email.delay(user_id) to run asynchronously in a separate worker process, outside the request-response cycle. This is the standard way to offload slow, non-critical work (emails, report generation, image processing, webhooks) from a Python web request so the API can respond quickly. For larger-scale, replayable event streaming, Kafka with Python clients like confluent-kafka is common.",
+              "tag": "Advanced"
+            },
+            {
+              "q": "Q97. What are best practices for exception handling in a Flask or FastAPI REST API?",
+              "a": "Centralized exception handling: FastAPI's @app.exception_handler(CustomException) or Flask's @app.errorhandler(CustomException) catches specific exception types globally, converting them to consistent JSON error responses rather than scattering try/except blocks across every endpoint. Consistent error format: {'status': 404, 'error': 'Not Found', 'message': 'User 123 not found', 'path': '/api/users/123'} — never expose raw stack traces or internal exception messages in production responses; log the full traceback server-side instead. Domain-specific exceptions: define UserNotFoundError, InsufficientFundsError etc. rather than raising generic Exception from business logic, so the handler can map each type to the correct HTTP status precisely. Validation: FastAPI's Pydantic models automatically return structured 422 responses for invalid input; Flask typically pairs with marshmallow or Pydantic for the same purpose.",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q98. How do you write effective unit tests in Python? What are common pitfalls with pytest and mocking?",
+              "a": "Effective testing principles: one clear behavior per test function, descriptive test names (test_raises_valueerror_when_age_negative), and the Arrange-Act-Assert structure for readability. pytest fixtures (@pytest.fixture) provide reusable setup/teardown, injected as test function parameters. unittest.mock.patch() replaces real dependencies (external APIs, databases) with controllable mocks for isolation — mocker.patch('module.function', return_value=42) with the pytest-mock plugin. Common pitfalls: over-mocking, where mocking every dependency means you're no longer testing anything real; testing implementation details (asserting a specific internal method was called) instead of observable behavior, making tests brittle to safe refactors; missing edge cases (empty lists, None values, boundary numbers) by only testing the happy path; and flaky tests caused by relying on real time, random values, or shared global state between test runs.",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q99. What are the main techniques for optimizing Python performance?",
+              "a": "Profile first, always: use cProfile or py-spy to find ACTUAL bottlenecks before optimizing — intuition about what's slow is frequently wrong. Algorithmic improvements usually beat micro-optimizations: choosing the right data structure (a set for membership checks instead of a list) often yields far bigger wins than tweaking loop syntax. Use built-in, C-implemented operations: list comprehensions, built-in functions like sum()/sorted(), and libraries like NumPy for numeric work run in optimized C rather than the slower Python interpreter loop. Caching: functools.lru_cache for expensive, repeatable pure-function calls. For genuinely CPU-bound bottlenecks: Cython for surgical hot-path compilation, or multiprocessing to use multiple cores. For I/O-bound bottlenecks: asyncio or threading rather than trying to make the computation itself faster.",
+              "tag": "Advanced"
+            },
+            {
+              "q": "Q100. What does a senior Python developer's skill profile look like in 2026?",
+              "a": "Core technical skills: deep understanding of the GIL, CPython internals, memory management, and profiling tools (tracemalloc, py-spy, cProfile). Modern Python 3.10-3.13 — match-case, exception groups, type parameter syntax, awareness of the free-threaded build's direction. Concurrency mastery — knowing precisely when to reach for threading, multiprocessing, or asyncio, and combining them correctly. Framework depth — FastAPI/Django at production scale, async database drivers, ORM optimization. Testing discipline — pytest, mocking, fixtures, meaningful coverage over vanity metrics. Architecture — SOLID principles, dependency injection, event-driven systems, microservices patterns. Cloud-native skills — Docker, Kubernetes, CI/CD pipelines. AI-augmented development — using tools like GitHub Copilot effectively while still reviewing and understanding every line generated. Soft skills — mentoring, clear technical writing, and driving architectural decisions with data. Python remains one of the most in-demand, highest-paying languages globally in 2026, spanning web backend, data science, AI/ML, and automation.",
+              "tag": "Must Know"
+            }
+          ]
+        }
+      ]
+    },
+
+    {
+      "sectionId": "quick-tips",
+      "title": "Interview Quick Tips — Do's and Don'ts",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "Knowing the answers is only half the battle. How you <strong>communicate</strong> your knowledge in the interview room determines whether you get the offer."
+        },
+        {
+          "type": "bulletList",
+          "items": [
+            { "strong": "✅ Structure your answers", "text": " — Start with a one-sentence definition, then explain HOW it works internally, then give a REAL-WORLD example. Interviewers remember concrete examples far more than abstract definitions." },
+            { "strong": "✅ Know the WHY", "text": " — Don't just say what something is — explain why Python was designed that way. 'Tuples are hashable because their content can never change after creation, so their hash stays stable' signals deeper understanding than just reciting the fact." },
+            { "strong": "✅ Mention trade-offs", "text": " — Senior candidates compare options. 'I'd use asyncio here since it's I/O-bound with many concurrent connections, but if this were CPU-heavy image processing, I'd reach for multiprocessing instead.'" },
+            { "strong": "✅ Connect to real projects", "text": " — 'In my last project, we had an N+1 query problem in Django that added 200ms of latency per request. Adding select_related() brought it down to 15ms.' Real numbers make an impression." },
+            { "strong": "❌ Don't memorize without understanding", "text": " — Interviewers follow up on every answer. 'Dict lookups are O(1)' will be followed by 'Why? What happens on a hash collision?' If you memorized without understanding, you'll get stuck fast." },
+            { "strong": "❌ Don't bluff", "text": " — If you don't know something, say 'I haven't worked with that specific library, but based on my understanding of X, I'd expect Y.' Honest reasoning beats a confidently wrong answer every time." },
+            { "strong": "❌ Don't skip basics", "text": " — Senior candidates fail on basics because they assume basics won't be asked. == vs is, the mutable default argument trap, and the GIL are asked at ALL levels, not just fresher rounds." },
+            { "strong": "✅ Mention modern Python", "text": " — In 2026, mentioning match-case, the free-threaded build, or exception groups signals that you keep up with the language — this differentiates you from candidates stuck on Python 2 habits or pre-3.10 idioms." }
+          ]
+        }
+      ]
+    },
+
+    {
+      "sectionId": "practice-section",
+      "title": "Practice Scenario Questions — Think Through These",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "Senior interviews often include open-ended scenario questions. Practice articulating structured answers to these:"
+        },
+        {
+          "type": "practiceQuestions",
+          "items": [
+            {
+              "q": "Scenario 1: Your Python service in production has continuously growing memory usage over several days. Walk through how you would diagnose and fix it.",
+              "a": "Step 1 — Gather evidence: enable periodic tracemalloc snapshots and diff them over time to see which allocations are growing. Monitor RSS memory via your metrics stack (Prometheus/Grafana) to confirm the growth pattern and correlate with traffic or deploy times. Step 2 — Common causes to check: a module-level cache/dict/list growing without eviction; ThreadLocal-like state accumulating in long-lived worker processes; unclosed file handles, DB connections, or sockets (missing try-with/with blocks); circular references involving objects with custom __del__; a large object graph unintentionally kept alive via a closure or callback registry. Step 3 — Use objgraph to trace exactly what's still referencing suspiciously large objects that should have been freed. Step 4 — Fix based on findings: add TTL/size-bounded caching (e.g., functools.lru_cache(maxsize=...) or a proper caching library), ensure resources use context managers, break unnecessary references. Step 5 — Verify: load test and confirm memory usage plateaus rather than climbing continuously.",
+              "difficulty": "Senior"
+            },
+            {
+              "q": "Scenario 2: Multiple threads are updating a shared dictionary and you're occasionally seeing incorrect counts. What's happening, and how do you fix it?",
+              "a": "Root cause: even though the GIL prevents true simultaneous bytecode execution, compound operations like counts[key] += 1 compile to multiple bytecode instructions (load, add, store) that can be interrupted mid-sequence by a thread switch, causing lost updates under concurrent access — the GIL protects individual bytecode instructions, not multi-step logical operations. Fix options, in order of preference: use collections.Counter with an explicit threading.Lock wrapped around the increment; or use a queue.Queue to funnel all updates through a single consumer thread that owns the dictionary exclusively, avoiding shared-write concurrency entirely; or, if you're truly CPU-bound and want real parallelism instead of just correctness, restructure with multiprocessing and combine results afterward rather than sharing mutable state directly across processes.",
+              "difficulty": "Senior"
+            },
+            {
+              "q": "Scenario 3: A FastAPI endpoint that calls 3 external microservices sequentially takes 3 seconds to respond. How do you optimize it?",
+              "a": "Current problem: 3 sequential await calls, each taking roughly 1 second, sum to 3 seconds total response time. Solution — run them concurrently with asyncio.gather: user, orders, inventory = await asyncio.gather(get_user(id), get_orders(id), get_inventory(id)) — all three calls fire at once, and total time becomes roughly the SLOWEST call (~1 second) instead of the sum. Additional optimizations: add caching (Redis or an in-process TTL cache) for data that rarely changes; add a timeout per call using asyncio.wait_for() so one slow service doesn't stall the whole response; add a circuit breaker pattern so a consistently failing downstream service fails fast with a fallback instead of repeatedly waiting for a timeout; and consider returning partial data with a degraded-but-useful response if one non-critical service fails.",
+              "difficulty": "Senior"
+            },
+            {
+              "q": "Scenario 4: Design a real-time leaderboard for a gaming app showing the top 100 players, supporting 100,000 concurrent users. What Python-side data structures/tools would you use?",
+              "a": "Single-process/prototype scale: a heapq-based structure or a sorted list maintained with the bisect module can efficiently track a top-N leaderboard in memory, O(log n) per update. Distributed, production scale (100K+ concurrent users): use Redis Sorted Sets (ZSET) as the source of truth — ZADD leaderboard score player_id for updates, ZREVRANGE leaderboard 0 99 WITHSCORES to fetch the top 100 in roughly O(log n + 100), and ZINCRBY for atomic score increments under concurrent writers. From Python, redis-py or aioredis (for async FastAPI) provide the client. Layer a short-TTL in-process cache (a few seconds) in front of Redis reads to absorb read spikes. For pushing live updates to clients, use WebSockets (FastAPI's native WebSocket support) or Server-Sent Events rather than polling.",
+              "difficulty": "Senior"
+            },
+            {
+              "q": "Scenario 5: How would you plan a migration of a legacy Python 2 codebase to Python 3?",
+              "a": "Phase 1 — Assessment: run the 2to3 tool and/or futurize for an initial automated pass, and inventory Python 2-only patterns (print statement instead of function, unicode/str split, integer division behavior differences, dict.iteritems()). Phase 2 — Dependency audit: verify every third-party dependency has a Python 3-compatible version; this is frequently the biggest blocker in old codebases. Phase 3 — Compatibility layer (optional, for large gradual migrations): use the six library or a custom compatibility shim to write code that runs under BOTH versions during a transition period. Phase 4 — Fix semantic differences: str vs bytes handling (Python 3 strings are Unicode by default), integer division (/ now always returns float), exception syntax (except Exception as e instead of except Exception, e). Phase 5 — Testing: aim for strong test coverage BEFORE migrating so behavior changes are caught immediately; run the full suite under both interpreters during transition if using a compatibility shim. Phase 6 — Cutover: once fully migrated and tested, drop Python 2 support and remove compatibility shims for cleaner, modern code.",
+              "difficulty": "Senior"
+            },
+            {
+              "q": "Scenario 6: A junior developer says 'I build up a large report string using += in a loop — it works fine in testing.' What do you tell them?",
+              "a": "Explanation for the junior: since strings are immutable in Python, result += chunk inside a loop creates a BRAND NEW string object on every single iteration, copying the entire existing content into it each time. For n iterations, this results in roughly O(n²) total character copying — fine for a small test with 10 items, but catastrophic for a real report with 100,000 lines. Fix: build a list of chunks and join them once at the end — parts = []; for chunk in data: parts.append(chunk); result = ''.join(parts) — or even simpler, result = ''.join(str(chunk) for chunk in data) using a generator expression directly. str.join() is implemented to compute the final size once and copy each piece exactly once, giving O(n) total performance. This is one of the most common Python performance gotchas that only becomes visible at scale.",
+              "difficulty": "Mid"
+            },
+            {
+              "q": "Scenario 7: How would you implement retry logic with exponential backoff for a flaky external API call in Python?",
+              "a": "Option 1 — tenacity library (recommended): from tenacity import retry, stop_after_attempt, wait_exponential; @retry(stop=stop_after_attempt(3), wait=wait_exponential(multiplier=1, min=1, max=10)) def call_api(): return requests.get(url) — declaratively retries up to 3 times with exponential delays (1s, 2s, 4s...) between attempts. Add wait_exponential_jitter or a manual random offset to avoid a 'thundering herd' where many clients retry simultaneously after an outage. Option 2 — manual implementation: a loop with time.sleep(base_delay * 2**attempt) and a try/except around the risky call, tracking attempt count and raising after the max is reached. Option 3 — for async code: the same tenacity decorators support async def functions directly, or a manual asyncio.sleep()-based retry loop. Best practice regardless of approach: only retry on TRANSIENT errors (timeouts, 5xx responses), never on 4xx client errors; always cap both the retry count and total elapsed time; and log each retry attempt with its delay for observability.",
+              "difficulty": "Senior"
+            },
+            {
+              "q": "Scenario 8: Your team is debating whether to use a list or collections.deque for a queue implementation. What is your recommendation?",
+              "a": "Recommendation: use collections.deque, not a plain list. Reasoning: a queue needs efficient removal from the front — list.pop(0) is O(n) because every remaining element must shift left in the underlying contiguous array, which becomes a serious bottleneck as the queue grows. deque is implemented as a doubly-linked block structure specifically optimized for O(1) operations at BOTH ends (appendleft(), popleft(), append(), pop()), making it dramatically faster for queue-like access patterns, especially at scale. When a plain list still makes sense: if you only ever append/pop from the END (a stack, not a queue), list.append()/list.pop() are already O(1) and perfectly fine. For thread-safe queues in concurrent code, use queue.Queue instead, which wraps a deque internally with the necessary locking already handled for you.",
+              "difficulty": "Mid"
+            }
+          ]
+        }
+      ]
+    },
+
+    {
+      "sectionId": "conclusion-heading",
+      "title": "Conclusion — Your Python Interview Roadmap",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "You now have <strong>100 comprehensive Python interview questions and answers</strong> spanning every level from fresher to senior. But reading alone won't get you the job — you need to <em>internalize</em> these concepts, practice articulating them clearly, and connect them to your real project experience."
+        },
+        {
+          "type": "comparisonTable",
+          "headers": ["Level", "Focus Areas", "Minimum Questions to Master"],
+          "rows": [
+            ["🟢 Fresher (0–1 yr)",  "Basics, data types, OOP pillars, memory model fundamentals",              "Q1–Q25 completely, Q26–Q38 basics"],
+            ["🟡 Mid (1–3 yrs)",     "Data structures internals, exception handling, decorators, generators",   "Q1–Q70 confidently"],
+            ["🔴 Senior (3–6+ yrs)", "GIL, concurrency models, CPython internals, design patterns, frameworks", "All 100, plus system design scenarios"]
+          ]
+        },
+        {
+          "type": "bulletList",
+          "items": [
+            { "strong": "🔥 Day 1–3", "text": " — Read and understand Q1–Q25 (Basics + OOP). Write code for every concept. Explain each answer out loud to yourself or a friend." },
+            { "strong": "🔥 Day 4–7", "text": " — Study Q26–Q58 (Data Structures + Exception Handling + Decorators/Generators). Build small programs using comprehensions, generators, and custom decorators." },
+            { "strong": "🔥 Day 8–12", "text": " — Study Q59–Q100 (Concurrency + CPython Internals + Advanced). Profile a small script with cProfile and inspect bytecode with dis at least once." },
+            { "strong": "🔥 Day 13–14", "text": " — Practice scenario questions. Mock interview with a colleague. Review your weak areas. Implement a few data structures and the GIL-aware concurrency patterns from scratch." },
+            { "strong": "💡 Key mindset", "text": " — Interviewers are not looking for people who memorized a book. They want developers who UNDERSTAND deeply, can THINK through problems, and communicate clearly. Be that developer." }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "<strong>Python is not slowing down — Python is accelerating.</strong> With the free-threaded build maturing, continued AI/ML dominance, and FastAPI reshaping how Python APIs are built, Python in 2026 is more relevant and more powerful than ever. Master it, and you open doors to some of the best-paying engineering roles in the world. 🐍"
+        }
+      ]
+    }
+
+  ],
+
+  "faq": {
+    "sectionId": "faq-heading",
+    "title": "Frequently Asked Questions (FAQ)",
+    "items": [
+      {
+        "q": "What is the difference between == and is in Python?",
+        "a": "== checks value equality — whether two objects hold the same data. is checks identity — whether two variables point to the exact same object in memory. Small integers (-5 to 256) and short strings are cached by CPython, so is may unexpectedly return True for them, but == should always be used for value comparison."
+      },
+      {
+        "q": "What is the GIL in Python?",
+        "a": "The Global Interpreter Lock is a mutex in CPython that allows only one thread to execute Python bytecode at a time, even on multi-core machines. It means Python threads cannot achieve true CPU parallelism for CPU-bound work — multiprocessing or a free-threaded (no-GIL) build is used instead."
+      },
+      {
+        "q": "What is the difference between a list and a tuple in Python?",
+        "a": "Lists are mutable and use square brackets; tuples are immutable and use parentheses. Tuples are slightly faster, use less memory, and can be used as dictionary keys or set elements because they are hashable, unlike lists."
+      },
+      {
+        "q": "What is a decorator in Python?",
+        "a": "A decorator is a function that takes another function as input, wraps it with additional behavior, and returns the wrapped function, applied using the @ syntax above a function definition. Common built-in decorators include @staticmethod, @classmethod, and @property."
+      },
+      {
+        "q": "What are Python generators?",
+        "a": "A generator is a function that uses yield instead of return to produce a lazy sequence of values, one at a time, pausing its state between calls. Generators are memory-efficient for large or infinite sequences because they don't hold the entire result in memory at once."
+      },
+      {
+        "q": "How long does it take to prepare for a Python interview using this guide?",
+        "a": "With consistent daily practice, most candidates can work through all 100 questions in about 2 weeks — roughly 7-10 questions a day with hands-on coding practice. Fresher candidates can focus on Q1-Q38 and complete solid preparation in about a week; senior candidates should budget extra time for the concurrency, internals, and system design scenario sections."
+      }
+    ]
+  },
+
+  "nav": {
+    "prev": { "label": "← Previous: Python MCQ 100 Questions", "path": "/python/python-mcq/" },
+    "next": { "label": "Next: Python Home →", "path": "/python/python-home/" }
+  },
+
+  "sidebar": {
+    "quickFacts": [
+      { "dt": "Total Questions", "dd": "100 Q&A" },
+      { "dt": "Fresher Level",   "dd": "Q1–Q25" },
+      { "dt": "Mid Level",       "dd": "Q26–Q70" },
+      { "dt": "Senior Level",    "dd": "Q71–Q100" },
+      { "dt": "Topics",          "dd": "16 Major Topics" },
+      { "dt": "Updated",         "dd": "July 2026" }
+    ],
+    "tags": ["PythonInterviewQuestions", "PythonFresherInterview", "PythonMidLevelInterview", "PythonSeniorInterview", "PythonOOP", "PythonDataStructures", "GIL", "Threading", "Multiprocessing", "Asyncio", "Decorators", "Generators", "CPythonInternals", "DesignPatterns", "FastAPI", "Django"]
+  }
+}

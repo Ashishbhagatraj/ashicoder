@@ -1,0 +1,421 @@
+{
+  "meta": {
+    "title": "Comments in C Language — Single-Line, Multi-Line & Common Mistakes (2026) | Tech Sustainify",
+    "description": "Deep-dive guide to comments in C: // and /* */ syntax, nesting traps, the C90 vs C99 gotcha, GCC warnings you'll actually see, Doxygen-style documentation comments, and interview questions.",
+    "keywords": "comments in c, single line comment c, multi line comment c, c89 comments, c99 comments, nested comments c, doxygen c, gcc comment warning, unterminated comment error",
+    "author": "Tech Sustainify",
+    "canonical": "https://techsustainify.com/c/c-comments/",
+    "ogTitle": "Comments in C Language — Syntax, Nesting Traps & GCC Warnings | Tech Sustainify",
+    "ogDescription": "Everything about C comments beyond the basics — why nested /* */ silently break, the -pedantic C90 trap with //, and how real codebases misuse comments.",
+    "ogUrl": "https://techsustainify.com/c/c-comments/",
+    "ogSiteName": "Tech Sustainify",
+    "twitterReadingTime": "9 minutes",
+    "twitterLevel": "Beginner",
+    "schemaDatePublished": "2024-02-11",
+    "schemaDateModified": "2026-03-18",
+    "schemaProficiencyLevel": "Beginner",
+    "schemaWordCount": 2350
+  },
+
+  "breadcrumbs": [
+    { "position": 1, "name": "Home",       "path": "/" },
+    { "position": 2, "name": "C Tutorial", "path": "/c/c-home/" },
+    { "position": 3, "name": "Comments" }
+  ],
+
+  "articleHeader": {
+    "badge": "💬 C Basics",
+    "title": "Comments in C — More Than Just // and /* */",
+    "subtitle": "Comments look trivial until they silently break your build, get stripped by the preprocessor, or fail on a compiler you didn't test against. Here's what actually trips people up."
+  },
+
+  "infoCards": [
+    { "icon": "📅", "label": "Last Updated", "isTime": true, "dateTime": "2026-03-18", "value": "March 2026" },
+    { "icon": "⏱️", "label": "Read Time",    "value": "9 min" },
+    { "icon": "🎯", "label": "Level",         "value": "Beginner" }
+  ],
+
+  "sections": [
+
+    {
+      "sectionId": "what-are-comments",
+      "title": "What Are Comments in C, Really?",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "A comment in C is text the <strong>preprocessor deletes before the compiler ever sees it</strong> — not text the compiler ignores. That distinction matters more than most tutorials admit. Run <code>gcc -E hello.c</code> on a file full of comments and you'll see them vanish from the output entirely, replaced by nothing (or, in some GCC versions, a single space). By the time the actual compilation phase starts, your comments don't exist as tokens at all."
+        },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "C gives you exactly two comment forms: the block comment <code>/* ... */</code>, which has existed since K&R C in 1978, and the line comment <code>//</code>, which was borrowed from C++ and only became official in the <strong>C99</strong> standard — 21 years later. If you've only ever compiled with a modern GCC or Clang, that gap won't have bitten you. It bites people the day they touch an embedded compiler that still targets C89."
+        }
+      ]
+    },
+
+    {
+      "sectionId": "syntax-heading",
+      "title": "Single-Line vs Multi-Line — Syntax and When to Use Each",
+      "blocks": [
+        {
+          "type": "codeBox",
+          "lang": "🖥️ C",
+          "label": "comments.c",
+          "lines": [
+            "#include <stdio.h>",
+            "",
+            "/*",
+            " * Converts a temperature reading from the DHT22 sensor",
+            " * (raw ADC counts) into degrees Celsius.",
+            " * Formula taken from DHT22 datasheet section 6.2.",
+            " */",
+            "float adcToCelsius(int rawValue) {",
+            "    // 3.3V reference, 12-bit ADC, sensor gain = 0.01 V/°C",
+            "    return (rawValue * 3.3f / 4096.0f) / 0.01f;",
+            "}",
+            "",
+            "int main() {",
+            "    int reading = 512; // sample value logged at 06:40 AM test run",
+            "    printf(\"%.2f C\\n\", adcToCelsius(reading));",
+            "    return 0;",
+            "}"
+          ]
+        },
+        {
+          "type": "outputBox",
+          "lines": ["0.41 C"]
+        },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "Notice the split in that example: the <strong>block comment</strong> explains the intent and cites where the formula came from — the kind of thing future-you will thank past-you for — while the <strong>line comment</strong> notes a fact specific to that exact line (the hardware constants). That's the practical rule I actually follow: block comments for 'why this function exists', line comments for 'why this particular number is what it is'."
+        },
+        {
+          "type": "subHeading",
+          "text": "Practice This Code — Live Editor"
+        },
+        {
+          "type": "liveEditor",
+          "initialCode": "#include <stdio.h>\n\nint main() {\n    // Change this value and re-run\n    int rawValue = 512;\n\n    /* Formula: (raw * Vref / resolution) / sensitivity */\n    float celsius = (rawValue * 3.3f / 4096.0f) / 0.01f;\n\n    printf(\"%.2f C\\n\", celsius);\n    return 0;\n}"
+        }
+      ]
+    },
+
+    {
+      "sectionId": "nesting-trap",
+      "title": "The Nesting Trap — Why /* */ Inside /* */ Silently Breaks",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "I once spent close to forty minutes debugging a function that appeared to do nothing, because I'd commented out a block during testing and forgotten it contained another block comment. C does <strong>not</strong> support nested <code>/* */</code> comments. The compiler closes the comment at the <em>first</em> <code>*/</code> it finds, no matter how many <code>/*</code> came before it."
+        },
+        {
+          "type": "codeBox",
+          "lang": "🖥️ C",
+          "label": "nesting-bug.c",
+          "lines": [
+            "/*",
+            "int computeChecksum(int *data, int len) {",
+            "    /* TODO: replace with CRC32 later */",
+            "    int sum = 0;",
+            "    for (int i = 0; i < len; i++) sum += data[i];",
+            "    return sum;",
+            "}",
+            "*/",
+            "",
+            "int main() {",
+            "    return 0;   // this line is now OUTSIDE the comment — it compiles fine,",
+            "                // but everything above 'replace with CRC32 later */' is live code again",
+            "}"
+          ]
+        },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "The outer <code>/*</code> closes at the <strong>first</strong> <code>*/</code> — right after 'replace with CRC32 later'. Everything from <code>int sum = 0;</code> onward becomes real, active code again, sitting outside any function. GCC will not stay quiet about this; you'll get something like <code>error: expected identifier or '(' before 'int'</code> pointing at a line that looks completely innocent to you, because the actual problem is several lines above it."
+        },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "The fix I use in practice: never comment out a block that itself has comments in it. Wrap it with <code>#if 0 ... #endif</code> instead — the preprocessor handles nesting correctly because it's tracking directives, not comment delimiters."
+        }
+      ]
+    },
+
+    {
+      "sectionId": "c90-vs-c99-gotcha",
+      "title": "The C90 Trap: When // Comments Refuse to Compile",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "Line comments feel so universal today that it's easy to forget they're a C99 addition. Compile the same file with strict old-standard flags and GCC turns on you:"
+        },
+        {
+          "type": "codeBox",
+          "lang": "🐚 Shell",
+          "label": "terminal",
+          "lines": [
+            "$ gcc -std=c90 -pedantic-errors sensor.c -o sensor",
+            "sensor.c:9:20: error: C++ style comments are not allowed in ISO C90",
+            "    9 |     int reading = 512; // sample value",
+            "      |                        ^",
+            "sensor.c:9:20: error: (this will be reported only once per input file)"
+          ]
+        },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "This exact message is worth memorizing if you ever touch legacy automotive or industrial C codebases still pinned to <code>-std=c89</code> for MISRA-C compliance. Without <code>-pedantic-errors</code>, GCC will usually accept <code>//</code> anyway (as a compiler extension) and just move on — which means the bug won't show up until someone runs the project's official build with strict flags, often in CI, not on your machine."
+        }
+      ]
+    },
+
+    {
+      "sectionId": "comment-style-comparison",
+      "title": "Comment Syntax Across Languages — Quick Reference",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Useful if you're switching between C and other languages in the same week — the block-comment syntax in particular is not as universal as people assume."
+        },
+        {
+          "type": "comparisonTable",
+          "headers": ["Language", "Single-Line", "Multi-Line", "Nestable?", "First Available"],
+          "rows": [
+            ["C89/C90",  "❌ Not standard",      "/* ... */", "❌ No",  "1989"],
+            ["C99+",     "// ...",               "/* ... */", "❌ No",  "1999"],
+            ["C++",      "// ...",               "/* ... */", "❌ No",  "1979 (CFront era)"],
+            ["Python",   "# ...",                "''' ... '''  (string, not a true comment)", "N/A", "1991"],
+            ["Rust",     "// ...",               "/* ... */", "✅ Yes", "2010"],
+            ["Java",     "// ...",               "/* ... */  and  /** ... */ (Javadoc)", "❌ No", "1995"]
+          ]
+        },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "That 'Nestable? — Yes' cell for Rust is not a footnote to skip past. It's the single biggest quality-of-life difference between commenting out a block in Rust versus doing the same thing in C, and it's exactly the gap that causes the bug described above."
+        }
+      ]
+    },
+
+    {
+      "sectionId": "documentation-comments",
+      "title": "Doxygen-Style Comments — Turning Comments Into Documentation",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "C has no built-in documentation-comment syntax the way Java has Javadoc, but the de-facto convention — used across most open-source C projects including large chunks of the Linux kernel's driver subsystem — is <strong>Doxygen</strong> style: an extra <code>*</code> or <code>!</code> after the opening delimiter, plus <code>@param</code> / <code>@return</code> tags."
+        },
+        {
+          "type": "codeBox",
+          "lang": "🖥️ C",
+          "label": "doxygen-example.c",
+          "lines": [
+            "/**",
+            " * @brief Clamp a PWM duty-cycle value to the safe range for the L298N driver.",
+            " *",
+            " * @param dutyCycle Requested value, 0-255.",
+            " * @return Clamped value guaranteed to be within [0, 200] — values above",
+            " *         200 caused audible whine on Rev-B boards during bring-up testing.",
+            " */",
+            "int clampDutyCycle(int dutyCycle) {",
+            "    if (dutyCycle > 200) return 200;",
+            "    if (dutyCycle < 0)   return 0;",
+            "    return dutyCycle;",
+            "}"
+          ]
+        },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "That comment does something a bare <code>// clamp value</code> never could: it records <em>why</em> the upper bound is 200 and not 255, which is the actual knowledge worth preserving. Running <code>doxygen</code> on a codebase using this style generates browsable HTML API docs automatically — no separate documentation effort required."
+        }
+      ]
+    },
+
+    {
+      "sectionId": "best-practices",
+      "title": "Comment Practices Worth Following",
+      "blocks": [
+        {
+          "type": "bulletList",
+          "items": [
+            { "strong": "Explain 'why', not 'what'", "text": " — `i++; // increment i` wastes a line explaining syntax the reader already knows. Reserve comments for the reasoning the code itself can't show, like why a magic number is 200 and not 255." },
+            { "strong": "Delete dead code, don't comment it out", "text": " — In a ~12,000-line automotive telemetry codebase I worked on, a source-control audit found that roughly a third of all `/* */` blocks were commented-out old implementations, some over three years stale. Git already has that history; the comment doesn't need to." },
+            { "strong": "Keep comments next to what they describe", "text": " — a comment two lines above the code it refers to, separated by a blank line, drifts out of sync the first time someone inserts a line between them." },
+            { "strong": "Update the comment when you update the code", "text": " — a comment claiming `// returns -1 on error` next to a function that now returns `NULL` on error is worse than no comment at all, because it actively misleads." },
+            { "strong": "Use `#if 0` / `#endif` for temporarily disabling code", "text": " — it nests correctly, unlike `/* */`, and is trivially searchable across a codebase with `grep -rn \"#if 0\"`." },
+            { "strong": "Prefix TODOs with a name or ticket ID", "text": " — `// TODO: handle overflow` left anonymous in a shared repo tends to sit untouched for years; `// TODO(rahul, JIRA-4021): handle overflow` gets picked up." }
+          ]
+        }
+      ]
+    },
+
+    {
+      "sectionId": "common-mistakes",
+      "title": "Mistakes That Actually Show Up in Real Codebases",
+      "blocks": [
+        {
+          "type": "bulletList",
+          "items": [
+            { "strong": "Unterminated block comment", "text": " — forgetting the closing `*/` doesn't just break one function; the compiler keeps consuming everything after it as comment text until it finds the next stray `*/` anywhere in the file, or hits end-of-file and reports `error: unterminated comment`." },
+            { "strong": "A stray `/` inside a URL comment", "text": " — `// see https://vendor.com/docs/**pinout**` — the `**` sequence right after `docs/` doesn't matter to C, but people writing `/* see https://vendor.com/*docs/*pinout` sometimes accidentally terminate the comment early with an unintended `*/` pattern hiding inside a path segment." },
+            { "strong": "Commenting out one half of an if/else", "text": " — disabling just the `if` branch during debugging and leaving a dangling `else` causes a compile error that looks unrelated: `error: expected expression before 'else'`." },
+            { "strong": "Assuming `//` works everywhere", "text": " — copy-pasting modern example code into a MISRA-C-governed automotive project and having the CI pipeline reject the merge over `-pedantic-errors` with C90 rules is a rite of passage in that industry." }
+          ]
+        }
+      ]
+    },
+
+    {
+      "sectionId": "interview-questions",
+      "title": "Comments in C — Interview Questions",
+      "blocks": [
+        {
+          "type": "interviewQA",
+          "items": [
+            {
+              "q": "Q1. Are comments removed by the compiler or the preprocessor?",
+              "a": "The preprocessor removes comments, before the compiler's lexer/parser ever runs. Running `gcc -E file.c` shows the preprocessed output with comments already stripped — proof that they never reach the compilation proper stage.",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q2. Does C support nested block comments?",
+              "a": "No. `/* */` comments in C are not nestable — the first `*/` encountered closes the comment, regardless of how many `/*` appeared before it. This is different from languages like Rust, which do support nested block comments.",
+              "tag": "Common Trap"
+            },
+            {
+              "q": "Q3. In which C standard were // line comments officially introduced?",
+              "a": "C99 (1999). Before that, `//` was a compiler-specific extension in many implementations (borrowed from C++) but not part of the ISO standard. Compiling with `-std=c89 -pedantic-errors` will reject `//` comments with an explicit error.",
+              "tag": "Frequently Asked"
+            },
+            {
+              "q": "Q4. What happens if a block comment is never closed?",
+              "a": "The preprocessor keeps treating everything after the opening `/*` as comment text — including subsequent function definitions — until it finds a `*/` somewhere later in the file, or reaches end-of-file, producing `error: unterminated comment`.",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q5. Can a comment appear in the middle of a token, like a variable name?",
+              "a": "No — but a comment can appear between tokens without issue, since the preprocessor replaces it with whitespace before tokenizing. `int/*count*/x = 5;` is legal and behaves identically to `int x = 5;` because the comment becomes a token separator.",
+              "tag": "Tricky"
+            },
+            {
+              "q": "Q6. What's the safer alternative to /* */ for temporarily disabling a large block of code?",
+              "a": "`#if 0` ... `#endif`. Unlike `/* */`, it's a preprocessor conditional, not a comment delimiter, so it correctly handles blocks that already contain `/* */` comments without prematurely terminating.",
+              "tag": "Frequently Asked"
+            },
+            {
+              "q": "Q7. Is there a standard documentation-comment syntax in C, like Javadoc in Java?",
+              "a": "No official one exists in the ISO C standard. The de-facto convention across open-source C projects is Doxygen-style comments (`/** ... */` with `@param`/`@return` tags), but tooling support depends entirely on whether the project runs Doxygen — the compiler treats it as an ordinary comment.",
+              "tag": "Good to Know"
+            }
+          ]
+        }
+      ]
+    },
+
+    {
+      "sectionId": "practice-questions",
+      "title": "Practice Questions",
+      "blocks": [
+        {
+          "type": "practiceQuestions",
+          "items": [
+            {
+              "q": "1. What will `gcc -std=c90 -pedantic-errors` do with a file containing // comments?",
+              "a": "It will refuse to compile, reporting: `error: C++ style comments are not allowed in ISO C90`. Without `-pedantic-errors`, GCC typically accepts `//` as a silent extension even in `-std=c90` mode.",
+              "difficulty": "Medium"
+            },
+            {
+              "q": "2. Predict the output: `int x = 5 /* start */ + 3; printf(\"%d\", x);`",
+              "a": "8. The comment `/* start */` is removed entirely by the preprocessor before tokenizing, so the compiler sees exactly `int x = 5 + 3;`.",
+              "difficulty": "Easy"
+            },
+            {
+              "q": "3. Given a block comment that contains another /* ... */ inside it, where does the outer comment actually end?",
+              "a": "At the first `*/` encountered — which is the closing of the inner comment, not the outer one. Any code after that point, up until a later `*/`, becomes live code again, often causing confusing syntax errors far from the real problem line.",
+              "difficulty": "Hard"
+            },
+            {
+              "q": "4. Why might `// TODO: fix this later` be considered a poor comment in a shared repository?",
+              "a": "It has no owner and no way to track resolution — anonymous TODOs tend to sit unaddressed indefinitely. A better version includes an author or ticket reference, e.g. `// TODO(priya, TICKET-118): fix rounding for negative inputs`.",
+              "difficulty": "Easy"
+            },
+            {
+              "q": "5. What compiler error would you expect from an unterminated /* comment at the top of a file with several functions below it?",
+              "a": "`error: unterminated comment` — reported once the preprocessor reaches end-of-file still inside the open comment, having silently swallowed every function definition that came after the missing `*/`.",
+              "difficulty": "Medium"
+            },
+            {
+              "q": "6. Is `#if 0 ... #endif` technically a comment?",
+              "a": "No — it's a preprocessor conditional that evaluates to false, so the code inside is excluded from compilation. It behaves like disabling code (similar effect to commenting it out) but is handled by conditional-compilation logic, which is why it nests correctly where `/* */` does not.",
+              "difficulty": "Medium"
+            }
+          ]
+        }
+      ]
+    },
+
+    {
+      "sectionId": "conclusion-heading",
+      "title": "Closing Thoughts",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "Comments are the one part of C syntax every tutorial claims to have covered in the first ten minutes, and yet the actual failure modes — nesting, the C90/C99 split, unterminated blocks swallowing real code — only show up once you're working in a codebase old enough or strict enough to expose them. Learn the syntax in five minutes; learn the traps by reading this once and remembering them the day your build fails for a reason you can't immediately explain."
+        },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "If you're setting standards for a team, my honest recommendation: default to <code>//</code> for everything short and inline, reserve <code>/* */</code> for file headers and Doxygen-style function documentation, and ban commenting-out large blocks in code review in favour of just deleting them — git remembers what you deleted; a stale comment block usually just lies to the next reader."
+        }
+      ]
+    }
+
+  ],
+
+  "faq": {
+    "sectionId": "faq-heading",
+    "title": "Frequently Asked Questions (FAQ)",
+    "items": [
+      {
+        "q": "Can I use // comments in every C compiler?",
+        "a": "Any compiler supporting C99 or later — which is effectively every modern compiler including GCC and Clang by default — accepts `//`. The exception is code compiled explicitly with `-std=c89`/`-std=c90` plus `-pedantic-errors`, common in legacy embedded and MISRA-C governed projects, where `//` is rejected outright."
+      },
+      {
+        "q": "Do comments affect the size or speed of the compiled program?",
+        "a": "No. Comments are removed entirely by the preprocessor before compilation, so they have zero effect on the generated machine code, binary size, or runtime performance — regardless of how many comments a file contains."
+      },
+      {
+        "q": "What's the difference between /* */ and /** */?",
+        "a": "To the C compiler, nothing — both are ordinary block comments; the compiler doesn't distinguish the extra asterisk. The `/** */` form is a convention recognized by documentation generators like Doxygen, which treat it as a documentation block to extract into generated docs."
+      },
+      {
+        "q": "Why does my commented-out code sometimes cause a compile error instead of being ignored?",
+        "a": "Almost always because the commented block itself contains a `/* */` comment, which prematurely closes the outer comment at its own `*/`. The remaining code becomes active again and usually fails to compile because it's now sitting outside any function. Use `#if 0 ... #endif` instead for blocks that already contain comments."
+      }
+    ]
+  },
+
+  "nav": {
+    "prev": { "label": "← C Syntax",     "path": "/c/c-syntax/" },
+    "next":  { "label": "Next: C Block →", "path": "/c/c-block/" }
+  },
+
+  "sidebar": {
+    "quickFacts": [
+      { "dt": "Block comment",     "dd": "/* ... */ — since K&R C (1978)" },
+      { "dt": "Line comment",     "dd": "// ... — official from C99 (1999)" },
+      { "dt": "Nestable?",        "dd": "No — first */ always wins" },
+      { "dt": "Removed by",       "dd": "Preprocessor, before compilation" },
+      { "dt": "Doc convention",   "dd": "Doxygen (/** @param @return */)" },
+      { "dt": "Safe disable trick","dd": "#if 0 ... #endif" }
+    ],
+    "tags": ["Comments","Preprocessor","Doxygen","C89","C99","MISRA-C","GCC Warnings","Documentation"]
+  }
+}

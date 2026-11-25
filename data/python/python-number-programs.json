@@ -1,0 +1,638 @@
+{
+  "meta": {
+    "title": "Python Number Programs | 40 Programs with Code & Explanation 2026 | Tech Sustainify",
+    "description": "40 Python number programs with full working code, sample output, and detailed explanations — covering Basic, Intermediate, and Advanced levels. Topics include prime numbers, factorial, Fibonacci, Armstrong numbers, GCD/LCM, palindrome checks, Sieve of Eratosthenes, Pascal's Triangle, and more. Updated July 2026.",
+    "keywords": "python number programs, python programs for numbers, python prime number program, python factorial program, python fibonacci program, python armstrong number program, python palindrome number program, python gcd lcm program, python number pattern programs, python programs 2026, python coding practice numbers",
+    "author": "Tech Sustainify",
+    "publisher": "Tech Sustainify",
+    "publisherUrl": "https://techsustainify.com",
+    "copyright": "© 2026 Tech Sustainify. All rights reserved.",
+    "language": "en-IN",
+    "locale": "en_IN",
+    "canonical": "https://techsustainify.com/python/python-number-programs/",
+    "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+    "googlebot": "index, follow",
+    "bingbot": "index, follow",
+    "revisitAfter": "7 days",
+    "rating": "general",
+    "category": "Technology / Programming / Python"
+  },
+  "breadcrumbs": [
+    {
+      "position": 1,
+      "name": "Home",
+      "path": "/"
+    },
+    {
+      "position": 2,
+      "name": "Python Tutorial",
+      "path": "/python/python-home/"
+    },
+    {
+      "position": 3,
+      "name": "Python Number Programs"
+    }
+  ],
+  "articleHeader": {
+    "badge": "🐍 Python Programs",
+    "title": "Python Number Programs — 40 Programs with Code & Explanation",
+    "subtitle": "A complete set of 40 Python number programs with full working code, sample output, and detailed explanations for Basic, Intermediate, and Advanced learners — covering prime numbers, factorial, Fibonacci, Armstrong numbers, GCD/LCM, palindromes, the Sieve of Eratosthenes, Pascal's Triangle, and more."
+  },
+  "infoCards": [
+    {
+      "icon": "📅",
+      "label": "Last Updated",
+      "isTime": true,
+      "dateTime": "2026-07-25",
+      "value": "July 2026"
+    },
+    {
+      "icon": "🔢",
+      "label": "Programs",
+      "value": "40 Programs"
+    },
+    {
+      "icon": "🎯",
+      "label": "Level",
+      "value": "Basic + Intermediate + Advanced"
+    }
+  ],
+  "sections": [
+    {
+      "sectionId": "intro-heading",
+      "title": "How to Use This Guide",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "This guide contains <strong>40 Python number programs</strong> organized by difficulty level. Every program includes the <strong>complete working code</strong>, a <strong>sample output</strong>, and a <strong>plain-English explanation</strong> of exactly how and why it works."
+        },
+        {
+          "type": "comparisonTable",
+          "headers": [
+            "Level",
+            "Programs",
+            "Best For",
+            "Sample Topics"
+          ],
+          "rows": [
+            [
+              "🟢 Basic",
+              "1–15",
+              "Beginners, campus placements",
+              "Even/Odd, Factorial, Prime Check, Fibonacci, Palindrome, GCD/LCM"
+            ],
+            [
+              "🟡 Intermediate",
+              "16–30",
+              "1–2 years experience",
+              "Prime Range, Perfect Numbers, Prime Factorization, Strong Numbers, Disarium"
+            ],
+            [
+              "🔴 Advanced",
+              "31–40",
+              "Interview prep, competitive coding",
+              "Sieve of Eratosthenes, Memoized Fibonacci, Happy Numbers, Pythagorean Triplets"
+            ]
+          ]
+        },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "<strong>Pro tip:</strong> Don't just copy-paste the code — retype each program from scratch and run it yourself before checking the sample output. The explanation section under every program is written to answer the follow-up question an interviewer would actually ask: <em>why</em> does this approach work, and what's its time complexity?"
+        }
+      ]
+    },
+    {
+      "sectionId": "basic-programs",
+      "title": "Basic Level — Number Programs (1–15)",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "These 15 programs are the <strong>most commonly asked in beginner coding classes, lab exams, and campus placement written rounds</strong>."
+        },
+        {
+          "type": "codePrograms",
+          "items": [
+            {
+              "title": "Program 1: Check if a Number is Even or Odd",
+              "difficulty": "Basic",
+              "code": "n = int(input(\"Enter a number: \"))\nif n % 2 == 0:\n    print(f\"{n} is Even\")\nelse:\n    print(f\"{n} is Odd\")",
+              "language": "python",
+              "output": "Enter a number: 7\n7 is Odd",
+              "explanation": "The modulus operator % returns the remainder after division by 2. A remainder of 0 means the number is evenly divisible by 2 (even); any other remainder means it's odd. This works correctly for negative numbers too, since Python's % always returns a result with the same sign as the divisor."
+            },
+            {
+              "title": "Program 2: Check if a Number is Positive, Negative, or Zero",
+              "difficulty": "Basic",
+              "code": "n = float(input(\"Enter a number: \"))\nif n > 0:\n    print(\"Positive number\")\nelif n < 0:\n    print(\"Negative number\")\nelse:\n    print(\"Zero\")",
+              "language": "python",
+              "output": "Enter a number: -4.5\nNegative number",
+              "explanation": "A simple if/elif/else chain checks the sign of the number. Using float() instead of int() allows the program to correctly classify decimal inputs as well, not just whole numbers."
+            },
+            {
+              "title": "Program 3: Find the Sum of Two Numbers",
+              "difficulty": "Basic",
+              "code": "a = float(input(\"Enter first number: \"))\nb = float(input(\"Enter second number: \"))\nprint(f\"Sum = {a + b}\")",
+              "language": "python",
+              "output": "Enter first number: 12\nEnter second number: 8\nSum = 20.0",
+              "explanation": "Basic arithmetic addition. Using float() instead of int() keeps the program flexible for decimal input, though the sum of two whole numbers still shows a trailing .0 since both were converted to float."
+            },
+            {
+              "title": "Program 4: Find the Factorial of a Number",
+              "difficulty": "Basic",
+              "code": "n = int(input(\"Enter a number: \"))\nfactorial = 1\nfor i in range(1, n + 1):\n    factorial *= i\nprint(f\"Factorial of {n} = {factorial}\")",
+              "language": "python",
+              "output": "Enter a number: 5\nFactorial of 5 = 120",
+              "explanation": "The factorial of n (written n!) is the product of all positive integers up to n. The loop multiplies factorial by each integer from 1 to n. For n = 0, the loop body never executes and factorial correctly stays 1, since 0! is defined as 1."
+            },
+            {
+              "title": "Program 5: Check if a Number is Prime",
+              "difficulty": "Basic",
+              "code": "n = int(input(\"Enter a number: \"))\nis_prime = n > 1\nfor i in range(2, int(n ** 0.5) + 1):\n    if n % i == 0:\n        is_prime = False\n        break\nprint(f\"{n} is {'Prime' if is_prime else 'Not Prime'}\")",
+              "language": "python",
+              "output": "Enter a number: 29\n29 is Prime",
+              "explanation": "A number is prime if it has no divisors other than 1 and itself. It's only necessary to check divisors up to the square root of n, because any factor larger than the square root must be paired with a factor smaller than it — checking beyond that point is redundant."
+            },
+            {
+              "title": "Program 6: Print the Fibonacci Series up to N Terms",
+              "difficulty": "Basic",
+              "code": "n = int(input(\"Enter number of terms: \"))\na, b = 0, 1\nfor _ in range(n):\n    print(a, end=\" \")\n    a, b = b, a + b",
+              "language": "python",
+              "output": "Enter number of terms: 8\n0 1 1 2 3 5 8 13",
+              "explanation": "The Fibonacci sequence starts with 0 and 1, and each subsequent term is the sum of the two before it. The simultaneous assignment a, b = b, a + b updates both variables in one step without needing a temporary variable."
+            },
+            {
+              "title": "Program 7: Reverse a Number",
+              "difficulty": "Basic",
+              "code": "n = int(input(\"Enter a number: \"))\ntemp = abs(n)\nreversed_num = 0\nwhile temp > 0:\n    digit = temp % 10\n    reversed_num = reversed_num * 10 + digit\n    temp //= 10\nif n < 0:\n    reversed_num = -reversed_num\nprint(f\"Reversed number = {reversed_num}\")",
+              "language": "python",
+              "output": "Enter a number: 12345\nReversed number = 54321",
+              "explanation": "Each iteration extracts the last digit using % 10, appends it to reversed_num by shifting existing digits left (multiplying by 10), and removes the last digit from temp using integer division // 10. The sign is handled separately so negative numbers reverse correctly too."
+            },
+            {
+              "title": "Program 8: Check if a Number is a Palindrome",
+              "difficulty": "Basic",
+              "code": "n = int(input(\"Enter a number: \"))\noriginal = n\nreversed_num = 0\nwhile n > 0:\n    reversed_num = reversed_num * 10 + n % 10\n    n //= 10\nif original == reversed_num:\n    print(f\"{original} is a Palindrome\")\nelse:\n    print(f\"{original} is Not a Palindrome\")",
+              "language": "python",
+              "output": "Enter a number: 12321\n12321 is a Palindrome",
+              "explanation": "A palindrome number reads the same forwards and backwards. The program reverses the digits using the same digit-extraction technique as the reverse-number program, then compares the reversed value to the original."
+            },
+            {
+              "title": "Program 9: Find the Sum of Digits of a Number",
+              "difficulty": "Basic",
+              "code": "n = int(input(\"Enter a number: \"))\ntemp = abs(n)\ndigit_sum = 0\nwhile temp > 0:\n    digit_sum += temp % 10\n    temp //= 10\nprint(f\"Sum of digits = {digit_sum}\")",
+              "language": "python",
+              "output": "Enter a number: 4567\nSum of digits = 22",
+              "explanation": "Each iteration extracts the last digit with % 10 and adds it to a running total, then removes that digit using // 10. This continues until no digits remain."
+            },
+            {
+              "title": "Program 10: Swap Two Numbers Without Using a Third Variable",
+              "difficulty": "Basic",
+              "code": "a = int(input(\"Enter first number: \"))\nb = int(input(\"Enter second number: \"))\na, b = b, a\nprint(f\"After swap: a = {a}, b = {b}\")",
+              "language": "python",
+              "output": "Enter first number: 5\nEnter second number: 9\nAfter swap: a = 9, b = 5",
+              "explanation": "Python's tuple assignment evaluates the right-hand side (b, a) fully before assigning to the left-hand side, which naturally swaps the two values in a single line without needing a temporary variable, unlike languages that require manual swapping."
+            },
+            {
+              "title": "Program 11: Find the Largest of Three Numbers",
+              "difficulty": "Basic",
+              "code": "a = float(input(\"Enter first number: \"))\nb = float(input(\"Enter second number: \"))\nc = float(input(\"Enter third number: \"))\nlargest = max(a, b, c)\nprint(f\"Largest number = {largest}\")",
+              "language": "python",
+              "output": "Enter first number: 12\nEnter second number: 45\nEnter third number: 7\nLargest number = 45.0",
+              "explanation": "Python's built-in max() function accepts any number of arguments and returns the greatest one directly, which is simpler and less error-prone than writing manual if/elif comparisons."
+            },
+            {
+              "title": "Program 12: Convert Celsius to Fahrenheit",
+              "difficulty": "Basic",
+              "code": "celsius = float(input(\"Enter temperature in Celsius: \"))\nfahrenheit = (celsius * 9/5) + 32\nprint(f\"{celsius}°C = {fahrenheit}°F\")",
+              "language": "python",
+              "output": "Enter temperature in Celsius: 37\n37.0°C = 98.6°F",
+              "explanation": "The standard conversion formula F = (C × 9/5) + 32 is applied directly. Using 9/5 instead of an integer division ensures the multiplication factor is a precise float (1.8) rather than being truncated."
+            },
+            {
+              "title": "Program 13: Check if a Number is an Armstrong Number",
+              "difficulty": "Basic",
+              "code": "n = int(input(\"Enter a number: \"))\ntemp = n\npower = len(str(n))\ntotal = 0\nwhile temp > 0:\n    digit = temp % 10\n    total += digit ** power\n    temp //= 10\nif total == n:\n    print(f\"{n} is an Armstrong number\")\nelse:\n    print(f\"{n} is not an Armstrong number\")",
+              "language": "python",
+              "output": "Enter a number: 153\n153 is an Armstrong number",
+              "explanation": "An Armstrong number equals the sum of its own digits each raised to the power of the total digit count. For 153 (3 digits): 1³ + 5³ + 3³ = 1 + 125 + 27 = 153, so it qualifies."
+            },
+            {
+              "title": "Program 14: Find the GCD (HCF) of Two Numbers",
+              "difficulty": "Basic",
+              "code": "import math\na = int(input(\"Enter first number: \"))\nb = int(input(\"Enter second number: \"))\nprint(f\"GCD of {a} and {b} = {math.gcd(a, b)}\")",
+              "language": "python",
+              "output": "Enter first number: 36\nEnter second number: 48\nGCD of 36 and 48 = 12",
+              "explanation": "The Greatest Common Divisor (GCD, also called HCF) is the largest number that divides both inputs exactly. Python's math.gcd() implements the Euclidean algorithm internally, so there's rarely a need to hand-roll it for production code."
+            },
+            {
+              "title": "Program 15: Find the LCM of Two Numbers",
+              "difficulty": "Basic",
+              "code": "import math\na = int(input(\"Enter first number: \"))\nb = int(input(\"Enter second number: \"))\nlcm = abs(a * b) // math.gcd(a, b)\nprint(f\"LCM of {a} and {b} = {lcm}\")",
+              "language": "python",
+              "output": "Enter first number: 4\nEnter second number: 6\nLCM of 4 and 6 = 12",
+              "explanation": "The Least Common Multiple relates to the GCD by the identity LCM(a, b) = |a × b| / GCD(a, b). Since Python 3.9+ also offers math.lcm() directly, this manual formula is mainly useful for understanding the underlying relationship."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sectionId": "intermediate-programs",
+      "title": "Intermediate Level — Number Programs (16–30)",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "These programs introduce <strong>more efficient algorithms and slightly more advanced number theory concepts</strong> — the kind that show up in technical screening rounds."
+        },
+        {
+          "type": "codePrograms",
+          "items": [
+            {
+              "title": "Program 16: Print All Prime Numbers in a Given Range",
+              "difficulty": "Intermediate",
+              "code": "start = int(input(\"Enter start of range: \"))\nend = int(input(\"Enter end of range: \"))\nfor num in range(start, end + 1):\n    if num > 1:\n        for i in range(2, int(num ** 0.5) + 1):\n            if num % i == 0:\n                break\n        else:\n            print(num, end=\" \")",
+              "language": "python",
+              "output": "Enter start of range: 10\nEnter end of range: 30\n11 13 17 19 23 29",
+              "explanation": "The for...else construct runs the else block only if the inner loop completes WITHOUT hitting break — meaning no divisor was found, so the number is prime. This avoids needing a separate is_prime flag variable."
+            },
+            {
+              "title": "Program 17: Check if a Number is a Perfect Number",
+              "difficulty": "Intermediate",
+              "code": "n = int(input(\"Enter a number: \"))\ndivisor_sum = sum(i for i in range(1, n) if n % i == 0)\nif divisor_sum == n:\n    print(f\"{n} is a Perfect number\")\nelse:\n    print(f\"{n} is not a Perfect number\")",
+              "language": "python",
+              "output": "Enter a number: 28\n28 is a Perfect number",
+              "explanation": "A perfect number equals the sum of its proper divisors (all divisors excluding itself). For 28: 1 + 2 + 4 + 7 + 14 = 28. This straightforward version runs in O(n); for large n, iterating only up to sqrt(n) and pairing divisors is significantly faster."
+            },
+            {
+              "title": "Program 18: Find All Factors of a Number",
+              "difficulty": "Intermediate",
+              "code": "n = int(input(\"Enter a number: \"))\nfactors = [i for i in range(1, n + 1) if n % i == 0]\nprint(f\"Factors of {n}: {factors}\")",
+              "language": "python",
+              "output": "Enter a number: 36\nFactors of 36: [1, 2, 3, 4, 6, 9, 12, 18, 36]",
+              "explanation": "A list comprehension checks every integer from 1 to n and keeps those that divide n evenly (remainder 0). For large n, a faster approach checks only up to sqrt(n) and adds both i and n // i whenever a divisor is found."
+            },
+            {
+              "title": "Program 19: Find the Prime Factorization of a Number",
+              "difficulty": "Intermediate",
+              "code": "n = int(input(\"Enter a number: \"))\noriginal = n\nfactors = []\nd = 2\nwhile d * d <= n:\n    while n % d == 0:\n        factors.append(d)\n        n //= d\n    d += 1\nif n > 1:\n    factors.append(n)\nprint(f\"Prime factors of {original}: {factors}\")",
+              "language": "python",
+              "output": "Enter a number: 360\nPrime factors of 360: [2, 2, 2, 3, 3, 5]",
+              "explanation": "This is trial division: repeatedly divide out the smallest possible factor starting from 2. Once d*d exceeds the remaining n, any value of n still greater than 1 must itself be prime and is appended as the final factor. This runs in O(√n) time, far faster than checking every number up to n."
+            },
+            {
+              "title": "Program 20: Check if a Number is a Strong Number",
+              "difficulty": "Intermediate",
+              "code": "import math\nn = int(input(\"Enter a number: \"))\ntemp = n\ntotal = 0\nwhile temp > 0:\n    digit = temp % 10\n    total += math.factorial(digit)\n    temp //= 10\nif total == n:\n    print(f\"{n} is a Strong number\")\nelse:\n    print(f\"{n} is not a Strong number\")",
+              "language": "python",
+              "output": "Enter a number: 145\n145 is a Strong number",
+              "explanation": "A strong number equals the sum of the factorials of its own digits. For 145: 1! + 4! + 5! = 1 + 24 + 120 = 145. math.factorial() is used instead of a hand-rolled loop for clarity and to avoid recomputation errors."
+            },
+            {
+              "title": "Program 21: Find the Sum of Even and Odd Numbers Separately in a List",
+              "difficulty": "Intermediate",
+              "code": "numbers = [int(x) for x in input(\"Enter numbers separated by space: \").split()]\neven_sum = sum(n for n in numbers if n % 2 == 0)\nodd_sum = sum(n for n in numbers if n % 2 != 0)\nprint(f\"Sum of even numbers = {even_sum}\")\nprint(f\"Sum of odd numbers = {odd_sum}\")",
+              "language": "python",
+              "output": "Enter numbers separated by space: 1 2 3 4 5 6\nSum of even numbers = 12\nSum of odd numbers = 9",
+              "explanation": "Two generator expressions filter the input list by parity and sum() aggregates each filtered group separately, avoiding the need for manual accumulator loops and if/else branching inside a single pass."
+            },
+            {
+              "title": "Program 22: Convert a Decimal Number to Binary, Octal, and Hexadecimal",
+              "difficulty": "Intermediate",
+              "code": "n = int(input(\"Enter a decimal number: \"))\nprint(f\"Binary: {bin(n)[2:]}\")\nprint(f\"Octal: {oct(n)[2:]}\")\nprint(f\"Hexadecimal: {hex(n)[2:]}\")",
+              "language": "python",
+              "output": "Enter a decimal number: 100\nBinary: 1100100\nOctal: 144\nHexadecimal: 64",
+              "explanation": "Python's built-in bin(), oct(), and hex() functions convert an integer to a prefixed string ('0b...', '0o...', '0x...'). Slicing [2:] strips the two-character prefix to show just the digits."
+            },
+            {
+              "title": "Program 23: Find the Second Largest Number in a List",
+              "difficulty": "Intermediate",
+              "code": "numbers = [int(x) for x in input(\"Enter numbers separated by space: \").split()]\nunique_sorted = sorted(set(numbers), reverse=True)\nif len(unique_sorted) < 2:\n    print(\"Not enough distinct numbers\")\nelse:\n    print(f\"Second largest number = {unique_sorted[1]}\")",
+              "language": "python",
+              "output": "Enter numbers separated by space: 10 25 25 8 40 40 15\nSecond largest number = 25",
+              "explanation": "Converting the list to a set first removes duplicates, so repeated maximum values don't hide the true second-largest distinct value. Sorting the unique values in descending order puts the second largest at index 1."
+            },
+            {
+              "title": "Program 24: Check if Two Numbers are Amicable Numbers",
+              "difficulty": "Intermediate",
+              "code": "def sum_of_divisors(n):\n    return sum(i for i in range(1, n) if n % i == 0)\n\na = int(input(\"Enter first number: \"))\nb = int(input(\"Enter second number: \"))\nif sum_of_divisors(a) == b and sum_of_divisors(b) == a and a != b:\n    print(f\"{a} and {b} are Amicable numbers\")\nelse:\n    print(f\"{a} and {b} are not Amicable numbers\")",
+              "language": "python",
+              "output": "Enter first number: 220\nEnter second number: 284\n220 and 284 are Amicable numbers",
+              "explanation": "Two numbers are amicable if the sum of the proper divisors of each equals the other number. 220's proper divisors sum to 284, and 284's proper divisors sum to 220 — a mutual relationship, unlike a perfect number where a single number's divisors sum to itself."
+            },
+            {
+              "title": "Program 25: Find the Power of a Number Without Using the ** Operator",
+              "difficulty": "Intermediate",
+              "code": "base = float(input(\"Enter base: \"))\nexponent = int(input(\"Enter exponent: \"))\nresult = 1\nfor _ in range(abs(exponent)):\n    result *= base\nif exponent < 0:\n    result = 1 / result\nprint(f\"{base} raised to the power {exponent} = {result}\")",
+              "language": "python",
+              "output": "Enter base: 2\nEnter exponent: 5\n2.0 raised to the power 5 = 32.0",
+              "explanation": "The loop multiplies result by base a total of abs(exponent) times, then inverts the result if the exponent was negative, correctly handling fractional results for negative exponents."
+            },
+            {
+              "title": "Program 26: Find the Number of Digits in a Number",
+              "difficulty": "Intermediate",
+              "code": "n = int(input(\"Enter a number: \"))\ndigit_count = len(str(abs(n)))\nprint(f\"Number of digits = {digit_count}\")",
+              "language": "python",
+              "output": "Enter a number: 987654\nNumber of digits = 6",
+              "explanation": "Converting the absolute value of the number to a string and taking its length is the simplest way to count digits in Python. A purely arithmetic alternative repeatedly divides by 10 in a loop, counting iterations until the value reaches 0."
+            },
+            {
+              "title": "Program 27: Check if a Number is a Palindrome Without Converting to String",
+              "difficulty": "Intermediate",
+              "code": "n = int(input(\"Enter a number: \"))\noriginal, temp, reversed_num = n, n, 0\nwhile temp > 0:\n    reversed_num = reversed_num * 10 + temp % 10\n    temp //= 10\nprint(f\"{n} is a Palindrome\" if original == reversed_num else f\"{n} is Not a Palindrome\")",
+              "language": "python",
+              "output": "Enter a number: 7887\n7887 is a Palindrome",
+              "explanation": "This purely mathematical version avoids string conversion entirely, reversing the number using digit extraction (% 10) and reconstruction (* 10), then comparing it directly to the original — useful in environments or interview settings where string tricks are disallowed."
+            },
+            {
+              "title": "Program 28: Calculate the Sum of a Geometric Progression",
+              "difficulty": "Intermediate",
+              "code": "a = float(input(\"Enter first term: \"))\nr = float(input(\"Enter common ratio: \"))\nn = int(input(\"Enter number of terms: \"))\nif r == 1:\n    total = a * n\nelse:\n    total = a * (r ** n - 1) / (r - 1)\nprint(f\"Sum of GP = {total}\")",
+              "language": "python",
+              "output": "Enter first term: 2\nEnter common ratio: 3\nEnter number of terms: 4\nSum of GP = 80.0",
+              "explanation": "The sum of the first n terms of a geometric progression is a(r^n - 1)/(r - 1) for r ≠ 1, or simply a × n when r = 1 (since every term is identical and the standard formula would divide by zero)."
+            },
+            {
+              "title": "Program 29: Check if a Number is a Disarium Number",
+              "difficulty": "Intermediate",
+              "code": "n = int(input(\"Enter a number: \"))\ndigits = str(n)\ntotal = sum(int(d) ** (i + 1) for i, d in enumerate(digits))\nif total == n:\n    print(f\"{n} is a Disarium number\")\nelse:\n    print(f\"{n} is not a Disarium number\")",
+              "language": "python",
+              "output": "Enter a number: 175\n175 is a Disarium number",
+              "explanation": "A Disarium number equals the sum of its digits each raised to a power matching their POSITION (1st digit^1, 2nd digit^2, ...), unlike an Armstrong number where every digit uses the same fixed power. For 175: 1¹ + 7² + 5³ = 1 + 49 + 125 = 175."
+            },
+            {
+              "title": "Program 30: Find the Missing Number in a Sequence from 1 to N",
+              "difficulty": "Intermediate",
+              "code": "n = int(input(\"Enter N (highest number in the full sequence): \"))\nnumbers = [int(x) for x in input(f\"Enter {n - 1} numbers separated by space: \").split()]\nexpected_sum = n * (n + 1) // 2\nmissing = expected_sum - sum(numbers)\nprint(f\"Missing number = {missing}\")",
+              "language": "python",
+              "output": "Enter N (highest number in the full sequence): 10\nEnter 9 numbers separated by space: 1 2 4 5 6 7 8 9 10\nMissing number = 3",
+              "explanation": "The sum of the first N natural numbers has a known closed-form formula, n(n+1)/2. Subtracting the actual sum of the given (N-1) numbers from this expected total isolates exactly the one missing value in O(n) time, no sorting required."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sectionId": "advanced-programs",
+      "title": "Advanced Level — Number Programs (31–40)",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "These 10 programs cover <strong>optimized algorithms and classic competitive-programming number theory problems</strong> frequently asked in senior technical interviews and coding contests."
+        },
+        {
+          "type": "codePrograms",
+          "items": [
+            {
+              "title": "Program 31: Check if a Number is Prime Using the Sieve of Eratosthenes (for a Range)",
+              "difficulty": "Advanced",
+              "code": "n = int(input(\"Enter upper limit: \"))\nis_prime = [True] * (n + 1)\nis_prime[0] = is_prime[1] = False\nfor i in range(2, int(n ** 0.5) + 1):\n    if is_prime[i]:\n        for multiple in range(i * i, n + 1, i):\n            is_prime[multiple] = False\nprimes = [i for i, prime in enumerate(is_prime) if prime]\nprint(f\"Primes up to {n}: {primes}\")",
+              "language": "python",
+              "output": "Enter upper limit: 50\nPrimes up to 50: [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47]",
+              "explanation": "The Sieve of Eratosthenes marks all multiples of each prime as composite, starting from i*i (since smaller multiples were already marked by smaller primes). This runs in O(n log log n), dramatically faster than checking each number individually with trial division when you need ALL primes up to n."
+            },
+            {
+              "title": "Program 32: Find the Nth Fibonacci Number Using Memoization",
+              "difficulty": "Advanced",
+              "code": "from functools import lru_cache\n\n@lru_cache(maxsize=None)\ndef fibonacci(n):\n    if n <= 1:\n        return n\n    return fibonacci(n - 1) + fibonacci(n - 2)\n\nn = int(input(\"Enter N: \"))\nprint(f\"Fibonacci({n}) = {fibonacci(n)}\")",
+              "language": "python",
+              "output": "Enter N: 30\nFibonacci(30) = 832040",
+              "explanation": "A naive recursive Fibonacci implementation recomputes the same subproblems exponentially many times, making it O(2^n). functools.lru_cache automatically memoizes previous results, so each unique n is computed only once, reducing the time complexity to O(n)."
+            },
+            {
+              "title": "Program 33: Check if a Number is a Happy Number",
+              "difficulty": "Advanced",
+              "code": "def is_happy(n):\n    seen = set()\n    while n != 1 and n not in seen:\n        seen.add(n)\n        n = sum(int(d) ** 2 for d in str(n))\n    return n == 1\n\nnum = int(input(\"Enter a number: \"))\nprint(f\"{num} is a Happy number\" if is_happy(num) else f\"{num} is not a Happy number\")",
+              "language": "python",
+              "output": "Enter a number: 19\n19 is a Happy number",
+              "explanation": "A happy number eventually reaches 1 when repeatedly replaced by the sum of the squares of its digits; an unhappy number instead falls into an infinite repeating cycle that never includes 1. Tracking seen values in a set lets the loop detect and break out of that cycle instead of looping forever."
+            },
+            {
+              "title": "Program 34: Find All Pythagorean Triplets up to a Given Limit",
+              "difficulty": "Advanced",
+              "code": "limit = int(input(\"Enter limit: \"))\ntriplets = []\nfor a in range(1, limit + 1):\n    for b in range(a, limit + 1):\n        c_squared = a * a + b * b\n        c = int(c_squared ** 0.5)\n        if c * c == c_squared and c <= limit:\n            triplets.append((a, b, c))\nprint(f\"Pythagorean triplets up to {limit}: {triplets}\")",
+              "language": "python",
+              "output": "Enter limit: 20\nPythagorean triplets up to 20: [(3, 4, 5), (5, 12, 13), (6, 8, 10), (8, 15, 17), (9, 12, 15), (12, 16, 20)]",
+              "explanation": "A Pythagorean triplet (a, b, c) satisfies a² + b² = c². The nested loop checks pairs a ≤ b, computes the candidate c, and verifies it's an exact integer square root that also fits within the limit. Starting the inner loop at b = a avoids generating duplicate reversed pairs."
+            },
+            {
+              "title": "Program 35: Compute the Greatest Common Divisor Using the Euclidean Algorithm (Manual Implementation)",
+              "difficulty": "Advanced",
+              "code": "def gcd(a, b):\n    while b:\n        a, b = b, a % b\n    return a\n\nx = int(input(\"Enter first number: \"))\ny = int(input(\"Enter second number: \"))\nprint(f\"GCD of {x} and {y} = {gcd(x, y)}\")",
+              "language": "python",
+              "output": "Enter first number: 1071\nEnter second number: 462\nGCD of 1071 and 462 = 21",
+              "explanation": "The Euclidean algorithm repeatedly replaces (a, b) with (b, a mod b) until b becomes 0 — at that point a holds the GCD. This converges extremely fast (logarithmic in the smaller number), which is why it remains the standard algorithm even inside Python's own math.gcd() implementation."
+            },
+            {
+              "title": "Program 36: Check if a Number is a Automorphic Number",
+              "difficulty": "Advanced",
+              "code": "n = int(input(\"Enter a number: \"))\nsquare = n * n\nif str(square).endswith(str(n)):\n    print(f\"{n} is an Automorphic number\")\nelse:\n    print(f\"{n} is not an Automorphic number\")",
+              "language": "python",
+              "output": "Enter a number: 25\n25 is an Automorphic number",
+              "explanation": "An automorphic number's square ends exactly with the number itself as a suffix. For 25: 25² = 625, and '625' ends with '25', so it qualifies. Comparing the string suffix is far simpler than computing modulo 10^(digit count) manually."
+            },
+            {
+              "title": "Program 37: Find the Largest Prime Factor of a Number",
+              "difficulty": "Advanced",
+              "code": "n = int(input(\"Enter a number: \"))\nlargest_factor = None\nd = 2\ntemp = n\nwhile d * d <= temp:\n    while temp % d == 0:\n        largest_factor = d\n        temp //= d\n    d += 1\nif temp > 1:\n    largest_factor = temp\nprint(f\"Largest prime factor of {n} = {largest_factor}\")",
+              "language": "python",
+              "output": "Enter a number: 13195\nLargest prime factor of 13195 = 29",
+              "explanation": "This reuses trial division from prime factorization, but tracks only the LAST (and therefore largest, since factors are divided out in increasing order) factor found. Whatever remains greater than 1 after the loop is itself the largest prime factor, since it survived division by every smaller candidate."
+            },
+            {
+              "title": "Program 38: Generate Pascal's Triangle up to N Rows",
+              "difficulty": "Advanced",
+              "code": "n = int(input(\"Enter number of rows: \"))\ntriangle = [[1] * (i + 1) for i in range(n)]\nfor i in range(2, n):\n    for j in range(1, i):\n        triangle[i][j] = triangle[i - 1][j - 1] + triangle[i - 1][j]\nfor row in triangle:\n    print(' '.join(map(str, row)))",
+              "language": "python",
+              "output": "Enter number of rows: 5\n1\n1 1\n1 2 1\n1 3 3 1\n1 4 6 4 1",
+              "explanation": "Each row of Pascal's Triangle starts and ends with 1, and every interior value is the sum of the two values diagonally above it in the previous row — this program builds each row from that recurrence directly, without needing to compute binomial coefficients from factorials."
+            },
+            {
+              "title": "Program 39: Check if a Number is a Kaprekar Number",
+              "difficulty": "Advanced",
+              "code": "n = int(input(\"Enter a number: \"))\nsquare = n * n\nsquare_str = str(square)\nd = len(str(n))\nleft = int(square_str[:-d]) if square_str[:-d] else 0\nright = int(square_str[-d:])\nif right != 0 and left + right == n:\n    print(f\"{n} is a Kaprekar number\")\nelse:\n    print(f\"{n} is not a Kaprekar number\")",
+              "language": "python",
+              "output": "Enter a number: 297\n297 is a Kaprekar number",
+              "explanation": "A Kaprekar number's square can be split into a right part and a left part (matching the digit count of the original number) whose sum equals the original number. For 297: 297² = 88209, split as 88 + 209 = 297. The right-hand slice is skipped from being all zero to avoid a trivial false positive."
+            },
+            {
+              "title": "Program 40: Find the Sum of the First N Prime Numbers",
+              "difficulty": "Advanced",
+              "code": "def is_prime(num):\n    if num < 2:\n        return False\n    for i in range(2, int(num ** 0.5) + 1):\n        if num % i == 0:\n            return False\n    return True\n\nn = int(input(\"Enter N: \"))\ncount, num, total = 0, 2, 0\nwhile count < n:\n    if is_prime(num):\n        total += num\n        count += 1\n    num += 1\nprint(f\"Sum of first {n} prime numbers = {total}\")",
+              "language": "python",
+              "output": "Enter N: 10\nSum of first 10 prime numbers = 129",
+              "explanation": "The program tests successive integers for primality using is_prime(), accumulating both a running sum and a count of primes found so far until exactly N primes have been collected, then reports the total."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sectionId": "quick-tips",
+      "title": "Coding Practice Tips — Do's and Don'ts",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "Writing correct code is only half of what interviewers and exams evaluate. How you <strong>reason about edge cases and efficiency</strong> matters just as much."
+        },
+        {
+          "type": "bulletList",
+          "items": [
+            {
+              "strong": "✅ Always test edge cases",
+              "text": " — zero, negative numbers, and single-digit numbers break more number programs than any other input. A palindrome or Armstrong check that isn't tested against 0 or a negative number often has a hidden bug."
+            },
+            {
+              "strong": "✅ Know the time complexity of your approach",
+              "text": " — a prime check that loops up to n instead of √n still works, but interviewers will ask you to optimize it. Always be ready to explain why checking only up to the square root is sufficient."
+            },
+            {
+              "strong": "✅ Prefer built-in functions in real projects",
+              "text": " — math.gcd(), math.factorial(), and functools.lru_cache exist for good reason. Hand-rolling them is valuable for learning and interviews, but production code should reach for the standard library first."
+            },
+            {
+              "strong": "✅ Separate the algorithm from the input/output",
+              "text": " — wrapping your core logic in a function (like is_prime(n) or gcd(a, b)) instead of inlining it directly under an input() call makes the code reusable, testable, and easier to explain out loud."
+            },
+            {
+              "strong": "❌ Don't ignore negative numbers",
+              "text": " — reverse, palindrome, and digit-sum programs behave unpredictably on negative inputs unless you explicitly handle the sign, usually with abs()."
+            },
+            {
+              "strong": "❌ Don't recompute the same value repeatedly",
+              "text": " — a naive recursive Fibonacci without memoization looks correct but becomes unusably slow past n ≈ 35 due to exponential repeated work. Always ask whether memoization or an iterative rewrite is needed."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sectionId": "conclusion-heading",
+      "title": "Conclusion — Building Strong Number Program Fundamentals",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "You now have <strong>40 complete Python number programs</strong> spanning Basic, Intermediate, and Advanced levels. Number programs form the foundation of algorithmic thinking in Python — mastering them builds the pattern-recognition skills needed for data structures, competitive programming, and technical interviews alike."
+        },
+        {
+          "type": "comparisonTable",
+          "headers": [
+            "Level",
+            "Focus Areas",
+            "Suggested Practice Order"
+          ],
+          "rows": [
+            [
+              "🟢 Basic (1–15)",
+              "Loops, conditionals, digit manipulation, basic math",
+              "Type and run every program by hand before moving on"
+            ],
+            [
+              "🟡 Intermediate (16–30)",
+              "Nested loops, functions, number theory basics",
+              "Rewrite each without looking, then compare to the guide"
+            ],
+            [
+              "🔴 Advanced (31–40)",
+              "Optimized algorithms, memoization, sieve methods",
+              "Focus on explaining WHY each optimization works, not just the code"
+            ]
+          ]
+        },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "<strong>Consistency beats intensity.</strong> Working through 3-4 of these programs a day, writing the code yourself instead of just reading it, will build far more durable understanding than reading all 40 in one sitting. 🐍"
+        }
+      ]
+    }
+  ],
+  "faq": {
+    "sectionId": "faq-heading",
+    "title": "Frequently Asked Questions (FAQ)",
+    "items": [
+      {
+        "q": "How do you check if a number is prime in Python?",
+        "a": "Check divisibility by every integer from 2 up to the square root of the number. If none divide it evenly, the number is prime. Checking only up to the square root is sufficient because any larger factor would have to pair with a smaller one already checked."
+      },
+      {
+        "q": "What is the easiest way to reverse a number in Python?",
+        "a": "Repeatedly extract the last digit using modulus by 10, append it to a result variable by multiplying the result by 10 and adding the digit, then remove the last digit from the original using integer division by 10 — a purely mathematical approach that avoids string conversion."
+      },
+      {
+        "q": "How do you find the factorial of a number in Python?",
+        "a": "Multiply every integer from 1 up to the number in a loop, or simply use Python's built-in math.factorial() function for a simpler and more reliable result."
+      },
+      {
+        "q": "What is an Armstrong number?",
+        "a": "An Armstrong number equals the sum of its own digits, each raised to the power of the total digit count. For example, 153 has 3 digits, and 1³ + 5³ + 3³ equals 153."
+      },
+      {
+        "q": "How do you generate the Fibonacci series in Python?",
+        "a": "Start with two variables set to 0 and 1, then repeatedly output the first and update both so the second becomes the sum of the previous two. This can be done iteratively with a simple loop or recursively with memoization for larger values."
+      },
+      {
+        "q": "Are these number programs enough to prepare for coding interviews?",
+        "a": "They cover the number-theory foundation that interviewers commonly test, but a complete interview preparation also needs data structures (arrays, strings, trees, graphs) and algorithmic patterns beyond pure number manipulation — this guide is best used alongside broader DSA practice."
+      }
+    ]
+  },
+  "nav": {
+    "prev": {
+      "label": "← Previous: Python Multi-Processing",
+      "path": "/python/python-multi-processing/"
+    },
+    "next": {
+      "label": "Next: Python MCQ →",
+      "path": "/python/python-mcq/"
+    }
+  },
+  "sidebar": {
+    "quickFacts": [
+      {
+        "dt": "Total Programs",
+        "dd": "40 Programs"
+      },
+      {
+        "dt": "Basic Level",
+        "dd": "1–15"
+      },
+      {
+        "dt": "Intermediate Level",
+        "dd": "16–30"
+      },
+      {
+        "dt": "Advanced Level",
+        "dd": "31–40"
+      },
+      {
+        "dt": "Topics",
+        "dd": "20+ Number Theory Concepts"
+      },
+      {
+        "dt": "Updated",
+        "dd": "July 2026"
+      }
+    ],
+    "tags": [
+      "PythonNumberPrograms",
+      "PythonPrimeNumber",
+      "PythonFactorial",
+      "PythonFibonacci",
+      "PythonArmstrongNumber",
+      "PythonGCD",
+      "PythonLCM",
+      "PythonPalindrome",
+      "SieveOfEratosthenes",
+      "PascalsTriangle",
+      "PythonCodingPractice",
+      "PythonBeginner"
+    ]
+  }
+}

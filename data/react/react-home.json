@@ -1,0 +1,692 @@
+{
+  "meta": {
+    "title": "What is React.js? | React Tutorial for Beginners 2026 | Tech Sustainify",
+    "description": "Learn what is React.js with this complete beginner-friendly guide 2026. Covers React history, features, how React works, the Virtual DOM, JSX, Babel, components, hooks, Hello World program, React versions, Next.js, and why React is the #1 frontend library to learn in 2026.",
+    "keywords": "what is react, react.js tutorial for beginners, react tutorial 2026, learn react online free, react for beginners, virtual dom, JSX, babel compiler, react hooks, react components, react hello world program, react features, react history, react versions, next.js, vite react",
+    "author": "Tech Sustainify",
+    "canonical": "https://techsustainify.com/react/react-home/",
+    "ogTitle": "What is React.js? Complete React Tutorial for Beginners 2026 | Tech Sustainify",
+    "ogDescription": "Complete beginner-friendly guide to React.js. Learn the Virtual DOM, JSX, Babel, components, hooks, Hello World, React history, features, real-world uses, and why React is the #1 frontend library in 2026.",
+    "ogUrl": "https://techsustainify.com/react/react-home/",
+    "ogSiteName": "Tech Sustainify",
+    "twitterReadingTime": "20 minutes",
+    "twitterLevel": "Beginner",
+    "schemaDatePublished": "2024-01-01",
+    "schemaDateModified": "2026-03-16",
+    "schemaProficiencyLevel": "Beginner",
+    "schemaWordCount": 8000
+  },
+
+  "breadcrumbs": [
+    { "position": 1, "name": "Home",           "path": "/" },
+    { "position": 2, "name": "React Tutorial",  "path": "/react/react-home/" },
+    { "position": 3, "name": "What is React.js?" }
+  ],
+
+  "articleHeader": {
+    "badge": "⚛️ React",
+    "title": "What is React.js?",
+    "subtitle": "A complete beginner-friendly guide to React — covering history, features, how React works, the Virtual DOM, JSX, components, hooks, Hello World program, and why React is the #1 frontend library to learn in 2026."
+  },
+
+  "infoCards": [
+    { "icon": "📅", "label": "Last Updated", "isTime": true, "dateTime": "2026-03-16", "value": "March 2026" },
+    { "icon": "⏱️", "label": "Read Time",    "value": "20 min" },
+    { "icon": "🎯", "label": "Level",         "value": "Beginner" }
+  ],
+
+  "sections": [
+
+    {
+      "sectionId": "what-is-react",
+      "title": "What is React.js?",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "<strong>React (also called React.js or ReactJS) is an open-source JavaScript library for building user interfaces</strong>, particularly single-page and component-based web applications. It was created by <strong>Jordan Walke</strong>, a software engineer at Facebook, and first deployed internally in <strong>2011</strong> before being open-sourced publicly at JSConf US in <strong>May 2013</strong>. React is currently maintained by <strong>Meta (formerly Facebook)</strong> alongside a large community of individual contributors and companies."
+        },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "React follows a core philosophy of <strong>\"describe what your UI should look like, and let React figure out how to update it\"</strong> — a declarative approach that replaced the older, manual way of directly manipulating the DOM step by step. Instead of writing imperative code to add, remove, or update HTML elements, React developers describe the desired UI state, and React efficiently calculates and applies the minimum set of changes needed."
+        },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "React is technically a <strong>library</strong>, not a full framework — it focuses specifically on the view layer of an application. Its true power comes from combining a small, focused core API with an enormous <strong>ecosystem</strong> of companion tools: routing libraries like React Router, state management tools like Redux and Zustand, and full-stack frameworks like <strong>Next.js</strong> and <strong>Remix</strong> that add server-side rendering, routing, and data fetching on top of React's component model."
+        },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "According to the <strong>State of JS survey 2026</strong> and <strong>Stack Overflow Developer Survey</strong>, React remains the <strong>most widely used frontend JavaScript library</strong> in the world, well ahead of alternatives. It powers the user interfaces of <strong>Facebook, Instagram, Netflix, Airbnb, and Uber</strong>, and it is the default starting point for the majority of new web application projects, from simple dashboards to large-scale enterprise platforms."
+        }
+      ]
+    },
+
+    {
+      "sectionId": "history-heading",
+      "title": "History of React.js",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "The story of React begins around <strong>2010</strong>, when Facebook engineer <strong>Jordan Walke</strong> built an early prototype called \"FaxJS\", inspired by a PHP library called XHP that let developers write reusable, component-like HTML syntax on the server. Walke wanted to bring a similar component-based approach to JavaScript for building highly interactive, frequently updating interfaces — starting with Facebook's own newsfeed and ads-management tools, where traditional DOM manipulation was becoming a maintenance nightmare as the interface grew more complex."
+        },
+        {
+          "type": "bulletList",
+          "items": [
+            { "strong": "2011", "text": " — React is first deployed internally on Facebook's newsfeed, quietly proving its value on one of the most performance-sensitive interfaces at the company." },
+            { "strong": "2012", "text": " — React is deployed on Instagram after Facebook's acquisition of the company, further validating the library on a second major, highly interactive product." },
+            { "strong": "2013", "text": " — React is open-sourced publicly at JSConf US, introducing the world to JSX and the Virtual DOM concept, met initially with skepticism due to its unusual syntax." },
+            { "strong": "2015", "text": " — React Native is released, extending React's component model to build native iOS and Android mobile apps using the same core concepts as web React." },
+            { "strong": "2016", "text": " — React 15 is released, alongside growing ecosystem tools like Redux, which becomes the dominant state management solution for large React applications." },
+            { "strong": "2017", "text": " — React 16 (\"Fiber\") is released, a complete rewrite of React's internal reconciliation engine, enabling features like error boundaries and improved rendering performance." },
+            { "strong": "2019", "text": " — React 16.8 introduces <strong>Hooks</strong>, allowing function components to use state and lifecycle features without writing class components — arguably React's most significant API change." },
+            { "strong": "2020", "text": " — React 17 focuses on making upgrades easier with no major new developer-facing features, described by the team as a stepping-stone release." },
+            { "strong": "2022", "text": " — React 18 introduces concurrent rendering, automatic batching, and new APIs like useTransition and useDeferredValue for smoother, more responsive interfaces." },
+            { "strong": "2024-2026", "text": " — React 19 stabilises Server Components, Actions, and the new use() hook, deepening integration with frameworks like Next.js and pushing more rendering work to the server by default." }
+          ]
+        }
+      ]
+    },
+
+    {
+      "sectionId": "features-heading",
+      "title": "Key Features of React.js",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "React's dominance in frontend development is no accident. Its design consistently prioritises predictable UI updates, reusability, and developer experience. Here are the 13 core features that define React:"
+        },
+        {
+          "type": "featureCards",
+          "items": [
+            { "icon": "🧩", "title": "Component-Based Architecture", "text": "Interfaces are built from small, independent, reusable components — like LEGO blocks — that each manage their own logic and rendering." },
+            { "icon": "🪞", "title": "Virtual DOM", "text": "React keeps a lightweight in-memory representation of the UI, compares it to the previous version, and updates only the parts of the real DOM that actually changed." },
+            { "icon": "📝", "title": "JSX Syntax", "text": "JSX lets developers write HTML-like markup directly inside JavaScript, making component structure and logic easier to read and reason about together." },
+            { "icon": "🔄", "title": "Declarative UI", "text": "You describe what the UI should look like for a given state, and React handles the how — calculating and applying the necessary DOM updates automatically." },
+            { "icon": "🪝", "title": "Hooks", "text": "Hooks like useState, useEffect, and useContext let function components manage state, side effects, and shared data without ever writing a class component." },
+            { "icon": "⬇️", "title": "One-Way Data Binding", "text": "Data flows in a single direction, from parent to child components via props, making applications easier to debug and reason about as they grow." },
+            { "icon": "📱", "title": "Learn Once, Write Anywhere", "text": "The same component model powers web apps with React DOM, mobile apps with React Native, and even desktop apps, sharing core concepts across platforms." },
+            { "icon": "⚡", "title": "Concurrent Rendering", "text": "Since React 18, concurrent features let React prepare multiple UI versions at once and prioritise urgent updates, keeping interfaces responsive under load." },
+            { "icon": "🖥️", "title": "Server Components", "text": "React Server Components (popularised via Next.js) let components render on the server, shipping less JavaScript to the browser and improving load performance." },
+            { "icon": "📦", "title": "Massive Ecosystem", "text": "Thousands of npm packages — React Router, Redux, Zustand, TanStack Query, Tailwind CSS integrations — extend React for routing, state, styling, and data fetching." },
+            { "icon": "🔍", "title": "Excellent Developer Tooling", "text": "React DevTools, integrated into browser extensions, let developers inspect component trees, props, state, and re-renders directly in the browser." },
+            { "icon": "🧪", "title": "Strong Testing Support", "text": "Libraries like React Testing Library and Jest make it straightforward to write reliable unit and integration tests for React components." },
+            { "icon": "🌍", "title": "Backed by Meta & a Huge Community", "text": "React is maintained by Meta's core team alongside contributions from Vercel, thousands of open-source maintainers, and a massive global developer community." }
+          ]
+        }
+      ]
+    },
+
+    {
+      "sectionId": "flowchart-heading",
+      "title": "How React Renders the UI — Flowchart",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "Understanding how React turns your JSX code into pixels on the screen is fundamental to writing efficient React applications. The diagram below shows exactly what happens from your component code to the updated browser screen."
+        },
+        {
+          "type": "flowchart",
+          "nodes": [
+            { "id": "1", "label": "📝 Write JSX Code",        "sublabel": "App.jsx",                        "type": "start" },
+            { "id": "2", "label": "⚙️ Babel Compiler",         "sublabel": "Transpiles JSX → JS",            "type": "process" },
+            { "id": "3", "label": "📦 React Elements",         "sublabel": "React.createElement() calls",    "type": "data" },
+            { "id": "4", "label": "🪞 Virtual DOM Diffing",    "sublabel": "Compares new vs previous tree",  "type": "decision" },
+            { "id": "5", "label": "🧮 Reconciliation (Fiber)", "sublabel": "Calculates minimal changes",     "type": "process" },
+            { "id": "6", "label": "🌐 Real DOM Update",        "sublabel": "React DOM applies patches",      "type": "process" },
+            { "id": "7", "label": "🖨️ Rendered UI",            "sublabel": "Screen shows updated interface", "type": "end" }
+          ],
+          "edges": [
+            { "from": "1", "to": "2", "label": "build step" },
+            { "from": "2", "to": "3", "label": "generates" },
+            { "from": "3", "to": "4", "label": "passed to React" },
+            { "from": "4", "to": "5", "label": "diffed ✓" },
+            { "from": "5", "to": "6", "label": "patches computed" },
+            { "from": "6", "to": "7", "label": "renders" }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "Key insight: React never rewrites the entire DOM on every update. Its <strong>reconciliation algorithm</strong>, powered internally by an engine called <strong>Fiber</strong>, compares the new Virtual DOM tree against the previous one and applies only the necessary, minimal changes to the real DOM. This is why well-structured React applications remain fast even as the UI grows in complexity — the cost of an update scales with what actually changed, not with the size of the entire page."
+        }
+      ]
+    },
+
+    {
+      "sectionId": "how-react-works",
+      "title": "How React Works — Babel, Vite, and npm Explained",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "Understanding <strong>Babel</strong>, <strong>Vite</strong>, and <strong>npm</strong> is one of the first — and most important — concepts for every React beginner. These three tools form the foundation of nearly every real-world React development workflow."
+        },
+        { "type": "subHeading", "text": "🔄 Babel — The JSX Compiler" },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "<strong>Babel</strong> is a JavaScript compiler that transforms modern and JSX syntax into plain JavaScript that every browser can understand. Since browsers cannot natively read the HTML-like JSX syntax React developers write, Babel converts expressions like <code>&lt;h1&gt;Hello&lt;/h1&gt;</code> into ordinary function calls such as <code>React.createElement(\"h1\", null, \"Hello\")</code> behind the scenes, entirely automatically as part of your build process."
+        },
+        { "type": "subHeading", "text": "⚡ Vite — The Build Tool & Dev Server" },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "<strong>Vite</strong> is a modern, extremely fast build tool and development server widely used to scaffold and run React projects, having largely replaced older tools like Create React App. Vite serves your source files using native ES modules during development for near-instant startup and hot module reloading, then bundles an optimized production build using Rollup when you're ready to deploy."
+        },
+        {
+          "type": "bulletList",
+          "items": [
+            { "html": "<code>npm create vite@latest my-app -- --template react</code> — scaffolds a new React project using Vite" },
+            { "html": "<code>npm run dev</code> — starts the local development server with hot module reloading" },
+            { "html": "<code>npm run build</code> — creates an optimized, production-ready bundle" },
+            { "html": "<code>npm run preview</code> — locally previews the production build before deploying" },
+            { "html": "<code>npm install react-router-dom</code> — adds client-side routing to a React project" }
+          ]
+        },
+        { "type": "subHeading", "text": "📦 npm — Managing React's Dependencies" },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "<strong>npm</strong> (or alternatives like yarn and pnpm) manages the enormous ecosystem of packages that surround React itself — React Router for navigation, Redux or Zustand for state management, Axios for HTTP requests, and countless UI component libraries. React itself is published to npm as the <code>react</code> and <code>react-dom</code> packages, meaning every React project starts with a simple npm install."
+        },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "<strong>Simple rule to remember:</strong> Babel translates your JSX into JavaScript. Vite serves and bundles your project. npm manages the libraries your project depends on. The current recommended version is <strong>React 19</strong>, available free from <strong>react.dev</strong>."
+        }
+      ]
+    },
+
+    {
+      "sectionId": "babel-vite-npm-comparison",
+      "title": "Babel vs Vite vs npm — Key Differences",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Beginners often confuse these three tools. This comparison table clearly shows what each one is, what it does, and when you need it."
+        },
+        {
+          "type": "comparisonTable",
+          "headers": ["Feature", "Babel", "Vite", "npm"],
+          "rows": [
+            ["What it is", "JavaScript/JSX compiler", "Build tool & dev server", "Package manager"],
+            ["Purpose", "Transforms JSX into plain JS", "Serves & bundles the project", "Installs & manages dependencies"],
+            ["Comes with React?", "⚠️ Included via project templates", "⚠️ Included via project templates", "✅ Yes — used to install React itself"],
+            ["Used for", "Converting <Component /> syntax", "Fast local dev server, production build", "Installing React, Router, Redux, etc."],
+            ["Key command", "Runs automatically during build", "npm run dev", "npm install react react-dom"],
+            ["Alternative tools", "SWC (faster, Rust-based)", "Webpack, Parcel, Turbopack", "yarn, pnpm"],
+            ["Required in every project?", "✅ Always (under the hood)", "✅ Almost always (or an alternative)", "✅ Always"],
+            ["Example use", "Enables JSX in .jsx/.tsx files", "npm run build (production bundle)", "npm install axios"]
+          ]
+        }
+      ]
+    },
+
+    {
+      "sectionId": "react-vs-others",
+      "title": "React vs Other Frontend Technologies — Comparison",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "How does React compare to other popular frontend technologies? This table gives you a quick side-by-side comparison to help you understand where React excels and where an alternative might fit better."
+        },
+        {
+          "type": "comparisonTable",
+          "headers": ["Feature", "React", "Angular", "Vue.js", "Svelte", "Plain JavaScript"],
+          "rows": [
+            ["Type", "Library (view layer)", "Full framework", "Progressive framework", "Compiler-based framework", "Language, no abstraction"],
+            ["Learning Curve", "Medium", "Steep", "Easy to Medium", "Easy", "Varies with complexity"],
+            ["Rendering Approach", "Virtual DOM", "Real DOM + Change Detection", "Virtual DOM", "Compiles away at build time", "Manual DOM manipulation"],
+            ["State Management", "Hooks, Context, Redux/Zustand", "Built-in services & RxJS", "Built-in reactivity + Pinia", "Built-in reactivity", "Fully manual"],
+            ["Bundle Size", "Small to Medium", "Larger", "Small", "Very Small", "Depends on code written"],
+            ["Primary Use", "SPAs, dashboards, full-stack apps (Next.js)", "Large enterprise applications", "SPAs, incremental adoption", "Performance-critical UIs", "Simple sites, learning fundamentals"],
+            ["Ecosystem Size", "Largest", "Large", "Large", "Growing", "N/A"],
+            ["Job Demand 2026", "⭐⭐⭐⭐⭐", "⭐⭐⭐", "⭐⭐⭐⭐", "⭐⭐⭐", "⭐⭐⭐"]
+          ]
+        }
+      ]
+    },
+
+    {
+      "sectionId": "advantages-disadvantages",
+      "title": "Advantages and Disadvantages of React.js",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Like every technology, React has remarkable strengths and a few real limitations. Understanding both helps you make informed decisions about when React is the right tool and when another approach might serve better."
+        },
+        {
+          "type": "prosConsTable",
+          "pros": [
+            { "title": "Reusable Component Model", "text": "Breaking UIs into independent components makes large applications easier to build, test, and maintain over time." },
+            { "title": "Excellent Performance via Virtual DOM", "text": "React updates only what actually changed in the real DOM, keeping interfaces fast even as applications grow more complex." },
+            { "title": "Massive Job Market & Community", "text": "React remains the most in-demand frontend skill globally, with an enormous number of tutorials, libraries, and job openings." },
+            { "title": "Backed by Meta and a Huge Ecosystem", "text": "Meta's continued investment, plus contributions from Vercel and thousands of open-source maintainers, keeps React actively evolving." },
+            { "title": "Learn Once, Write Anywhere", "text": "React Native lets teams reuse React knowledge (and often logic) to build genuinely native mobile apps for iOS and Android." },
+            { "title": "Strong Full-Stack Story via Next.js", "text": "Next.js extends React with routing, server-side rendering, and API routes, letting teams build complete full-stack applications." },
+            { "title": "Rich Developer Tooling", "text": "React DevTools, fast refresh in Vite, and mature testing libraries make day-to-day development smooth and debuggable." },
+            { "title": "Flexible, Not Prescriptive", "text": "Unlike a full framework, React lets teams choose their own routing, state management, and styling solutions to fit their needs." }
+          ],
+          "cons": [
+            { "title": "Just a Library, Not a Full Framework", "text": "Teams must choose and integrate additional libraries for routing, state management, and forms, which can lead to decision fatigue for beginners." },
+            { "title": "JSX Has a Learning Curve", "text": "Mixing markup and logic in the same file feels unfamiliar at first, especially to developers coming from a strict HTML/CSS/JS separation background." },
+            { "title": "Rapid Ecosystem Change", "text": "Best practices have shifted significantly over the years — from class components to Hooks, from Create React App to Vite — requiring ongoing learning." },
+            { "title": "SEO Requires Extra Setup", "text": "Plain client-side rendered React apps aren't ideal for search engines by default; frameworks like Next.js are usually needed for proper SEO." },
+            { "title": "Boilerplate in Larger Apps", "text": "Without careful architecture, large applications can accumulate excessive prop drilling or scattered state logic across many components." },
+            { "title": "Frequent Re-render Pitfalls", "text": "Beginners often struggle with unnecessary re-renders and performance issues until they understand memoization and dependency arrays properly." }
+          ]
+        }
+      ]
+    },
+
+    {
+      "sectionId": "diagram-heading",
+      "title": "React Architecture Diagram",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "The diagram below shows the complete <strong>React Architecture</strong> — from your component source code all the way down to the rendered browser DOM. This visual makes the relationship between your JSX, the Virtual DOM, and the real DOM concrete and easy to understand."
+        },
+        {
+          "type": "architectureDiagram",
+          "layers": [
+            {
+              "label": "Developer Layer",
+              "color": "#6366f1",
+              "items": ["JSX Component Source Code", "VS Code + React DevTools", "Build Tools (Vite, npm, Babel)"]
+            },
+            {
+              "label": "Compilation Layer",
+              "color": "#0ea5e9",
+              "items": ["Babel / SWC Transpiler", "JSX → React.createElement() calls", "Bundler (Vite / Webpack)"]
+            },
+            {
+              "label": "React Core",
+              "color": "#10b981",
+              "items": ["Component Tree", "Hooks (useState, useEffect, useContext)", "Context API", "React Server Components"]
+            },
+            {
+              "label": "Reconciliation Engine (Fiber)",
+              "color": "#f59e0b",
+              "items": ["Virtual DOM", "Diffing Algorithm", "Concurrent Rendering Scheduler"]
+            },
+            {
+              "label": "Rendering Target",
+              "color": "#ef4444",
+              "items": ["React DOM (Web)", "React Native (iOS / Android)", "React Server (Node.js)"]
+            },
+            {
+              "label": "Output",
+              "color": "#8b5cf6",
+              "items": ["Browser DOM", "Native Mobile Views", "Rendered HTML (SSR)"]
+            }
+          ]
+        }
+      ]
+    },
+
+    {
+      "sectionId": "code-heading",
+      "title": "Your First React Component — Hello World",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "Every React journey starts with the <strong>Hello World component</strong>. It is the simplest React component possible — and it beautifully illustrates React's core idea: describing UI as a function of data, written using familiar HTML-like JSX syntax."
+        },
+        {
+          "type": "codeBox",
+          "lang": "⚛️ React",
+          "label": "App.jsx",
+          "lines": [
+            "function App() {",
+            "  return <h1>Hello, World!</h1>;",
+            "}",
+            "",
+            "export default App;"
+          ]
+        },
+        {
+          "type": "outputBox",
+          "lines": ["Hello, World!"]
+        },
+        {
+          "type": "subHeading",
+          "text": "Practice This Code — Live Editor"
+        },
+        {
+          "type": "liveEditor",
+          "initialCode":
+            "function App() {\n  return <h1>Hello, World! Ashish</h1>;\n}\n\nexport default App;"
+        },
+        {
+          "type": "subHeading",
+          "text": "Line-by-Line Explanation"
+        },
+        {
+          "type": "bulletList",
+          "items": [
+            { "html": "<code>// This is a comment</code> — Lines starting with <code>//</code> are comments. React ignores them; they follow standard JavaScript comment syntax." },
+            { "html": "<code>function App() { ... }</code> — Declares a React <strong>function component</strong> named App. In modern React, components are simply JavaScript functions that return JSX describing what should appear on screen." },
+            { "html": "<code>return &lt;h1&gt;Hello, World!&lt;/h1&gt;;</code> — Returns JSX, which looks like HTML but is actually syntactic sugar compiled by Babel into <code>React.createElement(\"h1\", null, \"Hello, World!\")</code>." },
+            { "html": "<code>{name}</code> — Curly braces inside JSX let you embed any JavaScript expression directly into your markup, such as a variable or a function call." },
+            { "html": "<code>export default App;</code> — Makes the App component available to be imported and rendered elsewhere in the project, typically by the file that mounts it to the DOM." },
+            { "html": "<code>useState(0)</code> — A React Hook that adds local, re-render-triggering state to a function component, returning the current value and a function to update it." }
+          ]
+        }
+      ]
+    },
+
+    {
+      "sectionId": "react-uses",
+      "title": "Where is React Used? — Real-World Applications",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "React's component model and huge ecosystem make it a natural fit across a wide range of frontend and full-stack scenarios. Here are the major areas where React is actively used in 2026:"
+        },
+        {
+          "type": "bulletList",
+          "items": [
+            { "strong": "🌐 Single-Page Applications (SPAs)", "text": " — React is the go-to choice for building fast, interactive dashboards, admin panels, and web apps where the page updates dynamically without full reloads." },
+            { "strong": "🛒 E-Commerce Storefronts", "text": " — Product listings, shopping carts, and checkout flows benefit from React's component reusability, and frameworks like Next.js add the SEO and performance e-commerce sites need." },
+            { "strong": "📱 Mobile App Development", "text": " — React Native lets teams reuse React knowledge and share significant logic to build genuinely native iOS and Android apps from a largely shared codebase." },
+            { "strong": "🖥️ Full-Stack Web Applications", "text": " — Next.js and Remix extend React with server-side rendering, file-based routing, and API routes, powering complete production applications end to end." },
+            { "strong": "📊 Data Dashboards & Analytics Tools", "text": " — React pairs naturally with charting libraries like Recharts and D3 to build interactive, real-time data visualization dashboards." },
+            { "strong": "🎨 Design Systems & Component Libraries", "text": "Companies build internal design systems as reusable React component libraries, ensuring visual and behavioral consistency across many products." },
+            { "strong": "🏢 Enterprise Web Platforms", "text": " — Large organizations use React for internal tools, CRMs, and customer-facing platforms due to its maintainability at scale and strong hiring pool." },
+            { "strong": "🖱️ Progressive Web Apps (PWAs)", "text": " — React apps can be enhanced into installable, offline-capable Progressive Web Apps, blurring the line between web and native app experiences." }
+          ]
+        }
+      ]
+    },
+
+    {
+      "sectionId": "why-learn-react",
+      "title": "Why Should You Learn React in 2026?",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "Every year developers ask — <em>\"Is React still the right frontend library to learn?\"</em> The answer in 2026 remains a confident <strong>YES</strong>. Here's why React deserves a place at the top of your learning list:"
+        },
+        {
+          "type": "bulletList",
+          "items": [
+            { "strong": "💼 The Most In-Demand Frontend Skill", "text": " — React consistently tops job listing requirements for frontend and full-stack roles, far ahead of other frontend libraries and frameworks." },
+            { "strong": "🌍 Enormous Ecosystem and Community", "text": " — Thousands of npm packages, countless tutorials, and an active community mean help and ready-made solutions are almost always available." },
+            { "strong": "📱 One Skill, Multiple Platforms", "text": " — Learning React opens doors to web development directly, and to mobile development through React Native, extending your reach with a single core skill." },
+            { "strong": "🚀 Powers the Modern Full-Stack via Next.js", "text": " — React's integration with Next.js makes it a gateway not just to frontend work, but to full-stack development including server-side rendering and APIs." },
+            { "strong": "💰 Strong Salary Potential", "text": " — React developer roles are among the highest-paying frontend positions. Average React developer salaries in India range from roughly ₹4-7 LPA for freshers to ₹25+ LPA for senior frontend and full-stack engineers." },
+            { "strong": "🆓 Completely Free and Open Source", "text": " — React is free under the MIT License. Your entire toolchain — React, Vite, VS Code — costs nothing to get started." }
+          ]
+        }
+      ]
+    },
+
+    {
+      "sectionId": "react-versions",
+      "title": "React Versions — Evolution and Current Releases",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "React has evolved substantially since its 2013 open-source debut, especially around how components manage state and side effects. Understanding the major milestones is useful when reading tutorials or working across different codebases:"
+        },
+        {
+          "type": "bulletList",
+          "items": [
+            { "strong": "React 15 (2016) — Pre-Fiber Era", "text": " — The last major version before React's internal rendering engine was rewritten, still occasionally seen in legacy codebases." },
+            { "strong": "React 16 (2017) — The Fiber Rewrite", "text": " — Introduced the Fiber reconciliation engine, error boundaries, fragments, and portals, laying the groundwork for all future React features." },
+            { "strong": "React 16.8 (2019) — Hooks", "text": " — Added Hooks like useState and useEffect, letting function components fully replace class components for state and lifecycle logic." },
+            { "strong": "React 17 (2020) — Gradual Upgrades", "text": " — A deliberately feature-light release focused on making future React version upgrades smoother and less disruptive for large applications." },
+            { "strong": "React 18 (2022) — Concurrent Rendering", "text": " — Introduced automatic batching, concurrent rendering, and new Hooks like useTransition, enabling smoother, more responsive user interfaces." },
+            { "strong": "React 19 (2024-2026) — Server Components & Actions", "text": " — Stabilised React Server Components, introduced Actions for handling form submissions and mutations, and added the use() Hook for reading resources like promises. React 19 is the recommended version for new projects in 2026." }
+          ]
+        },
+        {
+          "type": "comparisonTable",
+          "headers": ["Version", "Released", "Status", "Key Feature"],
+          "rows": [
+            ["React 15", "2016", "❌ Legacy", "Pre-Fiber rendering engine"],
+            ["React 16", "2017", "⚠️ Legacy", "Fiber engine, error boundaries"],
+            ["React 16.8", "2019", "⚠️ Widely used (legacy projects)", "Hooks introduced"],
+            ["React 17", "2020", "⚠️ Maintenance", "Smoother upgrade path"],
+            ["React 18", "2022", "✅ Active", "Concurrent rendering, automatic batching"],
+            ["React 19", "2024-2026", "✅ Active (Recommended)", "Server Components, Actions, use() Hook"]
+          ]
+        }
+      ]
+    },
+
+    {
+      "sectionId": "interview-questions",
+      "title": "React Interview Questions — Beginner Level",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "These are the most commonly asked React interview questions for <strong>freshers and beginner-level</strong> frontend positions. Master these before any React interview."
+        },
+        {
+          "type": "interviewQA",
+          "items": [
+            {
+              "q": "Q1. What is React and what are its key characteristics?",
+              "a": "React is an open-source JavaScript library for building user interfaces, created by Jordan Walke at Facebook and open-sourced in 2013. Its key characteristics are: a component-based architecture, a Virtual DOM for efficient rendering, JSX syntax for describing UI, one-way data flow, and Hooks for managing state and side effects in function components.",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q2. What is the difference between Babel, Vite, and npm?",
+              "a": "Babel is a compiler that transforms JSX and modern JavaScript syntax into code every browser can run. Vite is a build tool and development server that serves your project quickly during development and bundles it for production. npm is the package manager used to install React itself along with supporting libraries like React Router or Redux. In short: Babel compiles, Vite builds and serves, npm manages dependencies.",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q3. What is the Virtual DOM in React?",
+              "a": "The Virtual DOM is a lightweight, in-memory JavaScript representation of the actual DOM. When a component's state changes, React creates a new Virtual DOM tree, compares it to the previous one using a diffing algorithm, and then applies only the minimal necessary changes to the real DOM, rather than re-rendering the entire page.",
+              "tag": "Frequently Asked"
+            },
+            {
+              "q": "Q4. What is the difference between props and state in React?",
+              "a": "Props (short for properties) are read-only data passed from a parent component to a child component, and a component cannot modify its own props. State is data managed internally within a component, using useState or similar Hooks, that a component can update over time, triggering a re-render whenever it changes.",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q5. What is JSX in React?",
+              "a": "JSX (JavaScript XML) is a syntax extension that lets developers write HTML-like markup directly inside JavaScript files. It isn't valid JavaScript by itself; Babel compiles JSX into regular React.createElement() function calls before the browser ever sees the code, making component structure much easier to read than deeply nested function calls.",
+              "tag": "Frequently Asked"
+            },
+            {
+              "q": "Q6. What is the difference between a controlled and an uncontrolled component in React?",
+              "a": "A controlled component has its form input value driven entirely by React state, updated via an onChange handler, giving React full control over the input's value. An uncontrolled component instead relies on the DOM itself to hold the input's value, typically accessed through a ref only when needed, such as on form submission.",
+              "tag": "Common Trap"
+            },
+            {
+              "q": "Q7. What is the useEffect Hook used for?",
+              "a": "useEffect lets a function component perform side effects — such as fetching data, subscribing to an event, or manually manipulating the DOM — after rendering. It accepts a dependency array that controls when the effect re-runs, and can optionally return a cleanup function to prevent memory leaks when a component unmounts or dependencies change.",
+              "tag": "Frequently Asked"
+            },
+            {
+              "q": "Q8. What is the difference between React and React Native?",
+              "a": "React is a JavaScript library for building web user interfaces that ultimately render to the browser DOM. React Native uses the same component model and much of the same syntax, but renders to native mobile UI components instead of HTML elements, allowing developers to build genuinely native iOS and Android apps using their existing React knowledge.",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q9. What is the latest version of React in 2026?",
+              "a": "React 19 is the current recommended version for new projects in 2026, bringing stabilised Server Components, the new Actions API for handling form submissions and data mutations, and the use() Hook for reading promises and context more flexibly within components.",
+              "tag": "Current Affairs"
+            },
+            {
+              "q": "Q10. What are keys in React lists and why are they important?",
+              "a": "Keys are special string attributes you must include when rendering lists of elements, giving React a stable identity for each item across re-renders. Without proper keys — or when using array indexes as keys for dynamic lists — React can misidentify which items changed, leading to incorrect UI updates, lost component state, or performance issues.",
+              "tag": "Must Know"
+            }
+          ]
+        }
+      ]
+    },
+
+    {
+      "sectionId": "practice-questions",
+      "title": "Practice Questions — Test Your Knowledge",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "Test your understanding of React fundamentals with these practice questions. Try to answer each one before revealing the answer — active recall is the most effective way to learn."
+        },
+        {
+          "type": "practiceQuestions",
+          "items": [
+            {
+              "q": "1. What does the React reconciliation process actually compare?",
+              "a": "Reconciliation compares the newly generated Virtual DOM tree against the previous Virtual DOM tree to determine the minimal set of changes needed. React's diffing algorithm assumes elements of different types produce different trees and uses keys to match list items efficiently, avoiding a full, expensive comparison of every possible change.",
+              "difficulty": "Easy"
+            },
+            {
+              "q": "2. What is the output of rendering: const [count, setCount] = useState(0); after calling setCount(count + 1) inside an onClick handler, clicked twice quickly in the same event?",
+              "a": "The count typically increases by only 1, not 2, if both calls read the same stale 'count' value from the closure before the first re-render occurs. To reliably increment twice, you should use the functional updater form: setCount(prev => prev + 1), which always operates on the latest state value regardless of batching.",
+              "difficulty": "Medium"
+            },
+            {
+              "q": "3. What is the minimum setup required to start a new React project?",
+              "a": "You need Node.js and npm installed, then you can scaffold a new project instantly using a command like npm create vite@latest, which sets up React, JSX support via Babel, and a fast development server automatically. No manual configuration of a bundler or compiler is required to get started.",
+              "difficulty": "Easy"
+            },
+            {
+              "q": "4. What happens when you forget to include a dependency in a useEffect's dependency array?",
+              "a": "The effect may use a stale, outdated value of that variable from the render in which it was created, because the effect won't re-run when that value actually changes. This is a common source of subtle bugs, and tools like the ESLint React Hooks plugin are designed specifically to catch missing dependencies during development.",
+              "difficulty": "Medium"
+            },
+            {
+              "q": "5. Explain the difference between useMemo and useCallback in React.",
+              "a": "useMemo memoizes the *result* of an expensive computation, recalculating it only when its dependencies change, and returning the cached value otherwise. useCallback memoizes a *function reference* itself, which is useful for preventing unnecessary re-renders of child components that rely on referential equality of callback props, such as those wrapped in React.memo.",
+              "difficulty": "Medium"
+            },
+            {
+              "q": "6. Why might a large React application suffer from unnecessary re-renders, and how can this be addressed?",
+              "a": "Unnecessary re-renders often happen when a parent component re-renders and passes new object or function references as props to children on every render, even if the actual data hasn't meaningfully changed. This can be addressed using React.memo to skip re-rendering unchanged components, along with useMemo and useCallback to stabilise object and function references passed as props.",
+              "difficulty": "Hard"
+            },
+            {
+              "q": "7. What is the output of: console.log(typeof <div />) inside a React component file after Babel compilation?",
+              "a": "\"object\". Despite looking like an HTML tag, JSX compiles down to a call to React.createElement(), which returns a plain JavaScript object describing the element type, its props, and its children — not an actual DOM node — which is precisely why it's called the Virtual DOM.",
+              "difficulty": "Medium"
+            },
+            {
+              "q": "8. What is the difference between React Server Components and traditional Client Components?",
+              "a": "Server Components render entirely on the server and send only the resulting HTML/serialized output to the browser, meaning their JavaScript never needs to be shipped to the client, reducing bundle size. Client Components (marked with a \"use client\" directive in frameworks like Next.js) render in the browser and can use browser-only APIs, state, and effects, but their JavaScript must be downloaded and executed on the client.",
+              "difficulty": "Hard"
+            }
+          ]
+        }
+      ]
+    },
+
+    {
+      "sectionId": "conclusion-heading",
+      "title": "Conclusion — Is React Right for You?",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "React has grown from an internal Facebook experiment into <strong>the de facto standard for building modern web interfaces</strong>. From single-page dashboards to full-stack applications built with Next.js, and even native mobile apps through React Native, React's component-based approach now shapes how a huge share of the world's software is built."
+        },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "If you already know <strong>JavaScript</strong>, learning React is one of the highest-leverage skills you can add to your resume — the concepts of components, props, and state transfer naturally to nearly any modern frontend job. If you are a <strong>complete beginner</strong> aiming for <strong>frontend or full-stack development</strong>, React remains the single most in-demand library to prioritise after mastering JavaScript fundamentals."
+        },
+        {
+          "type": "comparisonTable",
+          "headers": ["Your Goal", "Should You Learn React?"],
+          "rows": [
+            ["Frontend web development",                "✅ Absolutely — React is the most in-demand frontend skill"],
+            ["Full-stack development with SSR & APIs",   "✅ Yes — pair React with Next.js for a complete stack"],
+            ["Mobile app development",                    "✅ Yes — React Native reuses your React knowledge directly"],
+            ["Building design systems / component libraries", "✅ Yes — React's component model is purpose-built for this"],
+            ["Very simple static websites",               "⚠️ Plain HTML/CSS or a static site generator may be simpler"],
+            ["Heavy enterprise apps needing strict structure", "⚠️ Angular's opinionated framework may fit some teams better"],
+            ["Learning your first JS library after basics", "✅ React is the recommended next step for most learners"],
+            ["Performance-critical, minimal-JS widgets",  "⚠️ Svelte or vanilla JS may produce a smaller footprint"]
+          ]
+        },
+        {
+          "type": "comparisonTable",
+          "headers": ["Version", "Released", "Status", "Key Feature"],
+          "rows": [
+            ["React 17", "2020", "⚠️ Maintenance", "Smoother upgrade path"],
+            ["React 18", "2022", "✅ Active", "Concurrent rendering"],
+            ["React 19", "2024", "✅ Recommended", "Server Components, Actions"],
+            ["React 19.x", "2025-2026", "✅ Current", "Continued Server Component & tooling refinement"],
+            ["React 20", "2026+", "🔜 Expected", "Further performance and compiler improvements"]
+          ]
+        },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "The next step in your React journey is <strong>setting up your development environment</strong>. Install <strong>Node.js</strong> (free from nodejs.org), then scaffold your first project with <strong>Vite</strong> using <code>npm create vite@latest</code>. Open the project in <strong>VS Code</strong> with the ES7+ React snippets extension, and dive into components, props, and Hooks. Every hour invested in React fundamentals now builds the foundation for a career in one of the most in-demand corners of modern web development."
+        },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "<strong>React is not slowing down — it keeps redefining the frontend.</strong> With Server Components, the Actions API, and deep integration with frameworks like Next.js, React in 2026 is more capable and more central to full-stack development than ever before. Start today. ⚛️"
+        }
+      ]
+    }
+
+  ],
+
+  "faq": {
+    "sectionId": "faq-heading",
+    "title": "Frequently Asked Questions (FAQ)",
+    "items": [
+      {
+        "q": "Is React easy to learn for beginners?",
+        "a": "React has a moderate learning curve. If you already know JavaScript fundamentals, learning components, props, and basic Hooks like useState can take just a couple of weeks. Concepts like JSX feel unusual at first but quickly become intuitive, and React's massive number of tutorials and community resources make the learning process smoother than many alternatives."
+      },
+      {
+        "q": "What is the difference between React and JavaScript?",
+        "a": "JavaScript is the core programming language that runs in browsers and servers. React is a library written in JavaScript that provides tools and patterns — like components, JSX, and Hooks — specifically for building user interfaces more efficiently than manipulating the DOM directly with plain JavaScript."
+      },
+      {
+        "q": "How long does it take to learn React?",
+        "a": "With consistent daily practice and existing JavaScript knowledge, you can learn React basics — components, props, state, and common Hooks — in about 3-4 weeks. Becoming proficient with routing, state management libraries, and a framework like Next.js typically takes another 2-3 months of dedicated project building."
+      },
+      {
+        "q": "Is React free to use in 2026?",
+        "a": "Yes. React is completely free and open-source under the MIT License. You can use it for personal projects, learning, and commercial production applications at zero licensing cost. Companion tools like Vite, npm, and VS Code are also free."
+      },
+      {
+        "q": "Should I learn React 18 or 19 in 2026?",
+        "a": "For new projects, start with React 19, since it includes stabilised Server Components and the Actions API, which are increasingly central to how modern React and Next.js applications are built. React 18 remains widely used in existing production codebases and is still valuable to understand."
+      },
+      {
+        "q": "React vs Angular — Which is better in 2026?",
+        "a": "Both remain strong, actively maintained choices. Choose React for its flexibility, larger ecosystem, huge job market, and easier learning curve, especially when paired with Next.js for full-stack needs. Choose Angular when you want a complete, opinionated framework with built-in solutions for routing, forms, and dependency injection, which some large enterprise teams prefer for consistency across projects."
+      }
+    ]
+  },
+
+  "nav": {
+    "prev": { "label": "← Previous", "path": "/react/react-home/" },
+    "next": { "label": "Next: React Intro →", "path": "/react/react-intro/" }
+  },
+
+  "sidebar": {
+    "quickFacts": [
+      { "dt": "Created by",  "dd": "Jordan Walke (Facebook)" },
+      { "dt": "Released",    "dd": "2013 (open-sourced)" },
+      { "dt": "Maintained by", "dd": "Meta & Open-Source Community" },
+      { "dt": "Type",        "dd": "JavaScript UI Library" },
+      { "dt": "Rendering",   "dd": "Virtual DOM (Fiber Engine)" },
+      { "dt": "Latest",      "dd": "React 19" }
+    ],
+    "tags": ["JSX","Virtual DOM","Babel","Vite","Hooks","Components","Props","State","React Router","Redux","Next.js","React Native","Server Components","React DevTools","npm"]
+  }
+}

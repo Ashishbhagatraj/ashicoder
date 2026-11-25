@@ -1,0 +1,685 @@
+{
+  "meta": {
+    "title": "What is Swift? | Swift Tutorial for Beginners 2026 | Tech Sustainify",
+    "description": "Learn what is Swift programming language with this complete beginner-friendly guide 2026. Covers Swift history, features, how Swift works, the Swift compiler, SIL, LLVM, optionals, protocol-oriented programming, Hello World program, Swift versions, SwiftUI, Vapor, and why Swift is the #1 language for Apple platform development in 2026.",
+    "keywords": "what is swift, swift programming language, swift tutorial for beginners, swift tutorial 2026, learn swift online free, swift for beginners, swift compiler, swiftc, Swift Package Manager, SPM, optionals in swift, protocol oriented programming, swift hello world program, swift cross platform, swift features, swift history, SwiftUI, Vapor, swift 6",
+    "author": "Tech Sustainify",
+    "canonical": "https://techsustainify.com/swift/swift-home/",
+    "ogTitle": "What is Swift? Complete Swift Tutorial for Beginners 2026 | Tech Sustainify",
+    "ogDescription": "Complete beginner-friendly guide to Swift programming. Learn the Swift compiler, SIL, LLVM, SwiftUI, optionals, protocol-oriented programming, Hello World, Swift history, features, real-world uses, and why Swift is the language of choice for Apple platforms in 2026.",
+    "ogUrl": "https://techsustainify.com/swift/swift-home/",
+    "ogSiteName": "Tech Sustainify",
+    "twitterReadingTime": "19 minutes",
+    "twitterLevel": "Beginner",
+    "schemaDatePublished": "2024-01-01",
+    "schemaDateModified": "2026-03-16",
+    "schemaProficiencyLevel": "Beginner",
+    "schemaWordCount": 5300
+  },
+
+  "breadcrumbs": [
+    { "position": 1, "name": "Home",           "path": "/" },
+    { "position": 2, "name": "Swift Tutorial", "path": "/swift/swift-home/" },
+    { "position": 3, "name": "What is Swift?" }
+  ],
+
+  "articleHeader": {
+    "badge": "🦅 Swift",
+    "title": "What is Swift Programming Language?",
+    "subtitle": "A complete beginner-friendly guide to Swift — covering history, features, how Swift works, the Swift compiler, SIL, LLVM, optionals, protocol-oriented programming, Hello World program, and why Swift is the language of choice for Apple platform and server-side development in 2026."
+  },
+
+  "infoCards": [
+    { "icon": "📅", "label": "Last Updated", "isTime": true, "dateTime": "2026-03-16", "value": "March 2026" },
+    { "icon": "⏱️", "label": "Read Time",    "value": "19 min" },
+    { "icon": "🎯", "label": "Level",         "value": "Beginner" }
+  ],
+
+  "sections": [
+
+    {
+      "sectionId": "what-is-swift",
+      "title": "What is Swift?",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "<strong>Swift is a modern, general-purpose, compiled programming language</strong> developed by Apple, known for combining beginner-friendly syntax with the raw performance of low-level systems languages. It was created by <strong>Chris Lattner</strong>, with contributions from many other Apple engineers, and was first announced publicly at <strong>WWDC on June 2, 2014</strong>. Apple's <strong>Swift.org</strong> open-source project now maintains and evolves the language together with a large community of external contributors."
+        },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "Swift was built around the guiding idea of <strong>\"safety, speed, and expressivity\"</strong> — a language that eliminates entire categories of common programming bugs by design, while compiling down to code that runs as fast as C. Swift code is designed to read clearly and concisely — a well-written Swift function often reads almost like a plain-English sentence. This combination makes Swift approachable for beginners while remaining powerful enough for professional, large-scale application development."
+        },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "Swift is both a <strong>programming language</strong> and a <strong>platform ecosystem</strong>. The language itself is compact and carefully designed, but its real strength comes from tight integration with <strong>Apple's frameworks</strong> — UIKit, SwiftUI, Foundation, Combine — and from the <strong>Swift Package Manager (SPM)</strong> registry, which hosts thousands of open-source packages. This dual nature is one of the key reasons Swift dominates <strong>iOS, iPadOS, macOS, watchOS, and tvOS development</strong>, while increasingly expanding into <strong>server-side and cross-platform</strong> work."
+        },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "According to the <strong>Stack Overflow Developer Survey</strong> and Apple's own developer ecosystem reports, Swift has consistently ranked among the <strong>most loved programming languages</strong> for several consecutive years. It is the language of choice for <strong>native iOS and macOS app development</strong>, <strong>SwiftUI-based cross-platform Apple apps</strong>, <strong>server-side web development</strong> with frameworks like Vapor, and increasingly for <strong>systems-level and embedded programming</strong> on Linux and even Windows."
+        }
+      ]
+    },
+
+    {
+      "sectionId": "history-heading",
+      "title": "History of Swift Programming Language",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "The story of Swift begins in <strong>July 2010</strong>, when Apple engineer <strong>Chris Lattner</strong> started working on the language as a personal research project, drawing on ideas from Objective-C, Rust, Haskell, Ruby, Python, and C#. The goal was to design a successor to <strong>Objective-C</strong> that kept full compatibility with existing Apple frameworks and the Cocoa/Cocoa Touch runtime, while removing decades of accumulated C-language baggage such as pointer arithmetic, header files, and unsafe memory access. The project stayed internal to Apple for four years before it was ever announced."
+        },
+        {
+          "type": "bulletList",
+          "items": [
+            { "strong": "2014", "text": " — Swift announced at WWDC (June 2) and released as Swift 1.0 alongside iOS 8 and Xcode 6. The first public version introduced optionals, closures, generics, and full Objective-C interoperability." },
+            { "strong": "2015", "text": " — Swift 2.0 released at WWDC, adding error handling (do-try-catch) and guard statements. In December 2015, Apple open-sourced Swift under the Apache 2.0 license and launched Swift.org, along with official Linux support." },
+            { "strong": "2016", "text": " — Swift 3.0 released — a major, deliberately source-breaking redesign that rewrote thousands of API names to follow new Swift API Design Guidelines, giving the language a consistent, idiomatic naming convention going forward." },
+            { "strong": "2017", "text": " — Swift 4.0 released. Introduced the Codable protocol for effortless JSON/plist encoding and decoding, along with major string-handling improvements and the start of ABI stability groundwork." },
+            { "strong": "2019", "text": " — Swift 5.0 released — a landmark version that achieved <strong>ABI stability</strong> on Apple platforms, meaning the Swift runtime became built into the OS itself, shrinking app binary sizes. The Result type was also added to the standard library." },
+            { "strong": "2019 (later)", "text": " — SwiftUI was announced alongside Swift 5.1, introducing a declarative UI framework that transformed how Apple-platform interfaces are built." },
+            { "strong": "2021", "text": " — Swift 5.5 released. Introduced structured concurrency with async/await, actors, and task groups — widely considered Swift's most important syntax addition since generics." },
+            { "strong": "2023", "text": " — Swift 5.9 released. Added macros (compile-time code generation) and if/switch as expressions, expanding Swift's expressive power." },
+            { "strong": "2024-2026", "text": " — Swift 6.0 released, introducing an opt-in strict concurrency checking mode that catches data races at compile time. Swift 6.1 and later point releases continued refining concurrency ergonomics and cross-platform tooling. Swift 6.x is the recommended version in 2026." }
+          ]
+        }
+      ]
+    },
+
+    {
+      "sectionId": "features-heading",
+      "title": "Key Features of Swift Programming Language",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Swift's dominance across Apple platforms — and its growing footprint elsewhere — is no accident. Its design philosophy prioritises safety and clarity without sacrificing performance. Here are the 13 core features that define Swift:"
+        },
+        {
+          "type": "featureCards",
+          "items": [
+            { "icon": "📖", "title": "Clean, Expressive Syntax", "text": "Swift's syntax removes semicolons, unnecessary parentheses, and header files. Code reads almost like plain English — making it approachable for beginners while staying precise enough for large codebases." },
+            { "icon": "⚡", "title": "Compiled & Fast", "text": "Swift code is compiled ahead-of-time through LLVM into optimized native machine code. Performance is close to C and C++, far ahead of interpreted languages for CPU-bound tasks." },
+            { "icon": "🌐", "title": "Increasingly Cross-Platform", "text": "Swift runs natively on iOS, iPadOS, macOS, watchOS, tvOS, visionOS, Linux, and Windows. The same core language and much of the standard library works consistently across all of them." },
+            { "icon": "🛡️", "title": "Type Safe", "text": "Swift is strongly and statically typed. The compiler catches type mismatches before the app ever runs, eliminating an entire category of runtime crashes that plague dynamically typed languages." },
+            { "icon": "❓", "title": "Optionals", "text": "Swift represents the absence of a value explicitly using Optional types (Int?, String?). This forces developers to intentionally handle nil cases, virtually eliminating null-pointer crashes common in other languages." },
+            { "icon": "🏛️", "title": "Protocol-Oriented Programming", "text": "Swift encourages building software around protocols and protocol extensions rather than deep class inheritance hierarchies — a paradigm Apple calls Protocol-Oriented Programming (POP), popularised at WWDC 2015." },
+            { "icon": "🗑️", "title": "Automatic Memory Management (ARC)", "text": "Swift uses Automatic Reference Counting (ARC) to manage memory for class instances, deterministically freeing memory the instant it's no longer needed — without a garbage collector's unpredictable pauses." },
+            { "icon": "🔗", "title": "Full Objective-C Interoperability", "text": "Swift can call Objective-C code and vice versa within the same project. This let Apple's massive existing Cocoa and Cocoa Touch frameworks remain usable as Swift adoption grew." },
+            { "icon": "🧵", "title": "Structured Concurrency", "text": "Since Swift 5.5, async/await, actors, and task groups make writing safe concurrent code dramatically simpler. Swift 6's strict concurrency mode catches data races at compile time." },
+            { "icon": "🧪", "title": "Interactive Playgrounds", "text": "Xcode Playgrounds let developers write Swift code and see results instantly, line by line, without building a full app — ideal for learning, prototyping, and experimenting with algorithms." },
+            { "icon": "🎨", "title": "SwiftUI — Declarative UI", "text": "SwiftUI lets developers describe what the UI should look like for a given state, and the framework handles updating the view automatically. One shared codebase can target iPhone, iPad, Mac, Watch, and Vision Pro." },
+            { "icon": "🔍", "title": "Powerful Generics", "text": "Swift's generics system lets you write flexible, reusable, and type-safe functions and types (like Array<Element> or Dictionary<Key, Value>) without giving up compile-time type checking." },
+            { "icon": "📚", "title": "Rich Standard Library & Package Manager", "text": "Swift's standard library covers collections, strings, and numerics, while the Swift Package Manager (SPM) makes adding and managing dependencies from GitHub or Swift Package Index straightforward." }
+          ]
+        }
+      ]
+    },
+
+    {
+      "sectionId": "flowchart-heading",
+      "title": "How Swift Code Executes — Flowchart",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "Understanding how Swift executes your code is fundamental. When you build a Swift program, it passes through a precise, multi-stage compilation pipeline before it ever becomes running machine instructions. The diagram below shows exactly what happens from source code to output."
+        },
+        {
+          "type": "flowchart",
+          "nodes": [
+            { "id": "1", "label": "📝 Write Swift Code",       "sublabel": "main.swift",                    "type": "start" },
+            { "id": "2", "label": "⚙️ Swift Compiler (swiftc)", "sublabel": "Parses & type-checks source",   "type": "process" },
+            { "id": "3", "label": "📦 SIL",                     "sublabel": "Swift Intermediate Language",   "type": "data" },
+            { "id": "4", "label": "✅ SIL Optimizer",            "sublabel": "Applies Swift-specific optimizations", "type": "decision" },
+            { "id": "5", "label": "🖥️ LLVM IR",                 "sublabel": "Lowered to LLVM Intermediate Representation", "type": "process" },
+            { "id": "6", "label": "⚡ Native Machine Code",       "sublabel": "LLVM backend emits target binary", "type": "process" },
+            { "id": "7", "label": "🖨️ Output",                  "sublabel": "Hello, World!",                 "type": "end" }
+          ],
+          "edges": [
+            { "from": "1", "to": "2", "label": "swiftc command" },
+            { "from": "2", "to": "3", "label": "generates" },
+            { "from": "3", "to": "4", "label": "passed to optimizer" },
+            { "from": "4", "to": "5", "label": "optimized ✓" },
+            { "from": "5", "to": "6", "label": "compiled" },
+            { "from": "6", "to": "7", "label": "executes" }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "Key insight: Unlike interpreted languages, Swift performs almost all of its heavy lifting <strong>before</strong> the program ever runs — type checking, optimization, and code generation all happen at compile time. This is precisely why a Swift binary starts up and runs fast: by the time you double-click the app, the CPU is executing native instructions, not being interpreted line by line. The <strong>SIL (Swift Intermediate Language)</strong> stage is unique to Swift and is where safety checks like retain/release calls and optional-unwrapping diagnostics get inserted and optimized."
+        }
+      ]
+    },
+
+    {
+      "sectionId": "how-swift-works",
+      "title": "How Swift Works — swiftc, Swift Package Manager, and Xcode Explained",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "Understanding <strong>swiftc</strong>, the <strong>Swift Package Manager (SPM)</strong>, and <strong>Xcode</strong> is one of the first — and most important — concepts for every Swift beginner. These three tools form the foundation of nearly every Swift development workflow, whether you're building an iOS app or a Linux server."
+        },
+        { "type": "subHeading", "text": "🦅 swiftc — The Swift Compiler" },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "<strong>swiftc</strong> is the official <strong>Swift compiler</strong> — the command-line tool that turns your <code>.swift</code> source files into an executable binary. It is built on top of <strong>LLVM</strong>, the same battle-tested compiler infrastructure used by Clang for C and C++. swiftc first parses and type-checks your code, lowers it to <strong>SIL</strong> for Swift-specific optimizations, then hands off to LLVM to generate native machine code for the target platform (Apple Silicon, Intel, ARM Linux, and so on)."
+        },
+        { "type": "subHeading", "text": "📦 Swift Package Manager (SPM) — Dependency & Build Manager" },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "<strong>Swift Package Manager</strong> is Swift's official <strong>build system and dependency manager</strong>, built directly into the language toolchain since Swift 3. It reads a <code>Package.swift</code> manifest file to fetch, build, and link third-party packages hosted on GitHub or the <strong>Swift Package Index</strong>, and it works identically on macOS, Linux, and Windows."
+        },
+        {
+          "type": "bulletList",
+          "items": [
+            { "html": "<code>swift build</code> — compiles the current package and its dependencies" },
+            { "html": "<code>swift run</code> — builds and immediately executes the package's executable target" },
+            { "html": "<code>swift test</code> — runs the package's XCTest or Swift Testing test suite" },
+            { "html": "<code>swift package init</code> — scaffolds a new Swift package with a starter Package.swift" },
+            { "html": "<code>swift package resolve</code> — fetches dependency versions pinned in Package.resolved" }
+          ]
+        },
+        { "type": "subHeading", "text": "🛠️ Xcode — Apple's Integrated Development Environment" },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "<strong>Xcode</strong> is Apple's official IDE, bundling the Swift compiler, Interface Builder, SwiftUI previews, simulators for iPhone/iPad/Watch, instruments for profiling, and App Store submission tools into one application. While swiftc and SPM can be used entirely from the command line — especially on Linux — Xcode is the standard tool for building, testing, and shipping apps to Apple's platforms. Command Line Tools for Xcode also ship a standalone swiftc and SPM for scripting and CI use."
+        },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "<strong>Simple rule to remember:</strong> swiftc compiles your code. SPM manages your dependencies and builds. Xcode packages everything into a shippable app with a UI. The current recommended toolchain is <strong>Swift 6.1</strong> (or the latest Xcode-bundled version), available free from <strong>swift.org</strong> or the Mac App Store."
+        }
+      ]
+    },
+
+    {
+      "sectionId": "swiftc-spm-xcode-comparison",
+      "title": "swiftc vs Swift Package Manager vs Xcode — Key Differences",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Beginners often confuse these three tools. This comparison table clearly shows what each one is, what it does, and when you need it."
+        },
+        {
+          "type": "comparisonTable",
+          "headers": ["Feature", "swiftc", "Swift Package Manager", "Xcode"],
+          "rows": [
+            ["What it is", "Swift compiler", "Build & dependency manager", "Full IDE"],
+            ["Purpose", "Compiles .swift files", "Manages packages & builds", "Writes, builds, ships apps"],
+            ["Comes with Swift?", "✅ Yes — it IS Swift's compiler", "✅ Yes (bundled with toolchain)", "❌ Separate Apple app"],
+            ["Used for", "Turning code into binaries", "Adding/building dependencies", "UI design, simulators, App Store"],
+            ["Key command", "swiftc main.swift", "swift build / swift run", "⌘R (Run) in Xcode"],
+            ["Platform availability", "macOS, Linux, Windows", "macOS, Linux, Windows", "macOS only"],
+            ["Required in every project?", "✅ Always (under the hood)", "✅ Almost always", "⚠️ Only for Apple-platform GUI apps"],
+            ["Example use", "swiftc hello.swift -o hello", "swift package init", "Building & submitting an iOS app"]
+          ]
+        }
+      ]
+    },
+
+    {
+      "sectionId": "swift-vs-others",
+      "title": "Swift vs Other Languages — Comparison",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "How does Swift compare to other popular programming languages, especially the ones it's most often compared against for mobile and native development? This table gives you a quick side-by-side comparison."
+        },
+        {
+          "type": "comparisonTable",
+          "headers": ["Feature", "Swift", "Objective-C", "Kotlin", "Java", "C++"],
+          "rows": [
+            ["Type System", "Strongly, Statically Typed", "Weakly Typed (C-based)", "Strongly Typed", "Strongly Typed", "Strongly Typed"],
+            ["Execution", "Compiled (LLVM)", "Compiled (Clang/LLVM)", "JVM / Native (Kotlin Native)", "JVM (JIT)", "Native (compiled)"],
+            ["Memory Mgmt", "Automatic (ARC)", "Automatic (ARC) / Manual", "Automatic (GC)", "Automatic (GC)", "Manual"],
+            ["Speed", "Very Fast (near C)", "Fast", "Fast", "Fast (JIT)", "Fastest"],
+            ["Syntax", "Clean, modern", "Verbose, C-style", "Clean, modern", "Verbose", "Complex"],
+            ["Primary Use", "iOS/macOS, Server-side", "Legacy iOS/macOS", "Android, Multiplatform", "Enterprise, Android", "Systems, Games"],
+            ["Learning Curve", "Easy-Medium", "Hard", "Easy-Medium", "Medium", "Hard"],
+            ["Job Demand 2026", "⭐⭐⭐⭐⭐", "⭐⭐", "⭐⭐⭐⭐", "⭐⭐⭐⭐⭐", "⭐⭐⭐"]
+          ]
+        }
+      ]
+    },
+
+    {
+      "sectionId": "advantages-disadvantages",
+      "title": "Advantages and Disadvantages of Swift",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Like every technology, Swift has remarkable strengths and real limitations. Understanding both helps you make informed decisions about when Swift is the right choice and where another language might fit better."
+        },
+        {
+          "type": "prosConsTable",
+          "pros": [
+            { "title": "Excellent Safety Guarantees", "text": "Optionals, strong typing, and compile-time checks eliminate whole classes of bugs — nil-pointer crashes, type mismatches — before the app ever ships." },
+            { "title": "Native Performance", "text": "Compiled through LLVM to native machine code, Swift performance is consistently close to C and C++, far ahead of interpreted or JIT-based languages for CPU-heavy work." },
+            { "title": "First-Class Apple Platform Support", "text": "Swift is Apple's officially recommended language for iOS, iPadOS, macOS, watchOS, tvOS, and visionOS, with deep SwiftUI and Xcode integration unmatched by any other language." },
+            { "title": "Modern Concurrency Model", "text": "async/await, actors, and Swift 6's strict concurrency checking make writing correct, data-race-free concurrent code far easier than in most mainstream languages." },
+            { "title": "Growing Cross-Platform & Server-Side Reach", "text": "Frameworks like Vapor and Hummingbird bring Swift to backend web development, and official support for Linux and Windows keeps expanding." },
+            { "title": "Clean, Readable Syntax", "text": "Swift removes semicolons, header files, and much of C-style boilerplate, making code easier to read and maintain over the long term." },
+            { "title": "Strong Apple Backing & Tooling", "text": "Xcode, Instruments, SwiftUI Previews, and Swift Playgrounds provide a polished, well-integrated development experience backed directly by Apple." },
+            { "title": "Free & Open Source", "text": "Swift has been open-source under the Apache 2.0 license since 2015, with an active community contributing to the compiler, standard library, and package ecosystem." }
+          ],
+          "cons": [
+            { "title": "Apple-Centric Ecosystem", "text": "Despite official Linux and Windows support, the vast majority of tooling, tutorials, and job opportunities still centre on Apple platforms." },
+            { "title": "Smaller Package Ecosystem", "text": "The Swift Package Index has far fewer libraries than PyPI or npm, meaning developers sometimes need to write more from scratch or bridge to Objective-C/C libraries." },
+            { "title": "Source Compatibility History", "text": "Early Swift versions (1 through 3) introduced significant breaking API changes between releases, which frustrated developers maintaining older codebases — though this has stabilised considerably since Swift 5's ABI stability." },
+            { "title": "Slower Compile Times on Large Projects", "text": "Swift's type inference and generics, while powerful, can noticeably slow down build times in very large codebases compared to simpler type systems." },
+            { "title": "Limited Windows/Linux Job Market", "text": "Server-side Swift and cross-platform tooling are growing, but the job market outside Apple-platform development remains comparatively small versus Java, Python, or Kotlin." },
+            { "title": "Steeper Learning Curve for Some Concepts", "text": "Optionals, protocol-oriented programming, and the new strict concurrency model can be conceptually challenging for absolute beginners compared to simpler dynamically typed languages." }
+          ]
+        }
+      ]
+    },
+
+    {
+      "sectionId": "diagram-heading",
+      "title": "Swift Architecture Diagram",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "The diagram below shows the complete <strong>Swift Architecture</strong> — from your source code all the way down to the hardware. This visual makes the relationship between your code, the Swift toolchain, LLVM, and the operating system concrete and easy to understand."
+        },
+        {
+          "type": "architectureDiagram",
+          "layers": [
+            {
+              "label": "Developer Layer",
+              "color": "#f97316",
+              "items": ["Swift Source Code (.swift)", "Xcode / VS Code + Swift Extension", "Build Tools (SPM, xcodebuild)"]
+            },
+            {
+              "label": "Swift Compiler Frontend",
+              "color": "#0ea5e9",
+              "items": ["Lexer / Parser", "Type Checker", "SIL (Swift Intermediate Language) Generator"]
+            },
+            {
+              "label": "Standard Library & Frameworks",
+              "color": "#10b981",
+              "items": ["Foundation", "SwiftUI / UIKit", "Combine, Dispatch", "Swift Package Index libraries"]
+            },
+            {
+              "label": "LLVM Backend",
+              "color": "#f59e0b",
+              "items": ["SIL Optimizer", "LLVM IR Generation", "Code Generation & Native Optimization"]
+            },
+            {
+              "label": "Runtime",
+              "color": "#ef4444",
+              "items": ["ARC (Automatic Reference Counting)", "Type Metadata & Reflection", "Concurrency Runtime (Actors, Tasks)"]
+            },
+            {
+              "label": "Operating System & Hardware",
+              "color": "#8b5cf6",
+              "items": ["iOS / macOS / watchOS / tvOS", "Linux / Windows", "CPU, RAM, Storage"]
+            }
+          ]
+        }
+      ]
+    },
+
+    {
+      "sectionId": "code-heading",
+      "title": "Your First Swift Program — Hello World",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "Every Swift journey starts with the <strong>Hello World program</strong>. It is the simplest Swift program possible — and beautifully illustrates why Swift feels so modern: what once took several lines and boilerplate in Objective-C takes just <strong>1 line in Swift</strong>."
+        },
+        {
+          "type": "codeBox",
+          "lang": "🦅 Swift",
+          "label": "main.swift",
+          "lines": [
+            "print(\"Hello, World!\")"
+          ]
+        },
+        {
+          "type": "outputBox",
+          "lines": ["Hello, World!"]
+        },
+        {
+          "type": "subHeading",
+          "text": "Practice This Code — Live Editor"
+        },
+        {
+          "type": "liveEditor",
+          "initialCode":
+            "print(\"Hello, World! Ashish\")"
+        },
+        {
+          "type": "subHeading",
+          "text": "Line-by-Line Explanation"
+        },
+        {
+          "type": "bulletList",
+          "items": [
+            { "html": "<code>// This is a comment</code> — Lines starting with <code>//</code> are comments. Swift ignores them during compilation. Use comments to explain your code." },
+            { "html": "<code>let name = \"Tech Sustainify\"</code> — Creates a constant called <code>name</code> and assigns a string value. No explicit <code>String</code> keyword needed — Swift infers the type automatically through type inference." },
+            { "html": "<code>print(...)</code> — Swift's built-in global function for output. Like Python's print, it's short and simple, and automatically adds a newline at the end." },
+            { "html": "<code>\"Welcome to \\(name)\"</code> — <strong>String interpolation</strong>. Variables inside <code>\\()</code> are automatically inserted into the string. Cleaner than concatenation with <code>+</code>." },
+            { "html": "<code>type(of: year)</code> — A built-in function that returns the runtime type of any value. Useful for debugging and understanding Swift's type system." }
+          ]
+        }
+      ]
+    },
+
+    {
+      "sectionId": "swift-uses",
+      "title": "Where is Swift Used? — Real-World Applications",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Swift's combination of safety and speed makes it the default choice across the entire Apple ecosystem, with a growing footprint beyond it. Here are the major areas where Swift is actively used in 2026:"
+        },
+        {
+          "type": "bulletList",
+          "items": [
+            { "strong": "📱 iOS & iPadOS App Development", "text": " — Swift is Apple's officially recommended language for building iPhone and iPad apps. Combined with UIKit or SwiftUI, it powers the overwhelming majority of new apps on the App Store, from indie projects to apps built by Uber, Lyft, and Airbnb." },
+            { "strong": "💻 macOS Desktop Applications", "text": " — Swift, together with AppKit and SwiftUI, is used to build native Mac apps ranging from productivity tools to creative software, replacing much of the Objective-C codebase Apple maintained for decades." },
+            { "strong": "⌚ watchOS & 📺 tvOS Development", "text": " — Swift is the primary language for building Apple Watch complications and apps, as well as Apple TV applications, using watchOS and tvOS-specific SwiftUI and WatchKit APIs." },
+            { "strong": "🥽 visionOS & Spatial Computing", "text": " — With the introduction of Apple Vision Pro, Swift and SwiftUI extended into spatial computing, letting developers build immersive 3D interfaces and apps using RealityKit alongside Swift." },
+            { "strong": "🌐 Server-Side Web Development", "text": " — Frameworks like Vapor and Hummingbird bring Swift to backend development, letting teams share models and business logic between an iOS client and a Swift-based server. Companies including parts of Apple's own internal infrastructure use server-side Swift in production." },
+            { "strong": "⚙️ Scripting & Automation", "text": " — Swift Argument Parser and standalone swift scripts let developers write command-line tools and automation scripts, especially useful in CI/CD pipelines for Apple-platform projects." },
+            { "strong": "🔬 Systems & Embedded Programming", "text": " — Swift's ownership and performance model, combined with an experimental Embedded Swift mode, is being explored for microcontrollers and resource-constrained environments where C traditionally dominated." },
+            { "strong": "🎮 Game Development", "text": "SpriteKit and SceneKit, combined with Swift, are used for 2D and 3D game development on Apple platforms, while GameplayKit adds AI and pathfinding utilities for game logic." }
+          ]
+        }
+      ]
+    },
+
+    {
+      "sectionId": "why-learn-swift",
+      "title": "Why Should You Learn Swift in 2026?",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "Every year people ask — <em>\"Is Swift the right language to learn?\"</em> For anyone interested in Apple-platform development, the answer in 2026 is a clear <strong>YES</strong>. Here's why Swift should be your first (or next) programming language:"
+        },
+        {
+          "type": "bulletList",
+          "items": [
+            { "strong": "📱 The Only Path to Native Apple Apps", "text": " — If you want to build apps for iPhone, iPad, Mac, Apple Watch, Apple TV, or Vision Pro at a professional level, Swift (with SwiftUI) is Apple's clearly recommended and best-supported language." },
+            { "strong": "🛡️ Safety Without Sacrificing Speed", "text": " — Swift's optionals and strong typing catch bugs at compile time that would otherwise crash apps in production, while still compiling to performance close to C." },
+            { "strong": "💼 Strong, Focused Job Market", "text": " — iOS developer roles remain among the highest-paying mobile development positions in tech. Average Swift/iOS developer salary in India ranges from ₹5-6 LPA for freshers to ₹35+ LPA for senior iOS engineers at top product companies." },
+            { "strong": "🎨 SwiftUI is the Future of Apple UI", "text": " — Apple is steadily migrating its own frameworks and sample code toward SwiftUI. Learning Swift today means learning the UI paradigm Apple is investing in for the next decade." },
+            { "strong": "🌍 Active, Supportive Community", "text": " — Swift Forums, the Swift Package Index, WWDC session videos, and a large base of iOS developers on Stack Overflow and Reddit's r/iOSProgramming make getting help straightforward." },
+            { "strong": "📈 Constantly Evolving", "text": " — Swift is not slowing down. Swift 6 brought strict concurrency checking, and each yearly release keeps adding features like macros, typed throws, and improved cross-platform support." },
+            { "strong": "🆓 Completely Free & Open Source", "text": " — Swift has been free and open-source since 2015. Swift.org, Xcode (free from the Mac App Store), and Swift Playgrounds cost nothing to get started." }
+          ]
+        }
+      ]
+    },
+
+    {
+      "sectionId": "swift-versions",
+      "title": "Swift Versions — Evolution and Current Releases",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Swift has evolved through several major eras. Understanding the difference is important — especially when reading older tutorials or working on legacy codebases:"
+        },
+        {
+          "type": "bulletList",
+          "items": [
+            { "strong": "Swift 1.x–2.x (Early Era)", "text": " — The original closed-then-open-sourced versions. Introduced the core language and, with Swift 2, error handling. Largely of historical interest today; virtually no active codebases target these versions." },
+            { "strong": "Swift 3.x–4.x (API Stabilization Era)", "text": " — Swift 3 renamed thousands of APIs for consistency; Swift 4 added Codable. These versions established the naming conventions still used today, though the language itself has moved well beyond them." },
+            { "strong": "Swift 5.x (ABI Stability Era)", "text": " — Swift 5.0 achieved ABI stability, meaning binaries built with different Swift 5.x compilers remain compatible. Swift 5.5 added async/await and actors — a defining moment for the language." },
+            { "strong": "Swift 6.x — Current", "text": " — Swift 6 introduced an opt-in strict concurrency mode that catches data races at compile time, along with typed throws and continued macro improvements. Swift 6.1 is the recommended version for new projects in 2026." },
+            { "strong": "Swift Evolution Process", "text": " — All new Swift features go through the public Swift Evolution proposal process on GitHub, where the community and Apple's Core Team debate and approve changes transparently before they ship." }
+          ]
+        },
+        {
+          "type": "comparisonTable",
+          "headers": ["Version", "Released", "Status", "Key Feature"],
+          "rows": [
+            ["Swift 3.0", "2016", "❌ Legacy", "Major API renaming (Swift API Design Guidelines)"],
+            ["Swift 4.0", "2017", "❌ Legacy", "Codable protocol for JSON encoding/decoding"],
+            ["Swift 5.0", "2019", "⚠️ Superseded", "ABI stability, Result type"],
+            ["Swift 5.5", "2021", "✅ Widely used", "async/await, actors, structured concurrency"],
+            ["Swift 5.9", "2023", "✅ Active", "Macros, if/switch as expressions"],
+            ["Swift 6.0/6.1", "2024-2025", "✅ Active (Recommended)", "Strict concurrency checking, typed throws"]
+          ]
+        }
+      ]
+    },
+
+    {
+      "sectionId": "interview-questions",
+      "title": "Swift Interview Questions — Beginner Level",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "These are the most commonly asked Swift interview questions for <strong>freshers and beginner-level</strong> iOS developer positions. Master these before any Swift interview."
+        },
+        {
+          "type": "interviewQA",
+          "items": [
+            {
+              "q": "Q1. What is Swift and what are its key characteristics?",
+              "a": "Swift is a modern, general-purpose, compiled programming language created by Apple, first announced in 2014. Its key characteristics are: clean, readable syntax with no semicolons or header files, strong static typing with type inference, optionals for safe handling of the absence of a value, automatic memory management via ARC, protocol-oriented programming, structured concurrency with async/await, and an enormous, deeply integrated ecosystem of Apple frameworks and Swift Package Manager libraries.",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q2. What is the difference between swiftc, Swift Package Manager, and Xcode?",
+              "a": "swiftc is the official Swift compiler — it turns your Swift source code into an executable binary. Swift Package Manager (SPM) is Swift's official build system and dependency manager — it fetches, builds, and links third-party packages. Xcode is Apple's full IDE that bundles the compiler, interface tools, simulators, and App Store submission workflow. In every Swift project: swiftc compiles it, SPM manages its dependencies, and Xcode (on Apple platforms) packages and ships it.",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q3. What is an Optional in Swift?",
+              "a": "An Optional is a type that represents either a value or the absence of a value (nil). It's written as Type? — for example, Int? or String?. Optionals force developers to explicitly handle the nil case using techniques like optional binding (if let, guard let), the nil-coalescing operator (??), or optional chaining (?.), which is why Swift largely eliminates the unexpected null-pointer crashes common in other languages.",
+              "tag": "Frequently Asked"
+            },
+            {
+              "q": "Q4. What is the difference between a struct and a class in Swift?",
+              "a": "Structs are value types — when you assign or pass a struct, Swift copies it. Classes are reference types — when you assign or pass a class instance, both variables point to the same object in memory. Structs don't support inheritance, while classes do. Apple recommends preferring structs for simple data models and using classes when you need shared mutable state, identity, or inheritance.",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q5. What is ARC (Automatic Reference Counting) in Swift?",
+              "a": "ARC is Swift's memory management system for class instances. It automatically tracks how many references point to each instance, and frees the instance's memory the moment the reference count reaches zero. Unlike a traditional garbage collector, ARC works deterministically at compile time by inserting retain and release calls, avoiding unpredictable pause times — though it requires care to avoid retain cycles (strong reference cycles), which are typically broken using weak or unowned references.",
+              "tag": "Frequently Asked"
+            },
+            {
+              "q": "Q6. What is the difference between '==' and '===' in Swift?",
+              "a": "== checks value equality — whether two instances have the same value (requires conforming to the Equatable protocol). === checks identity equality — whether two class instances point to the exact same object in memory. === can only be used with reference types (classes), not with structs, since structs don't have a stable memory identity in the same sense.",
+              "tag": "Common Trap"
+            },
+            {
+              "q": "Q7. What is a Swift protocol, and how is Protocol-Oriented Programming different from OOP?",
+              "a": "A protocol defines a blueprint of methods, properties, and requirements that a type can adopt, similar to an interface in other languages. Protocol extensions let you provide default implementations for those requirements. Protocol-Oriented Programming (POP) favors composing behavior through small, focused protocols and extensions rather than deep class inheritance hierarchies, which Apple promotes as a more flexible alternative to traditional object-oriented design.",
+              "tag": "Frequently Asked"
+            },
+            {
+              "q": "Q8. What is the difference between async/await and completion handlers in Swift?",
+              "a": "Completion handlers are closures passed into a function that get called once an asynchronous operation finishes, which historically led to deeply nested 'callback pyramid' code. async/await, introduced in Swift 5.5, lets you write asynchronous code that reads like straight-line synchronous code, with the compiler handling suspension and resumption behind the scenes — making error handling and control flow far easier to follow.",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q9. What is the latest version of Swift in 2026?",
+              "a": "The recommended, actively used version is Swift 6.1 (building on Swift 6.0's 2024 release), which introduced an opt-in strict concurrency checking mode that catches data races at compile time. Swift generally releases a new major version alongside each year's Xcode and OS releases, in step with Apple's annual WWDC cycle.",
+              "tag": "Current Affairs"
+            },
+            {
+              "q": "Q10. What is a closure in Swift?",
+              "a": "A closure is a self-contained block of functionality that can be passed around and used in your code, similar to a lambda or anonymous function in other languages. Closures can capture and store references to variables from the surrounding context. Example: { (a: Int, b: Int) -> Int in return a + b }. Swift also provides trailing closure syntax, which lets the closure be written outside a function call's parentheses for readability, commonly seen in APIs like array.map { $0 * 2 }.",
+              "tag": "Must Know"
+            }
+          ]
+        }
+      ]
+    },
+
+    {
+      "sectionId": "practice-questions",
+      "title": "Practice Questions — Test Your Knowledge",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "Test your understanding of Swift fundamentals with these practice questions. Try to answer each one before revealing the answer — active recall is the most effective way to learn."
+        },
+        {
+          "type": "practiceQuestions",
+          "items": [
+            {
+              "q": "1. What does the acronym SIL stand for and what is its role in Swift?",
+              "a": "SIL stands for Swift Intermediate Language. It is a high-level, Swift-specific intermediate representation generated by the compiler frontend after parsing and type-checking. SIL is where Swift-specific optimizations happen — such as inserting and then optimizing away ARC retain/release calls, and diagnosing things like definite initialization of variables — before the code is lowered further into LLVM IR and finally native machine code.",
+              "difficulty": "Easy"
+            },
+            {
+              "q": "2. What is the output of: print(10 / 3) in Swift, where both operands are Int?",
+              "a": "3. In Swift, dividing two Int values performs integer (truncating) division, discarding the remainder. To get a decimal result, at least one operand must be a floating-point type: print(10.0 / 3) would output 3.3333333333333335. This is different from some languages where integer division always requires an explicit floor operator.",
+              "difficulty": "Easy"
+            },
+            {
+              "q": "3. What is the minimum software required to run a Swift script on a new Mac?",
+              "a": "Just the Swift toolchain — installed automatically with Xcode Command Line Tools, or as a standalone toolchain from swift.org. Once installed, you can run 'swift hello.swift' directly from Terminal without opening Xcode at all, since swiftc and the Swift runtime are separate from the full IDE.",
+              "difficulty": "Easy"
+            },
+            {
+              "q": "4. What happens if you force-unwrap an Optional that is nil?",
+              "a": "The app crashes immediately with a runtime error (a 'Fatal error: Unexpectedly found nil while unwrapping an Optional value'). Force-unwrapping is done using the ! operator, e.g. someOptional!. Apple strongly recommends using safer alternatives like optional binding (if let), nil-coalescing (??), or guard let, reserving force-unwrapping only for cases where nil is truly impossible by design.",
+              "difficulty": "Medium"
+            },
+            {
+              "q": "5. Explain the difference between 'weak' and 'unowned' references in Swift.",
+              "a": "Both are used to break strong reference cycles between class instances, but weak references are always declared as Optionals and automatically become nil when the referenced instance is deallocated, making them safe to use when the reference might legitimately become nil. Unowned references are declared as non-optional and assume the referenced instance will always exist for as long as the unowned reference does — accessing an unowned reference after its instance has been deallocated causes a runtime crash, so it should only be used when that lifetime guarantee genuinely holds.",
+              "difficulty": "Medium"
+            },
+            {
+              "q": "6. Why might a Swift build take a long time to compile, and how can you speed it up?",
+              "a": "Long compile times often come from: (1) Complex type inference, especially in expressions mixing many literals and generic operators, which forces the compiler to explore many possible type combinations. (2) Large SwiftUI view bodies without explicit return types. (3) Whole-module optimization being enabled even for debug builds. Solutions: break complex expressions into smaller typed sub-expressions, add explicit type annotations to ambiguous declarations, split large SwiftUI views into smaller subviews, and use Xcode's build timing report (-Xfrontend -warn-long-expression-type-checking) to identify the slowest lines.",
+              "difficulty": "Hard"
+            },
+            {
+              "q": "7. What is the output of: print(0.1 + 0.2 == 0.3) in Swift?",
+              "a": "false. This is a floating-point precision issue that exists in virtually every language using IEEE 754 floating-point arithmetic (Python, Java, JavaScript, C++ all share it). In Swift, 0.1 + 0.2 evaluates to 0.30000000000000004 due to binary representation limits. The correct way to compare floating-point values for near-equality is to check that the absolute difference is smaller than a small epsilon value, e.g. abs((0.1 + 0.2) - 0.3) < 1e-9.",
+              "difficulty": "Medium"
+            },
+            {
+              "q": "8. What is the difference between a Swift 'actor' and a regular 'class'?",
+              "a": "An actor, introduced in Swift 5.5, is a reference type like a class, but it protects its mutable state from concurrent access by ensuring that only one task can execute code inside the actor at a time — the compiler automatically enforces this at compile time under Swift's concurrency model. A regular class provides no such protection, so accessing its mutable state from multiple threads concurrently can cause data races, especially under Swift 6's strict concurrency checking, which flags such unsafe access as a compile-time error.",
+              "difficulty": "Hard"
+            }
+          ]
+        }
+      ]
+    },
+
+    {
+      "sectionId": "conclusion-heading",
+      "title": "Conclusion — Is Swift Right for You?",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "Swift is not just a programming language — it is the <strong>native language of the entire Apple ecosystem</strong>. From the millions of apps on the App Store to SwiftUI interfaces on Apple Watch and Vision Pro, from server-side APIs built with Vapor to automation scripts running in CI pipelines — Swift is the common thread across modern Apple-platform engineering."
+        },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "If you are a <strong>complete beginner</strong> interested in mobile development, Swift combined with SwiftUI and Xcode Playgrounds offers one of the most polished, visually rewarding ways to start programming. If you are an experienced developer looking to <strong>enter iOS, macOS, or cross-platform Apple development</strong>, Swift is your fastest and most direct path, backed directly by Apple's own tooling and documentation."
+        },
+        {
+          "type": "comparisonTable",
+          "headers": ["Your Goal", "Should You Learn Swift?"],
+          "rows": [
+            ["iOS / iPadOS App Development",           "✅ Absolutely — Swift IS the native language"],
+            ["macOS Desktop Applications",             "✅ Yes — Swift + SwiftUI/AppKit are the standard"],
+            ["watchOS / tvOS / visionOS Development",  "✅ Yes — Swift is the only officially supported path"],
+            ["Server-side web development",           "⚠️ Possible with Vapor, but Node.js/Python/Go are more established"],
+            ["Android app development",               "❌ Use Kotlin instead — Swift has no native Android support"],
+            ["Web frontend development",               "❌ Use JavaScript/TypeScript instead"],
+            ["Cross-platform mobile (iOS + Android)",  "⚠️ Consider Kotlin Multiplatform or Flutter/Dart unless Apple-only"],
+            ["Learning programming for the first time","✅ A strong choice, especially if your goal is Apple-platform apps"]
+          ]
+        },
+        {
+          "type": "comparisonTable",
+          "headers": ["Version", "Released", "Status", "Key Feature"],
+          "rows": [
+            ["Swift 5.9", "2023", "✅ Active", "Macros, if/switch as expressions"],
+            ["Swift 6.0", "2024", "✅ Recommended", "Strict concurrency checking"],
+            ["Swift 6.1", "2025", "✅ Latest Stable", "Concurrency ergonomics, typed throws refinements"],
+            ["Swift 6.2 (Expected)", "2026", "🔜 Expected", "Further concurrency & cross-platform improvements"]
+          ]
+        },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "The next step in your Swift journey is <strong>setting up your development environment</strong>. Download <strong>Xcode</strong> free from the Mac App Store (it bundles the latest Swift toolchain), or install the standalone <strong>Swift toolchain</strong> from swift.org if you're on Linux or Windows. Then dive into Swift syntax, variables, optionals, and SwiftUI. Every hour you invest in Swift fundamentals now builds the foundation for building real, shippable apps on Apple's platforms."
+        },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "<strong>Swift is not slowing down — Swift is expanding.</strong> With strict concurrency, growing server-side adoption, and Apple's continued investment in SwiftUI across every device category, Swift in 2026 is more capable and more relevant than ever before. Start today. 🦅"
+        }
+      ]
+    }
+
+  ],
+
+  "faq": {
+    "sectionId": "faq-heading",
+    "title": "Frequently Asked Questions (FAQ)",
+    "items": [
+      {
+        "q": "Is Swift easy to learn for beginners?",
+        "a": "Yes — Swift is widely regarded as one of the more approachable modern languages for beginners, especially compared to its predecessor Objective-C. Its clean syntax, Xcode Playgrounds for instant feedback, and Swift Playgrounds app (available on iPad and Mac) make it possible for complete beginners to write and see working code within their first sitting. Some concepts like optionals and protocol-oriented programming take a bit more time to fully grasp, but the core syntax is friendly."
+      },
+      {
+        "q": "What is the difference between Swift and Objective-C?",
+        "a": "Swift is a modern, type-safe, memory-safe language with concise syntax, optionals, and no header files. Objective-C is an older, C-based, message-passing language with more verbose syntax and weaker type safety. Swift can fully interoperate with Objective-C, which let Apple's ecosystem gradually transition without breaking existing frameworks. Apple now recommends Swift for all new projects, with Objective-C reserved mainly for maintaining legacy codebases."
+      },
+      {
+        "q": "How long does it take to learn Swift?",
+        "a": "With consistent daily practice, you can learn Swift basics (syntax, optionals, functions, structs/classes) in 3-4 weeks. Becoming proficient with SwiftUI, networking, and Xcode project workflows takes about 2-3 months. To master advanced Swift — concurrency with async/await and actors, protocol-oriented design, and a production-quality app architecture — expect 6-12 months of dedicated learning and project building."
+      },
+      {
+        "q": "Is Swift free to use in 2026?",
+        "a": "Yes. Swift itself is 100% free and open-source under the Apache 2.0 License, maintained at swift.org. Xcode is also free to download from the Mac App Store. The only cost involved is an Apple Developer Program membership (an annual fee) if you want to distribute apps on the App Store or test on physical devices beyond basic development limits."
+      },
+      {
+        "q": "Should I learn Swift 6.0 or 6.1 in 2026?",
+        "a": "For most beginners and production work, start with the latest stable Swift 6.1 bundled with the current version of Xcode — it includes refinements to strict concurrency checking that make it more approachable than the initial Swift 6.0 release. Only worry about targeting an older Swift version if you're maintaining an existing project with specific compatibility constraints."
+      },
+      {
+        "q": "Swift vs Kotlin — Which is better in 2026?",
+        "a": "Both are modern, safety-focused languages praised by their developer communities. Choose Swift if your target is Apple platforms — iOS, macOS, watchOS, tvOS, or visionOS — since it is Apple's native, officially supported language. Choose Kotlin if your target is Android or cross-platform mobile via Kotlin Multiplatform. Many professional mobile teams maintain separate Swift and Kotlin codebases for iOS and Android respectively, since neither language natively targets the other's platform."
+      }
+    ]
+  },
+
+  "nav": {
+    "prev": { "label": "← Previous", "path": "/swift/swift-home/" },
+    "next": { "label": "Next: Swift Intro →", "path": "/swift/swift-intro/" }
+  },
+
+  "sidebar": {
+    "quickFacts": [
+      { "dt": "Created by",  "dd": "Chris Lattner (Apple)" },
+      { "dt": "Released",    "dd": "2014" },
+      { "dt": "Maintained by", "dd": "Apple & the Swift.org open-source community" },
+      { "dt": "Type",        "dd": "Compiled Language (LLVM-based)" },
+      { "dt": "Platform",    "dd": "iOS, macOS, watchOS, tvOS, visionOS, Linux, Windows" },
+      { "dt": "Latest",      "dd": "Swift 6.1" }
+    ],
+    "tags": ["swiftc","SPM","Xcode","Optionals","Structs","Classes","Protocols","Closures","Generics","ARC","async/await","Actors","SwiftUI","UIKit","Vapor","Combine"]
+  }
+}

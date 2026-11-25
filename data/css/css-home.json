@@ -1,0 +1,507 @@
+{
+  "meta": {
+    "title": "CSS Explained: The Cascade, Specificity & Box Model Nobody Teaches Properly (2026)",
+    "description": "Why does your CSS rule sometimes just not apply? This guide walks through the cascade, specificity scoring, the box model, and modern layout tools (Flexbox, Grid, Container Queries) with real specificity math and the exact bugs that trip up beginners.",
+    "keywords": "what is css, css tutorial for beginners, css specificity explained, css box model, css cascade, flexbox vs grid, css container queries, css custom properties, css tutorial 2026, learn css online",
+    "author": "Tech Sustainify",
+    "canonical": "https://techsustainify.com/css/css-home/",
+    "ogTitle": "CSS Home — Cascade, Specificity, Box Model & Modern Layout | Tech Sustainify",
+    "ogDescription": "A CSS guide built around the question beginners actually ask: why isn't my style applying? Covers specificity scoring, the cascade, box-sizing gotchas, and Flexbox vs Grid.",
+    "ogUrl": "https://techsustainify.com/css/css-home/",
+    "ogSiteName": "Tech Sustainify",
+    "twitterReadingTime": "14 minutes",
+    "twitterLevel": "Beginner",
+    "schemaDatePublished": "2024-03-05",
+    "schemaDateModified": "2026-04-14",
+    "schemaProficiencyLevel": "Beginner",
+    "schemaWordCount": 4100
+  },
+
+  "breadcrumbs": [
+    { "position": 1, "name": "Home", "path": "/" },
+    { "position": 2, "name": "CSS Tutorial", "path": "/css/css-home/" },
+    { "position": 3, "name": "What is CSS?" }
+  ],
+
+  "articleHeader": {
+    "badge": "🎨 CSS",
+    "title": " What CSS Actually Is ",
+    "subtitle": "You wrote color: red; the text is still blue. Before anything else, CSS makes sense once you understand it's not a list of rules you write — it's a scoring competition between rules, and the browser always plays fair by its own math."
+  },
+
+  "infoCards": [
+    { "icon": "📅", "label": "Last Updated", "isTime": true, "dateTime": "2026-04-14", "value": "April 2026" },
+    { "icon": "⏱️", "label": "Read Time", "value": "14 min" },
+    { "icon": "🎯", "label": "Level", "value": "Beginner" }
+  ],
+
+  "sections": [
+
+    {
+      "sectionId": "what-is-css",
+      "title": "What CSS Actually Is",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "<strong>CSS (Cascading Style Sheets)</strong> is the language that describes how HTML content should be presented — colors, spacing, layout, typography, animation. HTML says <em>what</em> a page contains; CSS says <em>how it should look</em>. It's maintained as a set of modular specifications by the <strong>W3C's CSS Working Group</strong>, which is why you'll see references to \"CSS Grid Level 1\" or \"Selectors Level 4\" rather than one single version number the way you'd talk about Python 3.13."
+        },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "The first CSS specification (Level 1) was proposed by <strong>Håkon Wium Lie</strong> in 1994 and became a W3C Recommendation in <strong>December 1996</strong>. Before CSS existed, styling was done with HTML attributes like <code>&lt;font color=\"red\"&gt;</code> scattered through every page — CSS separated content from presentation, which is the single most important idea in the entire language and the reason it's called <em>cascading</em>: rules from different sources cascade together, and CSS has explicit, predictable rules for which one wins."
+        },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "That word — <strong>cascading</strong> — is not decorative. It's the actual algorithm the browser runs on every single element: gather every rule that could apply, sort them by origin, importance, specificity, and source order, and apply the winner. Most \"my CSS isn't working\" confusion is really just not knowing this algorithm exists."
+        }
+      ]
+    },
+
+    {
+      "sectionId": "the-cascade",
+      "title": "The Cascade — How the Browser Decides Which Rule Wins",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "When two rules target the same element and the same property, the browser doesn't pick randomly or just take \"whichever loaded last.\" It runs through a strict sequence of tie-breakers, in this exact order:"
+        },
+        {
+          "type": "bulletList",
+          "items": [
+            { "strong": "1. Origin & Importance", "text": " — user-agent (browser default) styles lose to author (your) styles, which lose to user styles marked !important, which lose to author styles marked !important. In practice: your normal CSS beats the browser's defaults, and !important beats almost everything, which is exactly why overusing it turns a stylesheet into a maintenance nightmare — you end up needing !important to beat your own earlier !important." },
+            { "strong": "2. Specificity", "text": " — a numeric score calculated per selector (covered in detail below). Higher score wins, full stop, regardless of which rule appears first or last in the file." },
+            { "strong": "3. Source Order", "text": " — only reached when specificity is exactly tied. The rule that appears later in the stylesheet (or in a later &lt;link&gt;/&lt;style&gt; block) wins." }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "This ordering explains a specific, very common bug: you add a new CSS rule at the very bottom of your file, expecting it to override an earlier one because \"it comes later\" — but it doesn't apply, because the earlier rule has a higher specificity score. Source order is the <em>last</em> tie-breaker, not the first."
+        }
+      ]
+    },
+
+    {
+      "sectionId": "specificity-deep-dive",
+      "title": "Specificity, With the Actual Math",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "Specificity is usually taught as an abstract concept. It's actually just arithmetic — a 3-column score, conventionally written as <strong>(A, B, C)</strong>, calculated per selector:"
+        },
+        {
+          "type": "bulletList",
+          "items": [
+            { "html": "<strong>A</strong> — count of ID selectors (<code>#header</code>). Each one = 1 point in this column." },
+            { "html": "<strong>B</strong> — count of class selectors (<code>.btn</code>), attribute selectors (<code>[type=\"text\"]</code>), and pseudo-classes (<code>:hover</code>). Each one = 1 point in this column." },
+            { "html": "<strong>C</strong> — count of type/element selectors (<code>div</code>, <code>p</code>) and pseudo-elements (<code>::before</code>). Each one = 1 point in this column." }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "Columns are compared left to right, never added across columns — a single ID selector (1,0,0) beats fifty combined class selectors (0,50,0), because you compare column A first and A already decides it."
+        },
+        {
+          "type": "codeBox",
+          "lang": "🎨 CSS",
+          "label": "specificity-example.css",
+          "lines": [
+            "/* Specificity (0,1,1) — one class + one element */",
+            "nav.primary-menu { color: navy; }",
+            "",
+            "/* Specificity (0,2,0) — two classes, no element */",
+            "/* This WINS over the rule above: (0,2,0) > (0,1,1) at column B */",
+            ".site-header .primary-menu { color: crimson; }",
+            "",
+            "/* Specificity (1,0,0) — one ID */",
+            "/* This wins over BOTH rules above, regardless of order in the file */",
+            "#main-nav { color: forestgreen; }"
+          ]
+        },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "Inline styles (<code>style=\"color: red\"</code> written directly in HTML) beat every selector-based rule regardless of specificity score — they aren't even part of this A/B/C system, they sit above it. <code>!important</code> goes a level above even that. Both exist as escape hatches; relying on either routinely is usually a sign the underlying CSS architecture needs rethinking, not a normal styling technique."
+        }
+      ]
+    },
+
+    {
+      "sectionId": "box-model",
+      "title": "The Box Model — Where 90% of Layout Bugs Actually Come From",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "Every single element on a page is a rectangular box made of four layers, from inside out: <strong>content</strong>, <strong>padding</strong>, <strong>border</strong>, and <strong>margin</strong>. The bug that catches nearly every beginner is this: by default, <code>width</code> and <code>height</code> apply only to the <em>content</em> box — padding and border get added on top, making the element's actual rendered size larger than what you set."
+        },
+        {
+          "type": "codeBox",
+          "lang": "🎨 CSS",
+          "label": "box-sizing-trap.css",
+          "lines": [
+            ".card {",
+            "  width: 300px;",
+            "  padding: 20px;",
+            "  border: 2px solid #ccc;",
+            "  /* Rendered width is actually 300 + 20+20 + 2+2 = 344px, NOT 300px */",
+            "}",
+            "",
+            ".card-fixed {",
+            "  box-sizing: border-box; /* width now INCLUDES padding + border */",
+            "  width: 300px;",
+            "  padding: 20px;",
+            "  border: 2px solid #ccc;",
+            "  /* Rendered width is exactly 300px, content area shrinks to fit */",
+            "}"
+          ]
+        },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "This is common enough that most CSS resets — including the popular <strong>modern-normalize</strong> approach and Josh Comeau's widely-used reset — apply <code>box-sizing: border-box</code> to every element globally as one of the first rules in the entire stylesheet:"
+        },
+        {
+          "type": "codeBox",
+          "lang": "🎨 CSS",
+          "label": "global-reset.css",
+          "lines": [
+            "*, *::before, *::after {",
+            "  box-sizing: border-box;",
+            "}"
+          ]
+        }
+      ]
+    },
+
+    {
+      "sectionId": "flexbox-vs-grid",
+      "title": "Flexbox vs Grid — Which One, and When",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "This gets asked constantly and the honest answer is that they solve different shaped problems, not competing versions of the same problem. My rule of thumb after years of picking wrong in both directions: if you're arranging items along a <strong>single line</strong> — a navbar, a row of buttons, a sidebar next to content — reach for Flexbox first. The moment you're thinking in <strong>rows AND columns simultaneously</strong> — a photo gallery, a dashboard, a page-level layout — Grid is almost always less code and fewer nested wrapper divs."
+        },
+        {
+          "type": "comparisonTable",
+          "headers": ["Aspect", "Flexbox", "CSS Grid"],
+          "rows": [
+            ["Dimension", "One-dimensional (row OR column)", "Two-dimensional (row AND column)"],
+            ["Best for", "Navbars, button groups, centering content", "Page layouts, image galleries, dashboards"],
+            ["Sizing driven by", "Content size, unless you constrain it", "Explicit track sizes you define upfront"],
+            ["Browser support (2026)", "Universal, no prefixes needed", "Universal, no prefixes needed"],
+            ["Key property", "display: flex + flex-direction", "display: grid + grid-template-columns"],
+            ["Gap handling", "gap (since ~2021 across major browsers)", "gap (native to Grid from the start)"]
+          ]
+        },
+        {
+          "type": "codeBox",
+          "lang": "🎨 CSS",
+          "label": "responsive-card-grid.css",
+          "lines": [
+            ".product-grid {",
+            "  display: grid;",
+            "  /* auto-fit + minmax: as many 240px-min columns as fit, no media query needed */",
+            "  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));",
+            "  gap: 1.5rem;",
+            "}"
+          ]
+        },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "That single <code>repeat(auto-fit, minmax(...))</code> line is doing what used to take three or four separate media query breakpoints in pre-Grid CSS — the grid recalculates its own column count as the viewport resizes, with zero JavaScript and zero <code>@media</code> rules."
+        }
+      ]
+    },
+
+    {
+      "sectionId": "modern-css-features",
+      "title": "What's Genuinely New in CSS by 2026",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "CSS has shipped more practically useful features in the last five years than in the decade before that. These aren't experimental — all of the following have solid cross-browser support as of 2026."
+        },
+        {
+          "type": "featureCards",
+          "items": [
+            { "icon": "📦", "title": "Container Queries", "text": "@container lets a component adapt based on the size of its own parent container, not the entire viewport. A sidebar widget can now be genuinely responsive regardless of where it's dropped on the page — something media queries structurally couldn't do." },
+            { "icon": "🎯", "title": "CSS Custom Properties (Variables)", "text": "--primary-color: #2563eb; defined once and reused via var(--primary-color) everywhere, including reactive updates via JavaScript at runtime — unlike Sass variables, which are compiled away and frozen at build time." },
+            { "icon": "🧩", "title": ":has() — The Parent Selector", "text": "card:has(img) selects a .card only if it contains an img element. For over 20 years CSS had no way to style a parent based on its children; :has() finally closes that gap without JavaScript." },
+            { "icon": "🌈", "title": "color-mix() Function", "text": "color-mix(in srgb, blue 70%, white) blends colors directly in CSS — no more maintaining a separate hardcoded palette of every tint and shade you might need." },
+            { "icon": "📐", "title": "clamp() for Fluid Typography", "text": "font-size: clamp(1rem, 2vw + 0.5rem, 2.5rem); scales text fluidly between a minimum and maximum, replacing a pile of font-size media query breakpoints with one line." },
+            { "icon": "🎬", "title": "Scroll-Driven Animations", "text": "animation-timeline: scroll(); ties an animation's progress directly to scroll position, natively — a parallax or reveal-on-scroll effect that used to require a JS library like AOS or GSAP ScrollTrigger." },
+            { "icon": "🧱", "title": "Subgrid", "text": "grid-template-columns: subgrid; lets a nested grid item align its own rows/columns to its parent grid's tracks — solving the long-standing pain of nested cards not lining up with the outer grid." },
+            { "icon": "🖼️", "title": "aspect-ratio Property", "text": "aspect-ratio: 16 / 9; reserves the correct box size for an image or video before it loads, preventing the layout-shift jump that used to require padding-top percentage hacks." }
+          ]
+        }
+      ]
+    },
+
+    {
+      "sectionId": "css-vs-preprocessors",
+      "title": "Do You Still Need Sass in 2026?",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "This is a genuinely different answer than it would have been in 2019. Sass became popular because vanilla CSS had no variables, no nesting, and no mixins. Native CSS now has <strong>custom properties</strong> (variables), and nesting shipped natively in all major browsers in 2023. A lot of what teams reached for Sass to get is now just... CSS."
+        },
+        {
+          "type": "comparisonTable",
+          "headers": ["Feature", "Sass Provides", "Native CSS (2026)"],
+          "rows": [
+            ["Variables", "$primary-color: blue;", "--primary-color: blue; via var()"],
+            ["Nesting", "Always supported", "Supported natively since 2023 in all evergreen browsers"],
+            ["Mixins/functions", "@mixin, reusable logic", "Only partially — color-mix(), clamp() cover common cases"],
+            ["Loops (@each, @for)", "Full support for generating repetitive rules", "Not available — this remains Sass's real advantage"],
+            ["Runtime updates", "Compiled away — frozen at build time", "Custom properties update live via JS, even per-element"]
+          ]
+        },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "My honest take: for a small to mid-size project, I'd skip adding a Sass build step in 2026 purely for variables and nesting — native CSS covers that now, and one less build tool is one less thing to configure and maintain. Where Sass still earns its place is generating large sets of repetitive utility classes with <code>@each</code> loops across a big design system, which native CSS genuinely can't do yet."
+        }
+      ]
+    },
+
+    {
+      "sectionId": "first-stylesheet",
+      "title": "Writing Your First Stylesheet",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "CSS reaches an HTML page in one of three ways: an external <code>.css</code> file linked via <code>&lt;link&gt;</code> (the standard, maintainable approach), a <code>&lt;style&gt;</code> block inside the HTML <code>&lt;head&gt;</code>, or inline via the <code>style</code> attribute on a single element. For anything beyond a one-off test, external stylesheets are the only one worth using in real projects — they're cacheable by the browser and keep structure and presentation separated."
+        },
+        {
+          "type": "codeBox",
+          "lang": "🎨 CSS",
+          "label": "styles.css",
+          "lines": [
+            "body {",
+            "  font-family: system-ui, sans-serif;",
+            "  margin: 0;",
+            "  background-color: #f8fafc;",
+            "}",
+            "",
+            ".hero-title {",
+            "  color: #1e293b;",
+            "  font-size: clamp(1.75rem, 4vw, 3rem);",
+            "  text-align: center;",
+            "}"
+          ]
+        },
+        {
+          "type": "outputBox",
+          "lines": ["Renders as a centered heading, sized fluidly between roughly 28px and 48px depending on viewport width."]
+        },
+        {
+          "type": "subHeading",
+          "text": "Practice This Code — Live Editor"
+        },
+        {
+          "type": "liveEditor",
+          "initialCode": ".hero-title {\n  color: #1e293b;\n  font-size: clamp(1.75rem, 4vw, 3rem);\n  text-align: center;\n}\n\n/* Try changing the color or clamp() values and see the title update */"
+        }
+      ]
+    },
+
+    {
+      "sectionId": "mistakes-heading",
+      "title": "Bugs You'll Hit in Your First Week With CSS",
+      "blocks": [
+        {
+          "type": "bulletList",
+          "items": [
+            { "strong": "Margin collapsing between stacked elements", "text": " — two vertically adjacent block elements with margin-bottom: 20px and margin-top: 20px don't add up to 40px of gap; adjacent vertical margins collapse into a single 20px gap (the larger of the two). This trips up nearly everyone the first time they measure the actual rendered spacing and it doesn't match their math." },
+            { "strong": "\"display: none vs visibility: hidden\" confusion", "text": " — display: none removes the element from layout entirely, as if it doesn't exist; visibility: hidden keeps its space reserved but makes it invisible. Using the wrong one is a very common cause of \"my layout shifted when I hid this element\" bugs." },
+            { "strong": "Percentage heights not working", "text": " — height: 50% on a child does nothing unless the parent has an explicit height set. Percentage heights resolve against the parent's computed height, and if the parent's height is itself auto (sized by its content), there's nothing concrete to take 50% of." },
+            { "strong": "z-index doing nothing", "text": " — z-index only has an effect on elements with a position value other than static (relative, absolute, fixed, or sticky). Setting z-index: 999 on a statically positioned element is silently ignored by the browser." },
+            { "strong": "Forgetting the universal box-sizing reset", "text": " — without box-sizing: border-box applied globally, every width calculation involving padding or border needs manual mental math, which is exactly the trap covered in the box model section above." }
+          ]
+        }
+      ]
+    },
+
+    {
+      "sectionId": "where-css-used",
+      "title": "Where CSS Skill Actually Shows Up on the Job",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "At most product companies — think mid-size D2C brands, fintech dashboards, SaaS admin panels — CSS isn't a separate role anymore; it's assumed baseline knowledge for any frontend developer. What differentiates a junior from a senior frontend dev in interviews at these companies is rarely \"do you know Flexbox\" and almost always <strong>can you debug a live layout bug you've never seen before</strong> — reading computed styles in DevTools, understanding why a specificity conflict is winning, spotting a stray margin collapse."
+        },
+        {
+          "type": "bulletList",
+          "items": [
+            { "strong": "🖥️ Product & SaaS Dashboards", "text": " — dense data tables, responsive charts, and form-heavy admin panels live or die on disciplined CSS architecture (BEM naming, utility classes, or CSS Modules) that scales across a large, multi-developer codebase without specificity wars." },
+            { "strong": "🛍️ E-commerce & D2C Storefronts", "text": " — product grids, filter sidebars, and checkout flows need pixel-precise, fast-loading CSS since even small layout-shift regressions measurably hurt conversion rates tracked via Core Web Vitals (CLS specifically)." },
+            { "strong": "📧 Email Template Development", "text": " — a genuinely different, much harder discipline: email clients (Outlook especially) support only a small, inconsistent subset of CSS, so email developers still write table-based layouts with inline styles, closer to how the web looked in 2005." },
+            { "strong": "🎨 Design Systems & Component Libraries", "text": " — teams building shared UI libraries (used across dozens of internal apps) invest heavily in CSS custom properties and design tokens so a single brand-color change propagates everywhere without touching component code." }
+          ]
+        }
+      ]
+    },
+
+    {
+      "sectionId": "interview-questions",
+      "title": "CSS Interview Questions That Actually Get Asked",
+      "blocks": [
+        {
+          "type": "interviewQA",
+          "items": [
+            {
+              "q": "Q1. Explain the CSS box model.",
+              "a": "Every element is a rectangular box composed of, from the inside out: content (the actual text/image), padding (space inside the border), border, and margin (space outside the border, between this element and its neighbors). By default, width/height apply only to the content box; box-sizing: border-box changes this so width/height include padding and border, which is why most projects apply it globally via a reset.",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q2. How is CSS specificity calculated?",
+              "a": "Specificity is a three-part score (ID count, class/attribute/pseudo-class count, element/pseudo-element count), compared left to right without ever adding across columns. An ID selector always outweighs any number of class selectors, and any number of class selectors always outweighs any number of element selectors. Inline styles and !important sit outside this system entirely, above it.",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q3. What's the difference between Flexbox and Grid?",
+              "a": "Flexbox is one-dimensional — it arranges items along a single row or column and is ideal for content-driven layouts like navbars or button groups. Grid is two-dimensional, letting you define explicit row and column tracks simultaneously, which makes it the better fit for full page layouts and structured galleries where alignment across both axes matters.",
+              "tag": "Frequently Asked"
+            },
+            {
+              "q": "Q4. What is margin collapsing?",
+              "a": "When two block-level elements are stacked vertically, their adjacent top/bottom margins don't add together — they collapse into a single margin equal to the larger of the two values. It only applies to vertical margins of block elements in normal flow, not horizontal margins, and it doesn't happen if the elements are flex or grid items.",
+              "tag": "Common Trap"
+            },
+            {
+              "q": "Q5. What's the difference between relative, absolute, fixed, and sticky positioning?",
+              "a": "relative positions an element offset from its own normal position while still occupying its original space in the layout. absolute removes it from normal flow entirely and positions it relative to its nearest positioned ancestor (or the viewport if none exists). fixed positions it relative to the viewport and it stays put during scrolling. sticky behaves like relative until a scroll threshold is crossed, then switches to behaving like fixed within its containing block.",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q6. What are pseudo-classes and pseudo-elements, and how do they differ?",
+              "a": "A pseudo-class (single colon, :hover, :nth-child(2)) selects an element based on a state or position that isn't reflected in the DOM tree directly. A pseudo-element (double colon, ::before, ::after) creates or targets a sub-part of an element that doesn't exist as its own DOM node, most commonly used to inject decorative content or icons without adding extra HTML markup.",
+              "tag": "Frequently Asked"
+            },
+            {
+              "q": "Q7. Why doesn't z-index work on some elements?",
+              "a": "z-index only takes effect on elements that have a position value other than the default static — relative, absolute, fixed, or sticky. Applying z-index to a statically positioned element is silently ignored by the browser, which is one of the most commonly hit 'why isn't this working' bugs for people newer to CSS.",
+              "tag": "Common Trap"
+            },
+            {
+              "q": "Q8. What are CSS custom properties, and how do they differ from Sass variables?",
+              "a": "Custom properties (--name: value;, accessed via var(--name)) are native, live CSS values the browser resolves at render time — they respect the cascade and inheritance, can be scoped to specific elements, and can be updated dynamically via JavaScript. Sass variables ($name: value;) are purely a build-time text substitution — once compiled, they're frozen into static values with no runtime flexibility.",
+              "tag": "Frequently Asked"
+            }
+          ]
+        }
+      ]
+    },
+
+    {
+      "sectionId": "practice-questions",
+      "title": "Test Yourself",
+      "blocks": [
+        {
+          "type": "practiceQuestions",
+          "items": [
+            {
+              "q": "1. Given .card { color: blue; } and #hero .card { color: red; }, which color wins and why?",
+              "a": "Red wins. The first selector has specificity (0,1,0) — one class. The second has (1,1,0) — one ID plus one class. Comparing left to right, column A (ID count) already decides it: 1 beats 0, so the ID-containing rule wins regardless of source order or how many classes the other rule has.",
+              "difficulty": "Easy"
+            },
+            {
+              "q": "2. Two stacked <p> elements have margin-bottom: 30px and margin-top: 10px respectively. How much vertical gap actually appears between them?",
+              "a": "30px, not 40px. Adjacent vertical margins on block elements in normal flow collapse into a single margin equal to the larger of the two values, rather than summing.",
+              "difficulty": "Medium"
+            },
+            {
+              "q": "3. A child element has height: 50%; but appears to have zero height on the page. What's the most likely cause?",
+              "a": "The parent element almost certainly has no explicit height set (it's height: auto, sized by its content). Percentage height values resolve against the parent's computed height — if the parent has no defined height, there's nothing for the percentage to be calculated against, so the browser treats it as if no height were set at all.",
+              "difficulty": "Medium"
+            },
+            {
+              "q": "4. Why might display: grid with grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)) sometimes leave unexpected empty gaps at the end of a row, and how would you fix it?",
+              "a": "This usually isn't actually a bug — auto-fit collapses empty tracks to 0 width when there aren't enough items to fill a row, which can look like a gap in some visual layouts (particularly with background colors on the grid container itself). Swapping auto-fit for auto-fill keeps empty tracks reserved instead of collapsing them, which is the fix if reserved empty space is actually the desired look; otherwise auto-fit's behavior is usually correct.",
+              "difficulty": "Hard"
+            },
+            {
+              "q": "5. What's the difference between em and rem units, and why do many teams prefer rem for font sizing?",
+              "a": "em is relative to the font-size of its own parent element, which means it compounds — nested elements with em-based font sizes multiply against each other, making sizes hard to predict. rem is always relative to the root <html> element's font-size, so it stays predictable and consistent no matter how deeply an element is nested, which is why it's generally preferred for font sizing in larger codebases.",
+              "difficulty": "Medium"
+            }
+          ]
+        }
+      ]
+    },
+
+    {
+      "sectionId": "conclusion-heading",
+      "title": "Where This Actually Leaves You",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "CSS has a reputation for being \"not real programming,\" usually from people who've never had to debug a specificity conflict across a 200-component design system at 11pm before a release. The cascade, the box model, and the sizing algorithm behind Flexbox and Grid are genuinely deterministic systems — once you understand the rules, \"CSS is being weird\" mostly stops happening, because it was never being weird. It was following its rules exactly; you just hadn't learned them yet."
+        },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "The fastest way to actually internalize the cascade and specificity is to break something on purpose: take the specificity example in this article, open your browser's DevTools, and watch the computed styles panel show you exactly which rule won and why, struck-through rules and all. That one habit will teach you more in twenty minutes than another article's worth of theory."
+        }
+      ]
+    }
+
+  ],
+
+  "faq": {
+    "sectionId": "faq-heading",
+    "title": "Frequently Asked Questions (FAQ)",
+    "items": [
+      {
+        "q": "Is CSS a programming language?",
+        "a": "Not in the traditional sense — CSS has no loops, variables in the classic imperative sense, or general computation (though custom properties and functions like calc() blur this a little). It's more accurately described as a declarative styling language: you describe the desired end state, and the browser's rendering engine figures out how to achieve it, rather than you writing step-by-step instructions."
+      },
+      {
+        "q": "Do I need to learn Sass or Tailwind, or is plain CSS enough in 2026?",
+        "a": "Plain, modern CSS is genuinely capable enough for most projects now that nesting and custom properties are native. Tailwind's real value isn't features CSS lacks — it's a utility-class workflow and design-system consistency that many teams find speeds up development, which is a workflow preference rather than a technical necessity. Learning solid vanilla CSS fundamentals first makes both Sass and Tailwind far easier to pick up later."
+      },
+      {
+        "q": "Why does my CSS file not seem to load at all, even though the styles worked in a <style> block?",
+        "a": "The most common cause is an incorrect path in the <link> tag's href, or forgetting the rel=\"stylesheet\" attribute entirely. Open the browser's Network tab in DevTools — if the .css file shows a 404, the path is wrong relative to where the HTML file actually lives on disk."
+      },
+      {
+        "q": "Is CSS Grid replacing Flexbox in 2026?",
+        "a": "No — they coexist by design and are frequently used together in the same layout (a Grid-based page skeleton with Flexbox used inside individual grid items to align their internal content). Grid didn't replace Flexbox any more than Flexbox replaced floats; each solves a different layout shape."
+      }
+    ]
+  },
+
+  "nav": {
+    "prev": { "label": "← Previous", "path": "/css/css-home/" },
+    "next": { "label": "Next: CSS Selectors In Depth →", "path": "/css/css-intro/" }
+  },
+
+  "sidebar": {
+    "quickFacts": [
+      { "dt": "Proposed by", "dd": "Håkon Wium Lie" },
+      { "dt": "First Recommendation", "dd": "December 1996" },
+      { "dt": "Maintained by", "dd": "W3C CSS Working Group" },
+      { "dt": "Type", "dd": "Declarative Styling Language" },
+      { "dt": "Structure", "dd": "Modular specifications (Levels, not versions)" },
+      { "dt": "Key 2023-2026 Additions", "dd": "Nesting, :has(), Container Queries" }
+    ],
+    "tags": ["Cascade","Specificity","Box Model","Flexbox","Grid","Custom Properties","Container Queries","BEM","Responsive Design","Media Queries",":has()","clamp()"]
+  },
+
+  "seriesLinking": {
+    "note": "This page should link forward to a dedicated 'CSS Selectors In Depth' page (this article only covers specificity scoring, not the full selector syntax — combinators, attribute selectors, :nth-child patterns deserve their own page) and to a 'Responsive Design & Media Queries' page, since Container Queries are introduced here but media query breakpoint strategy is a big enough topic to need separate treatment. Avoid reusing the Python series' 'ecosystem/package manager' framing (pip/venv) or the C++ series' compilation-pipeline framing here — CSS's defining beginner confusion is the cascade/specificity model, not a build pipeline, so the anchor concept for this series should stay distinct."
+  }
+}

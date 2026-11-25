@@ -1,0 +1,870 @@
+{
+  "meta": {
+    "title": "C Keywords | Complete List of Reserved Words in C Programming 2026 | Tech Sustainify",
+    "description": "Complete guide to C keywords for beginners in 2026. Learn all 32 standard C keywords plus C99, C11, and C23 additions, grouped by category with meaning, syntax, and real code examples for every keyword.",
+    "keywords": "c keywords, keywords in c, reserved words in c, c programming keywords list, c99 keywords, c11 keywords, c23 keywords, data type keywords c, storage class keywords, control flow keywords c, keywords vs identifiers, list of keywords in c language",
+    "author": "Tech Sustainify",
+    "canonical": "https://techsustainify.com/c/c-keywords/",
+    "ogTitle": "C Keywords | Complete List of Reserved Words in C Programming 2026 | Tech Sustainify",
+    "ogDescription": "Every C keyword explained — data types, storage classes, control flow, loops, jump statements, derived types, and qualifiers — with syntax and examples for each.",
+    "ogUrl": "https://techsustainify.com/c/c-keywords/",
+    "ogSiteName": "Tech Sustainify",
+    "twitterReadingTime": "23 minutes",
+    "twitterLevel": "Beginner",
+    "schemaDatePublished": "2024-01-10",
+    "schemaDateModified": "2026-03-22",
+    "schemaProficiencyLevel": "Beginner",
+    "schemaWordCount": 8000
+  },
+
+  "breadcrumbs": [
+    { "position": 1, "name": "Home",       "path": "/" },
+    { "position": 2, "name": "C Tutorial", "path": "/c/c-home/" },
+    { "position": 3, "name": "C Keywords" }
+  ],
+
+  "articleHeader": {
+    "badge": "🔑 C Keywords",
+    "title": "Keywords in C Programming Language",
+    "subtitle": "Every reserved word in C explained — grouped by category, with meaning, syntax, and working examples — plus the newer keywords added by C99, C11, and C23."
+  },
+
+  "infoCards": [
+    { "icon": "📅", "label": "Last Updated", "isTime": true, "dateTime": "2026-03-22", "value": "March 2026" },
+    { "icon": "⏱️", "label": "Read Time",    "value": "23 min" },
+    { "icon": "🎯", "label": "Level",         "value": "Beginner" }
+  ],
+
+  "sections": [
+
+    {
+      "sectionId": "what-are-keywords",
+      "title": "What are Keywords in C?",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "A <strong>keyword</strong> is a word that has been permanently reserved by the C language itself, carrying a fixed, non-negotiable meaning that the compiler recognises the instant it sees it. Words like <code>int</code>, <code>if</code>, <code>while</code>, and <code>return</code> are not suggestions or conventions — they are part of C's grammar, defined by the ISO C standard, and every conforming compiler must treat them identically."
+        },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "Because keywords already carry meaning to the compiler, they can <strong>never</strong> be used as identifiers — you cannot name a variable <code>int</code>, a function <code>return</code>, or a struct <code>for</code>. Attempting to do so produces an immediate syntax error, because the compiler has no way to tell whether you mean the reserved word or a name you invented."
+        },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "The original ANSI C standard (C89/C90) defined exactly <strong>32 keywords</strong> — a remarkably small vocabulary compared to most modern languages. This minimalism is intentional: C's designers believed a small, orthogonal set of reserved words, combined with a rich standard library of ordinary functions, was more powerful and more predictable than baking dozens of special-purpose words into the language itself. Later standards — C99, C11, C17, and C23 — have added a handful of new keywords, but the philosophy of a small core vocabulary has remained largely intact for over 50 years."
+        },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "This chapter walks through every keyword C offers, grouped by what it actually does, so that instead of memorising an unordered list of 32+ words, you build a mental map: 'these five words describe data types, these four control storage, these six manage control flow' — and so on. That map is what turns a list of reserved words into genuine understanding."
+        }
+      ]
+    },
+
+    {
+      "sectionId": "keywords-vs-identifiers",
+      "title": "Keywords vs. Identifiers — The Core Distinction",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "Beginners often blur the line between keywords and identifiers because both are simply 'words' that appear in source code. The distinction, however, is absolute from the compiler's point of view."
+        },
+        {
+          "type": "comparisonTable",
+          "headers": ["Aspect", "Keyword", "Identifier"],
+          "rows": [
+            ["Definition", "Reserved word with fixed meaning defined by the C standard", "Name chosen by the programmer for a variable, function, etc."],
+            ["Who defines it", "The C language specification (ISO/IEC 9899)", "The programmer, following naming rules"],
+            ["Can it be reused?", "❌ Never — always reserved", "✅ Any name not already in use in that scope"],
+            ["Case sensitivity", "Always lowercase in standard C (e.g. int, not Int)", "Case-sensitive; Total and total are different"],
+            ["Examples", "int, if, return, struct, while", "totalMarks, calculateArea, studentCount"],
+            ["Total count", "32 in C89; more added by later standards", "Unlimited — as many as your program needs"]
+          ]
+        },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "A useful mental test: if you removed every keyword from the C language, you would have no grammar left — no way to declare a type, branch a condition, or loop. If you removed every identifier, you would still have a valid (if useless) grammar. Keywords are the skeleton of the language; identifiers are the flesh you add to describe your own program's data and logic."
+        }
+      ]
+    },
+
+    {
+      "sectionId": "keyword-categories",
+      "title": "The 32 Standard C Keywords — Grouped by Purpose",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Rather than memorising an alphabetical list, it is far more useful to understand C's keywords in eight functional groups. Each group answers a different question about your program."
+        },
+        {
+          "type": "featureCards",
+          "items": [
+            { "icon": "🔢", "title": "Data Type Keywords (5)", "text": "int, char, float, double, void — declare what kind of value a variable, function return, or parameter represents. These are the most frequently used keywords in any C program." },
+            { "icon": "📏", "title": "Type Modifier Keywords (4)", "text": "short, long, signed, unsigned — adjust the size or sign behaviour of a base data type, letting you fine-tune memory usage and value range." },
+            { "icon": "💾", "title": "Storage Class Keywords (4)", "text": "auto, register, static, extern — control a variable's lifetime (how long it exists), scope (where it is visible), and storage location (stack, register, or static memory)." },
+            { "icon": "🔀", "title": "Control Flow Keywords (5)", "text": "if, else, switch, case, default — direct which block of statements actually executes based on a condition, forming the backbone of decision-making logic." },
+            { "icon": "🔁", "title": "Looping Keywords (3)", "text": "for, while, do — repeat a block of statements either a fixed number of times or until a condition becomes false, avoiding repetitive manual code." },
+            { "icon": "↪️", "title": "Jump Keywords (4)", "text": "break, continue, goto, return — alter the normal top-to-bottom, sequential flow of a program, jumping out of loops, skipping iterations, or exiting functions early." },
+            { "icon": "🏗️", "title": "Derived Type Keywords (4)", "text": "struct, union, enum, typedef — let you build your own composite or aliased data types out of C's built-in ones, essential for modelling real-world data." },
+            { "icon": "🛡️", "title": "Qualifier & Utility Keywords (3)", "text": "const, volatile, sizeof — const and volatile qualify how a variable can be accessed or changed; sizeof is a compile-time operator that reports the size, in bytes, of a type or variable." }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "5 + 4 + 4 + 5 + 3 + 4 + 4 + 3 = <strong>32 keywords</strong> — exactly matching the ANSI C89 standard. Every one of these words will appear repeatedly across your entire C learning journey, so the goal is not to memorise the count, but to recognise instantly which category any keyword belongs to when you see it in real code."
+        }
+      ]
+    },
+
+    {
+      "sectionId": "full-keyword-table",
+      "title": "Complete List of C Keywords — Reference Table",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Use this table as a quick reference while reading real C programs. Every keyword from the original ANSI C standard is listed with its category and a one-line description of its purpose."
+        },
+        {
+          "type": "comparisonTable",
+          "headers": ["Keyword", "Category", "Purpose in One Line"],
+          "rows": [
+            ["auto", "Storage Class", "Default storage class for local variables (rarely written explicitly)"],
+            ["break", "Jump", "Exits a loop or switch statement immediately"],
+            ["case", "Control Flow", "Defines a branch inside a switch statement"],
+            ["char", "Data Type", "Declares a single character (1 byte) variable"],
+            ["const", "Qualifier", "Marks a variable's value as unmodifiable after initialisation"],
+            ["continue", "Jump", "Skips the rest of the current loop iteration"],
+            ["default", "Control Flow", "The fallback branch in a switch statement when no case matches"],
+            ["do", "Loop", "Begins a do-while loop that runs at least once"],
+            ["double", "Data Type", "Declares a double-precision floating-point variable"],
+            ["else", "Control Flow", "Defines the alternative branch of an if statement"],
+            ["enum", "Derived Type", "Defines a set of named integer constants"],
+            ["extern", "Storage Class", "Declares a variable or function defined in another file"],
+            ["float", "Data Type", "Declares a single-precision floating-point variable"],
+            ["for", "Loop", "Begins a counter-controlled loop"],
+            ["goto", "Jump", "Jumps unconditionally to a labelled statement"],
+            ["if", "Control Flow", "Begins a conditional branch"],
+            ["int", "Data Type", "Declares an integer variable"],
+            ["long", "Type Modifier", "Extends the size/range of int or double"],
+            ["register", "Storage Class", "Suggests storing a variable in a CPU register for speed"],
+            ["return", "Jump", "Exits a function, optionally sending back a value"],
+            ["short", "Type Modifier", "Reduces the size/range of int"],
+            ["signed", "Type Modifier", "Explicitly allows negative and positive values"],
+            ["sizeof", "Utility", "Returns the size in bytes of a type or variable at compile time"],
+            ["static", "Storage Class", "Preserves a variable's value between function calls / limits linkage"],
+            ["struct", "Derived Type", "Groups different data types together under one name"],
+            ["switch", "Control Flow", "Selects one of many code blocks to execute"],
+            ["typedef", "Derived Type", "Creates a new name (alias) for an existing type"],
+            ["union", "Derived Type", "Groups different data types sharing the same memory location"],
+            ["unsigned", "Type Modifier", "Restricts a variable to zero and positive values only"],
+            ["void", "Data Type", "Represents 'no value' — used for functions that return nothing"],
+            ["volatile", "Qualifier", "Tells the compiler a variable may change unexpectedly (e.g. hardware)"],
+            ["while", "Loop", "Begins a condition-controlled loop"]
+          ]
+        }
+      ]
+    },
+
+    {
+      "sectionId": "data-type-keywords",
+      "title": "Data Type Keywords in Detail",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "Data type keywords are the most frequently typed words in any C program, since every single variable, function parameter, and return value needs one. C provides five basic type keywords, each representing a fundamentally different kind of data at the hardware level."
+        },
+        { "type": "subHeading", "text": "int — Whole Numbers" },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "<code>int</code> declares a variable that holds a whole number, positive or negative, with no decimal component. On most modern systems it occupies 4 bytes, giving a range of roughly -2.1 billion to +2.1 billion. It is by far the most commonly used data type keyword in C — counters, indexes, and general-purpose whole numbers almost always use <code>int</code>."
+        },
+        { "type": "subHeading", "text": "char — Single Characters" },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "<code>char</code> declares a variable holding a single character, stored internally as a small integer (1 byte) representing that character's position in the ASCII table. <code>char grade = 'A';</code> actually stores the number 65 in memory — C treats characters and small integers almost interchangeably, a detail that surprises many beginners the first time they see it."
+        },
+        { "type": "subHeading", "text": "float and double — Decimal Numbers" },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "<code>float</code> (4 bytes, roughly 6-7 significant digits of precision) and <code>double</code> (8 bytes, roughly 15-16 significant digits) both store numbers with a decimal point, using the IEEE-754 floating-point standard. <code>double</code> is the default choice for most calculations requiring accuracy — scientific, financial, or engineering code almost always prefers it over <code>float</code> unless memory is extremely constrained, as on small embedded devices."
+        },
+        { "type": "subHeading", "text": "void — The Absence of a Type" },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "<code>void</code> is unusual among data type keywords because it represents the deliberate <strong>absence</strong> of a value. It appears in three distinct contexts: as a function's return type (<code>void printMessage(void)</code> — returns nothing), as a function's parameter list (meaning it accepts no arguments), and as a generic pointer type (<code>void *ptr</code> — a pointer that can point to any data type, commonly returned by <code>malloc()</code>)."
+        },
+        {
+          "type": "codeBox",
+          "lang": "🖥️ C",
+          "label": "data_type_keywords.c",
+          "lines": [
+            "#include <stdio.h>",
+            "",
+            "void printBanner(void) {          // void: no return value, no parameters",
+            "    printf(\"=== Report ===\\n\");",
+            "}",
+            "",
+            "int main() {",
+            "    int   totalStudents = 42;      // int: whole number",
+            "    char  grade = 'A';             // char: single character",
+            "    float averageMarks = 78.5f;    // float: single-precision decimal",
+            "    double preciseGPA = 3.8724561; // double: high-precision decimal",
+            "",
+            "    printBanner();",
+            "    printf(\"Students: %d | Grade: %c | Avg: %.1f | GPA: %lf\\n\",",
+            "           totalStudents, grade, averageMarks, preciseGPA);",
+            "    return 0;",
+            "}"
+          ]
+        }
+      ]
+    },
+
+    {
+      "sectionId": "modifier-keywords",
+      "title": "Type Modifier Keywords in Detail",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "Type modifiers attach to a base data type keyword to fine-tune its size or the range of values it can represent. They never appear alone — <code>long</code> by itself is meaningless without an implied or explicit <code>int</code>."
+        },
+        {
+          "type": "bulletList",
+          "items": [
+            { "strong": "short", "text": " — Reduces the storage size of int, typically to 2 bytes, giving a smaller range (-32,768 to 32,767) but saving memory. Written as short int or simply short." },
+            { "strong": "long", "text": " — Increases the storage size, typically to 8 bytes for long int on 64-bit systems, allowing much larger whole numbers. long long int (C99+) guarantees at least 8 bytes on every platform." },
+            { "strong": "signed", "text": " — Explicitly allows both negative and positive values. This is actually the default behaviour for int, so signed int and int are usually identical — the keyword exists mainly for clarity or for use with char, whose default signedness is implementation-defined." },
+            { "strong": "unsigned", "text": " — Restricts a variable to zero and positive values only, effectively doubling the maximum positive value it can hold by not reserving a bit for the sign. Commonly used for sizes, counts, and array indices that can never legitimately be negative." }
+          ]
+        },
+        {
+          "type": "comparisonTable",
+          "headers": ["Type", "Typical Size", "Typical Range"],
+          "rows": [
+            ["short int", "2 bytes", "-32,768 to 32,767"],
+            ["int", "4 bytes", "-2,147,483,648 to 2,147,483,647"],
+            ["long int", "4 or 8 bytes", "At least -2,147,483,648 to 2,147,483,647"],
+            ["long long int", "8 bytes", "About -9.2 quintillion to 9.2 quintillion"],
+            ["unsigned int", "4 bytes", "0 to 4,294,967,295"],
+            ["unsigned char", "1 byte", "0 to 255"]
+          ]
+        }
+      ]
+    },
+
+    {
+      "sectionId": "storage-class-keywords",
+      "title": "Storage Class Keywords in Detail",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "Storage class keywords answer three questions about a variable that have nothing to do with its data type: <strong>how long does it live</strong> (lifetime), <strong>where can it be seen from</strong> (scope), and <strong>where is it physically stored</strong> (memory location)."
+        },
+        { "type": "subHeading", "text": "auto — The Invisible Default" },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "Every local variable you declare inside a function is <code>auto</code> by default, whether or not you write the keyword. <code>int x = 5;</code> inside a function is identical to <code>auto int x = 5;</code>. Because it is the automatic default, this keyword is almost never written explicitly in modern C code — most programmers go years without typing it even once."
+        },
+        { "type": "subHeading", "text": "register — A Hint for Speed" },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "<code>register</code> suggests to the compiler that a variable will be accessed very frequently and should, if possible, be kept in a fast CPU register rather than regular memory. Modern optimising compilers are far better at making this decision than programmers are, so <code>register</code> is now largely a historical curiosity — most style guides discourage using it in new code, though it remains legal syntax."
+        },
+        { "type": "subHeading", "text": "static — Persistence and Privacy" },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "<code>static</code> has two distinct effects depending on where it is used. Inside a function, a <code>static</code> local variable retains its value between successive calls to that function, instead of being reset each time. At file scope (outside any function), <code>static</code> restricts a global variable or function's visibility to only that source file, preventing other files in a multi-file project from accessing it — a simple but powerful form of encapsulation in C."
+        },
+        { "type": "subHeading", "text": "extern — Sharing Across Files" },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "<code>extern</code> declares that a variable or function is defined in a different source file, letting multiple .c files in the same project share a single global variable without each file re-creating its own copy. It is a declaration, not a definition — the actual storage is allocated exactly once, in whichever file omits the <code>extern</code> keyword."
+        },
+        {
+          "type": "codeBox",
+          "lang": "🖥️ C",
+          "label": "static_example.c",
+          "lines": [
+            "#include <stdio.h>",
+            "",
+            "void countCalls(void) {",
+            "    static int calls = 0;   // initialised only ONCE, ever",
+            "    calls++;",
+            "    printf(\"This function has been called %d time(s)\\n\", calls);",
+            "}",
+            "",
+            "int main() {",
+            "    countCalls();   // Output: called 1 time(s)",
+            "    countCalls();   // Output: called 2 time(s)",
+            "    countCalls();   // Output: called 3 time(s)",
+            "    return 0;",
+            "}"
+          ]
+        }
+      ]
+    },
+
+    {
+      "sectionId": "control-flow-keywords",
+      "title": "Control Flow Keywords in Detail",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "Control flow keywords let a program make decisions — executing one block of code instead of another, based on whether a condition is true or false at run time."
+        },
+        {
+          "type": "bulletList",
+          "items": [
+            { "strong": "if", "text": " — Executes a block of statements only when its condition (in parentheses) evaluates to a non-zero (true) value." },
+            { "strong": "else", "text": " — Provides an alternative block that runs only when the preceding if's condition was false. Can be chained as else if for multiple conditions." },
+            { "strong": "switch", "text": " — Evaluates a single expression once and compares it against several possible constant values, jumping directly to the matching branch — often more readable than a long chain of else if statements." },
+            { "strong": "case", "text": " — Defines one specific value to compare against inside a switch block. Each case is typically followed by a break to prevent execution from 'falling through' into the next case." },
+            { "strong": "default", "text": " — The fallback branch inside a switch that runs when none of the case values match the switch expression — functionally similar to a final else." }
+          ]
+        },
+        {
+          "type": "codeBox",
+          "lang": "🖥️ C",
+          "label": "switch_example.c",
+          "lines": [
+            "#include <stdio.h>",
+            "",
+            "int main() {",
+            "    int day = 3;",
+            "",
+            "    switch (day) {",
+            "        case 1:",
+            "            printf(\"Monday\\n\");",
+            "            break;",
+            "        case 2:",
+            "            printf(\"Tuesday\\n\");",
+            "            break;",
+            "        case 3:",
+            "            printf(\"Wednesday\\n\");",
+            "            break;",
+            "        default:",
+            "            printf(\"Another day\\n\");",
+            "    }",
+            "    return 0;",
+            "}"
+          ]
+        }
+      ]
+    },
+
+    {
+      "sectionId": "loop-keywords",
+      "title": "Looping Keywords in Detail",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "Looping keywords let a block of code repeat automatically instead of being written out manually many times. C offers exactly three, each suited to a slightly different situation."
+        },
+        {
+          "type": "bulletList",
+          "items": [
+            { "strong": "for", "text": " — Best when you know (or can calculate) how many times to repeat in advance. Combines initialisation, condition, and update into one compact line: for (int i = 0; i < 10; i++)." },
+            { "strong": "while", "text": " — Best when repetition depends purely on a condition, and the number of iterations is not known ahead of time. The condition is checked before each iteration, so the loop body may run zero times." },
+            { "strong": "do", "text": " — Paired with while to form a do-while loop, where the condition is checked after each iteration. This guarantees the loop body runs at least once, regardless of the condition's initial value — useful for menu systems and input validation." }
+          ]
+        },
+        {
+          "type": "codeBox",
+          "lang": "🖥️ C",
+          "label": "loop_keywords.c",
+          "lines": [
+            "#include <stdio.h>",
+            "",
+            "int main() {",
+            "    // for: fixed number of repetitions",
+            "    for (int i = 1; i <= 3; i++) {",
+            "        printf(\"for loop: %d\\n\", i);",
+            "    }",
+            "",
+            "    // while: condition-controlled, may run zero times",
+            "    int count = 0;",
+            "    while (count < 3) {",
+            "        printf(\"while loop: %d\\n\", count);",
+            "        count++;",
+            "    }",
+            "",
+            "    // do-while: guaranteed to run at least once",
+            "    int input;",
+            "    do {",
+            "        input = 5;   // simulate a value received",
+            "        printf(\"do-while loop ran with input %d\\n\", input);",
+            "    } while (input != 5);",
+            "",
+            "    return 0;",
+            "}"
+          ]
+        }
+      ]
+    },
+
+    {
+      "sectionId": "jump-keywords",
+      "title": "Jump Keywords in Detail",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "Jump keywords deliberately break the normal top-to-bottom, sequential flow of a program, transferring control somewhere else entirely."
+        },
+        {
+          "type": "bulletList",
+          "items": [
+            { "strong": "break", "text": " — Immediately exits the nearest enclosing loop or switch statement, skipping any remaining iterations or cases entirely." },
+            { "strong": "continue", "text": " — Skips the rest of the current loop iteration and jumps straight to the next one, without exiting the loop entirely." },
+            { "strong": "return", "text": " — Exits the current function immediately, optionally sending a value back to whatever called it. Every function with a non-void return type must use return to send back its result." },
+            { "strong": "goto", "text": " — Jumps unconditionally to a labelled statement anywhere else in the same function. Almost universally discouraged in modern C style, since overuse produces famously hard-to-follow 'spaghetti code' — its main legitimate remaining use is breaking out of deeply nested loops in a single step." }
+          ]
+        },
+        {
+          "type": "codeBox",
+          "lang": "🖥️ C",
+          "label": "jump_keywords.c",
+          "lines": [
+            "#include <stdio.h>",
+            "",
+            "int main() {",
+            "    for (int i = 1; i <= 5; i++) {",
+            "        if (i == 4) break;       // stop the loop entirely at 4",
+            "        if (i == 2) continue;    // skip printing 2, keep looping",
+            "        printf(\"i = %d\\n\", i);",
+            "    }",
+            "    return 0;   // exits main(), sends 0 back to the OS",
+            "}"
+          ]
+        }
+      ]
+    },
+
+    {
+      "sectionId": "derived-type-keywords",
+      "title": "Derived Type Keywords in Detail",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "Derived type keywords let you build entirely new data types out of C's built-in ones — essential once your programs need to model real-world entities that a single <code>int</code> or <code>float</code> cannot represent alone."
+        },
+        {
+          "type": "bulletList",
+          "items": [
+            { "strong": "struct", "text": " — Groups several different (or same) data types together under a single name, with each member occupying its own separate memory. Used to model composite records like a Student with a name, age, and GPA." },
+            { "strong": "union", "text": " — Similar syntax to struct, but every member shares the exact same memory location, so only one member holds a valid value at any given moment. Used to save memory when a variable might hold one of several possible types." },
+            { "strong": "enum", "text": " — Defines a set of named integer constants, making code far more readable than 'magic numbers'. enum Day { MON, TUE, WED } assigns MON=0, TUE=1, WED=2 automatically." },
+            { "strong": "typedef", "text": " — Creates an alternate, often shorter or clearer, name for an existing type. typedef unsigned long ulong; lets you write ulong instead of unsigned long everywhere afterward." }
+          ]
+        },
+        {
+          "type": "codeBox",
+          "lang": "🖥️ C",
+          "label": "derived_types.c",
+          "lines": [
+            "#include <stdio.h>",
+            "",
+            "struct Student {          // struct: grouped, separate memory",
+            "    char name[30];",
+            "    int  age;",
+            "    float gpa;",
+            "};",
+            "",
+            "enum Day { MON, TUE, WED, THU, FRI };   // enum: named constants",
+            "",
+            "typedef struct Student StudentRecord;   // typedef: shorter alias",
+            "",
+            "int main() {",
+            "    StudentRecord s1 = {\"Aarav\", 20, 8.7};",
+            "    enum Day today = WED;",
+            "",
+            "    printf(\"%s is %d years old, GPA %.1f\\n\", s1.name, s1.age, s1.gpa);",
+            "    printf(\"Day number: %d\\n\", today);   // prints 2 (WED)",
+            "    return 0;",
+            "}"
+          ]
+        }
+      ]
+    },
+
+    {
+      "sectionId": "qualifier-keywords",
+      "title": "Qualifier & Utility Keywords in Detail",
+      "blocks": [
+        {
+          "type": "bulletList",
+          "items": [
+            { "strong": "const", "text": " — Marks a variable as read-only after initialisation. const float PI = 3.14159; will cause a compile-time error if any later code attempts to modify PI. Widely used for values that must never change and for function parameters that should not be accidentally altered." },
+            { "strong": "volatile", "text": " — Tells the compiler that a variable's value may change unexpectedly, outside the normal flow of the program — for example, a hardware register updated by an interrupt, or a variable shared with another thread. This prevents the compiler from applying aggressive optimisations that assume the value cannot change on its own." },
+            { "strong": "sizeof", "text": " — A compile-time operator (not a function, despite the parentheses in typical usage) that returns the size, in bytes, of a type or variable. sizeof(int) commonly returns 4; sizeof(myArray) returns the total bytes an entire array occupies, useful for calculating element counts." }
+          ]
+        },
+        {
+          "type": "codeBox",
+          "lang": "🖥️ C",
+          "label": "qualifiers.c",
+          "lines": [
+            "#include <stdio.h>",
+            "",
+            "int main() {",
+            "    const float PI = 3.14159;   // cannot be reassigned later",
+            "    int numbers[5] = {10, 20, 30, 40, 50};",
+            "",
+            "    printf(\"Size of int: %zu bytes\\n\", sizeof(int));",
+            "    printf(\"Size of array: %zu bytes\\n\", sizeof(numbers));",
+            "    printf(\"Element count: %zu\\n\", sizeof(numbers) / sizeof(numbers[0]));",
+            "",
+            "    // PI = 3.14;   // Would cause a compile-time error",
+            "    printf(\"PI = %.5f\\n\", PI);",
+            "    return 0;",
+            "}"
+          ]
+        }
+      ]
+    },
+
+    {
+      "sectionId": "flowchart-heading",
+      "title": "How the Compiler Recognises a Keyword — Flowchart",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "It helps to see exactly what happens inside the compiler the moment it encounters a word like <code>int</code> or <code>total</code> in your source code. The flowchart below traces the decision process the lexical analyser (tokeniser) follows for every single word it reads."
+        },
+        {
+          "type": "flowchart",
+          "nodes": [
+            { "id": "1", "label": "📝 Read Next Word",         "sublabel": "Lexical analyser scans source code", "type": "start" },
+            { "id": "2", "label": "🔍 Extract Character Sequence", "sublabel": "Stops at whitespace / symbol",   "type": "process" },
+            { "id": "3", "label": "📖 Check Reserved Word Table", "sublabel": "Compare against the 32+ C keywords", "type": "decision" },
+            { "id": "4", "label": "🔑 Classify as KEYWORD",     "sublabel": "e.g. int, if, return",             "type": "process" },
+            { "id": "5", "label": "🏷️ Classify as IDENTIFIER",  "sublabel": "e.g. total, calculateArea",        "type": "process" },
+            { "id": "6", "label": "➡️ Pass Token to Parser",    "sublabel": "Builds the syntax tree",            "type": "data" },
+            { "id": "7", "label": "✅ Continue Compilation",     "sublabel": "Next stage: syntax & semantic check", "type": "end" }
+          ],
+          "edges": [
+            { "from": "1", "to": "2", "label": "scans characters" },
+            { "from": "2", "to": "3", "label": "word extracted" },
+            { "from": "3", "to": "4", "label": "match found" },
+            { "from": "3", "to": "5", "label": "no match found" },
+            { "from": "4", "to": "6", "label": "tagged as keyword" },
+            { "from": "5", "to": "6", "label": "tagged as identifier" },
+            { "from": "6", "to": "7", "label": "token stream continues" }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "This lookup happens for <strong>every single word</strong> in your program, thousands of times even in a modest-sized file, and it happens in roughly constant time thanks to how compilers implement their reserved-word table (commonly a hash table or perfect hash function). This is also exactly why you get an immediate, unambiguous error the moment you try to use a keyword as a variable name — the lexical analyser tags it as a keyword before the parser ever gets a chance to treat it as anything else."
+        }
+      ]
+    },
+
+    {
+      "sectionId": "keyword-standards-history",
+      "title": "Keywords Added by Later C Standards",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "The original 32 keywords have not stayed frozen forever. As C evolved through ISO standards, new keywords were carefully added — always as new reserved words that did not previously exist, so that old, valid C89 programs would continue to compile without modification."
+        },
+        {
+          "type": "comparisonTable",
+          "headers": ["Standard", "Year", "New Keywords Added", "Purpose"],
+          "rows": [
+            ["C89 / C90", "1989", "(original 32)", "First ANSI/ISO standardisation of the language"],
+            ["C99", "1999", "inline, restrict, _Bool, _Complex, _Imaginary", "Performance hints, boolean type, complex number support"],
+            ["C11", "2011", "_Alignas, _Alignof, _Atomic, _Generic, _Noreturn, _Static_assert, _Thread_local", "Memory alignment, atomics for threading, generic macros, compile-time assertions"],
+            ["C17 / C18", "2018", "(none)", "Bug fixes and clarifications only — no new keywords"],
+            ["C23", "2023/2024", "nullptr, true, false, bool, typeof, typeof_unqual, constexpr, thread_local, static_assert, alignas, alignof", "Modernised syntax; many _Xxx keywords gained cleaner lowercase aliases"]
+          ]
+        },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "Notice the pattern in C11: new keywords started with an underscore and capital letter (<code>_Bool</code>, <code>_Atomic</code>) specifically to avoid breaking any older program that might have already used a plain word like <code>bool</code> as a variable name. C23 then cleaned this up by introducing proper lowercase versions (<code>bool</code>, <code>true</code>, <code>false</code>) as genuine keywords, now that enough time had passed for the underscore versions to become the safe, established convention first."
+        }
+      ]
+    },
+
+    {
+      "sectionId": "reserved-identifiers",
+      "title": "Keywords vs. Reserved Identifiers — A Common Confusion",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "Beyond the formal keyword list, C also reserves certain <strong>patterns</strong> of identifiers for the compiler and standard library's own internal use — even though these are not, strictly speaking, keywords. Understanding this distinction prevents a category of subtle bugs that a beginner's compiler may not even warn about."
+        },
+        {
+          "type": "bulletList",
+          "items": [
+            { "strong": "Names starting with two underscores (__temp)", "text": " — Reserved everywhere for the compiler and standard library. Never define your own identifiers this way." },
+            { "strong": "Names starting with underscore + capital letter (_Temp)", "text": " — Also reserved everywhere, following the same pattern C11 used for its new keywords." },
+            { "strong": "Names starting with a single underscore at file scope (_temp)", "text": " — Reserved for the implementation (compiler/library) when declared outside any function." },
+            { "strong": "Standard library function names (printf, malloc, strlen)", "text": " — Not keywords (you technically can redeclare them, though compilers will warn heavily), but redefining them is almost always a serious mistake that breaks your program in confusing ways." }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "The safe, professional rule of thumb: <strong>never start your own identifiers with an underscore</strong>. This single habit avoids every one of these reserved-pattern collisions without needing to memorise the exact rules."
+        }
+      ]
+    },
+
+    {
+      "sectionId": "common-mistakes",
+      "title": "Common Mistakes Beginners Make With Keywords",
+      "blocks": [
+        {
+          "type": "prosConsTable",
+          "pros": [
+            { "title": "Learning Keywords by Category", "text": "Grouping keywords by purpose (data types, loops, jumps) instead of memorising an alphabetical list makes recall far faster and more intuitive during actual coding." },
+            { "title": "Reading Compiler Errors Carefully", "text": "Errors like 'expected identifier before int' are the compiler directly telling you a keyword was used where a name was expected — learning to read these messages precisely saves debugging time." },
+            { "title": "Using const Deliberately", "text": "Marking values that should never change with const catches accidental modification bugs at compile time instead of during testing." },
+            { "title": "Avoiding Leading Underscores", "text": "Never starting identifiers with an underscore sidesteps the entire reserved-identifier confusion described above." }
+          ],
+          "cons": [
+            { "title": "Using a Keyword as a Variable Name", "text": "Attempting int float = 10; fails because float is reserved — a surprisingly common mistake among absolute beginners still learning the list." },
+            { "title": "Forgetting break in a switch Statement", "text": "Omitting break after a case causes execution to 'fall through' into the next case unintentionally — one of the most notorious C beginner bugs." },
+            { "title": "Overusing goto", "text": "New programmers sometimes discover goto and overuse it for flow control that if/else or loops would express far more clearly and safely." },
+            { "title": "Confusing signed char and unsigned char", "text": "Assuming char is always signed (or always unsigned) is implementation-defined behaviour — code that depends on this assumption can behave differently across compilers." },
+            { "title": "Treating register as Guaranteed", "text": "Believing register forces a variable into a CPU register — in reality it is only a hint the compiler is free to ignore entirely." }
+          ]
+        }
+      ]
+    },
+
+    {
+      "sectionId": "interview-questions",
+      "title": "C Keywords — Interview Questions",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "Interviewers frequently use keyword-based questions to quickly separate candidates who have written real C programs from those who have only skimmed the syntax."
+        },
+        {
+          "type": "interviewQA",
+          "items": [
+            {
+              "q": "Q1. How many keywords does standard ANSI C (C89) define?",
+              "a": "ANSI C89/C90 defines exactly 32 reserved keywords. Later standards added more: C99 added 5 (inline, restrict, _Bool, _Complex, _Imaginary), C11 added 7 more (including _Atomic and _Thread_local), and C23 introduced modern lowercase equivalents like bool, true, false, and nullptr.",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q2. Can a keyword ever be used as a variable name in C? Why or why not?",
+              "a": "No. Keywords are permanently reserved by the C language specification and carry fixed grammatical meaning to the compiler. Using one as a variable name, such as int for = 5;, produces an immediate compile-time syntax error because the compiler cannot distinguish your intended use from the keyword's built-in meaning.",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q3. What is the difference between const and volatile?",
+              "a": "const tells the compiler a variable's value must not change after initialisation, enabling certain optimisations and compile-time checks against accidental modification. volatile tells the compiler the opposite in spirit — that a variable's value might change at any moment due to factors outside the program's own code, such as hardware or another thread — so the compiler must not optimise away repeated reads of it. The two are not opposites of each other; a variable can even be both const and volatile simultaneously, such as a read-only hardware status register.",
+              "tag": "Frequently Asked"
+            },
+            {
+              "q": "Q4. What happens if you omit break in a switch-case block?",
+              "a": "Execution 'falls through' into the next case block and continues executing its statements too, regardless of whether that case's value matches. This fall-through behaviour is intentional in C's design (occasionally useful for grouping multiple cases together), but forgetting break unintentionally is one of the most common and hardest-to-spot beginner bugs in switch statements.",
+              "tag": "Common Trap"
+            },
+            {
+              "q": "Q5. What is the difference between static used inside a function versus outside all functions?",
+              "a": "Inside a function, static gives a local variable a lifetime spanning the entire program (its value persists between calls) while keeping its scope limited to that function. Outside any function, at file scope, static instead restricts a global variable's or function's linkage, making it invisible to other source files in a multi-file project — a form of file-level privacy.",
+              "tag": "Frequently Asked"
+            },
+            {
+              "q": "Q6. Why is the register keyword considered largely obsolete in modern C?",
+              "a": "register only suggests to the compiler that a variable should, if possible, be stored in a CPU register for faster access — the compiler is free to ignore this suggestion entirely. Modern optimising compilers analyse variable usage patterns far more effectively than manual hints ever could, making register mostly a historical relic that adds no practical benefit in contemporary code.",
+              "tag": "Current Affairs"
+            },
+            {
+              "q": "Q7. What is the purpose of the typedef keyword?",
+              "a": "typedef creates a new, alternative name (an alias) for an already existing type, without creating an actual new type. It is commonly used to simplify complex declarations, such as giving a long struct type a shorter name, or to improve portability by defining a type like typedef unsigned long size_type; that can be easily changed in one place if needed.",
+              "tag": "Frequently Asked"
+            },
+            {
+              "q": "Q8. What is the difference between struct and union keywords?",
+              "a": "struct allocates separate, independent memory for every member it contains — all members exist and hold valid values simultaneously. union allocates only enough memory for its single largest member, and all members share that same memory location, meaning only one member can hold a meaningful value at any given time. Structs model 'has-a-and-a-and-a' relationships; unions model 'is-one-of-these' relationships.",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q9. Why does C11 use underscore-prefixed keywords like _Bool and _Atomic instead of plain bool and atomic?",
+              "a": "To preserve backward compatibility with existing C89/C99 programs that might already use words like bool as ordinary variable or macro names. By reserving the underscore-capitalised form instead, C11 avoided instantly breaking any legacy codebase. Standard headers like stdbool.h then provided a plain bool macro mapping to _Bool for convenience, and C23 eventually made bool a true keyword once the ecosystem had adjusted.",
+              "tag": "Current Affairs"
+            },
+            {
+              "q": "Q10. Is sizeof a function or an operator in C?",
+              "a": "sizeof is a compile-time operator, not a function — even though it is commonly written with parentheses like a function call. It is evaluated by the compiler itself, not at runtime, and returns the size in bytes of its operand's type as a value of type size_t. Because it operates at compile time, sizeof(int) never actually executes any code when the program runs.",
+              "tag": "Common Trap"
+            }
+          ]
+        }
+      ]
+    },
+
+    {
+      "sectionId": "practice-questions",
+      "title": "Practice Questions — Test Your Understanding",
+      "blocks": [
+        {
+          "type": "practiceQuestions",
+          "items": [
+            {
+              "q": "1. Classify each of the following as a keyword or an identifier: return, myReturn, unsigned, unsignedValue, break.",
+              "a": "Keywords: return, unsigned, break — all reserved words with fixed compiler meaning. Identifiers: myReturn, unsignedValue — both are user-chosen names that merely contain a keyword as a substring, which is completely legal since the full word does not exactly match any reserved keyword.",
+              "difficulty": "Easy"
+            },
+            {
+              "q": "2. Why does the statement int static = 10; fail to compile?",
+              "a": "static is a reserved storage class keyword in C, so it cannot be used as a variable identifier. The compiler will report a syntax error, typically something like 'expected identifier before static', because it expects a name at that position in the declaration, not another keyword.",
+              "difficulty": "Easy"
+            },
+            {
+              "q": "3. What is the output of a for loop with an empty condition, such as for (int i = 0; ; i++) { if (i == 3) break; printf(\"%d\\n\", i); }?",
+              "a": "It prints 0, 1, 2. An empty condition in a for loop is treated as always true, creating what would otherwise be an infinite loop — but the break keyword inside the if statement explicitly exits the loop once i reaches 3, preventing it from running forever.",
+              "difficulty": "Medium"
+            },
+            {
+              "q": "4. Explain why enum Color { RED, GREEN, BLUE }; makes BLUE equal to 2 without writing any numbers explicitly.",
+              "a": "By default, an enum keyword assigns sequential integer values starting at 0 to each name listed, in the order they appear. RED becomes 0, GREEN becomes 1, and BLUE becomes 2 automatically. You can override this by explicitly assigning a starting value, such as enum Color { RED = 5, GREEN, BLUE };, which would make GREEN 6 and BLUE 7, continuing the sequence from the explicit value.",
+              "difficulty": "Medium"
+            },
+            {
+              "q": "5. What is wrong with this declaration: const int total; total = 50;?",
+              "a": "const requires the variable to be given its value at the point of declaration, since it can never be assigned to afterward. Writing const int total; without initialising it, then attempting total = 50; on a later line, produces a compile-time error, because that second line is exactly the kind of post-declaration modification const exists to forbid.",
+              "difficulty": "Medium"
+            },
+            {
+              "q": "6. What is the difference between while (count < 10) and do { ... } while (count < 10); in terms of guaranteed execution?",
+              "a": "A while loop checks its condition before the very first iteration, so its body may execute zero times if the condition is already false. A do-while loop checks its condition after each iteration, guaranteeing the body executes at least once regardless of the condition's initial value — useful when you need to perform an action first and only decide afterward whether to repeat it.",
+              "difficulty": "Medium"
+            },
+            {
+              "q": "7. Why might a professional C codebase almost never contain the goto keyword, even though it is perfectly legal?",
+              "a": "goto allows arbitrary, unstructured jumps to any labelled point in the same function, which can make control flow extremely difficult to trace and reason about as a program grows — a problem historically nicknamed 'spaghetti code'. Structured alternatives like if/else, loops, and functions almost always express the same logic more clearly and safely, so professional style guides typically reserve goto for rare, well-justified cases like breaking out of deeply nested loops in one step.",
+              "difficulty": "Hard"
+            },
+            {
+              "q": "8. A beginner writes unsigned int age = -5; and it compiles without error. What actually happens, and why is this dangerous?",
+              "a": "Because age is unsigned, it cannot represent negative numbers. The value -5 is silently converted using modular arithmetic (wrapping around), producing a very large positive number close to the maximum value an unsigned int can hold (roughly 4,294,967,291) instead of raising an error. This is dangerous because the program compiles and runs without any warning, yet produces a value the programmer almost certainly never intended — a classic source of subtle, hard-to-trace bugs.",
+              "difficulty": "Hard"
+            }
+          ]
+        }
+      ]
+    },
+
+    {
+      "sectionId": "conclusion-heading",
+      "title": "Conclusion — Mastering C's Reserved Vocabulary",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "Keywords are the smallest possible unit of meaning C's designers considered important enough to bake directly into the language, rather than leaving to ordinary library functions. That restraint — only 32 words in the original standard, growing modestly over five decades — is precisely why C has remained learnable, stable, and portable across generations of hardware and compilers."
+        },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "You now know every standard C keyword, organised into eight functional groups: data types, type modifiers, storage classes, control flow, loops, jumps, derived types, and qualifiers. You have also seen how the compiler itself distinguishes a keyword from an identifier during tokenisation, and how later standards — C99, C11, and C23 — carefully extended this vocabulary without breaking decades of existing code."
+        },
+        {
+          "type": "comparisonTable",
+          "headers": ["Category", "Keyword Count", "Most Used In Practice"],
+          "rows": [
+            ["Data Types", "5", "Every single variable and function declaration"],
+            ["Type Modifiers", "4", "Fine-tuning memory usage and value ranges"],
+            ["Storage Classes", "4", "Controlling variable lifetime and visibility"],
+            ["Control Flow", "5", "Decision-making logic (if/switch)"],
+            ["Loops", "3", "Repetition (for/while/do)"],
+            ["Jumps", "4", "Early exits and function returns"],
+            ["Derived Types", "4", "Modelling real-world composite data"],
+            ["Qualifiers/Utility", "3", "Read-only values and compile-time size queries"]
+          ]
+        },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "The natural next step is <strong>C Identifiers and Variables</strong>, where the naming rules briefly introduced here get their full, dedicated treatment, followed by <strong>C Data Types</strong>, which expands deeply on the five data type keywords covered in this chapter. Keep this keyword reference close — you will return to it constantly as you read and write real C code."
+        },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "<strong>32 words. That's all it takes to describe C's entire grammar.</strong> Everything else you will ever write in C — however large or complex — is built from combinations of these reserved words and your own identifiers. 🔑"
+        }
+      ]
+    }
+
+  ],
+
+  "faq": {
+    "sectionId": "faq-heading",
+    "title": "Frequently Asked Questions (FAQ)",
+    "items": [
+      {
+        "q": "Are C keywords case-sensitive?",
+        "a": "Yes. All standard C keywords are written in lowercase, such as int and while. Writing Int or WHILE does not match any reserved keyword — the compiler treats these as ordinary (and, in this case, invalid or unusual) identifiers instead, since C is case-sensitive throughout the entire language, not just for keywords."
+      },
+      {
+        "q": "Do I need to memorise all 32 C keywords before writing programs?",
+        "a": "No. Focus first on the dozen or so you will use constantly from your very first program — int, char, float, if, else, for, while, return, void, const — and let the remaining, rarer ones (like register, volatile, or goto) sink in naturally as you encounter them in real code over the following weeks."
+      },
+      {
+        "q": "Why does C have so few keywords compared to languages like Java or C#?",
+        "a": "C's original design philosophy deliberately favoured a small, minimal core language paired with a rich standard library of ordinary functions, rather than baking many specialised features directly into the language's grammar. This kept the compiler simpler, the language more predictable, and the resulting programs highly portable across very different hardware — a philosophy still visible in C's small keyword count today."
+      },
+      {
+        "q": "Can new keywords be added to C in future standards?",
+        "a": "Yes, and this has already happened multiple times — C99, C11, and C23 each added new reserved words. The ISO C standards committee follows a careful process, often introducing new keywords first as underscore-prefixed reserved identifiers (avoiding breaking existing code), and later promoting cleaner lowercase versions once older programs have had time to adapt, as happened with bool and _Bool."
+      },
+      {
+        "q": "What is the difference between a keyword and a predefined macro like NULL?",
+        "a": "A keyword, such as int or return, is part of the C language's core grammar and is recognised directly by the compiler itself. NULL, by contrast, is a macro defined inside standard headers like stddef.h or stdio.h — it is not part of the language grammar at all, but ordinary text that the preprocessor substitutes before compilation even begins, typically expanding to something like ((void*)0)."
+      },
+      {
+        "q": "Is it possible to accidentally redefine a keyword using #define?",
+        "a": "No — the C preprocessor and compiler both treat keywords as untouchable by macro redefinition in standard, conforming compilers; attempting something like #define int short is technically undefined behaviour and modern compilers will typically reject it or issue a strong warning. This protection exists precisely because allowing keywords to be silently redefined would make every C program's meaning unpredictable."
+      }
+    ]
+  },
+
+  "nav": {
+    "prev": { "label": "← C Compiler",     "path": "/c/c-compiler/" },
+    "next": { "label": "Next: C Identifiers →", "path": "/c/c-identifier/" }
+  },
+
+  "sidebar": {
+    "quickFacts": [
+      { "dt": "Original keyword count", "dd": "32 (C89 standard)" },
+      { "dt": "C99 additions",          "dd": "5 keywords" },
+      { "dt": "C11 additions",          "dd": "7 keywords" },
+      { "dt": "C23 additions",          "dd": "11 keywords / aliases" },
+      { "dt": "Case sensitivity",       "dd": "Always lowercase" },
+      { "dt": "Can be redefined?",      "dd": "❌ Never" }
+    ],
+    "tags": ["Keywords","Reserved Words","Data Types","Storage Class","Control Flow","Loops","Jump Statements","struct","union","enum","typedef","const","volatile","sizeof","C99","C11","C23"]
+  }
+}

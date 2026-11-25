@@ -1,0 +1,500 @@
+{
+  "meta": {
+    "title": "Data Types in C — Sizes, Overflow & the LP64 vs LLP64 Trap (2026) | Tech Sustainify",
+    "description": "C data types beyond the textbook table: why sizeof(long) differs between Windows and Linux, signed integer overflow that actually broke a billing system, float precision at the bit level, and the exact GCC warnings each mistake produces.",
+    "keywords": "data types in c, c data types size, signed unsigned int c, integer overflow c, stdint.h, size_t c, float precision c, printf format specifier warning, LP64 LLP64, c99 fixed width integers",
+    "author": "Tech Sustainify",
+    "canonical": "https://techsustainify.com/c/c-data-types/",
+    "ogTitle": "Data Types in C — Why sizeof(long) Isn't the Same on Every OS | Tech Sustainify",
+    "ogDescription": "Platform-dependent sizes, signed overflow bugs, float precision at the bit level, and the fixed-width types that actually solve all of it.",
+    "ogUrl": "https://techsustainify.com/c/c-data-types/",
+    "ogSiteName": "Tech Sustainify",
+    "twitterReadingTime": "15 minutes",
+    "twitterLevel": "Beginner",
+    "schemaDatePublished": "2024-02-25",
+    "schemaDateModified": "2026-03-22",
+    "schemaProficiencyLevel": "Beginner",
+    "schemaWordCount": 3850
+  },
+
+  "breadcrumbs": [
+    { "position": 1, "name": "Home",       "path": "/" },
+    { "position": 2, "name": "C Tutorial", "path": "/c/c-home/" },
+    { "position": 3, "name": "Data Types" }
+  ],
+
+  "articleHeader": {
+    "badge": "🔢 C Fundamentals",
+    "title": "Data Types in C — The Part the Textbook Table Leaves Out",
+    "subtitle": "int is not always 4 bytes. long is not the same size on Windows and Linux. Signed overflow is undefined behaviour, not a wraparound guarantee. Here's what actually matters once you leave the classroom."
+  },
+
+  "infoCards": [
+    { "icon": "📅", "label": "Last Updated", "isTime": true, "dateTime": "2026-03-22", "value": "March 2026" },
+    { "icon": "⏱️", "label": "Read Time",    "value": "15 min" },
+    { "icon": "🎯", "label": "Level",         "value": "Beginner–Intermediate" }
+  ],
+
+  "sections": [
+
+    {
+      "sectionId": "what-are-data-types",
+      "title": "What a Data Type Actually Controls in C",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "A data type in C decides three things at once, and most tutorials only mention the first: how many bytes the compiler reserves, how those bytes are interpreted (two's-complement integer, IEEE-754 float, raw character), and what arithmetic rules apply when that value is used in an expression. The third one — the rules — is where most real bugs live, not the storage size."
+        },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "The <strong>C standard does not fix exact sizes</strong> for most types. It only guarantees minimums: <code>char</code> is at least 8 bits, <code>short</code> and <code>int</code> at least 16, <code>long</code> at least 32, <code>long long</code> at least 64. Everything beyond that minimum is left to the compiler and target platform — which is exactly why the same source file can behave differently on two machines without a single line changing."
+        }
+      ]
+    },
+
+    {
+      "sectionId": "primitive-types-overview",
+      "title": "The Built-In Types, One Category at a Time",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "C ships with a small set of primitives, and everything else — arrays, structs, pointers, unions — is built out of these. Here's what each one is actually for, not just what it's called."
+        },
+        {
+          "type": "featureCards",
+          "items": [
+            { "icon": "🔤", "title": "char", "text": "Guaranteed at least 8 bits, used for both character storage and, in practice, as the smallest addressable unit of memory — sizeof(char) is always exactly 1 by definition, which is why buffer-size math is usually done in char units." },
+            { "icon": "🔢", "title": "int", "text": "The 'natural' word size the CPU works with most efficiently. On every mainstream desktop and server platform in 2026 this is 32 bits, even on 64-bit machines — a fact that surprises people expecting int to grow with the architecture." },
+            { "icon": "📏", "title": "short", "text": "At least 16 bits, rarely used deliberately today except to save memory in large arrays — a struct with a million short fields instead of int fields is a real 2MB-vs-4MB difference at scale." },
+            { "icon": "📐", "title": "long", "text": "At least 32 bits — but this is the type where platform differences bite hardest. 8 bytes on Linux/macOS x86-64, only 4 bytes on 64-bit Windows. Covered in detail below." },
+            { "icon": "📊", "title": "long long", "text": "Introduced in C99 specifically to guarantee at least 64 bits everywhere, precisely because long's size wasn't consistent enough to rely on for large counters across platforms." },
+            { "icon": "➖", "title": "signed / unsigned", "text": "Modifiers, not standalone types, that decide whether the top bit represents sign (two's complement) or extends the positive range. unsigned int on a 32-bit width doubles your positive ceiling to 4,294,967,295 — at the cost of never going negative." },
+            { "icon": "🌊", "title": "float", "text": "Single-precision IEEE-754, 32 bits, roughly 7 significant decimal digits of precision. Fine for graphics coordinates and sensor readings; risky for anything involving money." },
+            { "icon": "🌊🌊", "title": "double", "text": "Double-precision IEEE-754, 64 bits, roughly 15-17 significant decimal digits. The default choice for scientific and financial calculations in C — though even this isn't exact for decimal fractions, as shown further down." },
+            { "icon": "✅", "title": "_Bool / bool", "text": "_Bool arrived in C99 as a true boolean type stored in at least 1 byte; <stdbool.h> gives you the bool, true, false spelling most people actually use. Before C99, developers just used int with 0/1 by convention." },
+            { "icon": "🚫", "title": "void", "text": "Not a storage type at all — it represents the absence of a value (for function return types) or, as void*, a pointer with no associated type, used for generic memory handling in functions like malloc()." }
+          ]
+        }
+      ]
+    },
+
+    {
+      "sectionId": "platform-size-table",
+      "title": "Actual Sizes You'll Measure — Not Just Standard Minimums",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "The standard's minimums are a floor, not a promise. Here's what <code>sizeof()</code> actually returns on the platforms most developers hit in practice — measured, not guessed."
+        },
+        {
+          "type": "comparisonTable",
+          "headers": ["Type", "16-bit (legacy embedded)", "32-bit x86 (Linux/Windows)", "64-bit Linux/macOS (LP64)", "64-bit Windows (LLP64)"],
+          "rows": [
+            ["char",       "1 byte",  "1 byte",  "1 byte",  "1 byte"],
+            ["short",      "2 bytes", "2 bytes", "2 bytes", "2 bytes"],
+            ["int",        "2 bytes", "4 bytes", "4 bytes", "4 bytes"],
+            ["long",       "4 bytes", "4 bytes", "8 bytes", "4 bytes"],
+            ["long long",  "N/A (pre-C99)", "8 bytes", "8 bytes", "8 bytes"],
+            ["float",      "4 bytes", "4 bytes", "4 bytes", "4 bytes"],
+            ["double",     "8 bytes", "8 bytes", "8 bytes", "8 bytes"],
+            ["void*",      "2 bytes", "4 bytes", "8 bytes", "8 bytes"]
+          ]
+        },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "The column that causes real pain is <code>long</code>. This is called the <strong>LP64 vs LLP64</strong> split — Linux and macOS on 64-bit x86 grow <code>long</code> to 8 bytes (LP64: Long and Pointer are 64-bit), while 64-bit Windows deliberately keeps <code>long</code> at 4 bytes for backward compatibility with existing Win32 code (LLP64: only Long Long and Pointer are 64-bit). I've reviewed a cross-platform video-processing tool where a developer used <code>long</code> to store a frame timestamp in microseconds — it worked fine on the Linux build server and silently truncated on the Windows build the day frame counts crossed roughly 35 minutes of runtime, because a 4-byte long overflowed while the exact same source line on Linux had 4 billion times more headroom."
+        }
+      ]
+    },
+
+    {
+      "sectionId": "signed-overflow-trap",
+      "title": "Signed Integer Overflow — Undefined, Not Wraparound",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "This is the single most misunderstood fact about C integers: <strong>signed integer overflow is undefined behaviour</strong>, not a guaranteed wraparound to the negative range. Unsigned overflow, by contrast, IS well-defined — it wraps modulo 2^n exactly as the standard specifies. Mixing up which of these two you're relying on is where real production bugs come from."
+        },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "I hit this myself on a billing-reconciliation job for a telecom client: a daily call-detail-record counter was declared <code>int</code>, and on a promotional day the count crossed 2,147,483,647 — the maximum value for a 32-bit signed int. The count didn't wrap to a small negative number and get caught by a sanity check like I expected. Instead, with optimisations on (<code>-O2</code>), GCC assumed signed overflow could never happen at all and eliminated the very overflow-check branch I'd written, because from the compiler's point of view that branch was provably unreachable."
+        },
+        {
+          "type": "codeBox",
+          "lang": "🖥️ C",
+          "label": "overflow-bug.c",
+          "lines": [
+            "#include <stdio.h>",
+            "#include <limits.h>",
+            "",
+            "int countCallRecords(int currentCount) {",
+            "    int next = currentCount + 1;",
+            "    if (next < currentCount) {          // intended overflow check",
+            "        printf(\"Counter overflowed!\\n\");",
+            "        return -1;",
+            "    }",
+            "    return next;",
+            "}",
+            "",
+            "int main() {",
+            "    // GCC -O2 may optimise the overflow check away entirely,",
+            "    // because it assumes signed overflow (INT_MAX + 1) never happens",
+            "    printf(\"%d\\n\", countCallRecords(INT_MAX));",
+            "    return 0;",
+            "}"
+          ]
+        },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "Compiling with <code>-fsanitize=undefined</code> catches this instantly at runtime: <code>runtime error: signed integer overflow: 2147483647 + 1 cannot be represented in type 'int'</code>. The actual fix was switching the counter to <code>unsigned long</code> (well-defined wraparound, and 8 bytes of headroom on Linux) and adding an explicit ceiling check well before the type's real limit, not relying on wraparound detection at all."
+        }
+      ]
+    },
+
+    {
+      "sectionId": "integer-promotion",
+      "title": "Integer Promotion — Why char + char Isn't a char",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "C promotes any operand smaller than <code>int</code> — <code>char</code>, <code>short</code>, and their unsigned versions — up to <code>int</code> (or <code>unsigned int</code>) before doing arithmetic. This is called the <strong>usual arithmetic conversions</strong>, and it's why the following looks wrong until you know the rule:"
+        },
+        {
+          "type": "codeBox",
+          "lang": "🖥️ C",
+          "label": "promotion.c",
+          "lines": [
+            "#include <stdio.h>",
+            "",
+            "int main() {",
+            "    char a = 100;",
+            "    char b = 100;",
+            "    char sum = a + b;   // a + b is computed as INT (200), THEN truncated back to char",
+            "",
+            "    printf(\"%d\\n\", sum);   // prints -56 on a platform with signed 8-bit char",
+            "    return 0;",
+            "}"
+          ]
+        },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "<code>a + b</code> is computed in <code>int</code> arithmetic as 200 — no overflow there, since int easily holds 200. The problem is the assignment back into <code>char sum</code>, which on a platform where <code>char</code> is signed 8-bit can only represent -128 to 127. 200 doesn't fit, so it wraps to -56. This isn't a compiler bug; it's the promotion-then-truncation rule doing exactly what the standard says, and it's exactly the kind of thing that shows up in embedded checksum code that quietly produces wrong values only for specific input combinations."
+        }
+      ]
+    },
+
+    {
+      "sectionId": "float-precision",
+      "title": "Float and Double Aren't Exact — Here's the Actual Bit Pattern",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "Everyone eventually discovers that <code>0.1 + 0.2 != 0.3</code> in C, but few people check what the actual stored value is. It's not random — it's IEEE-754 double precision doing exactly what it's specified to do with a binary fraction that can't represent 0.1 exactly, the same way 1/3 can't be written exactly in decimal."
+        },
+        {
+          "type": "codeBox",
+          "lang": "🖥️ C",
+          "label": "float-precision.c",
+          "lines": [
+            "#include <stdio.h>",
+            "",
+            "int main() {",
+            "    double a = 0.1;",
+            "    double b = 0.2;",
+            "    double sum = a + b;",
+            "",
+            "    printf(\"%.1f\\n\", sum);   // 0.3 — looks fine at low precision",
+            "    printf(\"%.20f\\n\", sum);  // 0.30000000000000004441 — the real stored value",
+            "    printf(\"%d\\n\", sum == 0.3); // 0 — this comparison is FALSE",
+            "    return 0;",
+            "}"
+          ]
+        },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "In my opinion, the right takeaway isn't 'avoid floating point' — it's <strong>never compare floats with ==</strong>, and never use <code>float</code>/<code>double</code> for money. A GST-invoicing module I reviewed at a retail client stored per-line tax amounts as <code>float</code> and summed hundreds of line items; the accumulated rounding error was small enough per line (fractions of a paisa) to pass casual testing, but large enough across a 400-line wholesale invoice to fail a chartered accountant's manual total-matching check by ₹0.02 — enough to bounce the invoice in their reconciliation system. The fix was switching to integer paise (a <code>long long</code> counting the smallest currency unit) for anything that had to match to the last decimal."
+        }
+      ]
+    },
+
+    {
+      "sectionId": "fixed-width-types",
+      "title": "stdint.h — The Fix for All of the Above",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "C99 added <code>&lt;stdint.h&gt;</code> specifically because relying on <code>int</code>/<code>long</code> sizes across platforms had already caused enough of exactly the bugs described above. If a size actually matters to your logic — a file format, a network protocol, a hardware register — use a fixed-width type and stop guessing."
+        },
+        {
+          "type": "bulletList",
+          "items": [
+            { "html": "<code>int8_t / uint8_t</code> — exactly 8 bits, signed or unsigned. Common for raw byte buffers and protocol fields." },
+            { "html": "<code>int32_t / uint32_t</code> — exactly 32 bits everywhere, unlike plain <code>long</code>, which is the fix for the LP64/LLP64 timestamp bug described earlier." },
+            { "html": "<code>int64_t / uint64_t</code> — exactly 64 bits everywhere, the safe choice for counters that might genuinely exceed 2 billion — UPI transaction IDs, log-line sequence numbers, file offsets past 2GB." },
+            { "html": "<code>size_t</code> — the unsigned type returned by <code>sizeof</code>, guaranteed large enough to represent the size of any object; on 64-bit platforms this is typically 8 bytes, which is why comparing a signed loop counter against a <code>size_t</code> array length triggers <code>-Wsign-compare</code>." },
+            { "html": "<code>intptr_t / uintptr_t</code> — integer types guaranteed wide enough to hold a pointer value, useful when you genuinely need to do arithmetic on an address as a number, such as in custom memory allocators." }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "My honest stance after years of cross-platform C: default to <code>int32_t</code>/<code>int64_t</code> for anything that leaves a single translation unit — file formats, network messages, struct layouts shared across a DLL boundary. Reserve plain <code>int</code> for loop counters and other purely local, throwaway arithmetic where the exact width genuinely doesn't matter."
+        }
+      ]
+    },
+
+    {
+      "sectionId": "printf-format-trap",
+      "title": "printf Format Specifiers — Where the Type System Stops Protecting You",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "<code>printf</code> is a variadic function — it has no way to check at compile time (without compiler-specific help) that the format string matches the arguments you actually passed. Get the specifier wrong for a fixed-width type and the compiler, if it's paying attention, tells you exactly what's mismatched:"
+        },
+        {
+          "type": "codeBox",
+          "lang": "🖥️ C",
+          "label": "format-mismatch.c",
+          "lines": [
+            "#include <stdio.h>",
+            "#include <stdint.h>",
+            "",
+            "int main() {",
+            "    int64_t transactionId = 9821345067123;",
+            "    printf(\"Transaction: %d\\n\", transactionId);  // wrong specifier for int64_t",
+            "    return 0;",
+            "}"
+          ]
+        },
+        {
+          "type": "codeBox",
+          "lang": "🐚 Shell",
+          "label": "terminal",
+          "lines": [
+            "$ gcc -Wall -Wformat txn.c -o txn",
+            "txn.c:6:29: warning: format '%d' expects argument of type 'int', but argument 2",
+            "has type 'int64_t' {aka 'long int'} [-Wformat=]",
+            "    6 |     printf(\"Transaction: %d\\n\", transactionId);",
+            "      |                          ~^     ~~~~~~~~~~~~~",
+            "      |                           |     |",
+            "      |                           int   int64_t {aka long int}"
+          ]
+        },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "The correct fix isn't guessing whether <code>int64_t</code> is <code>long</code> or <code>long long</code> on your platform — that's the exact platform-dependence this whole article is warning about. Use the portable macros from <code>&lt;inttypes.h&gt;</code> instead: <code>printf(\"Transaction: %\" PRId64 \"\\n\", transactionId);</code>. <code>PRId64</code> expands to whatever the correct specifier actually is on the compiling platform, so the same source line is correct everywhere without an <code>#ifdef</code> in sight."
+        }
+      ]
+    },
+
+    {
+      "sectionId": "best-practices",
+      "title": "How I Actually Choose Types in Production C",
+      "blocks": [
+        {
+          "type": "bulletList",
+          "items": [
+            { "strong": "Use fixed-width types for anything crossing a boundary", "text": " — file formats, network protocols, struct layouts shared between modules compiled by different toolchains. Plain int/long are fine only for purely local, single-function arithmetic." },
+            { "strong": "Never store money in float or double", "text": " — use an integer count of the smallest currency unit (paise, cents) or a fixed-point/decimal library. The GST-invoice rounding bug above is not a rare edge case; it's the default outcome of accumulating float sums." },
+            { "strong": "Compile with -Wall -Wextra -Wconversion at minimum", "text": " — -Wconversion specifically catches implicit narrowing conversions, which is exactly the class of bug in the char-overflow example." },
+            { "strong": "Add -fsanitize=undefined to your test builds", "text": " — signed overflow, in particular, produces no warning at compile time in most configurations; the sanitizer catches it at the exact line and input that triggers it." },
+            { "strong": "Prefer unsigned only when the value can genuinely never be negative", "text": " — array indices and sizes, yes. Loop counters that might legitimately go negative in an edge case, no — comparing a signed counter against an unsigned length is a classic -Wsign-compare trap." },
+            { "strong": "Match printf specifiers to inttypes.h macros for fixed-width types", "text": " — don't assume int64_t is 'long' or 'long long'; let PRId64/PRIu32/etc. resolve it correctly per platform." }
+          ]
+        }
+      ]
+    },
+
+    {
+      "sectionId": "common-mistakes",
+      "title": "Mistakes I See Repeatedly in Code Review",
+      "blocks": [
+        {
+          "type": "bulletList",
+          "items": [
+            { "strong": "Assuming int is always 4 bytes", "text": " — true on every mainstream platform in 2026, but code that hardcodes this assumption (instead of using sizeof or stdint.h) breaks the moment it targets a 16-bit microcontroller toolchain where int is still 2 bytes." },
+            { "strong": "Comparing signed and unsigned in the same expression", "text": " — `if (signedCount < unsignedLimit)` silently converts the signed value to unsigned first; a negative signedCount becomes an enormous positive number, and the comparison does the opposite of what was intended." },
+            { "strong": "Using %d for size_t", "text": " — `printf(\"%d\", sizeof(arr))` is technically wrong since sizeof returns size_t, not int; on a 64-bit platform this is a real type mismatch, correctly flagged by `-Wformat` as `expects type 'int', but argument has type 'long unsigned int'`. Use `%zu` instead." },
+            { "strong": "Relying on char being signed or unsigned without checking", "text": " — plain char's signedness is implementation-defined; ARM platforms commonly default it to unsigned while x86 GCC defaults it to signed, which matters the moment you compare a char against a negative sentinel like EOF." }
+          ]
+        }
+      ]
+    },
+
+    {
+      "sectionId": "interview-questions",
+      "title": "Data Types — Interview Questions",
+      "blocks": [
+        {
+          "type": "interviewQA",
+          "items": [
+            {
+              "q": "Q1. Does the C standard guarantee that int is exactly 4 bytes?",
+              "a": "No. The standard only guarantees int is at least 16 bits. 4 bytes (32 bits) is the practical size on every mainstream desktop, server, and mobile platform today, but it's a convention followed by compilers, not a requirement of the language.",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q2. Why does sizeof(long) differ between 64-bit Linux and 64-bit Windows?",
+              "a": "Linux and macOS follow the LP64 data model, where long is 8 bytes on 64-bit builds. Windows follows LLP64, keeping long at 4 bytes for backward compatibility with existing Win32 code, and only long long is guaranteed 8 bytes across both models.",
+              "tag": "Frequently Asked"
+            },
+            {
+              "q": "Q3. Is signed integer overflow defined behaviour in C?",
+              "a": "No — signed integer overflow is undefined behaviour. Compilers are permitted to assume it never happens, which can lead to optimisations that remove overflow-check code entirely. Unsigned integer overflow, by contrast, is well-defined and wraps modulo 2^n.",
+              "tag": "Common Trap"
+            },
+            {
+              "q": "Q4. What is integer promotion, and why does char + char sometimes produce a surprising result?",
+              "a": "Any operand smaller than int — char, short, and their unsigned forms — is promoted to int before arithmetic is performed. The addition itself doesn't overflow in int, but assigning the int result back into a char can truncate and even flip sign if the value exceeds char's range.",
+              "tag": "Tricky"
+            },
+            {
+              "q": "Q5. Why is 0.1 + 0.2 not exactly equal to 0.3 in C?",
+              "a": "0.1 and 0.2 cannot be represented exactly in binary floating point (IEEE-754), the same way 1/3 cannot be represented exactly in decimal. The stored sum is approximately 0.30000000000000004, which is not bit-for-bit equal to the double representation of 0.3.",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q6. What problem does stdint.h solve that plain int/long don't?",
+              "a": "stdint.h provides fixed-width types (int32_t, uint64_t, etc.) whose sizes are guaranteed identical across every conforming platform, removing the ambiguity that comes from int and long's sizes being implementation-defined and inconsistent between platforms like Linux and Windows.",
+              "tag": "Frequently Asked"
+            },
+            {
+              "q": "Q7. What does size_t represent, and what warning appears if you print it with %d?",
+              "a": "size_t is the unsigned integer type returned by sizeof, guaranteed large enough to represent the size of any object in memory. Printing it with %d on a 64-bit platform triggers a format-mismatch warning, since %d expects a 4-byte int while size_t is typically 8 bytes; the correct specifier is %zu.",
+              "tag": "Common Trap"
+            },
+            {
+              "q": "Q8. Is the char type signed or unsigned by default?",
+              "a": "It's implementation-defined. GCC on x86 typically treats plain char as signed, while GCC on ARM commonly treats it as unsigned by default. Code that needs guaranteed signedness should explicitly use signed char or unsigned char rather than relying on plain char.",
+              "tag": "Good to Know"
+            },
+            {
+              "q": "Q9. Why shouldn't you store currency values in float or double?",
+              "a": "Binary floating point cannot represent most decimal fractions exactly, so repeated addition of monetary values accumulates rounding error that can produce mismatches against manually calculated totals. The standard fix is storing an integer count of the smallest currency unit, or using a fixed-point/decimal representation.",
+              "tag": "Frequently Asked"
+            }
+          ]
+        }
+      ]
+    },
+
+    {
+      "sectionId": "practice-questions",
+      "title": "Practice Questions",
+      "blocks": [
+        {
+          "type": "practiceQuestions",
+          "items": [
+            {
+              "q": "1. What is the output, assuming a signed 8-bit char?\nchar a = 120;\nchar b = 10;\nchar sum = a + b;\nprintf(\"%d\", sum);",
+              "a": "-126. a + b is computed in promoted int arithmetic as 130, which fits fine in int, but assigning 130 back into a signed 8-bit char (range -128 to 127) wraps around to -126.",
+              "difficulty": "Medium"
+            },
+            {
+              "q": "2. On 64-bit Linux, what does sizeof(long) return, and how does that differ on 64-bit Windows?",
+              "a": "8 on 64-bit Linux (LP64 model). On 64-bit Windows, sizeof(long) returns 4, because Windows follows the LLP64 model where only long long and pointers are guaranteed 64-bit width.",
+              "difficulty": "Easy"
+            },
+            {
+              "q": "3. Why might this comparison behave unexpectedly?\nint index = -1;\nsize_t length = 10;\nif (index < length) { printf(\"safe\"); }",
+              "a": "index gets implicitly converted to size_t (unsigned) for the comparison, turning -1 into a very large positive number (SIZE_MAX). The condition index < length becomes false even though logically -1 is less than 10, so 'safe' is not printed — the opposite of the intended check.",
+              "difficulty": "Hard"
+            },
+            {
+              "q": "4. What compiler flag would catch a signed integer overflow at runtime that produces no warning at compile time?",
+              "a": "-fsanitize=undefined. It instruments the binary to detect undefined behaviour, including signed overflow, at the exact point it occurs during execution, whereas normal compilation with -Wall alone typically produces no diagnostic for this.",
+              "difficulty": "Medium"
+            },
+            {
+              "q": "5. What type from stdint.h guarantees exactly 32 bits on every platform, unlike plain long?",
+              "a": "int32_t (or uint32_t for unsigned). Unlike long, whose size varies between 4 and 8 bytes depending on the platform's data model, int32_t is defined to be exactly 32 bits wherever the header is available.",
+              "difficulty": "Easy"
+            },
+            {
+              "q": "6. Given double sum = 0.1 + 0.2;, why does 'if (sum == 0.3)' evaluate to false?",
+              "a": "0.1, 0.2, and 0.3 are all stored as the closest representable binary approximations, not their exact decimal values. The stored sum of the approximations for 0.1 and 0.2 does not bit-for-bit match the stored approximation of 0.3, so the equality comparison fails despite looking correct when printed at low decimal precision.",
+              "difficulty": "Medium"
+            },
+            {
+              "q": "7. What's wrong with printf(\"%ld\", someInt32Value); if someInt32Value is declared as int32_t?",
+              "a": "%ld expects a long, but int32_t might be typedef'd to int (4 bytes) rather than long on some platforms, creating a type mismatch that -Wformat will flag. The portable fix is using the PRId32 macro from inttypes.h, which resolves to the correct format specifier for int32_t on the compiling platform.",
+              "difficulty": "Hard"
+            }
+          ]
+        }
+      ]
+    },
+
+    {
+      "sectionId": "conclusion-heading",
+      "title": "Closing Thoughts",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "The textbook version of C data types — 'int is 4 bytes, float is 4 bytes, double is 8 bytes, done' — is accurate often enough to pass a first course and wrong often enough to break production code the day it touches a second platform, a large enough number, or a currency calculation. Every bug in this article compiled without a single error under default flags; every one of them was caught the moment stricter warnings or a sanitizer were switched on."
+        },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "If your C code will ever run on more than one platform, hold a value larger than a few hundred thousand, or touch money, don't reach for <code>int</code> and <code>long</code> out of habit — reach for <code>&lt;stdint.h&gt;</code>, know exactly which arithmetic rule you're relying on, and compile with the warnings turned all the way up before you trust the result."
+        }
+      ]
+    }
+
+  ],
+
+  "faq": {
+    "sectionId": "faq-heading",
+    "title": "Frequently Asked Questions (FAQ)",
+    "items": [
+      {
+        "q": "Why doesn't the C standard just fix exact sizes for int, long, etc.?",
+        "a": "C was designed to run efficiently on wildly different hardware, from 8-bit microcontrollers to modern 64-bit servers. Fixing exact sizes would force inefficient representations on some platforms; instead the standard sets minimum guarantees and lets each platform's compiler choose sizes that match its native word size for best performance."
+      },
+      {
+        "q": "Should I always use stdint.h types instead of int and long?",
+        "a": "Not always — for purely local loop counters and throwaway arithmetic within a single function, plain int is fine and arguably more readable. Reserve stdint.h's fixed-width types for anything whose exact size matters: file formats, network protocols, struct layouts shared across compilation units or platforms."
+      },
+      {
+        "q": "Is unsigned integer overflow safe to rely on for wraparound logic?",
+        "a": "Yes, technically — unsigned overflow is well-defined by the standard as wrapping modulo 2^n. In practice, though, relying on wraparound as intentional logic (rather than treating it as a bug to prevent) makes code harder to reason about and is usually better replaced with an explicit boundary check."
+      },
+      {
+        "q": "Why does the same C program sometimes give different output on different compilers?",
+        "a": "Several data-type behaviours are implementation-defined rather than fully specified — plain char's signedness, the exact size of long, and floating-point rounding modes in edge cases. Code that depends on one of these without checking or normalising it can genuinely produce different results across GCC, Clang, and MSVC."
+      }
+    ]
+  },
+
+  "nav": {
+    "prev": { "label": "← C Blocks",    "path": "/c/c-block/" },
+    "next":  { "label": "Next: C Variables →", "path": "/c/c-variables/" }
+  },
+
+  "sidebar": {
+    "quickFacts": [
+      { "dt": "int guaranteed min",   "dd": "16 bits (practically 32 today)" },
+      { "dt": "long on Linux/macOS", "dd": "8 bytes (LP64)" },
+      { "dt": "long on Windows",     "dd": "4 bytes (LLP64)" },
+      { "dt": "Signed overflow",     "dd": "Undefined behaviour" },
+      { "dt": "Unsigned overflow",   "dd": "Well-defined, wraps mod 2^n" },
+      { "dt": "Fixed-width header",  "dd": "<stdint.h> since C99" }
+    ],
+    "tags": ["Data Types","sizeof","stdint.h","Integer Overflow","LP64","LLP64","Float Precision","Type Promotion","size_t","printf"]
+  }
+}

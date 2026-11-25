@@ -1,0 +1,465 @@
+{
+  "meta": {
+    "title": "Blocks in C Language — Scope, Shadowing & the C89 vs C99 Trap (2026) | Tech Sustainify",
+    "description": "A block in C isn't just curly braces — it defines scope, lifetime, and a stack frame. Covers block scope rules, variable shadowing, -Wshadow warnings, nested blocks, and the C89/C99 declaration gotcha with real compiler output.",
+    "keywords": "block in c, compound statement c, block scope c, nested block c, variable shadowing c, wshadow gcc, c89 mixed declarations, c99 declare anywhere, stack frame c block, scope rules c",
+    "author": "Tech Sustainify",
+    "canonical": "https://techsustainify.com/c/c-block/",
+    "ogTitle": "Blocks in C — Scope, Shadowing, and Why { } Is Not Just Punctuation | Tech Sustainify",
+    "ogDescription": "How C blocks control scope and stack lifetime, why shadowed variables cause silent bugs, and the exact GCC output that reveals both.",
+    "ogUrl": "https://techsustainify.com/c/c-block/",
+    "ogSiteName": "Tech Sustainify",
+    "twitterReadingTime": "12 minutes",
+    "twitterLevel": "Beginner",
+    "schemaDatePublished": "2024-02-19",
+    "schemaDateModified": "2026-03-20",
+    "schemaProficiencyLevel": "Beginner",
+    "schemaWordCount": 3100
+  },
+
+  "breadcrumbs": [
+    { "position": 1, "name": "Home",       "path": "/" },
+    { "position": 2, "name": "C Tutorial", "path": "/c/c-home/" },
+    { "position": 3, "name": "Blocks" }
+  ],
+
+  "articleHeader": {
+    "badge": "🧱 C Basics",
+    "title": "Blocks in C — What { } Actually Does Beyond Grouping Code",
+    "subtitle": "A block looks like punctuation but behaves like a contract: it decides which variables exist, how long they live, and what shadows what. Most bugs blamed on 'weird C behaviour' trace back to this."
+  },
+
+  "infoCards": [
+    { "icon": "📅", "label": "Last Updated", "isTime": true, "dateTime": "2026-03-20", "value": "March 2026" },
+    { "icon": "⏱️", "label": "Read Time",    "value": "12 min" },
+    { "icon": "🎯", "label": "Level",         "value": "Beginner–Intermediate" }
+  ],
+
+  "sections": [
+
+    {
+      "sectionId": "what-is-a-block",
+      "title": "What Exactly Is a Block?",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "In the C standard's own terminology (ISO/IEC 9899, §6.8.2), a <strong>block</strong> — formally a <em>compound statement</em> — is any sequence of declarations and statements enclosed in <code>{ }</code>. That's the whole definition. It sounds unremarkable until you realise almost everything in C that looks like a 'feature' — function bodies, if/else branches, loop bodies, switch cases — is really just a block attached to some keyword."
+        },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "The reason this matters: a block is the unit the compiler uses to decide <strong>scope</strong> (where a name is visible) and, for automatic variables, <strong>lifetime</strong> (when the memory backing that name actually exists on the stack). Get sloppy about block boundaries and you get bugs that compile cleanly and only show up at runtime — the worst kind."
+        },
+        {
+          "type": "codeBox",
+          "lang": "🖥️ C",
+          "label": "bare-block.c",
+          "lines": [
+            "#include <stdio.h>",
+            "",
+            "int main() {",
+            "    {",
+            "        // A block doesn't need an if, a for, or a function.",
+            "        // This one exists purely to limit the lifetime of 'buffer'.",
+            "        char buffer[4096];",
+            "        fgets(buffer, sizeof(buffer), stdin);",
+            "        printf(\"Read: %s\", buffer);",
+            "    } // 'buffer' is deallocated here — 4KB freed off the stack early",
+            "",
+            "    // more code that doesn't need that 4KB sitting around",
+            "    return 0;",
+            "}"
+          ]
+        },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "That standalone block with no keyword attached to it is legal C and genuinely useful — it's how you scope a large local buffer down to just the lines that need it, instead of letting it occupy stack space for the rest of <code>main()</code>."
+        }
+      ]
+    },
+
+    {
+      "sectionId": "where-blocks-appear",
+      "title": "Every Place a Block Shows Up in C",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Once you start looking for them, blocks are everywhere in C syntax — the language reuses the same { } mechanism instead of inventing separate scoping rules per construct."
+        },
+        {
+          "type": "featureCards",
+          "items": [
+            { "icon": "🏠", "title": "Function Body", "text": "The outermost block of every function. Parameters technically live in a slightly different scope (function-prototype scope) but for practical purposes behave as if declared at the top of this block." },
+            { "icon": "🔀", "title": "if / else Branches", "text": "Each branch of an if/else is its own block if you write { }. Omit the braces for a single statement and C silently treats that one statement as the entire branch — a classic source of dangling-else bugs." },
+            { "icon": "🔁", "title": "for / while / do-while Bodies", "text": "The loop body is a block re-entered on every iteration. Variables declared inside it are destroyed and recreated each pass — relevant if you're timing allocation costs in a hot loop." },
+            { "icon": "🎛️", "title": "switch Statement Body", "text": "The entire switch body is ONE block, not one per case — which is exactly why you can declare a variable in one case and (without extra braces) have the compiler complain it might be used uninitialised in another." },
+            { "icon": "📦", "title": "Standalone Block", "text": "A bare { } with no controlling keyword, used purely to scope variables tightly — common for temporarily needing a large local buffer or a mutex-guarded critical section." },
+            { "icon": "🧬", "title": "Nested Blocks", "text": "Blocks can nest arbitrarily deep. Each nested block can declare a variable with the same name as an outer one — and the inner one wins for as long as you're inside it. This is shadowing, covered below." }
+          ]
+        }
+      ]
+    },
+
+    {
+      "sectionId": "scope-rules-heading",
+      "title": "The Four Scopes C Actually Defines",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "People say 'block scope' as if it's the only kind, but the C standard defines four distinct scopes, and mixing them up is where a surprising number of 'why isn't my variable visible' questions on Stack Overflow come from."
+        },
+        {
+          "type": "comparisonTable",
+          "headers": ["Scope", "Where It Applies", "Visible From", "Typical Lifetime"],
+          "rows": [
+            ["Block scope", "Inside { }", "Point of declaration to the closing }", "Automatic — created/destroyed with each block entry/exit"],
+            ["Function scope", "Labels only (goto targets)", "Entire function, regardless of nesting", "N/A — not a storage lifetime, just visibility"],
+            ["File scope", "Outside all functions", "From declaration point to end of file (or entire file if declared at top)", "Static — exists for the whole program run"],
+            ["Function-prototype scope", "Parameter names in a declaration (not definition)", "Only within the prototype itself", "N/A — parameter names here are cosmetic"]
+          ]
+        },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "The one people forget is function scope for labels. A <code>goto cleanup;</code> can jump to a <code>cleanup:</code> label declared in an outer block or even a sibling block within the same function — labels ignore normal block boundaries entirely, which is exactly why the 'goto for centralised error cleanup' pattern in C works across nested blocks."
+        }
+      ]
+    },
+
+    {
+      "sectionId": "shadowing-trap",
+      "title": "Variable Shadowing — The Bug That Compiles Perfectly",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "I once shipped a bug into a payments-reconciliation tool where an inner block's <code>total</code> silently shadowed an outer <code>total</code> that was supposed to accumulate across the whole function. Nothing failed to compile. Nothing crashed. The function just returned zero every single time, because the outer <code>total</code> never got touched — every addition was happening to a variable that died at the end of the inner block."
+        },
+        {
+          "type": "codeBox",
+          "lang": "🖥️ C",
+          "label": "shadow-bug.c",
+          "lines": [
+            "#include <stdio.h>",
+            "",
+            "int reconcileBatch(int *amounts, int count) {",
+            "    int total = 0;   // meant to accumulate across the whole batch",
+            "",
+            "    for (int i = 0; i < count; i++) {",
+            "        if (amounts[i] > 0) {",
+            "            int total = 0;          // BUG: shadows the outer 'total'",
+            "            total += amounts[i];    // adds to the INNER total, not the outer one",
+            "        }",
+            "    }",
+            "",
+            "    return total;   // always 0 — outer 'total' was never modified",
+            "}"
+          ]
+        },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "This compiles with zero errors under plain <code>gcc reconcile.c -o reconcile</code>. Turn on the one flag that actually catches this and GCC tells you exactly what happened:"
+        },
+        {
+          "type": "codeBox",
+          "lang": "🐚 Shell",
+          "label": "terminal",
+          "lines": [
+            "$ gcc -Wshadow -Wall reconcile.c -o reconcile",
+            "reconcile.c:9:17: warning: declaration of 'total' shadows a previous local [-Wshadow]",
+            "    9 |             int total = 0;",
+            "      |                 ^~~~~",
+            "reconcile.c:5:9: note: shadowed declaration is here",
+            "    5 |     int total = 0;",
+            "      |         ^~~~~"
+          ]
+        },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "In my experience, <code>-Wshadow</code> is one of the highest signal-to-noise warning flags GCC offers and almost nobody enables it by default — it's not part of <code>-Wall</code> or even <code>-Wextra</code>. Any team writing C for financial or safety-critical code should turn it on as a build-blocking error, not a warning. The one-line fix here is renaming the inner variable, or better, just removing the redundant inner declaration entirely and reusing the outer one."
+        }
+      ]
+    },
+
+    {
+      "sectionId": "stack-lifetime-flow",
+      "title": "How Nested Blocks Behave on the Stack — Execution Flow",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "It helps to stop thinking of a block as a text region and start thinking of it as a runtime event: entering a block reserves stack space for its automatic variables, and leaving it releases that space immediately — not at the end of the function, at the end of the block."
+        },
+        {
+          "type": "flowchart",
+          "nodes": [
+            { "id": "1", "label": "Enter main()",             "sublabel": "Stack frame for main allocated", "type": "start" },
+            { "id": "2", "label": "Enter outer block",         "sublabel": "int total = 0; reserved on stack", "type": "process" },
+            { "id": "3", "label": "Enter loop body block",     "sublabel": "New stack region per iteration",   "type": "process" },
+            { "id": "4", "label": "Enter inner if-block",      "sublabel": "Shadowed 'total' allocated here",  "type": "decision" },
+            { "id": "5", "label": "Exit inner if-block",       "sublabel": "Shadowed 'total' destroyed",       "type": "process" },
+            { "id": "6", "label": "Exit loop body block",      "sublabel": "Loop-local storage released",      "type": "process" },
+            { "id": "7", "label": "Exit outer block",          "sublabel": "Outer 'total' still holds 0",      "type": "end" }
+          ],
+          "edges": [
+            { "from": "1", "to": "2", "label": "function entry" },
+            { "from": "2", "to": "3", "label": "for loop starts" },
+            { "from": "3", "to": "4", "label": "amounts[i] > 0" },
+            { "from": "4", "to": "5", "label": "if-block ends" },
+            { "from": "5", "to": "6", "label": "iteration ends" },
+            { "from": "6", "to": "7", "label": "loop exits" }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "Step 4 to step 5 is the whole bug from the previous section, visualised: the shadowed <code>total</code> is born and dies entirely inside the innermost block, on every single iteration, while the outer <code>total</code> just watches from a stack frame it never gets access to."
+        }
+      ]
+    },
+
+    {
+      "sectionId": "c89-vs-c99-declarations",
+      "title": "C89 vs C99 — Where You're Allowed to Declare Inside a Block",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "C89 required every declaration in a block to appear before any statement — you could not mix code and declarations. C99 removed that restriction, letting you declare a variable at the point you first need it, which is now the style almost every modern C codebase uses without a second thought."
+        },
+        {
+          "type": "codeBox",
+          "lang": "🖥️ C",
+          "label": "mixed-declarations.c",
+          "lines": [
+            "int computeAverage(int *values, int count) {",
+            "    int sum = 0;",
+            "",
+            "    for (int i = 0; i < count; i++) {   // C99: 'int i' declared right in the for()",
+            "        sum += values[i];",
+            "    }",
+            "",
+            "    int average = sum / count;          // C99: declared here, not at the top of the block",
+            "    return average;",
+            "}"
+          ]
+        },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "Compile that under strict C89 rules and both declarations become errors, not just style complaints:"
+        },
+        {
+          "type": "codeBox",
+          "lang": "🐚 Shell",
+          "label": "terminal",
+          "lines": [
+            "$ gcc -std=c89 -pedantic-errors average.c -o average",
+            "average.c:4:10: error: 'for' loop initial declarations are only allowed in C99 or later",
+            "    4 |     for (int i = 0; i < count; i++) {",
+            "      |          ^~~",
+            "average.c:8:9: error: ISO C90 forbids mixed declarations and code [-Wdeclaration-after-statement]",
+            "    8 |     int average = sum / count;",
+            "      |         ^~~"
+          ]
+        },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "This is not a theoretical concern — I've seen it break a CI pipeline for an automotive supplier's C codebase where the toolchain was locked to a MISRA-C:2004-compliant C90 compiler for a specific ECU target, while every engineer's laptop happily compiled the same file with GCC 14 defaulting to <code>gnu17</code>. The code worked everywhere except the one place that actually mattered: the release build."
+        }
+      ]
+    },
+
+    {
+      "sectionId": "best-practices",
+      "title": "How I'd Structure Blocks in Production C",
+      "blocks": [
+        {
+          "type": "bulletList",
+          "items": [
+            { "strong": "Declare variables as close to first use as possible", "text": " — this is a C99+ habit, and it shrinks the visible scope of every variable, which directly shrinks the chance of shadowing it accidentally later." },
+            { "strong": "Build with -Wshadow on every project, non-negotiably", "text": " — the payments bug earlier would have been caught at compile time, for free, with zero runtime cost. There's no good argument against enabling it." },
+            { "strong": "Always brace single-statement if/for bodies", "text": " — an unbraced body is a block of exactly one statement whether you meant it to be or not; the classic goto-fail-style bug class comes from someone assuming an unbraced if covers two lines when it only covers one." },
+            { "strong": "Use standalone blocks to scope large stack buffers", "text": " — a 4KB or 16KB local array sitting in scope for an entire long function is 4-16KB of stack pressure you didn't need for most of that function's lifetime." },
+            { "strong": "Keep switch-case variables inside their own braced block", "text": " — declaring a non-trivial variable directly in a case label without braces around that case body is one of the most common sources of 'crosses initialization' errors in C." },
+            { "strong": "Don't rely on goto jumping into the middle of a block's declarations", "text": " — jumping past a variable's initializer into its still-live scope leaves it holding an indeterminate value, and GCC will warn: `warning: jump into scope of identifier with variably modified type` in some VLA cases, or silently leave it uninitialised otherwise." }
+          ]
+        }
+      ]
+    },
+
+    {
+      "sectionId": "common-mistakes",
+      "title": "Mistakes That Trace Back to Block Boundaries",
+      "blocks": [
+        {
+          "type": "bulletList",
+          "items": [
+            { "strong": "Assuming a switch has per-case scope", "text": " — declaring `int result = compute();` inside one case and using `result` in a later case without its own braces triggers `error: crosses initialization of 'result'` the moment execution could theoretically jump past that declaration." },
+            { "strong": "Returning a pointer to a block-local variable", "text": " — `int *getTotal() { int total = 42; return &total; }` compiles with only a warning (`warning: function returns address of local variable`), but the memory is gone the instant the block exits, making the returned pointer dangling on the very next line the caller uses it." },
+            { "strong": "Believing loop variables persist after the loop", "text": " — `for (int i = 0; i < 10; i++) {}` followed by `printf(\"%d\", i);` fails to compile in C99 mode with `error: 'i' undeclared` because `i`'s scope was the for statement itself, not the enclosing block." },
+            { "strong": "Trusting an unbraced else to attach to the intended if", "text": " — with nested unbraced if statements, `else` always binds to the nearest unmatched `if`, not the one that's visually aligned with it in your editor — a dangling-else bug that's purely a block-structure misunderstanding, not a logic error." }
+          ]
+        }
+      ]
+    },
+
+    {
+      "sectionId": "interview-questions",
+      "title": "Blocks & Scope — Interview Questions",
+      "blocks": [
+        {
+          "type": "interviewQA",
+          "items": [
+            {
+              "q": "Q1. What is a block in C, formally?",
+              "a": "A block, or compound statement, is a sequence of declarations and statements enclosed in { }. It establishes a new scope for any variables declared inside it and, for automatic-duration variables, a lifetime bounded by entry into and exit from the block.",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q2. What happens when an inner block declares a variable with the same name as an outer one?",
+              "a": "The inner declaration shadows the outer one for the remainder of the inner block — any reference to that name inside the inner block resolves to the inner variable, and the outer variable becomes temporarily inaccessible by that name, though it still exists unchanged.",
+              "tag": "Frequently Asked"
+            },
+            {
+              "q": "Q3. Why doesn't GCC catch variable shadowing by default?",
+              "a": "Shadowing is valid, standard-conforming C, so it produces no error under default warning levels and isn't included in -Wall or -Wextra. It only surfaces with the explicit -Wshadow flag, which most teams don't enable unless they've been burned by a shadowing bug before.",
+              "tag": "Common Trap"
+            },
+            {
+              "q": "Q4. Does a switch statement create a separate scope per case?",
+              "a": "No — the entire switch body, across all case labels, is a single block. This is why a variable declared under one case without its own braces is technically visible to later cases, and why initializing it there can trigger a 'crosses initialization' compile error.",
+              "tag": "Tricky"
+            },
+            {
+              "q": "Q5. What's the difference in declaration placement rules between C89 and C99?",
+              "a": "C89 required all declarations in a block to precede any statements — no mixing. C99 allows declarations anywhere within a block, including inline within a for-loop initializer, which is now the standard style in modern C code.",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q6. What happens if a function returns the address of a block-local variable?",
+              "a": "The function returns a dangling pointer. The variable's storage is automatic and is deallocated the instant the block exits — typically at the function's closing brace — so the returned address points to memory that's no longer reserved for that value, even though the compiler often only issues a warning, not an error.",
+              "tag": "Common Trap"
+            },
+            {
+              "q": "Q7. Can a goto statement jump into an inner block from an outer one?",
+              "a": "Jumping into a block is restricted in ways that depend on what's being skipped — jumping past a variable-length array's declaration or into a scope in a way that skips initialization is disallowed or produces undefined behaviour. Jumping between sibling blocks or out of a block is fine, and is exactly how the goto-based cleanup pattern works.",
+              "tag": "Advanced"
+            },
+            {
+              "q": "Q8. Why does declaring a large buffer in a standalone block reduce stack usage?",
+              "a": "Because the buffer's storage is only reserved for the duration that execution is actually inside that block. Once the block exits, that stack space becomes available again for the rest of the function, rather than staying reserved from that point until the function itself returns.",
+              "tag": "Frequently Asked"
+            }
+          ]
+        }
+      ]
+    },
+
+    {
+      "sectionId": "practice-questions",
+      "title": "Practice Questions",
+      "blocks": [
+        {
+          "type": "practiceQuestions",
+          "items": [
+            {
+              "q": "1. What is the output of this code?\nint x = 10;\n{\n    int x = 20;\n    printf(\"%d \", x);\n}\nprintf(\"%d\", x);",
+              "a": "20 10. The inner block's x shadows the outer one, so the first printf sees 20. Once the block exits, the shadowed x is gone and the outer x — untouched the whole time — prints as 10.",
+              "difficulty": "Easy"
+            },
+            {
+              "q": "2. Will this compile under a strict C89 compiler, and why or why not?\nvoid process() {\n    printf(\"Starting\\n\");\n    int status = 0;\n}",
+              "a": "No — this violates C89's rule that all declarations in a block must precede all statements. Since printf() is a statement appearing before the declaration of status, a strict C89 compiler with -pedantic-errors reports 'ISO C90 forbids mixed declarations and code'. C99 and later permit this freely.",
+              "difficulty": "Medium"
+            },
+            {
+              "q": "3. Why is this function dangerous, and what does GCC warn about it?\nint *makeCounter() {\n    int counter = 0;\n    return &counter;\n}",
+              "a": "counter is an automatic variable local to the function's block; its storage is deallocated when the function returns. The returned pointer is dangling. GCC typically warns with 'function returns address of local variable' but still compiles it — the bug only manifests at runtime when the caller dereferences the pointer.",
+              "difficulty": "Medium"
+            },
+            {
+              "q": "4. Given a switch statement, why does this line fail to compile: 'error: crosses initialization of result'?\nswitch (mode) {\n    case 1:\n        int result = compute();\n        break;\n    case 2:\n        printf(\"%d\", result);\n        break;\n}",
+              "a": "Because the entire switch body is one block, execution could jump directly to case 2 without ever passing through the initialization of result in case 1 — the compiler rejects this since result's initializer could be skipped, leaving its value undefined at the point case 2 tries to use it.",
+              "difficulty": "Hard"
+            },
+            {
+              "q": "5. What does -Wshadow specifically catch that -Wall does not?",
+              "a": "-Wall does not flag variable shadowing at all, since shadowing is standard-conforming code. -Wshadow specifically warns whenever an inner-scope declaration reuses the name of an outer-scope variable, parameter, or even a global, which is exactly the class of bug where logic silently operates on the wrong variable.",
+              "difficulty": "Medium"
+            },
+            {
+              "q": "6. After this loop, why does 'printf(\"%d\", i);' fail to compile?\nfor (int i = 0; i < 5; i++) {\n    // loop body\n}\nprintf(\"%d\", i);",
+              "a": "i was declared in the for-loop's own initializer, which under C99+ rules scopes i to the for statement itself — including the loop body — not to the enclosing block. Once the loop finishes, i goes out of scope, so referencing it afterward produces 'error: i undeclared' (or similar, depending on compiler).",
+              "difficulty": "Easy"
+            }
+          ]
+        }
+      ]
+    },
+
+    {
+      "sectionId": "conclusion-heading",
+      "title": "Closing Thoughts",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "Treat { } as the language's actual scoping mechanism, not decoration around your if statements, and a whole category of C bugs stops being mysterious. Shadowing, dangling pointers to local variables, and the switch-case initialization error all reduce to the same underlying fact: a block owns the variables declared inside it, for exactly as long as execution is inside it, and not one line longer."
+        },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "If there's one concrete change to make after reading this: add <code>-Wshadow</code> to your build flags today. It costs nothing at runtime, it has caught real production bugs in codebases I've worked on, and the two-line fix it usually demands is far cheaper than the debugging session its absence eventually causes."
+        }
+      ]
+    }
+
+  ],
+
+  "faq": {
+    "sectionId": "faq-heading",
+    "title": "Frequently Asked Questions (FAQ)",
+    "items": [
+      {
+        "q": "Is a function body itself considered a block?",
+        "a": "Yes. The braces enclosing a function's statements form its outermost block, and it follows the same scoping and lifetime rules as any other block — the difference is that function parameters, though declared just outside this block syntactically, behave as if they were declared at its very start."
+      },
+      {
+        "q": "Do variables declared inside a block get memory allocated at compile time or runtime?",
+        "a": "The compiler determines the stack offset at compile time, but the actual reservation of that memory happens at runtime, when execution enters the block — typically implemented as adjusting the stack pointer, not through any per-variable allocation call."
+      },
+      {
+        "q": "Can two blocks at the same nesting level (siblings) declare the same variable name?",
+        "a": "Yes, without any conflict — since neither sibling block is inside the other, their scopes don't overlap, so the same name can be reused freely in each without shadowing or redefinition errors."
+      },
+      {
+        "q": "Does omitting braces around a single-statement if body create a block at all?",
+        "a": "No separate block is created — the single statement is simply the entire body of the if, with no scope of its own for any declaration (in fact, you cannot declare a variable there at all, since a declaration is not a statement in that position). This is precisely why an unbraced if is fragile to edit."
+      }
+    ]
+  },
+
+  "nav": {
+    "prev": { "label": "← C Comments",   "path": "/c/c-comments/" },
+    "next":  { "label": "Next: C Data Types →", "path": "/c/c-data-types/" }
+  },
+
+  "sidebar": {
+    "quickFacts": [
+      { "dt": "Standard term",     "dd": "Compound statement (§6.8.2)" },
+      { "dt": "Defines",           "dd": "Scope + lifetime for automatic variables" },
+      { "dt": "Scopes in C",       "dd": "Block, function, file, function-prototype" },
+      { "dt": "Shadowing flag",    "dd": "-Wshadow (not in -Wall)" },
+      { "dt": "C89 rule",          "dd": "Declarations must precede statements" },
+      { "dt": "C99 change",        "dd": "Declare anywhere, incl. for(int i...)" }
+    ],
+    "tags": ["Blocks","Scope","Shadowing","Wshadow","C89","C99","Stack Frame","Compound Statement","MISRA-C","goto"]
+  }
+}

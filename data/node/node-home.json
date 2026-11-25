@@ -1,0 +1,695 @@
+{
+  "meta": {
+    "title": "What is Node.js? | Node.js Tutorial for Beginners 2026 | Tech Sustainify",
+    "description": "Learn what is Node.js with this complete beginner-friendly guide 2026. Covers Node.js history, features, how Node.js works, the V8 engine, event loop, npm package manager, nvm, OOP and async concepts, Hello World program, Node.js versions, Express, and why Node.js is a top choice for backend development in 2026.",
+    "keywords": "what is node.js, node.js tutorial for beginners, node.js tutorial 2026, learn node.js online free, node.js for beginners, V8 engine, event loop node.js, npm package manager, nvm node version manager, non-blocking io, node.js hello world program, node.js features, node.js history, node.js versions, express.js",
+    "author": "Tech Sustainify",
+    "canonical": "https://techsustainify.com/node/node-home/",
+    "ogTitle": "What is Node.js? Complete Node.js Tutorial for Beginners 2026 | Tech Sustainify",
+    "ogDescription": "Complete beginner-friendly guide to Node.js. Learn the V8 engine, event loop, npm, nvm, async programming, Hello World, Node.js history, features, real-world uses, and why Node.js powers modern backend systems in 2026.",
+    "ogUrl": "https://techsustainify.com/node/node-home/",
+    "ogSiteName": "Tech Sustainify",
+    "twitterReadingTime": "20 minutes",
+    "twitterLevel": "Beginner",
+    "schemaDatePublished": "2024-01-01",
+    "schemaDateModified": "2026-03-16",
+    "schemaProficiencyLevel": "Beginner",
+    "schemaWordCount": 8000
+  },
+
+  "breadcrumbs": [
+    { "position": 1, "name": "Home",            "path": "/" },
+    { "position": 2, "name": "Node.js Tutorial", "path": "/node/node-home/" },
+    { "position": 3, "name": "What is Node.js?" }
+  ],
+
+  "articleHeader": {
+    "badge": "🟢 Node.js",
+    "title": "What is Node.js?",
+    "subtitle": "A complete beginner-friendly guide to Node.js — covering history, features, how Node.js works, the V8 engine, the event loop, npm, Hello World program, and why Node.js is a top choice for backend and full-stack development in 2026."
+  },
+
+  "infoCards": [
+    { "icon": "📅", "label": "Last Updated", "isTime": true, "dateTime": "2026-03-16", "value": "March 2026" },
+    { "icon": "⏱️", "label": "Read Time",    "value": "20 min" },
+    { "icon": "🎯", "label": "Level",         "value": "Beginner" }
+  ],
+
+  "sections": [
+
+    {
+      "sectionId": "what-is-nodejs",
+      "title": "What is Node.js?",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "<strong>Node.js is an open-source, cross-platform JavaScript runtime environment</strong> that lets developers run JavaScript code outside of a web browser — most commonly on a server. It was created by <strong>Ryan Dahl</strong> and first released in <strong>2009</strong>, built on top of Google Chrome's <strong>V8 JavaScript engine</strong>. Node.js is currently maintained by the <strong>OpenJS Foundation</strong>, part of the Linux Foundation."
+        },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "Node.js follows a philosophy of <strong>event-driven, non-blocking I/O</strong>. Instead of creating a new thread for every incoming request — an approach that can quickly exhaust system memory under heavy load — Node.js handles thousands of concurrent connections on a <strong>single thread</strong> using an event loop, delegating slow operations like file access or network calls to the background and reacting to their results via callbacks, promises, or async/await."
+        },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "Node.js is both a <strong>runtime</strong> and an <strong>ecosystem</strong>. The runtime itself is a relatively thin layer around V8 plus a set of built-in modules, but its true power comes from <strong>npm (Node Package Manager)</strong>, which hosts over <strong>2.5 million packages</strong> — the largest package registry of any programming ecosystem. This combination is a key reason Node.js dominates modern web backends, real-time applications, and full-stack JavaScript development."
+        },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "According to the <strong>Stack Overflow Developer Survey</strong> and the <strong>State of JS survey 2026</strong>, Node.js remains one of the <strong>most widely used runtimes</strong> among professional developers, powering everything from startups to companies like Netflix, LinkedIn, PayPal, and Uber. It is the backbone of choice for <strong>REST and GraphQL APIs</strong>, <strong>real-time applications</strong> such as chat and live dashboards, <strong>microservices</strong>, and <strong>full-stack JavaScript development</strong> alongside frontend frameworks like React and Vue."
+        }
+      ]
+    },
+
+    {
+      "sectionId": "history-heading",
+      "title": "History of Node.js",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "The story of Node.js begins in <strong>2009</strong>, when American software engineer <strong>Ryan Dahl</strong> grew frustrated with how existing web servers, like Apache, handled concurrency — typically by spawning a new thread or process per connection, which wasted memory and struggled under high traffic. Dahl wanted a way to write servers using non-blocking, event-driven I/O as the default, and he chose <strong>JavaScript</strong> paired with Google's newly open-sourced, extremely fast <strong>V8 engine</strong> to build it, first demonstrating Node.js at the JSConf EU conference."
+        },
+        {
+          "type": "bulletList",
+          "items": [
+            { "strong": "2009", "text": " — Ryan Dahl creates and publicly demonstrates Node.js, combining Google's V8 engine with an event-driven, non-blocking I/O model built specifically for servers." },
+            { "strong": "2010", "text": " — npm (Node Package Manager) is created by Isaac Schlueter, giving Node.js a centralized way to share and reuse JavaScript packages — a decision that would later fuel Node's explosive ecosystem growth." },
+            { "strong": "2011", "text": " — Node.js gains Windows support and sees early production adoption at companies like LinkedIn, which famously moved its mobile backend from Ruby to Node.js." },
+            { "strong": "2014-2015", "text": " — A governance dispute leads to a community fork called io.js; the two projects later reunite, and the Node.js Foundation is formed to steward the project under neutral governance." },
+            { "strong": "2015", "text": " — Node.js 4.0 unifies Node.js and io.js under a single release line, adopting semantic versioning and a predictable release schedule going forward." },
+            { "strong": "2018", "text": " — Node.js 10 introduces N-API for stable native addons, and the project later merges with the JS Foundation to form the OpenJS Foundation." },
+            { "strong": "2020", "text": " — Node.js 14 becomes a Long-Term Support (LTS) release, bringing stable diagnostic reporting and continued V8 performance improvements." },
+            { "strong": "2021", "text": " — Node.js 16 arrives with Apple Silicon (M1) support and npm 7, which introduces workspaces for managing multi-package repositories." },
+            { "strong": "2022-2023", "text": " — Node.js 18 and 20 add a stable built-in test runner, an experimental native fetch API, and initial support for the Web Streams API, reducing reliance on third-party libraries for common tasks." },
+            { "strong": "2024-2026", "text": " — Node.js 22 and later releases bring built-in support for running TypeScript files directly, further V8 engine upgrades, improved permission models for security, and continued performance tuning for modern cloud and edge deployments." }
+          ]
+        }
+      ]
+    },
+
+    {
+      "sectionId": "features-heading",
+      "title": "Key Features of Node.js",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Node.js's dominance in backend and full-stack JavaScript development is no accident. Its design consistently prioritises speed, scalability for I/O-heavy workloads, and developer productivity. Here are the 13 core features that define Node.js:"
+        },
+        {
+          "type": "featureCards",
+          "items": [
+            { "icon": "⚡", "title": "Non-Blocking, Asynchronous I/O", "text": "Node.js never waits idly for file reads, database queries, or network calls to finish — it moves on and handles the result later, keeping the server responsive under load." },
+            { "icon": "🔄", "title": "Single-Threaded Event Loop", "text": "A single main thread handles all incoming requests using an event loop, avoiding the memory overhead of spawning a thread per connection like traditional server models." },
+            { "icon": "🚀", "title": "Built on Google's V8 Engine", "text": "Node.js inherits V8's just-in-time compilation, meaning JavaScript executes at speeds comparable to many compiled languages for typical workloads." },
+            { "icon": "📦", "title": "Massive npm Ecosystem", "text": "npm hosts over 2.5 million packages — Express, React, Axios, Lodash, and virtually any tool you need is one npm install away." },
+            { "icon": "🌐", "title": "Cross-Platform", "text": "The same Node.js application runs on Windows, Linux, and macOS without modification, and increasingly on edge runtimes and serverless platforms too." },
+            { "icon": "🧩", "title": "Full-Stack JavaScript", "text": "Using the same language on both frontend and backend reduces context switching and lets teams share validation logic, types, and utility code across the stack." },
+            { "icon": "🔌", "title": "Rich Built-in Modules", "text": "Core modules like fs, http, path, crypto, and stream ship with Node.js itself, covering common server-side needs without any external dependency." },
+            { "icon": "🧵", "title": "Worker Threads & Clustering", "text": "For CPU-intensive tasks, Node.js supports worker threads and the cluster module to take advantage of multiple CPU cores without abandoning its event-driven model." },
+            { "icon": "📡", "title": "Excellent for Real-Time Apps", "text": "Node.js's event-driven nature makes it a natural fit for chat applications, live notifications, and collaborative tools, especially paired with WebSockets." },
+            { "icon": "🛠️", "title": "Strong Tooling & TypeScript Support", "text": "TypeScript, ESLint, and modern bundlers integrate deeply with Node.js projects, and recent Node.js versions can even run TypeScript files directly." },
+            { "icon": "🔍", "title": "Interactive REPL", "text": "The Node.js REPL (Read-Eval-Print Loop) lets you test JavaScript expressions interactively in the terminal, ideal for quick experiments and debugging." },
+            { "icon": "🏗️", "title": "Microservices & Serverless Friendly", "text": "Node.js's fast startup time and small footprint make it a popular choice for microservices and serverless functions on AWS Lambda, Vercel, and similar platforms." },
+            { "icon": "🔓", "title": "Free & Open Source", "text": "Node.js is completely free and open-source under the MIT License, governed transparently by the OpenJS Foundation with no vendor lock-in." }
+          ]
+        }
+      ]
+    },
+
+    {
+      "sectionId": "flowchart-heading",
+      "title": "How Node.js Executes Code — Flowchart",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "Understanding how Node.js executes your code — and in particular how it handles asynchronous operations — is fundamental to writing efficient, non-blocking applications. The diagram below shows exactly what happens from your script to the final output."
+        },
+        {
+          "type": "flowchart",
+          "nodes": [
+            { "id": "1", "label": "📝 Write JavaScript Code", "sublabel": "server.js",                     "type": "start" },
+            { "id": "2", "label": "⚙️ V8 Engine",              "sublabel": "Parses & JIT-compiles JS",      "type": "process" },
+            { "id": "3", "label": "🔁 Call Stack",              "sublabel": "Executes synchronous code",    "type": "data" },
+            { "id": "4", "label": "📥 libuv Thread Pool / OS",  "sublabel": "Handles file, network, timers","type": "decision" },
+            { "id": "5", "label": "🌀 Event Loop",              "sublabel": "Picks up completed callbacks",  "type": "process" },
+            { "id": "6", "label": "📤 Callback Queue",          "sublabel": "Queues callbacks/promises",    "type": "process" },
+            { "id": "7", "label": "🖨️ Output",                  "sublabel": "Response sent / console output","type": "end" }
+          ],
+          "edges": [
+            { "from": "1", "to": "2", "label": "node command" },
+            { "from": "2", "to": "3", "label": "compiles & runs" },
+            { "from": "3", "to": "4", "label": "delegates async work" },
+            { "from": "4", "to": "5", "label": "signals completion" },
+            { "from": "5", "to": "6", "label": "schedules callback" },
+            { "from": "6", "to": "7", "label": "executes & returns" }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "Key insight: The <strong>event loop</strong> is what makes Node.js's single thread feel like it's doing many things at once. Time-consuming operations — reading a file, querying a database, waiting on a network response — are handed off to <strong>libuv</strong>, Node's underlying C library, which uses the operating system's own async capabilities or a small thread pool behind the scenes. The main JavaScript thread is never blocked waiting for these operations; it simply resumes the relevant callback once the event loop reports the work is done."
+        }
+      ]
+    },
+
+    {
+      "sectionId": "how-nodejs-works",
+      "title": "How Node.js Works — V8, npm, and nvm Explained",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "Understanding <strong>V8</strong>, <strong>npm</strong>, and <strong>nvm</strong> is one of the first — and most important — concepts for every Node.js beginner. These three tools form the foundation of nearly every real-world Node.js development workflow."
+        },
+        { "type": "subHeading", "text": "⚙️ V8 — The JavaScript Engine" },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "<strong>V8</strong> is Google's open-source, high-performance <strong>JavaScript and WebAssembly engine</strong>, originally built for the Chrome browser. Node.js embeds V8 directly, which is what actually parses, compiles, and executes your JavaScript code. V8 uses <strong>Just-In-Time (JIT) compilation</strong> to translate JavaScript into optimized machine code on the fly, which is a major reason Node.js applications can achieve performance close to compiled languages for many real-world workloads."
+        },
+        { "type": "subHeading", "text": "📦 npm — Node Package Manager" },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "<strong>npm</strong> is Node.js's official <strong>package manager</strong>, bundled automatically with every Node.js installation. It connects to the <strong>npm registry</strong>, the world's largest software package repository, and lets you install, update, and remove third-party libraries with a single command. Alternatives like <strong>yarn</strong> and <strong>pnpm</strong> also work with the same registry but offer different performance and disk-space trade-offs."
+        },
+        {
+          "type": "bulletList",
+          "items": [
+            { "html": "<code>npm install express</code> — installs the Express web framework into the current project" },
+            { "html": "<code>npm install -g typescript</code> — installs TypeScript globally, available from any project on your machine" },
+            { "html": "<code>npm uninstall lodash</code> — removes the Lodash library from the project" },
+            { "html": "<code>npm list</code> — shows all installed packages and their versions" },
+            { "html": "<code>npm run build</code> — runs a custom script named 'build' defined in package.json" }
+          ]
+        },
+        { "type": "subHeading", "text": "🔒 nvm — Node Version Manager" },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "<strong>nvm</strong> (Node Version Manager) lets you install and switch between <strong>multiple versions of Node.js</strong> on the same machine. This means Project A can run on Node.js 18 LTS while Project B uses Node.js 22 — without any conflicts. Nearly every professional Node.js setup relies on nvm (or a similar tool like fnm or Volta) to keep environments predictable and reproducible across a team."
+        },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "<strong>Simple rule to remember:</strong> V8 runs your JavaScript. npm installs your dependencies. nvm manages which Node.js version you're using. The current recommended version is the latest <strong>Node.js LTS release</strong> (Node.js 22 or later), available free from <strong>nodejs.org</strong>."
+        }
+      ]
+    },
+
+    {
+      "sectionId": "v8-npm-nvm-comparison",
+      "title": "V8 vs npm vs nvm — Key Differences",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Beginners often confuse these three tools. This comparison table clearly shows what each one is, what it does, and when you need it."
+        },
+        {
+          "type": "comparisonTable",
+          "headers": ["Feature", "V8 Engine", "npm", "nvm"],
+          "rows": [
+            ["What it is", "JavaScript execution engine", "Package manager", "Node.js version manager"],
+            ["Purpose", "Runs your JavaScript code", "Installs and manages packages", "Installs and switches Node.js versions"],
+            ["Comes with Node.js?", "✅ Yes — embedded inside Node.js", "✅ Yes — bundled automatically", "❌ Installed separately"],
+            ["Used for", "Parsing & executing .js files", "Installing libraries from the registry", "Managing multiple Node.js versions"],
+            ["Key command", "node app.js (invokes V8 internally)", "npm install express", "nvm use 22"],
+            ["Alternative tools", "SpiderMonkey, JavaScriptCore", "yarn, pnpm", "fnm, Volta, asdf"],
+            ["Required in every project?", "✅ Always (under the hood)", "✅ Almost always", "⚠️ Recommended, not mandatory"],
+            ["Example use", "Executing server-side JS logic", "npm install --save-dev jest", "nvm install --lts"]
+          ]
+        }
+      ]
+    },
+
+    {
+      "sectionId": "nodejs-vs-others",
+      "title": "Node.js vs Other Backend Technologies — Comparison",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "How does Node.js compare to other popular backend technologies? This table gives you a quick side-by-side comparison to help you understand where Node.js excels and where its limitations lie."
+        },
+        {
+          "type": "comparisonTable",
+          "headers": ["Feature", "Node.js", "Python (Django/Flask)", "Java (Spring)", "PHP", "Go"],
+          "rows": [
+            ["Language", "JavaScript / TypeScript", "Python", "Java", "PHP", "Go"],
+            ["Concurrency Model", "Single-threaded event loop", "Multi-threaded / WSGI workers", "Multi-threaded (JVM)", "Multi-process (typical)", "Goroutines (lightweight threads)"],
+            ["Performance (I/O-heavy)", "Excellent", "Good", "Good", "Moderate", "Excellent"],
+            ["Performance (CPU-heavy)", "Moderate (needs worker threads)", "Moderate", "Excellent", "Moderate", "Excellent"],
+            ["Ecosystem Size", "Largest (npm)", "Large (PyPI)", "Large (Maven)", "Large (Packagist)", "Growing"],
+            ["Primary Use", "APIs, real-time apps, full-stack JS", "Web apps, AI/ML, scripting", "Enterprise systems, Android (legacy)", "Web hosting, CMS platforms", "Cloud infra, high-performance services"],
+            ["Learning Curve", "Easy for JS developers", "Very Easy", "Medium", "Easy", "Medium"],
+            ["Job Demand 2026", "⭐⭐⭐⭐⭐", "⭐⭐⭐⭐⭐", "⭐⭐⭐⭐⭐", "⭐⭐⭐", "⭐⭐⭐⭐"]
+          ]
+        }
+      ]
+    },
+
+    {
+      "sectionId": "advantages-disadvantages",
+      "title": "Advantages and Disadvantages of Node.js",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Like every technology, Node.js has remarkable strengths and real limitations. Understanding both helps you make informed decisions about when Node.js is the right tool and when another backend technology might serve better."
+        },
+        {
+          "type": "prosConsTable",
+          "pros": [
+            { "title": "Exceptional for I/O-Heavy Workloads", "text": "Non-blocking I/O lets a single Node.js process handle thousands of concurrent connections efficiently, ideal for APIs and real-time apps." },
+            { "title": "One Language, Full Stack", "text": "Using JavaScript (or TypeScript) on both frontend and backend reduces context switching and enables sharing code, types, and validation logic." },
+            { "title": "Massive npm Ecosystem", "text": "With over 2.5 million packages, almost any functionality you need — from authentication to image processing — is already available as a library." },
+            { "title": "Fast Startup & Lightweight Footprint", "text": "Node.js processes start quickly and use relatively little memory at rest, making it a strong fit for microservices and serverless functions." },
+            { "title": "Great for Real-Time Applications", "text": "Node.js's event-driven design, combined with WebSockets, makes building chat apps, live dashboards, and collaborative tools straightforward." },
+            { "title": "Strong Corporate & Community Backing", "text": "The OpenJS Foundation, alongside major companies like Netflix, LinkedIn, and Microsoft, actively invests in Node.js's continued development." },
+            { "title": "Excellent Developer Productivity", "text": "JSON-native data handling, a huge talent pool, and rich tooling make Node.js teams typically fast to build and iterate on features." },
+            { "title": "Free & Open Source", "text": "Node.js is released under the permissive MIT License, with zero licensing cost for personal or commercial production use." }
+          ],
+          "cons": [
+            { "title": "Not Ideal for CPU-Intensive Tasks", "text": "Heavy computation (image/video processing, complex calculations) can block the single event loop unless explicitly offloaded to worker threads." },
+            { "title": "Callback and Async Complexity", "text": "While async/await has greatly improved readability, poorly structured asynchronous code can still lead to hard-to-debug race conditions." },
+            { "title": "Rapidly Changing Ecosystem", "text": "The sheer pace of npm package churn means dependencies can become outdated or abandoned, requiring ongoing maintenance vigilance." },
+            { "title": "Callback Hell in Legacy Code", "text": "Older Node.js codebases written before async/await became standard can still suffer from deeply nested, hard-to-follow callback chains." },
+            { "title": "Dependency Bloat & Security Surface", "text": "Projects can accumulate hundreds of transitive dependencies, increasing bundle size and the potential attack surface if packages aren't audited." },
+            { "title": "Single-Threaded by Default", "text": "Without deliberately using worker threads or clustering, a Node.js app cannot automatically take advantage of multiple CPU cores for a single process." }
+          ]
+        }
+      ]
+    },
+
+    {
+      "sectionId": "diagram-heading",
+      "title": "Node.js Architecture Diagram",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "The diagram below shows the complete <strong>Node.js Architecture</strong> — from your source code all the way down to the operating system. This visual makes the relationship between your code, V8, libuv, and the event loop concrete and easy to understand."
+        },
+        {
+          "type": "architectureDiagram",
+          "layers": [
+            {
+              "label": "Developer Layer",
+              "color": "#6366f1",
+              "items": ["JavaScript / TypeScript Source Code", "VS Code / IDE", "Build Tools (npm scripts, webpack, esbuild)"]
+            },
+            {
+              "label": "Node.js Runtime",
+              "color": "#0ea5e9",
+              "items": ["V8 JavaScript Engine (JIT Compiler)", "Node.js Bindings (C++ ↔ JS)", "Built-in Modules (fs, http, crypto)"]
+            },
+            {
+              "label": "Core Async Infrastructure",
+              "color": "#10b981",
+              "items": ["Event Loop", "Callback Queue / Microtask Queue", "Timers & Promises"]
+            },
+            {
+              "label": "libuv (C Library)",
+              "color": "#f59e0b",
+              "items": ["Thread Pool", "Async File System Access", "Networking (TCP/UDP)", "DNS Resolution"]
+            },
+            {
+              "label": "Operating System",
+              "color": "#ef4444",
+              "items": ["Windows", "Linux", "macOS"]
+            },
+            {
+              "label": "Hardware",
+              "color": "#8b5cf6",
+              "items": ["CPU", "RAM", "Storage / Network Interface"]
+            }
+          ]
+        }
+      ]
+    },
+
+    {
+      "sectionId": "code-heading",
+      "title": "Your First Node.js Program — Hello World",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "Every Node.js journey starts with the <strong>Hello World program</strong>. It is the simplest Node.js program possible — and it beautifully illustrates how Node.js turns a single JavaScript file into a fully functioning web server in just a few lines."
+        },
+        {
+          "type": "codeBox",
+          "lang": "🟢 Node.js",
+          "label": "server.js",
+          "lines": [
+            "const http = require(\"http\");",
+            "",
+            "const server = http.createServer((req, res) => {",
+            "  res.end(\"Hello, World!\");",
+            "});",
+            "",
+            "server.listen(3000, () => console.log(\"Server running on port 3000\"));"
+          ]
+        },
+        {
+          "type": "outputBox",
+          "lines": ["Server running on port 3000", "(Visiting http://localhost:3000 shows: Hello, World!)"]
+        },
+        {
+          "type": "subHeading",
+          "text": "Practice This Code — Live Editor"
+        },
+        {
+          "type": "liveEditor",
+          "initialCode":
+            "console.log(\"Hello, World! Ashish\")"
+        },
+        {
+          "type": "subHeading",
+          "text": "Line-by-Line Explanation"
+        },
+        {
+          "type": "bulletList",
+          "items": [
+            { "html": "<code>// This is a comment</code> — Lines starting with <code>//</code> are comments. Node.js ignores them during execution, just like standard JavaScript." },
+            { "html": "<code>require(\"http\")</code> — Loads Node.js's built-in <code>http</code> module, part of the standard library, with no npm install required." },
+            { "html": "<code>const name = \"Tech Sustainify\"</code> — Declares a constant variable using <code>const</code>. Node.js inherits JavaScript's dynamic typing, so no type declaration is needed." },
+            { "html": "<code>http.createServer((req, res) => {...})</code> — Creates an HTTP server, registering a callback that runs every time a request arrives, receiving a request object and a response object." },
+            { "html": "<code>res.end(\"Hello, World!\")</code> — Sends the response body back to the client and signals that the response is complete." },
+            { "html": "<code>server.listen(3000, ...)</code> — Starts the server listening for incoming connections on port 3000, running a callback once the server is ready." }
+          ]
+        }
+      ]
+    },
+
+    {
+      "sectionId": "nodejs-uses",
+      "title": "Where is Node.js Used? — Real-World Applications",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Node.js's non-blocking architecture and huge ecosystem make it a natural fit across a wide range of backend and full-stack scenarios. Here are the major areas where Node.js is actively used in 2026:"
+        },
+        {
+          "type": "bulletList",
+          "items": [
+            { "strong": "🌐 REST & GraphQL APIs", "text": " — Frameworks like Express, Fastify, and NestJS make Node.js one of the most popular choices for building fast, scalable APIs consumed by web and mobile clients." },
+            { "strong": "💬 Real-Time Applications", "text": " — Chat applications, live notifications, collaborative editing tools, and multiplayer game backends rely on Node.js's event-driven model paired with WebSocket libraries like Socket.IO." },
+            { "strong": "🧩 Microservices Architecture", "text": " — Node.js's fast startup time and small footprint make it a popular choice for individual microservices that need to scale independently in containerized environments." },
+            { "strong": "⚛️ Full-Stack JavaScript with React/Next.js", "text": " — Frameworks like Next.js run on Node.js to power server-side rendering, API routes, and static site generation, letting teams use one language across the entire stack." },
+            { "strong": "☁️ Serverless Functions", "text": " — AWS Lambda, Vercel Functions, and Google Cloud Functions all support Node.js as a first-class runtime, taking advantage of its quick cold-start times." },
+            { "strong": "🔧 Command-Line Tools & Build Tooling", "text": " — Many modern developer tools — including npm itself, webpack, ESLint, and Prettier — are built with Node.js, powering the JavaScript development workflow end to end." },
+            { "strong": "📡 IoT & Streaming Data", "text": " — Node.js's efficient handling of many simultaneous lightweight connections suits IoT device communication and streaming data pipelines." },
+            { "strong": "🛒 E-Commerce & Enterprise Backends", "text": " — Companies like PayPal, Walmart, and Netflix use Node.js in production for high-traffic backend services where responsiveness and scalability are critical." }
+          ]
+        }
+      ]
+    },
+
+    {
+      "sectionId": "why-learn-nodejs",
+      "title": "Why Should You Learn Node.js in 2026?",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "Every year developers ask — <em>\"Is Node.js still worth learning?\"</em> The answer in 2026 remains a confident <strong>YES</strong>, especially for anyone building web applications. Here's why Node.js deserves a place in your toolkit:"
+        },
+        {
+          "type": "bulletList",
+          "items": [
+            { "strong": "🔗 Leverage Your Existing JavaScript Skills", "text": " — If you already know JavaScript for the frontend, Node.js lets you become a full-stack developer without learning an entirely new language for the backend." },
+            { "strong": "💼 Consistently Strong Job Market", "text": " — Node.js developer roles remain among the most in-demand backend and full-stack positions. Average Node.js developer salaries in India range from roughly ₹4-7 LPA for freshers to ₹30+ LPA for senior full-stack and backend engineers." },
+            { "strong": "📦 The Largest Package Ecosystem", "text": " — With over 2.5 million npm packages, you rarely need to build common functionality from scratch, dramatically accelerating development." },
+            { "strong": "🌍 Enormous Developer Community", "text": " — Stack Overflow, GitHub, Reddit, and Discord all host massive, active Node.js communities, making it easy to find help, tutorials, and open-source examples." },
+            { "strong": "⚡ Ideal for Modern, Scalable Architectures", "text": " — Node.js's efficiency with concurrent I/O makes it a strong default choice for microservices, serverless functions, and real-time systems that modern products increasingly require." },
+            { "strong": "🆓 Completely Free and Open Source", "text": " — Node.js is free under the MIT License. Your entire toolchain — Node.js, npm, VS Code — costs nothing to get started." }
+          ]
+        }
+      ]
+    },
+
+    {
+      "sectionId": "nodejs-versions",
+      "title": "Node.js Versions — Release Cycle and Current Releases",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Node.js follows a predictable, twice-yearly release cycle with clearly defined Long-Term Support (LTS) versions. Understanding this cycle is important for choosing the right version for production or learning:"
+        },
+        {
+          "type": "bulletList",
+          "items": [
+            { "strong": "Node.js 12 (2019) — End of Life", "text": " — Brought TLS 1.3 support and diagnostic reporting, but has since reached end-of-life and should not be used for new projects." },
+            { "strong": "Node.js 14 (2020) — Diagnostic Reporting", "text": " — Became an LTS release with stable diagnostic reporting and V8 engine improvements; now past its support window." },
+            { "strong": "Node.js 16 (2021) — Apple Silicon Support", "text": " — Added native support for Apple's M1 chips and shipped with npm 7, introducing workspaces for monorepo-style projects." },
+            { "strong": "Node.js 18 (2022) — Fetch API & Test Runner", "text": " — Introduced an experimental native fetch API and a built-in test runner, reducing reliance on third-party HTTP and testing libraries." },
+            { "strong": "Node.js 20 (2023) — Permission Model", "text": " — Added an experimental permission model for restricting file system, network, and process access, strengthening Node.js's security posture." },
+            { "strong": "Node.js 22 (2024) — Native TypeScript Support", "text": " — Enabled running certain TypeScript files directly without a separate compilation step, simplifying the developer experience for TypeScript projects." },
+            { "strong": "Node.js 24+ (2025-2026) — Continued Performance & Security", "text": " — Ongoing V8 engine upgrades, refined permission models, and further built-in tooling reduce the need for external dependencies in common tasks. The latest even-numbered LTS release is recommended for production in 2026." }
+          ]
+        },
+        {
+          "type": "comparisonTable",
+          "headers": ["Version", "Released", "Status", "Key Feature"],
+          "rows": [
+            ["Node.js 14", "2020", "❌ End of Life", "Diagnostic reporting, V8 improvements"],
+            ["Node.js 16", "2021", "❌ End of Life", "Apple Silicon support, npm workspaces"],
+            ["Node.js 18", "2022", "⚠️ Maintenance", "Native fetch API, built-in test runner"],
+            ["Node.js 20", "2023", "✅ Active LTS", "Experimental permission model"],
+            ["Node.js 22", "2024", "✅ Active LTS (Recommended)", "Native TypeScript file execution"],
+            ["Node.js 24+", "2025-2026", "✅ Current", "Further V8 upgrades, security hardening"]
+          ]
+        }
+      ]
+    },
+
+    {
+      "sectionId": "interview-questions",
+      "title": "Node.js Interview Questions — Beginner Level",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "These are the most commonly asked Node.js interview questions for <strong>freshers and beginner-level</strong> backend and full-stack positions. Master these before any Node.js interview."
+        },
+        {
+          "type": "interviewQA",
+          "items": [
+            {
+              "q": "Q1. What is Node.js and what are its key characteristics?",
+              "a": "Node.js is an open-source, cross-platform JavaScript runtime built on Google's V8 engine, created by Ryan Dahl in 2009. Its key characteristics are: non-blocking, event-driven I/O, a single-threaded event loop model for handling concurrency, a massive npm package ecosystem, and the ability to run JavaScript outside the browser, most commonly on servers.",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q2. What is the difference between V8, npm, and nvm?",
+              "a": "V8 is the JavaScript engine embedded inside Node.js that actually parses and executes your code. npm is Node's package manager, used to install and manage third-party libraries from the npm registry. nvm is a tool for installing and switching between multiple versions of Node.js on the same machine. In short: V8 runs the code, npm manages dependencies, nvm manages Node.js versions.",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q3. What is the event loop in Node.js?",
+              "a": "The event loop is the mechanism that allows Node.js to perform non-blocking I/O operations despite JavaScript being single-threaded. It continuously checks whether there is pending work — such as completed file reads, timers, or network responses — and executes the associated callbacks, allowing Node.js to handle many concurrent operations without creating a new thread for each one.",
+              "tag": "Frequently Asked"
+            },
+            {
+              "q": "Q4. What is the difference between synchronous and asynchronous code in Node.js?",
+              "a": "Synchronous code executes line by line, blocking further execution until the current operation finishes — for example, fs.readFileSync(). Asynchronous code, using callbacks, promises, or async/await, starts an operation and continues executing other code immediately, only handling the result once it becomes available — for example, fs.readFile() or fs.promises.readFile(). Node.js strongly favors the asynchronous approach for I/O-bound work.",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q5. What is npm and what problem does it solve?",
+              "a": "npm (Node Package Manager) is the default package manager bundled with Node.js. It solves the problem of dependency management by letting developers declare required libraries in a package.json file, then install exact, reproducible versions of those libraries and their own dependencies with a single command, rather than manually downloading and managing files.",
+              "tag": "Frequently Asked"
+            },
+            {
+              "q": "Q6. What is the difference between 'require' and 'import' in Node.js?",
+              "a": "require() is Node.js's original CommonJS module syntax, loaded synchronously and available by default in .js files. import/export is the ES Module (ESM) syntax, Node.js's implementation of the standardized JavaScript module system, which requires either a .mjs file extension or setting \"type\": \"module\" in package.json. Modern Node.js supports both, though ESM is increasingly the recommended standard.",
+              "tag": "Common Trap"
+            },
+            {
+              "q": "Q7. What is middleware in the context of Express.js?",
+              "a": "Middleware in Express.js is a function that has access to the request object, response object, and the next function in the request-response cycle. Middleware can execute code, modify the request or response, end the cycle, or call next() to pass control to the next middleware — commonly used for logging, authentication, and error handling.",
+              "tag": "Frequently Asked"
+            },
+            {
+              "q": "Q8. What is the difference between Node.js and traditional multi-threaded servers?",
+              "a": "Traditional multi-threaded servers, like classic Apache setups, typically spawn a new thread or process for each incoming connection, which consumes significant memory under high concurrency. Node.js instead uses a single main thread combined with an event loop and libuv's background thread pool, handling many concurrent connections far more memory-efficiently for I/O-heavy workloads.",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q9. What is the latest LTS version of Node.js in 2026?",
+              "a": "Node.js 22 (or the latest even-numbered LTS release available) is the current recommended version for production use in 2026, bringing native TypeScript file execution support, continued V8 engine improvements, and a maturing built-in permission model for enhanced security.",
+              "tag": "Current Affairs"
+            },
+            {
+              "q": "Q10. What are Worker Threads in Node.js and why are they needed?",
+              "a": "Worker Threads are a Node.js module that allows running JavaScript in parallel on separate threads, each with its own V8 instance and event loop. They are needed for CPU-intensive tasks — like image processing or complex calculations — that would otherwise block the main event loop and degrade the responsiveness of an entire Node.js application.",
+              "tag": "Must Know"
+            }
+          ]
+        }
+      ]
+    },
+
+    {
+      "sectionId": "practice-questions",
+      "title": "Practice Questions — Test Your Knowledge",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "Test your understanding of Node.js fundamentals with these practice questions. Try to answer each one before revealing the answer — active recall is the most effective way to learn."
+        },
+        {
+          "type": "practiceQuestions",
+          "items": [
+            {
+              "q": "1. What does libuv do inside Node.js?",
+              "a": "libuv is a C library that Node.js uses to implement the event loop and handle asynchronous, non-blocking operations such as file system access, DNS resolution, and networking. It abstracts platform-specific differences between Windows, Linux, and macOS, and provides a thread pool for operations that cannot be made non-blocking at the operating system level.",
+              "difficulty": "Easy"
+            },
+            {
+              "q": "2. What is the output of: console.log(\"A\"); setTimeout(() => console.log(\"B\"), 0); console.log(\"C\");?",
+              "a": "A, C, B. Even with a 0ms delay, setTimeout schedules its callback to run after the current synchronous code finishes executing and the call stack is empty, because the event loop only processes the callback queue once the main thread is free. This demonstrates that Node.js always prioritises synchronous code before queued asynchronous callbacks.",
+              "difficulty": "Easy"
+            },
+            {
+              "q": "3. What is the minimum software required to run a Node.js script on a new computer?",
+              "a": "Just the Node.js runtime itself — available free from nodejs.org, which bundles npm automatically. Unlike some other ecosystems, there's no separate compiler step; you install Node.js once and can immediately run .js files using the node command from a terminal.",
+              "difficulty": "Easy"
+            },
+            {
+              "q": "4. What is 'callback hell' and how does async/await help avoid it?",
+              "a": "Callback hell refers to deeply nested callback functions that result from chaining multiple asynchronous operations, making code hard to read and maintain. async/await, built on top of Promises, lets you write asynchronous code that looks and reads like synchronous code — using try/catch for error handling — which flattens the nesting and greatly improves readability.",
+              "difficulty": "Medium"
+            },
+            {
+              "q": "5. Explain the difference between process.nextTick(), Promises (microtasks), and setTimeout() (macrotasks) in Node.js.",
+              "a": "process.nextTick() queues a callback to run immediately after the current operation completes, before any other I/O events, and has the highest priority. Promise callbacks (microtasks) run next, after all nextTick callbacks but before the event loop moves to the next phase. setTimeout() callbacks (macrotasks) are processed in a later phase of the event loop, meaning they generally run after pending microtasks even if scheduled with a 0ms delay.",
+              "difficulty": "Medium"
+            },
+            {
+              "q": "6. Why might a Node.js server become unresponsive under a CPU-intensive workload, and how can this be fixed?",
+              "a": "Because Node.js runs JavaScript on a single main thread, a long-running synchronous computation — like processing a huge array or doing heavy encryption — blocks the event loop, preventing it from handling any other incoming requests until the computation finishes. This can be fixed by offloading the work to Worker Threads, splitting the task into smaller asynchronous chunks, or moving the computation to a separate microservice better suited for CPU-bound work.",
+              "difficulty": "Hard"
+            },
+            {
+              "q": "7. What is the output of: typeof null in Node.js, and why is this considered a JavaScript quirk?",
+              "a": "\"object\". This is a long-standing quirk inherited from the original JavaScript specification, where null was mistakenly classified as an object type due to how values were represented internally in the first JavaScript engine implementation. It has never been fixed because doing so would break existing code across the entire JavaScript ecosystem, including Node.js.",
+              "difficulty": "Medium"
+            },
+            {
+              "q": "8. What is the difference between 'dependencies' and 'devDependencies' in package.json?",
+              "a": "'dependencies' lists packages required for the application to run in production, such as Express or a database driver. 'devDependencies' lists packages only needed during development, such as testing frameworks, linters, or build tools. Running npm install --production (or equivalent) skips devDependencies, keeping production deployments smaller and more secure.",
+              "difficulty": "Hard"
+            }
+          ]
+        }
+      ]
+    },
+
+    {
+      "sectionId": "conclusion-heading",
+      "title": "Conclusion — Is Node.js Right for You?",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "Node.js has grown from a single developer's experiment into <strong>the backbone of modern web backends</strong>. From REST APIs serving millions of mobile users to real-time chat applications and full-stack frameworks like Next.js, Node.js sits at the center of today's JavaScript-driven web development landscape."
+        },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "If you already know <strong>JavaScript</strong> for the frontend, learning Node.js is one of the highest-leverage skills you can add — the language stays the same, only the runtime environment and available APIs change. If you are a <strong>complete beginner</strong> aiming for <strong>full-stack web development</strong>, learning JavaScript once and applying it via Node.js on the backend is widely considered the most efficient learning path."
+        },
+        {
+          "type": "comparisonTable",
+          "headers": ["Your Goal", "Should You Learn Node.js?"],
+          "rows": [
+            ["Full-stack JavaScript web development", "✅ Absolutely — one language across frontend and backend"],
+            ["Building REST or GraphQL APIs",          "✅ Yes — Express, Fastify, and NestJS excel here"],
+            ["Real-time apps (chat, live dashboards)",  "✅ Yes — the event-driven model is purpose-built for this"],
+            ["Microservices & serverless functions",    "✅ Yes — fast startup and small footprint are ideal"],
+            ["Heavy CPU-bound computation (video encoding, ML training)", "⚠️ Consider Python, Go, or C++ instead"],
+            ["Native mobile app development",            "❌ Use Kotlin/Swift, or React Native for JS-based mobile"],
+            ["Data science / ML research",               "⚠️ Python remains the dominant choice for this domain"],
+            ["Learning your first backend runtime",      "✅ Node.js is a friendly, in-demand starting point"]
+          ]
+        },
+        {
+          "type": "comparisonTable",
+          "headers": ["Version", "Released", "Status", "Key Feature"],
+          "rows": [
+            ["Node.js 18", "2022", "⚠️ Maintenance", "Native fetch API, test runner"],
+            ["Node.js 20", "2023", "✅ Active", "Experimental permission model"],
+            ["Node.js 22", "2024", "✅ Recommended", "Native TypeScript file execution"],
+            ["Node.js 24", "2025", "✅ Current", "Continued V8 & security improvements"],
+            ["Node.js 26", "2026", "🔜 Expected", "Further performance and tooling gains"]
+          ]
+        },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "The next step in your Node.js journey is <strong>setting up your development environment</strong>. Download the latest <strong>LTS release of Node.js</strong> (free from nodejs.org), install <strong>nvm</strong> to manage versions cleanly, and open your project in <strong>VS Code</strong>. Then dive into core modules, npm, and the Express framework. Every hour invested in Node.js fundamentals now builds the foundation for a career in one of the most in-demand corners of modern web development."
+        },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "<strong>Node.js is not slowing down — it keeps modernising.</strong> With native TypeScript support, a maturing permission model, and continued V8 performance gains, Node.js in 2026 is faster, safer, and more capable than ever for building the backends of tomorrow's applications. Start today. 🟢"
+        }
+      ]
+    }
+
+  ],
+
+  "faq": {
+    "sectionId": "faq-heading",
+    "title": "Frequently Asked Questions (FAQ)",
+    "items": [
+      {
+        "q": "Is Node.js easy to learn for beginners?",
+        "a": "Yes, especially if you already know JavaScript from frontend development. Node.js reuses the same language and much of the same syntax, so the learning curve mostly involves understanding server-side concepts like the file system, HTTP requests, and asynchronous programming rather than learning an entirely new language."
+      },
+      {
+        "q": "What is the difference between Node.js and JavaScript?",
+        "a": "JavaScript is the programming language itself, originally designed to run inside web browsers. Node.js is a runtime environment that lets that same JavaScript language run outside the browser, typically on a server, by embedding Google's V8 engine and adding server-focused APIs like file system access and networking that browsers don't expose for security reasons."
+      },
+      {
+        "q": "How long does it take to learn Node.js?",
+        "a": "If you already know JavaScript, you can learn core Node.js concepts — modules, npm, asynchronous programming, and basic HTTP servers — in about 2-3 weeks of consistent practice. Becoming comfortable building production-ready APIs with a framework like Express, along with authentication and database integration, typically takes another 1-2 months of hands-on project work."
+      },
+      {
+        "q": "Is Node.js free to use in 2026?",
+        "a": "Yes. Node.js is completely free and open-source under the MIT License. You can use it for personal projects, learning, and commercial production applications at zero licensing cost. npm, the accompanying package manager, is also free, and even most npm packages are open-source and free to use."
+      },
+      {
+        "q": "Should I learn Node.js 20 or 22 in 2026?",
+        "a": "For most learners and production projects, start with the latest LTS release — currently Node.js 22 or newer — since it includes native TypeScript file support and the most current security and performance improvements while still being fully supported for production use."
+      },
+      {
+        "q": "Node.js vs Python — Which is better in 2026?",
+        "a": "Both are excellent, widely-used technologies. Choose Node.js when building JavaScript-based full-stack applications, high-concurrency APIs, or real-time systems. Choose Python when working on AI/ML, data science, or projects where its simpler syntax and scientific libraries provide a clearer advantage. Many teams use both — Node.js for the web layer and Python for data-heavy backend services."
+      }
+    ]
+  },
+
+  "nav": {
+    "prev": { "label": "← Previous", "path": "/node/node-home/" },
+    "next": { "label": "Next: Node.js Intro →", "path": "/node/node-intro/" }
+  },
+
+  "sidebar": {
+    "quickFacts": [
+      { "dt": "Created by",  "dd": "Ryan Dahl" },
+      { "dt": "Released",    "dd": "2009" },
+      { "dt": "Maintained by", "dd": "OpenJS Foundation" },
+      { "dt": "Type",        "dd": "JavaScript Runtime Environment" },
+      { "dt": "Engine",      "dd": "Google V8" },
+      { "dt": "Latest",      "dd": "Node.js 22+ (LTS)" }
+    ],
+    "tags": ["V8 Engine","npm","nvm","Event Loop","libuv","Non-Blocking I/O","Express.js","Worker Threads","REST APIs","WebSockets","Async/Await","CommonJS","ES Modules","Microservices","TypeScript"]
+  }
+}

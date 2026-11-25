@@ -1,0 +1,488 @@
+{
+  "meta": {
+    "title": "Variables in C — Declaration vs Definition, Storage Classes & the GCC 10 Linker Trap (2026) | Tech Sustainify",
+    "description": "Variables in C beyond 'a box that holds a value': the declaration/definition split, static local persistence, extern linkage, the -fno-common change in GCC 10 that broke old multi-file code, uninitialized-variable UB, and const/volatile in practice.",
+    "keywords": "variables in c, declaration vs definition c, storage classes c, static variable c, extern c, multiple definition linker error, fno-common gcc10, const volatile c, uninitialized variable c, tentative definition c",
+    "author": "Tech Sustainify",
+    "canonical": "https://techsustainify.com/c/c-variables/",
+    "ogTitle": "Variables in C — Storage Classes, Linkage, and the GCC 10 Trap Nobody Warns You About | Tech Sustainify",
+    "ogDescription": "The difference between declaring and defining a variable, why static locals remember their value, and the exact linker error a GCC 10 upgrade caused in old multi-file C projects.",
+    "ogUrl": "https://techsustainify.com/c/c-variables/",
+    "ogSiteName": "Tech Sustainify",
+    "twitterReadingTime": "13 minutes",
+    "twitterLevel": "Beginner",
+    "schemaDatePublished": "2024-03-02",
+    "schemaDateModified": "2026-03-24",
+    "schemaProficiencyLevel": "Beginner",
+    "schemaWordCount": 3400
+  },
+
+  "breadcrumbs": [
+    { "position": 1, "name": "Home",       "path": "/" },
+    { "position": 2, "name": "C Tutorial", "path": "/c/c-home/" },
+    { "position": 3, "name": "Variables" }
+  ],
+
+  "articleHeader": {
+    "badge": "📦 C Fundamentals",
+    "title": "Variables in C — Not Just 'A Box That Holds a Value'",
+    "subtitle": "Declaring a variable and defining one aren't the same thing. Where you put static changes what a variable remembers. And a GCC 10 default change broke multi-file C projects that had compiled fine for a decade."
+  },
+
+  "infoCards": [
+    { "icon": "📅", "label": "Last Updated", "isTime": true, "dateTime": "2026-03-24", "value": "March 2026" },
+    { "icon": "⏱️", "label": "Read Time",    "value": "13 min" },
+    { "icon": "🎯", "label": "Level",         "value": "Beginner–Intermediate" }
+  ],
+
+  "sections": [
+
+    {
+      "sectionId": "what-is-a-variable",
+      "title": "A Variable Is a Name Bound to Storage — That's the Whole Definition",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "The 'box that holds a value' explanation works for a first lecture and stops working the moment you write C across more than one file. A variable in C is really a <strong>name</strong> the compiler associates with a location in memory, plus a <strong>type</strong> that says how to interpret the bytes there. Where that memory lives — stack, static storage, or a CPU register — and how long the name stays valid depends entirely on where and how you declared it, which is the part most beginner material glosses over."
+        },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "C also insists on a distinction that languages like Python don't force on you at all: <strong>declaration</strong> versus <strong>definition</strong>. A declaration tells the compiler a name exists and what type it is. A definition actually reserves the storage. Most of the time you do both in one line — <code>int total = 0;</code> is a definition — and the distinction stays invisible until you split code across files, where it becomes the difference between code that links and code that doesn't."
+        }
+      ]
+    },
+
+    {
+      "sectionId": "naming-rules",
+      "title": "Identifier Rules — What's Legal and What Just Compiles by Accident",
+      "blocks": [
+        {
+          "type": "bulletList",
+          "items": [
+            { "strong": "Allowed characters", "text": " — letters, digits, and underscore only. No spaces, no hyphens; `interest-rate` is two tokens to the compiler, not one identifier, and fails immediately." },
+            { "strong": "Can't start with a digit", "text": " — `2ndValue` is rejected; `value2nd` or `secondValue` is fine." },
+            { "strong": "Case-sensitive", "text": " — `total`, `Total`, and `TOTAL` are three distinct identifiers, a fact that has caused more than one genuinely confusing bug report where someone declared `Count` and used `count` elsewhere by habit, silently creating two separate variables." },
+            { "strong": "Names starting with underscore are technically reserved", "text": " — `_temp` or `__buffer` at file scope are reserved for the implementation (compiler/standard library) per the standard; using them yourself is legal in practice on most compilers but is asking for a name collision with something libc defines internally." },
+            { "strong": "C keywords can never be identifiers", "text": " — trying `int int = 5;` fails with `error: expected identifier before 'int'`, since `int` is a reserved word, not just a commonly-used name." },
+            { "strong": "No enforced length limit in practice, but the standard guarantees only 63 significant characters", "text": " — for internal identifiers (identifiers without external linkage) per C99/C11; beyond that, conforming compilers are only required to distinguish the first 63 characters, though GCC and Clang in practice track far more." }
+          ]
+        }
+      ]
+    },
+
+    {
+      "sectionId": "declaration-vs-definition",
+      "title": "Declaration vs Definition — The Split That Matters Across Files",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "This distinction is invisible in single-file programs and becomes the entire ballgame in multi-file C projects — which is most real C codebases. <code>extern int requestCount;</code> is a pure declaration: it tells this file 'a variable called requestCount exists somewhere, trust me, and here's its type' — it reserves no storage anywhere. <code>int requestCount = 0;</code>, written once in exactly one .c file, is the definition — the actual storage."
+        },
+        {
+          "type": "codeBox",
+          "lang": "🖥️ C",
+          "label": "counter.c",
+          "lines": [
+            "// counter.c — this file owns the storage",
+            "int requestCount = 0;   // DEFINITION — reserves actual memory",
+            "",
+            "void incrementCount(void) {",
+            "    requestCount++;",
+            "}"
+          ]
+        },
+        {
+          "type": "codeBox",
+          "lang": "🖥️ C",
+          "label": "logger.c",
+          "lines": [
+            "// logger.c — a different file that needs to read the same counter",
+            "#include <stdio.h>",
+            "",
+            "extern int requestCount;   // DECLARATION only — no storage reserved here,",
+            "                           // this just tells the compiler 'trust me, it exists'",
+            "",
+            "void logCurrentCount(void) {",
+            "    printf(\"Requests so far: %d\\n\", requestCount);",
+            "}"
+          ]
+        },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "Get this backwards — define the same variable in both files instead of declaring it extern in one — and you're relying on undefined, compiler-version-dependent linker behaviour, which is exactly the trap in the next section."
+        }
+      ]
+    },
+
+    {
+      "sectionId": "gcc10-linker-trap",
+      "title": "The GCC 10 Change That Broke Old Multi-File C Projects",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "This is a version-specific gotcha I'd rank as one of the most disruptive quiet changes in recent GCC history for legacy C codebases. Before GCC 10, if you accidentally wrote <code>int requestCount;</code> (no initializer, no <code>extern</code>) in <strong>two different .c files</strong>, the compiler defaulted to <code>-fcommon</code>, which merges these 'tentative definitions' into a single shared symbol at link time. Sloppy, but it worked, and plenty of decades-old C code relied on exactly this behaviour without anyone realising it was technically undefined by the C standard."
+        },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "GCC 10 (released 2020, but still catching people upgrading toolchains in 2026 on projects that hadn't been rebuilt in years) flipped the default to <code>-fno-common</code>, matching how Clang had always behaved. The exact same source files that linked cleanly for years suddenly fail:"
+        },
+        {
+          "type": "codeBox",
+          "lang": "🐚 Shell",
+          "label": "terminal",
+          "lines": [
+            "$ gcc counter.c legacy_status.c -o app",
+            "/usr/bin/ld: /tmp/ccXYZ123.o:(.bss+0x0): multiple definition of 'requestCount';",
+            "/tmp/ccABC456.o:(.bss+0x0): first defined here",
+            "collect2: error: ld returned 1 exit status"
+          ]
+        },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "I ran into exactly this while helping port a decade-old industrial monitoring codebase — probably 40-odd .c files — from a CentOS 7 box with GCC 4.8 to a fresh Ubuntu 24.04 build server. Roughly a dozen 'tentative definition' variables scattered across the codebase suddenly refused to link, all with the same <code>multiple definition of</code> error, on a codebase where nobody on the current team even remembered which file was supposed to 'own' each variable. The fix, done properly, was picking one owning file per variable, giving that file the real definition, and turning every other reference into <code>extern</code>. The fast, not-recommended fix is compiling with <code>-fcommon</code> to restore the old behaviour — it works, but it's papering over a bug the new default was specifically added to expose."
+        }
+      ]
+    },
+
+    {
+      "sectionId": "uninitialized-variables",
+      "title": "Uninitialized Local Variables — Garbage, Not Zero",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "A local variable with automatic storage duration that you don't explicitly initialize does <strong>not</strong> default to zero. It holds whatever bit pattern was already sitting in that stack location from whatever function ran there before — reading it before assigning it is undefined behaviour, and the value you see is a coincidence of your specific compiler, optimisation level, and call history, not a guarantee."
+        },
+        {
+          "type": "codeBox",
+          "lang": "🖥️ C",
+          "label": "uninitialized-bug.c",
+          "lines": [
+            "#include <stdio.h>",
+            "",
+            "int computeDiscount(int purchaseAmount) {",
+            "    int discount;   // NOT initialized — holds garbage until assigned",
+            "",
+            "    if (purchaseAmount > 5000) {",
+            "        discount = purchaseAmount / 10;",
+            "    }",
+            "    // BUG: missing 'else' branch — for purchaseAmount <= 5000,",
+            "    // discount is returned uninitialized",
+            "",
+            "    return discount;",
+            "}"
+          ]
+        },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "I made almost this exact mistake in a retail billing prototype: the discount calculation worked correctly during testing because the stack slot for <code>discount</code> happened to contain zero from a previous call, every single time on my dev machine. It shipped, and on the client's production build — different compiler, different optimisation flags, different call stack shape — small purchases occasionally got a wild, meaningless 'discount' because that stack slot now held leftover data from an unrelated function. <code>gcc -Wall</code> does catch this one reliably: <code>warning: 'discount' may be used uninitialized in this function [-Wmaybe-uninitialized]</code> — the warning was there from day one; nobody was compiling with <code>-Wall</code> turned on."
+        }
+      ]
+    },
+
+    {
+      "sectionId": "storage-classes",
+      "title": "The Four Storage Classes — Scope, Lifetime, and Default Value Compared",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Storage class keywords don't change a variable's type — they change where it lives, how long it lives, and what other files can see it. This is the table worth bookmarking."
+        },
+        {
+          "type": "comparisonTable",
+          "headers": ["Storage Class", "Default Scope", "Lifetime", "Default Initial Value", "Typical Use"],
+          "rows": [
+            ["auto (default, rarely written)", "Block", "Automatic — created/destroyed with the block", "Indeterminate (garbage)", "Ordinary local variables — nearly everything you declare inside a function"],
+            ["static (local)",  "Block", "Entire program run — persists between calls", "Zero, if not explicitly initialized", "Counters, caches, or one-time-setup flags that must survive across function calls"],
+            ["static (global/file scope)", "File (internal linkage — invisible to other .c files)", "Entire program run", "Zero, if not explicitly initialized", "Module-private state you deliberately want to hide from other files"],
+            ["extern",          "File or block — refers to storage defined elsewhere", "Entire program run (storage lives wherever the real definition is)", "N/A — it's a reference, not storage", "Sharing one global variable's storage across multiple .c files"],
+            ["register",        "Block", "Automatic", "Indeterminate (garbage)", "A hint (largely ignored by modern optimising compilers) that a variable is accessed heavily; you cannot take its address with &"]
+          ]
+        },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "That last row surprises people: <code>register</code> was genuinely useful when compilers were bad at register allocation. In my experience with GCC and Clang today, the optimiser makes better register-allocation decisions than a human guess placed on individual variables almost every time — the one thing <code>register</code> still reliably does is forbid <code>&variable</code>, which occasionally gets used deliberately just to catch accidental address-taking during a code review, but that's a niche, defensive use, not the keyword's original purpose."
+        }
+      ]
+    },
+
+    {
+      "sectionId": "static-local-persistence",
+      "title": "static Locals — The One Case Where a 'Local' Variable Doesn't Reset",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "A <code>static</code> local variable is declared inside a function like any other local, but its storage is allocated once, for the entire program's run, not re-created on every call. It's the standard way to build a simple ID generator or call counter without reaching for a global."
+        },
+        {
+          "type": "codeBox",
+          "lang": "🖥️ C",
+          "label": "invoice-id.c",
+          "lines": [
+            "#include <stdio.h>",
+            "",
+            "int nextInvoiceId(void) {",
+            "    static int lastId = 100000;   // initialized ONCE, on first call only",
+            "    lastId++;",
+            "    return lastId;",
+            "}",
+            "",
+            "int main() {",
+            "    printf(\"%d\\n\", nextInvoiceId());   // 100001",
+            "    printf(\"%d\\n\", nextInvoiceId());   // 100002",
+            "    printf(\"%d\\n\", nextInvoiceId());   // 100003 — lastId remembered across calls",
+            "    return 0;",
+            "}"
+          ]
+        },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "One catch worth flagging explicitly: this pattern is <strong>not thread-safe</strong> without extra work. If <code>nextInvoiceId()</code> is called concurrently from two threads — which is a very real scenario in a multi-threaded billing service handling parallel checkout requests — two threads can both read <code>lastId</code> before either writes it back, and you hand out the same invoice ID twice. The fix is either a mutex around the increment or, on GCC/Clang, an atomic increment via <code>&lt;stdatomic.h&gt;</code>'s <code>atomic_fetch_add</code>. I've genuinely seen a duplicate-invoice-number bug in production trace back to precisely this — a static counter that was perfectly correct in a single-threaded test harness and silently wrong the moment the service went multi-threaded under real Diwali-sale traffic."
+        }
+      ]
+    },
+
+    {
+      "sectionId": "const-and-volatile",
+      "title": "const and volatile — Two Qualifiers People Confuse With Each Other",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "<code>const</code> means <strong>read-only after initialization, as far as the compiler is concerned</strong> — it is not the same thing as a compile-time constant. <code>const int rate = getInterestRate();</code> is completely legal; the value is only known at runtime, but the compiler will refuse to let you reassign <code>rate</code> afterward, catching accidental mutation as a compile error instead of a runtime bug."
+        },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "<code>volatile</code> solves a different, almost opposite problem: it tells the compiler <strong>'don't optimise away reads or writes to this variable — its value can change for reasons you can't see in this code.'</strong> This matters directly for memory-mapped hardware registers and variables shared with an interrupt service routine (ISR)."
+        },
+        {
+          "type": "codeBox",
+          "lang": "🖥️ C",
+          "label": "uart-flag.c",
+          "lines": [
+            "// Firmware for a UART receive handler on an STM32-class microcontroller.",
+            "// dataReady is set to 1 inside the interrupt handler when a byte arrives.",
+            "",
+            "volatile int dataReady = 0;   // WITHOUT volatile, -O2 assumes this never",
+            "                               // changes inside the loop below and optimises",
+            "                               // the whole while loop into an infinite spin",
+            "",
+            "void UART_IRQHandler(void) {",
+            "    dataReady = 1;   // set by hardware interrupt, asynchronously",
+            "}",
+            "",
+            "void waitForByte(void) {",
+            "    while (dataReady == 0) {",
+            "        // spin until the ISR sets the flag",
+            "    }",
+            "    dataReady = 0;",
+            "}"
+          ]
+        },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "Drop the <code>volatile</code> keyword here and the bug is genuinely nasty to find: it compiles cleanly, runs fine at <code>-O0</code> during early bring-up testing, and then hangs forever the moment someone builds the release firmware with <code>-O2</code> — because the optimiser sees <code>dataReady</code> never gets written anywhere inside <code>waitForByte()</code>'s visible code path and hoists the check into a genuinely infinite loop, since from its point of view the condition can never change. This is exactly the class of bug that only shows up after an optimisation-level change, which is precisely why it tends to appear right before a release build, not during daily debug-mode development."
+        }
+      ]
+    },
+
+    {
+      "sectionId": "best-practices",
+      "title": "How I Handle Variable Declarations in Practice",
+      "blocks": [
+        {
+          "type": "bulletList",
+          "items": [
+            { "strong": "Initialize every local variable at the point of declaration", "text": " — even `int result = 0;` instead of `int result;` costs nothing and removes an entire bug category outright." },
+            { "strong": "Own each global variable in exactly one .c file", "text": " — define it there, and use `extern` in every other file that needs it. This sidesteps the GCC 10 -fno-common trap entirely, regardless of which GCC version compiles the project." },
+            { "strong": "Reach for static local variables over globals when state needs to persist within one function's job", "text": " — an ID generator, a one-time-setup flag, a small internal cache — static locals keep that state invisible to the rest of the file instead of polluting global namespace." },
+            { "strong": "Mark anything touched by an ISR or hardware register as volatile, without exception", "text": " — the STM32-class bug above doesn't show up in early testing; treat volatile as mandatory the moment a variable crosses into interrupt or memory-mapped-hardware territory, not as an optional hardening step." },
+            { "strong": "Use const liberally for parameters and locals that genuinely don't change", "text": " — it documents intent for the next reader and turns an accidental reassignment into a compile-time error instead of a silent logic bug." },
+            { "strong": "Compile with -Wall -Wextra from day one of a project", "text": " — the uninitialized-variable warning that would have caught the discount bug above exists specifically for this; it's free and it's silent unless you enable it." }
+          ]
+        }
+      ]
+    },
+
+    {
+      "sectionId": "common-mistakes",
+      "title": "Mistakes That Come Up Again and Again",
+      "blocks": [
+        {
+          "type": "bulletList",
+          "items": [
+            { "strong": "Assuming globals default to zero and locals do too", "text": " — globals and static locals DO default to zero if uninitialized; ordinary automatic locals do NOT. Mixing these two rules up is one of the most common beginner assumptions that turns into a real bug." },
+            { "strong": "Declaring the same global variable (no extern) in two .c files", "text": " — worked under GCC's old -fcommon default, fails with `multiple definition of` under GCC 10+ and has always failed under Clang; the correct fix is one definition, extern everywhere else." },
+            { "strong": "Treating const as 'this is a compile-time constant'", "text": " — const only blocks reassignment after initialization; it says nothing about when the value was determined. A true compile-time constant in C uses `#define` or, in C23, `constexpr`." },
+            { "strong": "Forgetting volatile on ISR-shared flags and only noticing at -O2", "text": " — the bug is invisible at -O0, which is exactly why it tends to survive all of development and only appear in the release build, often right before a deadline." }
+          ]
+        }
+      ]
+    },
+
+    {
+      "sectionId": "interview-questions",
+      "title": "Variables — Interview Questions",
+      "blocks": [
+        {
+          "type": "interviewQA",
+          "items": [
+            {
+              "q": "Q1. What is the difference between declaring and defining a variable in C?",
+              "a": "A declaration tells the compiler a name and type exist somewhere, without reserving storage — `extern int total;` is a declaration. A definition, like `int total = 0;`, actually reserves the storage for that variable. A variable can be declared any number of times across files but must be defined exactly once.",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q2. Does an uninitialized local variable default to 0 in C?",
+              "a": "No. A local variable with automatic storage duration that isn't explicitly initialized holds an indeterminate value — whatever bit pattern was previously in that stack location. Reading it before assignment is undefined behaviour. Global and static variables, by contrast, are guaranteed to be zero-initialized if not given an explicit initializer.",
+              "tag": "Common Trap"
+            },
+            {
+              "q": "Q3. What happens if the same global variable is defined (without extern) in two different .c files under GCC 10 or later?",
+              "a": "The link step fails with a 'multiple definition of' error from the linker. GCC versions before 10 defaulted to -fcommon, which merged such tentative definitions and allowed this to link; GCC 10 changed the default to -fno-common, matching Clang, which correctly rejects it as the standard actually requires.",
+              "tag": "Version-Specific"
+            },
+            {
+              "q": "Q4. What does static do differently when applied to a local variable versus a global variable?",
+              "a": "On a local variable, static changes its lifetime from automatic (destroyed at block exit) to the entire program run, while keeping its scope local to the function. On a global variable, static changes its linkage from external (visible to other files) to internal (private to the defining file) — the lifetime was already the whole program either way.",
+              "tag": "Frequently Asked"
+            },
+            {
+              "q": "Q5. Is const the same as a compile-time constant in C?",
+              "a": "No. const only means the variable cannot be reassigned after its initial value is set — that initial value can itself be determined at runtime, as in `const int rate = getInterestRate();`. A genuine compile-time constant in C traditionally uses a #define macro or, starting with C23, the constexpr keyword.",
+              "tag": "Tricky"
+            },
+            {
+              "q": "Q6. Why is a variable shared with an interrupt handler declared volatile?",
+              "a": "Without volatile, an optimising compiler may assume the variable's value can't change within a loop that doesn't visibly write to it, and eliminate or hoist reads of it entirely. volatile forces the compiler to re-read the variable from memory on every access, which is essential since the interrupt handler can modify it asynchronously, outside the normal control flow the compiler can see.",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q7. Is a static local variable initialized with 'static int lastId = 100000;' thread-safe?",
+              "a": "No, not by default. Multiple threads calling the function concurrently can race on reading and updating the static variable, potentially producing duplicate or lost updates. Making it thread-safe requires a mutex around the update or an atomic operation, such as atomic_fetch_add from stdatomic.h.",
+              "tag": "Advanced"
+            },
+            {
+              "q": "Q8. What's the practical difference in scope between auto (ordinary local) and register storage class today?",
+              "a": "Functionally, register behaves like an ordinary automatic local — same block scope, same automatic lifetime — with one added restriction: you cannot take its address with &. Modern optimising compilers largely ignore the 'hint' aspect of register, making it mostly a legacy keyword whose only real remaining effect is that address-of restriction.",
+              "tag": "Good to Know"
+            }
+          ]
+        }
+      ]
+    },
+
+    {
+      "sectionId": "practice-questions",
+      "title": "Practice Questions",
+      "blocks": [
+        {
+          "type": "practiceQuestions",
+          "items": [
+            {
+              "q": "1. What is the output of three consecutive calls to this function?\nint nextId(void) {\n    static int id = 0;\n    id++;\n    return id;\n}",
+              "a": "1, 2, 3. Because id is static, its storage persists across calls instead of being recreated each time, and its initializer (0) runs only once, on the very first call.",
+              "difficulty": "Easy"
+            },
+            {
+              "q": "2. Will this compile cleanly, and if not, why?\n// file1.c\nint sharedTotal;\n// file2.c\nint sharedTotal;",
+              "a": "Under GCC 10+ or Clang, this fails to link with 'multiple definition of sharedTotal', because both files define (not just declare) the same variable. Under GCC versions before 10 with the old -fcommon default, it would link, merging both into one symbol — which is why this is a version-dependent gotcha.",
+              "difficulty": "Medium"
+            },
+            {
+              "q": "3. What's wrong with this code, assuming purchaseAmount can legitimately be 5000 or less?\nint computeDiscount(int purchaseAmount) {\n    int discount;\n    if (purchaseAmount > 5000) {\n        discount = purchaseAmount / 10;\n    }\n    return discount;\n}",
+              "a": "discount is declared without initialization and only assigned inside the if branch. When purchaseAmount is 5000 or less, the function returns an uninitialized (garbage) value — undefined behaviour. The fix is either initializing discount at declaration or adding an else branch that assigns it.",
+              "difficulty": "Medium"
+            },
+            {
+              "q": "4. What compile-time restriction does the register storage class add compared to a plain local variable?",
+              "a": "You cannot apply the address-of operator (&) to a variable declared register — attempting `&myRegisterVar` is a compile error, since a register hint implies the compiler might not give the variable a normal, addressable memory location.",
+              "difficulty": "Easy"
+            },
+            {
+              "q": "5. Why might this microcontroller loop hang forever only in a release (-O2) build but work fine in debug (-O0)?\nint flag = 0;\nvoid ISR(void) { flag = 1; }\nvoid wait(void) { while (flag == 0) {} }",
+              "a": "flag is not declared volatile, so at -O2 the optimiser may assume nothing inside the visible code of wait() changes flag and turn the loop into an infinite spin, discarding the repeated memory read. At -O0, with optimisations off, the compiler re-reads flag from memory each iteration by coincidence, masking the bug during early testing.",
+              "difficulty": "Hard"
+            },
+            {
+              "q": "6. Is 'const int limit = readConfigValue();' valid C, given that readConfigValue() only returns its result at runtime?",
+              "a": "Yes, this is completely valid. const does not require the value to be known at compile time — it only prevents limit from being reassigned after this initialization. The value itself can come from any runtime computation, including a function call.",
+              "difficulty": "Medium"
+            }
+          ]
+        }
+      ]
+    },
+
+    {
+      "sectionId": "conclusion-heading",
+      "title": "Closing Thoughts",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "Every trap in this article — the uninitialized discount bug, the GCC 10 linker error, the volatile-less firmware hang — compiled without a single error the first time. That's the pattern worth internalising about C variables specifically: the language trusts you completely, and the compiler only tells you about a mistake if you've asked it to, via <code>-Wall</code>, <code>-Wextra</code>, or a sanitizer."
+        },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "My actual working rule after enough of these bugs: every variable declaration should answer three questions before you move on — who owns its storage, does it need to survive past this block, and could something outside this function's visible code change it. Get those three right and most of what's in this article stops being a risk."
+        }
+      ]
+    }
+
+  ],
+
+  "faq": {
+    "sectionId": "faq-heading",
+    "title": "Frequently Asked Questions (FAQ)",
+    "items": [
+      {
+        "q": "Can a variable be declared multiple times but defined only once?",
+        "a": "Yes — this is the normal, correct pattern for sharing a global variable across files. Every file that uses it includes an extern declaration, while exactly one .c file provides the actual definition that reserves storage."
+      },
+      {
+        "q": "Do global variables get zero-initialized automatically in C?",
+        "a": "Yes. Global variables (and static locals) without an explicit initializer are guaranteed to start at zero — this is different from ordinary automatic local variables, which hold indeterminate garbage until explicitly assigned."
+      },
+      {
+        "q": "Is -fcommon a safe fix for the 'multiple definition of' error after a GCC upgrade?",
+        "a": "It restores the old linking behaviour and gets a legacy project building again quickly, but it's a workaround, not a fix — the underlying code still has two definitions of the same variable, which the standard never actually sanctioned. Properly fixing the ownership (one definition, extern elsewhere) is the durable solution."
+      },
+      {
+        "q": "Can const and volatile be applied to the same variable?",
+        "a": "Yes — 'const volatile int status;' is valid and describes a value your code should never write to but that can still change for reasons outside your code's control, such as a hardware status register that firmware only reads."
+      }
+    ]
+  },
+
+  "nav": {
+    "prev": { "label": "← C Data Types",   "path": "/c/c-data-types/" },
+    "next":  { "label": "Next: C Constants →", "path": "/c/c-constants/" }
+  },
+
+  "sidebar": {
+    "quickFacts": [
+      { "dt": "Declaration vs definition", "dd": "Declares = type only; Defines = reserves storage" },
+      { "dt": "Auto local default value",  "dd": "Indeterminate (garbage)" },
+      { "dt": "Global/static default",     "dd": "Zero" },
+      { "dt": "GCC 10 default change",     "dd": "-fno-common (was -fcommon)" },
+      { "dt": "const meaning",             "dd": "Read-only after init, not compile-time" },
+      { "dt": "volatile meaning",          "dd": "Never optimise away reads/writes" }
+    ],
+    "tags": ["Variables","Storage Classes","static","extern","const","volatile","Linkage","GCC 10","Uninitialized Variable","Multiple Definition"]
+  }
+}

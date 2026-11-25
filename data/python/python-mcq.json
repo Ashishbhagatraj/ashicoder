@@ -1,0 +1,1508 @@
+{
+  "meta": {
+    "title": "Python MCQ Questions | 100 Multiple Choice Questions All Levels 2026 | Tech Sustainify",
+    "description": "Practice 100 Python multiple choice questions covering all levels — Fresher, Mid, and Senior. Topics include Python basics, OOP, Data Structures, Exception Handling, Decorators, Generators, the GIL, Threading, Multiprocessing, Asyncio, and CPython Internals. Every question includes the correct answer and a detailed explanation. Updated July 2026.",
+    "keywords": "python mcq questions 2026, python mcq for freshers, python mcq mid level, python mcq senior developer, python data structures mcq, python oops mcq, python gil mcq, python multithreading mcq, python decorators mcq, python generators mcq, python asyncio mcq, python quiz 2026, python objective questions",
+    "author": "Tech Sustainify",
+    "publisher": "Tech Sustainify",
+    "publisherUrl": "https://techsustainify.com",
+    "copyright": "© 2026 Tech Sustainify. All rights reserved.",
+    "language": "en-IN",
+    "locale": "en_IN",
+    "canonical": "https://techsustainify.com/python/python-mcq/",
+    "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+    "googlebot": "index, follow",
+    "bingbot": "index, follow",
+    "revisitAfter": "7 days",
+    "rating": "general",
+    "category": "Technology / Programming / Python"
+  },
+  "breadcrumbs": [
+    {
+      "position": 1,
+      "name": "Home",
+      "path": "/"
+    },
+    {
+      "position": 2,
+      "name": "Python Tutorial",
+      "path": "/python/python-home/"
+    },
+    {
+      "position": 3,
+      "name": "Python MCQ Questions"
+    }
+  ],
+  "articleHeader": {
+    "badge": "🐍 Python Quiz",
+    "title": "Python MCQ — 100 Multiple Choice Questions All Levels",
+    "subtitle": "A complete set of 100 Python multiple choice questions with correct answers and explanations for Fresher, Mid-Level, and Senior developers — covering Python basics, OOP, Data Structures, Exception Handling, Decorators, Generators, the GIL, Threading, Multiprocessing, Asyncio, and CPython Internals."
+  },
+  "infoCards": [
+    {
+      "icon": "📅",
+      "label": "Last Updated",
+      "isTime": true,
+      "dateTime": "2026-07-25",
+      "value": "July 2026"
+    },
+    {
+      "icon": "❓",
+      "label": "Questions",
+      "value": "100 MCQs"
+    },
+    {
+      "icon": "🎯",
+      "label": "Level",
+      "value": "Fresher + Mid + Senior"
+    }
+  ],
+  "sections": [
+    {
+      "sectionId": "intro-heading",
+      "title": "How to Use This Quiz",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "This quiz contains <strong>60 Python multiple choice questions</strong> organized by level and topic. Try to answer each one before checking the correct option — the <strong>explanation</strong> below every answer is where the real learning happens."
+        },
+        {
+          "type": "comparisonTable",
+          "headers": [
+            "Level",
+            "Questions",
+            "Experience",
+            "Topics Covered"
+          ],
+          "rows": [
+            [
+              "🟢 Fresher",
+              "Q1–Q25",
+              "0–1 year",
+              "Basics, Data Types, Operators, OOP Fundamentals"
+            ],
+            [
+              "🟡 Mid-Level",
+              "Q26–Q70",
+              "1–3 years",
+              "Data Structures, Exceptions, Decorators, Generators, Modern Python"
+            ],
+            [
+              "🔴 Senior",
+              "Q71–Q100",
+              "3–6+ years",
+              "GIL, Concurrency, CPython Internals, Memory Management"
+            ]
+          ]
+        },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "<strong>Pro tip:</strong> Cover the answer key first and predict the output or concept mentally before revealing it. MCQs with 'tricky' output-prediction code are the most common format in screening rounds and online assessments — training your instinct here pays off directly in real interviews."
+        }
+      ]
+    },
+    {
+      "sectionId": "fresher-mcq",
+      "title": "Fresher Level — Python Basics & OOP (Q1–Q25)",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "These questions match the style used in <strong>campus placement tests and entry-level screening rounds</strong>."
+        },
+        {
+          "type": "mcq",
+          "items": [
+            {
+              "q": "Q1. Which of the following is the correct file extension for a Python source file?",
+              "options": [
+                ".pyt",
+                ".py",
+                ".pyth",
+                ".pt"
+              ],
+              "correctIndex": 1,
+              "explanation": ".py is the standard extension for Python source files. Compiled bytecode cached by CPython uses .pyc, stored inside a __pycache__ folder.",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q2. What is the output of: print(type([]))",
+              "options": [
+                "<class 'array'>",
+                "<class 'list'>",
+                "<class 'tuple'>",
+                "<class 'set'>"
+              ],
+              "correctIndex": 1,
+              "explanation": "Square brackets [] create a list literal, so type([]) returns <class 'list'>. Python has no built-in 'array' type by default.",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q3. Which data type is immutable in Python?",
+              "options": [
+                "list",
+                "dict",
+                "tuple",
+                "set"
+              ],
+              "correctIndex": 2,
+              "explanation": "tuple is immutable — once created, its elements cannot be reassigned. list, dict, and set are all mutable containers.",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q4. What will be the output of: print(10 // 3)",
+              "options": [
+                "3.33",
+                "3",
+                "4",
+                "Error"
+              ],
+              "correctIndex": 1,
+              "explanation": "// is floor division — it divides and rounds DOWN, discarding the remainder. 10 // 3 evaluates to 3.",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q5. Which keyword is used to define a function in Python?",
+              "options": [
+                "function",
+                "def",
+                "fun",
+                "define"
+              ],
+              "correctIndex": 1,
+              "explanation": "The def keyword defines a function, e.g. def greet(): ....",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q6. What does len() return when applied to a dictionary?",
+              "options": [
+                "The number of values",
+                "The number of key-value pairs",
+                "The number of unique values only",
+                "It raises a TypeError"
+              ],
+              "correctIndex": 1,
+              "explanation": "len() on a dict returns the number of key-value pairs it contains.",
+              "tag": "Frequently Asked"
+            },
+            {
+              "q": "Q7. What is the result of: bool('False')",
+              "options": [
+                "False",
+                "True",
+                "None",
+                "Error"
+              ],
+              "correctIndex": 1,
+              "explanation": "bool() on any non-empty string returns True regardless of content — only an empty string '' evaluates to False.",
+              "tag": "Common Trap"
+            },
+            {
+              "q": "Q8. Which operator performs exponentiation in Python?",
+              "options": [
+                "^",
+                "**",
+                "exp()",
+                "^^"
+              ],
+              "correctIndex": 1,
+              "explanation": "** is Python's exponentiation operator — 2 ** 3 evaluates to 8. ^ performs bitwise XOR, not exponentiation.",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q9. What is the output?\nx = 5\ndef change():\n    x = 10\nchange()\nprint(x)",
+              "options": [
+                "10",
+                "5",
+                "None",
+                "UnboundLocalError"
+              ],
+              "correctIndex": 1,
+              "explanation": "Assigning to x inside change() creates a new LOCAL variable per the LEGB rule; the outer x is untouched, so print(x) outputs 5.",
+              "tag": "Frequently Asked"
+            },
+            {
+              "q": "Q10. Which of these is NOT a valid variable name in Python?",
+              "options": [
+                "_value",
+                "value_1",
+                "1value",
+                "Value"
+              ],
+              "correctIndex": 2,
+              "explanation": "Identifiers cannot start with a digit, so 1value is invalid syntax.",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q11. What does the 'self' parameter refer to in an instance method?",
+              "options": [
+                "The class itself",
+                "The current instance of the class",
+                "A reserved keyword with no functional purpose",
+                "The parent class"
+              ],
+              "correctIndex": 1,
+              "explanation": "self refers to the specific instance the method is called on. It's a convention, not a reserved keyword.",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q12. What is the output of: print(3 == 3.0)",
+              "options": [
+                "False",
+                "True",
+                "TypeError",
+                "None"
+              ],
+              "correctIndex": 1,
+              "explanation": "== compares value, and Python compares numeric types across int and float — 3 and 3.0 hold the same value, so it's True.",
+              "tag": "Frequently Asked"
+            },
+            {
+              "q": "Q13. Which method is automatically called right after an object is created from a class?",
+              "options": [
+                "__create__",
+                "__init__",
+                "__new__",
+                "__start__"
+              ],
+              "correctIndex": 1,
+              "explanation": "__init__ is the initializer, called right after instance creation to set up initial state. __new__ is the actual constructor, rarely overridden.",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q14. What will 'Hello'[1:4] return?",
+              "options": [
+                "'Hell'",
+                "'ell'",
+                "'ello'",
+                "'Hel'"
+              ],
+              "correctIndex": 1,
+              "explanation": "Slicing [1:4] starts at index 1 (inclusive), stops before index 4 (exclusive) — for 'Hello' that gives 'ell'.",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q15. Which correctly checks if key 'name' exists in dictionary d?",
+              "options": [
+                "d.has_key('name')",
+                "'name' in d",
+                "d.contains('name')",
+                "d.exists('name')"
+              ],
+              "correctIndex": 1,
+              "explanation": "'key' in dict is idiomatic. has_key() existed only in Python 2 and was removed in Python 3.",
+              "tag": "Frequently Asked"
+            },
+            {
+              "q": "Q16. Inheritance in Python is declared using which syntax?",
+              "options": [
+                "class Child extends Parent:",
+                "class Child(Parent):",
+                "class Child inherits Parent:",
+                "class Child : Parent"
+              ],
+              "correctIndex": 1,
+              "explanation": "Python declares inheritance with class Child(Parent):, and supports multiple inheritance: class Child(P1, P2):.",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q17. What is the output of: print(type(5 / 2))",
+              "options": [
+                "<class 'int'>",
+                "<class 'float'>",
+                "<class 'complex'>",
+                "<class 'double'>"
+              ],
+              "correctIndex": 1,
+              "explanation": "The / operator always performs true division and returns a float in Python 3, even when both operands divide evenly.",
+              "tag": "Common Trap"
+            },
+            {
+              "q": "Q18. Which of these correctly creates an empty set (not an empty dict)?",
+              "options": [
+                "s = {}",
+                "s = set()",
+                "s = []",
+                "s = ()"
+              ],
+              "correctIndex": 1,
+              "explanation": "{} creates an empty dictionary, not a set — a classic beginner trap. set() creates a genuinely empty set.",
+              "tag": "Common Trap"
+            },
+            {
+              "q": "Q19. What does the 'pass' statement do?",
+              "options": [
+                "Skips the rest of the current loop iteration",
+                "Exits the current function immediately",
+                "Does nothing — acts as a placeholder",
+                "Raises a NotImplementedError"
+              ],
+              "correctIndex": 2,
+              "explanation": "pass is a null operation used purely as a syntactic placeholder where a statement is required but no action is needed yet.",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q20. Which of the following imports only a specific function from a module?",
+              "options": [
+                "import module.function",
+                "from module import function",
+                "include module.function",
+                "using module import function"
+              ],
+              "correctIndex": 1,
+              "explanation": "from module import function imports only the named function directly, callable without a module prefix.",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q21. What is the output of: print(bool([]))",
+              "options": [
+                "True",
+                "False",
+                "None",
+                "Error"
+              ],
+              "correctIndex": 1,
+              "explanation": "An empty list is falsy in Python — bool([]) evaluates to False. Any non-empty list is truthy.",
+              "tag": "Common Trap"
+            },
+            {
+              "q": "Q22. Which of these is a valid way to concatenate two lists?",
+              "options": [
+                "list1 + list2",
+                "list1 & list2",
+                "list1 . list2",
+                "list1 ++ list2"
+              ],
+              "correctIndex": 0,
+              "explanation": "The + operator concatenates two lists into a new list. Python has no ++ operator, and & performs set-like intersection only for sets.",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q23. What is the output of: print('Py' * 3)",
+              "options": [
+                "'PyPyPy'",
+                "'Py3'",
+                "Error",
+                "'Py Py Py'"
+              ],
+              "correctIndex": 0,
+              "explanation": "The * operator repeats a string the given number of times when used between a string and an int — 'Py' * 3 gives 'PyPyPy'.",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q24. Which built-in function returns the number of items in a sequence?",
+              "options": [
+                "count()",
+                "size()",
+                "len()",
+                "length()"
+              ],
+              "correctIndex": 2,
+              "explanation": "len() is the universal built-in for getting the length/size of strings, lists, tuples, dicts, and sets.",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q25. What does the 'in' keyword check for when used with a list?",
+              "options": [
+                "Whether the list is empty",
+                "Membership — whether a value exists in the list",
+                "The index of an element",
+                "Whether the list is sorted"
+              ],
+              "correctIndex": 1,
+              "explanation": "'value in list' checks membership, returning True if the value exists anywhere in the list, scanning it in O(n) time.",
+              "tag": "Must Know"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sectionId": "mid-mcq",
+      "title": "Mid Level — Data Structures, Exceptions & Modern Python (Q26–Q70)",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "These MCQs test <strong>practical understanding of internals and idioms</strong> that mid-level developers use daily — the kind commonly seen in online assessment platforms."
+        },
+        {
+          "type": "mcq",
+          "items": [
+            {
+              "q": "Q26. What is the time complexity of looking up a key in a Python dict, on average?",
+              "options": [
+                "O(n)",
+                "O(log n)",
+                "O(1)",
+                "O(n log n)"
+              ],
+              "correctIndex": 2,
+              "explanation": "CPython dicts are hash tables, giving O(1) average-case lookup — degrading to O(n) worst case only under pathological hash collisions.",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q27. What is the output?\ndef f(lst=[]):\n    lst.append(1)\n    return lst\nprint(f())\nprint(f())",
+              "options": [
+                "[1] then [1]",
+                "[1] then [1, 1]",
+                "[1, 1] then [1, 1]",
+                "Error on the second call"
+              ],
+              "correctIndex": 1,
+              "explanation": "The mutable default [] is created ONCE at function definition and shared across calls — the second call appends onto the same list.",
+              "tag": "Common Trap"
+            },
+            {
+              "q": "Q28. Which exception is raised when accessing a missing dictionary key?",
+              "options": [
+                "IndexError",
+                "AttributeError",
+                "KeyError",
+                "ValueError"
+              ],
+              "correctIndex": 2,
+              "explanation": "Accessing a missing key via d['missing'] raises KeyError. d.get('missing') avoids it, returning None or a default.",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q29. What does [x for x in range(10) if x % 2 == 0] produce?",
+              "options": [
+                "[0, 2, 4, 6, 8]",
+                "[1, 3, 5, 7, 9]",
+                "[0, 1, 2, ..., 9]",
+                "[2, 4, 6, 8, 10]"
+              ],
+              "correctIndex": 0,
+              "explanation": "range(10) yields 0-9, and the filter keeps only even numbers, giving [0, 2, 4, 6, 8].",
+              "tag": "Frequently Asked"
+            },
+            {
+              "q": "Q30. Which correctly defines a generator function?",
+              "options": [
+                "def gen(): return (x for x in range(5))",
+                "def gen(): yield x for x in range(5)",
+                "def gen():\n    for x in range(5):\n        yield x",
+                "def gen(): generate x in range(5)"
+              ],
+              "correctIndex": 2,
+              "explanation": "A generator function contains at least one yield in its body; calling it returns a generator object that lazily produces values.",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q31. What is the correct order of try/except/else/finally when NO exception occurs?",
+              "options": [
+                "try → except → finally",
+                "try → finally → else",
+                "try → else → finally",
+                "try → else → except → finally"
+              ],
+              "correctIndex": 2,
+              "explanation": "When no exception occurs: try completes, then else runs, then finally always runs last — except is skipped entirely.",
+              "tag": "Frequently Asked"
+            },
+            {
+              "q": "Q32. What does the following print?\ntry:\n    print(1/0)\nexcept ZeroDivisionError:\n    print('caught')\nfinally:\n    print('done')",
+              "options": [
+                "caught",
+                "done",
+                "caught\\ndone",
+                "ZeroDivisionError traceback"
+              ],
+              "correctIndex": 2,
+              "explanation": "The ZeroDivisionError is caught, printing 'caught', then finally always runs, printing 'done' — both lines print in order.",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q33. Which decorator defines a method callable without a class instance and without access to self or cls?",
+              "options": [
+                "@classmethod",
+                "@property",
+                "@staticmethod",
+                "@abstractmethod"
+              ],
+              "correctIndex": 2,
+              "explanation": "@staticmethod defines a method receiving neither self nor cls — essentially a plain function namespaced inside the class.",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q34. What is the output of: print(list({1: 'a', 2: 'b', 3: 'c'}.keys()))",
+              "options": [
+                "['a', 'b', 'c']",
+                "[1, 2, 3]",
+                "[(1, 'a'), (2, 'b'), (3, 'c')]",
+                "{1, 2, 3}"
+              ],
+              "correctIndex": 1,
+              "explanation": ".keys() returns a view of dict keys; wrapping it in list() converts that view into a list — [1, 2, 3].",
+              "tag": "Frequently Asked"
+            },
+            {
+              "q": "Q35. Which module provides deque for efficient appends/pops from both ends?",
+              "options": [
+                "array",
+                "collections",
+                "itertools",
+                "heapq"
+              ],
+              "correctIndex": 1,
+              "explanation": "collections.deque provides O(1) append/pop at both ends, unlike a plain list where removing from the front is O(n).",
+              "tag": "Frequently Asked"
+            },
+            {
+              "q": "Q36. What does the walrus operator := do?",
+              "options": [
+                "Compares two values for equality",
+                "Assigns a value as part of a larger expression",
+                "Performs floor division",
+                "Unpacks a dictionary"
+              ],
+              "correctIndex": 1,
+              "explanation": "The walrus operator (Python 3.8+) allows assignment within an expression, e.g. while (chunk := file.read(1024)):.",
+              "tag": "Frequently Asked"
+            },
+            {
+              "q": "Q37. What is the output of: print(sorted([3, 1, 2], reverse=True))",
+              "options": [
+                "[1, 2, 3]",
+                "[3, 2, 1]",
+                "[3, 1, 2]",
+                "Error"
+              ],
+              "correctIndex": 1,
+              "explanation": "sorted() with reverse=True sorts descending, producing [3, 2, 1].",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q38. Which of the following is true about a Python set?",
+              "options": [
+                "It allows duplicate elements",
+                "It maintains strict insertion order like a list",
+                "It only stores hashable, unique elements",
+                "It supports indexing with s[0]"
+              ],
+              "correctIndex": 2,
+              "explanation": "A set stores only unique, hashable elements. Sets are unordered and don't support integer indexing.",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q39. What does @dataclass(frozen=True) do to a class?",
+              "options": [
+                "Makes the class abstract",
+                "Prevents instances from being pickled",
+                "Makes instances immutable after creation",
+                "Disables the auto-generated __repr__"
+              ],
+              "correctIndex": 2,
+              "explanation": "frozen=True makes dataclass instances immutable — assigning to an attribute after construction raises FrozenInstanceError.",
+              "tag": "Frequently Asked"
+            },
+            {
+              "q": "Q40. What is the output of: print('abc'.upper().replace('B', 'X'))",
+              "options": [
+                "'aXc'",
+                "'ABC'",
+                "'AXC'",
+                "'abx'"
+              ],
+              "correctIndex": 2,
+              "explanation": "'abc'.upper() gives 'ABC', then .replace('B', 'X') replaces the uppercase B, giving 'AXC'.",
+              "tag": "Frequently Asked"
+            },
+            {
+              "q": "Q41. Which statement about generator expressions vs list comprehensions is correct?",
+              "options": [
+                "Generator expressions use square brackets",
+                "Both consume the same amount of memory",
+                "Generator expressions compute values lazily; list comprehensions build the full list immediately",
+                "List comprehensions cannot be iterated more than once"
+              ],
+              "correctIndex": 2,
+              "explanation": "A generator expression (parentheses) produces values lazily with near-constant memory; a list comprehension builds the entire list upfront.",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q42. What does match-case's underscore _ represent?",
+              "options": [
+                "A syntax error",
+                "A wildcard that matches anything, acting as the default case",
+                "A placeholder for None only",
+                "A variable that must be pre-declared"
+              ],
+              "correctIndex": 1,
+              "explanation": "case _: acts as a catch-all wildcard, matching any value not caught by earlier patterns.",
+              "tag": "Frequently Asked"
+            },
+            {
+              "q": "Q43. What is the correct way to raise a custom exception while preserving the original as its cause?",
+              "options": [
+                "raise NewError('msg')",
+                "raise NewError('msg') from original_exception",
+                "throw NewError('msg')",
+                "raise NewError('msg').cause(original_exception)"
+              ],
+              "correctIndex": 1,
+              "explanation": "raise ... from ... explicitly sets __cause__, producing a clear exception-chain traceback showing intentional translation.",
+              "tag": "Frequently Asked"
+            },
+            {
+              "q": "Q44. What does [i*i for i in range(5)] print?",
+              "options": [
+                "[0, 1, 4, 9, 16]",
+                "[1, 4, 9, 16, 25]",
+                "[0, 1, 2, 3, 4]",
+                "[1, 2, 3, 4, 5]"
+              ],
+              "correctIndex": 0,
+              "explanation": "range(5) yields 0-4; squaring each gives [0, 1, 4, 9, 16].",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q45. Which guarantees a file gets closed even if an exception occurs inside the block?",
+              "options": [
+                "f = open('f.txt'); f.read(); f.close()",
+                "with open('f.txt') as f: f.read()",
+                "open('f.txt').read()",
+                "f = open('f.txt', close_on_error=True)"
+              ],
+              "correctIndex": 1,
+              "explanation": "The with statement's context manager guarantees __exit__ (closing the file) runs automatically even on exception.",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q46. What is the output of: print(3 * '5')",
+              "options": [
+                "15",
+                "'555'",
+                "Error",
+                "'5 5 5'"
+              ],
+              "correctIndex": 1,
+              "explanation": "Multiplying a string by an int repeats it — 3 * '5' produces the string '555', not the number 15.",
+              "tag": "Common Trap"
+            },
+            {
+              "q": "Q47. Which method removes and returns the last element of a list?",
+              "options": [
+                "list.remove()",
+                "list.pop()",
+                "list.delete()",
+                "list.discard()"
+              ],
+              "correctIndex": 1,
+              "explanation": "list.pop() removes and returns the last element by default (or an element at a given index). remove() deletes by value, not position.",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q48. What does isinstance(True, int) return in Python?",
+              "options": [
+                "False",
+                "True",
+                "TypeError",
+                "None"
+              ],
+              "correctIndex": 1,
+              "explanation": "bool is a subclass of int in Python (True == 1, False == 0), so isinstance(True, int) returns True.",
+              "tag": "Common Trap"
+            },
+            {
+              "q": "Q49. Which of the following correctly merges two dictionaries in Python 3.9+?",
+              "options": [
+                "d1 + d2",
+                "d1 | d2",
+                "d1 & d2",
+                "d1 merge d2"
+              ],
+              "correctIndex": 1,
+              "explanation": "The | operator (PEP 584, Python 3.9+) merges two dicts into a new one, with d2's values taking precedence on key conflicts.",
+              "tag": "Frequently Asked"
+            },
+            {
+              "q": "Q50. What is the output of: print(len('hello'.split('l')))",
+              "options": [
+                "2",
+                "3",
+                "5",
+                "1"
+              ],
+              "correctIndex": 1,
+              "explanation": "'hello'.split('l') splits on every 'l', producing ['he', '', 'o'] — a list of 3 elements, so len() returns 3.",
+              "tag": "Frequently Asked"
+            },
+            {
+              "q": "Q51. Which of these correctly defines a property with a getter in Python?",
+              "options": [
+                "@property\ndef value(self): return self._value",
+                "@getter\ndef value(self): return self._value",
+                "def get_value(self): return self._value",
+                "@field\ndef value(self): return self._value"
+              ],
+              "correctIndex": 0,
+              "explanation": "@property turns a method into a read-only attribute-like accessor, called without parentheses as instance.value.",
+              "tag": "Frequently Asked"
+            },
+            {
+              "q": "Q52. What does the zip() function do when given two lists of different lengths?",
+              "options": [
+                "Raises a ValueError",
+                "Pads the shorter list with None",
+                "Stops at the length of the shorter iterable",
+                "Repeats the shorter list to match the longer one"
+              ],
+              "correctIndex": 2,
+              "explanation": "zip() stops as soon as the shortest input iterable is exhausted, silently ignoring extra elements from longer iterables.",
+              "tag": "Frequently Asked"
+            },
+            {
+              "q": "Q53. What is the output of: print(2 ** 3 ** 2)",
+              "options": [
+                "64",
+                "512",
+                "8",
+                "18"
+              ],
+              "correctIndex": 1,
+              "explanation": "** is right-associative, so this evaluates as 2 ** (3 ** 2) = 2 ** 9 = 512, not (2**3)**2 = 64.",
+              "tag": "Common Trap"
+            },
+            {
+              "q": "Q54. Which built-in function converts an iterable of key-value pairs into a dictionary?",
+              "options": [
+                "dict()",
+                "map()",
+                "zip()",
+                "tuple()"
+              ],
+              "correctIndex": 0,
+              "explanation": "dict() can construct a dictionary directly from an iterable of 2-element pairs, e.g. dict([('a',1),('b',2)]).",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q55. What does functools.reduce(lambda a,b: a+b, [1,2,3,4]) return?",
+              "options": [
+                "[1,2,3,4]",
+                "10",
+                "24",
+                "1"
+              ],
+              "correctIndex": 1,
+              "explanation": "reduce() cumulatively applies the function across the iterable: ((1+2)+3)+4 = 10.",
+              "tag": "Frequently Asked"
+            },
+            {
+              "q": "Q56. What is the output of: print(id([1,2]) == id([1,2]))",
+              "options": [
+                "True",
+                "False",
+                "TypeError",
+                "It depends on the machine"
+              ],
+              "correctIndex": 1,
+              "explanation": "Each [1,2] literal creates a brand-new list object with a different memory address, so their ids differ — the result is False.",
+              "tag": "Common Trap"
+            },
+            {
+              "q": "Q57. Which statement about Python's str.format() vs f-strings is correct?",
+              "options": [
+                "f-strings are evaluated at import time only",
+                "f-strings are generally faster since expressions are compiled inline rather than parsed from a separate string",
+                "str.format() is faster in all cases",
+                "They produce different output for the same input"
+              ],
+              "correctIndex": 1,
+              "explanation": "f-strings compile the embedded expression directly into the bytecode, making them faster at runtime than parsing a format string with .format().",
+              "tag": "Frequently Asked"
+            },
+            {
+              "q": "Q58. What is the output of: print([1,2,3][::-1])",
+              "options": [
+                "[1,2,3]",
+                "[3,2,1]",
+                "Error",
+                "[]"
+              ],
+              "correctIndex": 1,
+              "explanation": "The slice [::-1] reverses a sequence — for [1,2,3] it produces [3,2,1].",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q59. Which of the following correctly creates a shallow copy of a list?",
+              "options": [
+                "new = old",
+                "new = old.copy()",
+                "new = old.deepcopy()",
+                "new = old.clone()"
+              ],
+              "correctIndex": 1,
+              "explanation": "list.copy() (or old[:]) creates a shallow copy — a new outer list referencing the same nested objects. new = old merely creates another reference to the SAME list.",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q60. What does the following output?\nprint('a' in 'apple')",
+              "options": [
+                "True",
+                "False",
+                "Error",
+                "None"
+              ],
+              "correctIndex": 0,
+              "explanation": "The 'in' operator on strings checks substring membership — 'a' is found in 'apple', so it returns True.",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q61. What is the output of: print(round(2.5))",
+              "options": [
+                "3",
+                "2",
+                "2.5",
+                "Error"
+              ],
+              "correctIndex": 1,
+              "explanation": "Python 3 uses banker's rounding (round-half-to-even) for round() — 2.5 rounds to the nearest even integer, which is 2, not 3.",
+              "tag": "Common Trap"
+            },
+            {
+              "q": "Q62. Which of the following correctly defines an abstract method using the abc module?",
+              "options": [
+                "@abstract\ndef method(self): pass",
+                "@abstractmethod\ndef method(self): pass",
+                "def method(self): abstract",
+                "@ABC\ndef method(self): pass"
+              ],
+              "correctIndex": 1,
+              "explanation": "from abc import abstractmethod; @abstractmethod above a method inside an ABC subclass marks it as required for concrete subclasses to implement.",
+              "tag": "Frequently Asked"
+            },
+            {
+              "q": "Q63. What is the output of: print(type(lambda x: x + 1))",
+              "options": [
+                "<class 'lambda'>",
+                "<class 'function'>",
+                "<class 'method'>",
+                "<class 'expression'>"
+              ],
+              "correctIndex": 1,
+              "explanation": "A lambda creates a regular function object under the hood — its type is <class 'function'>, same as a def-defined function.",
+              "tag": "Frequently Asked"
+            },
+            {
+              "q": "Q64. Which is the correct way to iterate over both index and value of a list?",
+              "options": [
+                "for i, v in list: ",
+                "for i, v in enumerate(list):",
+                "for i in range(list):",
+                "for v, i in list.items():"
+              ],
+              "correctIndex": 1,
+              "explanation": "enumerate() yields (index, value) pairs while iterating, the idiomatic way to get both simultaneously.",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q65. What does the following code print?\nprint(any([False, False, True]))",
+              "options": [
+                "True",
+                "False",
+                "None",
+                "Error"
+              ],
+              "correctIndex": 0,
+              "explanation": "any() returns True if at least one element in the iterable is truthy — since one element is True, it returns True.",
+              "tag": "Frequently Asked"
+            },
+            {
+              "q": "Q66. What is the output of: print(0.1 + 0.2 == 0.3)",
+              "options": [
+                "True",
+                "False",
+                "Error",
+                "None"
+              ],
+              "correctIndex": 1,
+              "explanation": "Floating-point numbers can't represent 0.1 and 0.2 exactly in binary, so their sum is 0.30000000000000004, not exactly 0.3 — the comparison is False.",
+              "tag": "Common Trap"
+            },
+            {
+              "q": "Q67. Which of the following correctly defines a NamedTuple with type hints?",
+              "options": [
+                "class Point(NamedTuple): x: int; y: int",
+                "class Point(tuple): x, y",
+                "NamedTuple Point(x, y)",
+                "class Point: NamedTuple(x, y)"
+              ],
+              "correctIndex": 0,
+              "explanation": "typing.NamedTuple lets you define fields with type annotations as class attributes, generating an immutable, tuple-based class.",
+              "tag": "Frequently Asked"
+            },
+            {
+              "q": "Q68. What does the following raise?\nd = {}\nprint(d['missing'])",
+              "options": [
+                "IndexError",
+                "KeyError",
+                "AttributeError",
+                "ValueError"
+              ],
+              "correctIndex": 1,
+              "explanation": "Accessing a nonexistent key with square-bracket syntax raises KeyError.",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q69. What is the output of: print(list(range(5, 0, -1)))",
+              "options": [
+                "[5, 4, 3, 2, 1]",
+                "[5, 4, 3, 2, 1, 0]",
+                "[0, 1, 2, 3, 4, 5]",
+                "[]"
+              ],
+              "correctIndex": 0,
+              "explanation": "range(5, 0, -1) starts at 5, decrements by 1, and stops before reaching 0 (exclusive) — giving [5, 4, 3, 2, 1].",
+              "tag": "Frequently Asked"
+            },
+            {
+              "q": "Q70. Which of these correctly checks whether an object supports iteration without necessarily being a specific type?",
+              "options": [
+                "isinstance(obj, list)",
+                "hasattr(obj, '__iter__')",
+                "type(obj) == 'iterable'",
+                "obj.is_iterable()"
+              ],
+              "correctIndex": 1,
+              "explanation": "Checking for the __iter__ dunder method (duck typing) determines if an object is iterable, without assuming it's specifically a list.",
+              "tag": "Advanced"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sectionId": "senior-mcq",
+      "title": "Senior Level — GIL, Concurrency & CPython Internals (Q71–Q100)",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "These questions probe <strong>deeper internals and concurrency reasoning</strong> — the kind that differentiate senior candidates in technical screening rounds."
+        },
+        {
+          "type": "mcq",
+          "items": [
+            {
+              "q": "Q71. What does the GIL primarily prevent?",
+              "options": [
+                "Multiple processes from running on separate cores",
+                "Multiple threads from executing Python bytecode simultaneously",
+                "A single thread from accessing the network",
+                "Garbage collection from running"
+              ],
+              "correctIndex": 1,
+              "explanation": "The GIL allows only one thread to execute Python bytecode at a time within a single CPython process, regardless of available cores.",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q72. For CPU-bound work needing true multi-core parallelism in standard CPython, which is correct?",
+              "options": [
+                "threading module",
+                "asyncio module",
+                "multiprocessing module",
+                "A single generator"
+              ],
+              "correctIndex": 2,
+              "explanation": "multiprocessing spawns separate OS processes, each with its own interpreter and GIL, enabling genuine parallel execution.",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q73. What primarily deallocates most Python objects the instant they become unreachable?",
+              "options": [
+                "The generational garbage collector alone",
+                "Reference counting",
+                "Manual free() calls",
+                "The GIL"
+              ],
+              "correctIndex": 1,
+              "explanation": "CPython's primary mechanism is reference counting; the generational GC only supplements it for cyclic references.",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q74. What is the purpose of __slots__ on a class?",
+              "options": [
+                "To enable multiple inheritance",
+                "To reduce per-instance memory by avoiding a per-instance __dict__",
+                "To make a class abstract",
+                "To auto-generate __eq__ and __repr__"
+              ],
+              "correctIndex": 1,
+              "explanation": "__slots__ allocates a fixed, compact layout for named attributes instead of a dynamic per-instance __dict__, cutting memory overhead.",
+              "tag": "Advanced"
+            },
+            {
+              "q": "Q75. Which tool traces exactly which lines allocate memory that isn't being freed?",
+              "options": [
+                "timeit",
+                "tracemalloc",
+                "cProfile",
+                "dis"
+              ],
+              "correctIndex": 1,
+              "explanation": "tracemalloc takes allocation snapshots that can be diffed to pinpoint lines responsible for growing, un-freed memory.",
+              "tag": "Advanced"
+            },
+            {
+              "q": "Q76. In asyncio, what does 'await' do on a coroutine?",
+              "options": [
+                "Immediately blocks the whole process until completion",
+                "Pauses the current coroutine and yields control to the event loop until it completes",
+                "Starts a new OS thread",
+                "Cancels the coroutine"
+              ],
+              "correctIndex": 1,
+              "explanation": "await pauses the current coroutine, returning control to the event loop so other coroutines can run, resuming once the awaited op finishes.",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q77. Why is 'counter += 1' not thread-safe even with the GIL?",
+              "options": [
+                "The GIL doesn't apply to integers",
+                "It compiles to multiple bytecode instructions interruptible by a thread switch",
+                "Integers are always mutable",
+                "+= is disabled under threading"
+              ],
+              "correctIndex": 1,
+              "explanation": "The GIL guarantees atomicity only per bytecode instruction, not multi-step logical operations like load-add-store.",
+              "tag": "Advanced"
+            },
+            {
+              "q": "Q78. Main advantage of ProcessPoolExecutor over ThreadPoolExecutor for CPU-bound work?",
+              "options": [
+                "Lower memory per worker",
+                "It bypasses the GIL, enabling true multi-core parallelism",
+                "Faster startup time",
+                "It shares memory directly with no overhead"
+              ],
+              "correctIndex": 1,
+              "explanation": "Each process has its own interpreter and GIL, so CPU-bound work genuinely runs in parallel across cores.",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q79. What does string interning primarily optimize?",
+              "options": [
+                "Disk I/O",
+                "Reusing the same object for identical string values to save memory and speed identity checks",
+                "Network latency",
+                "GC frequency"
+              ],
+              "correctIndex": 1,
+              "explanation": "Interning ensures identical string values reuse the same object, reducing memory and speeding up 'is' comparisons.",
+              "tag": "Advanced"
+            },
+            {
+              "q": "Q80. What is a weakref primarily used for?",
+              "options": [
+                "Making an object immutable",
+                "Referencing an object without increasing its refcount so it can still be GC'd",
+                "Deep-copying an object",
+                "Preventing an object from being read"
+              ],
+              "correctIndex": 1,
+              "explanation": "A weakref lets you refer to an object without keeping it artificially alive — useful in caches and observer registries.",
+              "tag": "Advanced"
+            },
+            {
+              "q": "Q81. Which correctly describes CPython's three GC generations?",
+              "options": [
+                "All three are scanned equally often",
+                "Generation 0 is collected most frequently; generation 2 least frequently",
+                "Generation 2 is scanned first on every allocation",
+                "Generations only apply to non-cyclic objects"
+              ],
+              "correctIndex": 1,
+              "explanation": "Based on 'most objects die young': newest objects (gen 0) are scanned most often; long-lived objects (gen 2) least often.",
+              "tag": "Advanced"
+            },
+            {
+              "q": "Q82. What does queue.Queue provide beyond a manually shared list?",
+              "options": [
+                "Faster raw iteration",
+                "Built-in thread-safety for put/get operations",
+                "Automatic type conversion",
+                "Unlimited concurrent producers with no blocking"
+              ],
+              "correctIndex": 1,
+              "explanation": "queue.Queue is internally synchronized, making put()/get() safe from multiple threads without manual locking.",
+              "tag": "Frequently Asked"
+            },
+            {
+              "q": "Q83. What defines Python 3.13's experimental free-threaded build (PEP 703)?",
+              "options": [
+                "Adds a second GIL for safety",
+                "Removes the GIL entirely, using per-object fine-grained locking",
+                "Only works with Jython",
+                "Disables the garbage collector"
+              ],
+              "correctIndex": 1,
+              "explanation": "PEP 703 removes the GIL entirely, replacing it with granular locking and biased reference counting, still experimental in 2026.",
+              "tag": "Advanced"
+            },
+            {
+              "q": "Q84. What is a race condition?",
+              "options": [
+                "A syntax error under high CPU load",
+                "An outcome that depends unpredictably on concurrent thread timing over shared state",
+                "An infinite loop from recursion",
+                "A deadlock between two locks"
+              ],
+              "correctIndex": 1,
+              "explanation": "A race condition occurs when multiple threads access/modify shared state without synchronization, making outcomes timing-dependent.",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q85. Which tool inspects the actual bytecode instructions a function compiles to?",
+              "options": [
+                "timeit",
+                "dis",
+                "pdb",
+                "traceback"
+              ],
+              "correctIndex": 1,
+              "explanation": "The dis module disassembles bytecode into readable instructions via dis.dis(function).",
+              "tag": "Advanced"
+            },
+            {
+              "q": "Q86. What primarily causes a deadlock between two threads?",
+              "options": [
+                "Each holds a lock the other is waiting for, creating circular wait",
+                "One thread finishes before the other starts",
+                "A missing return statement",
+                "The GIL released too early"
+              ],
+              "correctIndex": 0,
+              "explanation": "Thread-1 holds Lock-A waiting for Lock-B while Thread-2 holds Lock-B waiting for Lock-A — neither proceeds.",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q87. Why does the GIL get released during blocking I/O?",
+              "options": [
+                "It doesn't — GIL is always held",
+                "I/O waits don't need the interpreter, so other threads can run bytecode meanwhile",
+                "Only to save power",
+                "Only file I/O releases it"
+              ],
+              "correctIndex": 1,
+              "explanation": "During blocking I/O the underlying operation happens outside the interpreter, so CPython releases the GIL for other threads.",
+              "tag": "Advanced"
+            },
+            {
+              "q": "Q88. What does functools.lru_cache primarily optimize?",
+              "options": [
+                "Network retries",
+                "Repeated calls to an expensive, deterministic function with the same arguments",
+                "Thread synchronization",
+                "Module import speed"
+              ],
+              "correctIndex": 1,
+              "explanation": "lru_cache memoizes results keyed by arguments, instantly returning cached results for repeated calls.",
+              "tag": "Frequently Asked"
+            },
+            {
+              "q": "Q89. What does asyncio.gather() allow you to do?",
+              "options": [
+                "Run coroutines sequentially",
+                "Run multiple awaitables concurrently and collect all results",
+                "Cancel all running tasks",
+                "Create a new thread pool"
+              ],
+              "correctIndex": 1,
+              "explanation": "asyncio.gather() schedules all given awaitables to run concurrently on the event loop, returning results once all complete.",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q90. Which statement about Cython is correct?",
+              "options": [
+                "Completely unrelated to Python syntax",
+                "Lets you add optional static types to Python-like code, compiling to C for speed",
+                "Removes the GIL by default in all code",
+                "Only usable for web development"
+              ],
+              "correctIndex": 1,
+              "explanation": "Cython allows optional static type declarations in Python-like code, compiling to C for significant speedups in hot loops.",
+              "tag": "Advanced"
+            },
+            {
+              "q": "Q91. What is the primary benefit of using __slots__ in classes representing millions of small objects?",
+              "options": [
+                "Faster method resolution order",
+                "Significantly reduced per-instance memory footprint",
+                "Automatic thread safety",
+                "Enables dynamic attribute addition"
+              ],
+              "correctIndex": 1,
+              "explanation": "By skipping the per-instance __dict__, __slots__ dramatically reduces memory usage — critical when instantiating huge numbers of objects.",
+              "tag": "Advanced"
+            },
+            {
+              "q": "Q92. What is the correct behavior of a class method decorated with @classmethod when called on a subclass?",
+              "options": [
+                "It always receives the base class, never the subclass",
+                "It receives the subclass as cls, enabling correct behavior in alternative constructors",
+                "It raises a TypeError on subclasses",
+                "It behaves identically to @staticmethod"
+              ],
+              "correctIndex": 1,
+              "explanation": "@classmethod receives the actual class it was called on as cls, making it correctly polymorphic across subclasses — ideal for alternative constructors.",
+              "tag": "Frequently Asked"
+            },
+            {
+              "q": "Q93. What does the C3 linearization algorithm determine in Python?",
+              "options": [
+                "The order bytecode instructions execute",
+                "The Method Resolution Order (MRO) for multiple inheritance",
+                "The garbage collection generation of an object",
+                "The hash value of a custom object"
+              ],
+              "correctIndex": 1,
+              "explanation": "C3 linearization computes a consistent Method Resolution Order across multiple inheritance hierarchies, viewable via ClassName.__mro__.",
+              "tag": "Advanced"
+            },
+            {
+              "q": "Q94. In a producer-consumer pattern using threads, what does q.task_done() signal?",
+              "options": [
+                "That the queue is empty",
+                "That a previously dequeued item has finished processing, letting q.join() know",
+                "That a new producer has started",
+                "That the queue should be cleared"
+              ],
+              "correctIndex": 1,
+              "explanation": "task_done() tells the queue that a get()'d item has finished processing; q.join() blocks until every put() item has a matching task_done().",
+              "tag": "Advanced"
+            },
+            {
+              "q": "Q95. Which best describes the difference between a coroutine and a regular generator in async code?",
+              "options": [
+                "They are identical in every way",
+                "A coroutine (async def) is driven by await and the event loop; a plain generator is driven by next()/for loops synchronously",
+                "Generators can never use yield",
+                "Coroutines cannot return values"
+              ],
+              "correctIndex": 1,
+              "explanation": "async def functions are coroutines meant to be awaited and scheduled on an event loop, distinct from synchronous generators driven by next().",
+              "tag": "Advanced"
+            },
+            {
+              "q": "Q96. What is the typical fix for the N+1 query problem in an ORM?",
+              "options": [
+                "Adding more database indexes only",
+                "Using eager-loading techniques like select_related/prefetch_related or joinedload/selectinload",
+                "Switching to raw SQL for every query",
+                "Disabling the ORM's caching layer"
+              ],
+              "correctIndex": 1,
+              "explanation": "Eager-loading (select_related, prefetch_related in Django; joinedload, selectinload in SQLAlchemy) batches related-object fetching into one or two queries instead of N extra ones.",
+              "tag": "Advanced"
+            },
+            {
+              "q": "Q97. What does exception group / except* (Python 3.11+) primarily address?",
+              "options": [
+                "Nested try blocks",
+                "Handling multiple unrelated exceptions raised together, common in concurrent code",
+                "Replacing all normal exception handling",
+                "Improving import speed"
+              ],
+              "correctIndex": 1,
+              "explanation": "ExceptionGroup and except* let you catch and handle several simultaneously raised, unrelated exceptions — useful in concurrent code like asyncio.TaskGroup.",
+              "tag": "Advanced"
+            },
+            {
+              "q": "Q98. Why might Python's free-threaded build show lower single-threaded performance despite removing the GIL?",
+              "options": [
+                "It uses a slower bytecode format",
+                "Fine-grained per-object locking introduces overhead compared to the single simple GIL check",
+                "It disables all optimizations",
+                "It requires interpreted-only mode"
+              ],
+              "correctIndex": 1,
+              "explanation": "Replacing one simple global lock with many fine-grained per-object locks adds overhead to single-threaded execution, a known trade-off of PEP 703.",
+              "tag": "Advanced"
+            },
+            {
+              "q": "Q99. Which best explains why immutable objects are inherently thread-safe for reads?",
+              "options": [
+                "They are stored in a special thread-safe memory region",
+                "Their state can never change after creation, so no synchronization is needed to read them safely",
+                "Python locks all immutable objects automatically",
+                "They cannot be referenced by more than one thread"
+              ],
+              "correctIndex": 1,
+              "explanation": "Since an immutable object's state never changes after construction, concurrent reads require no locking — there's nothing that can be modified mid-read.",
+              "tag": "Advanced"
+            },
+            {
+              "q": "Q100. What broadly characterizes a senior-level Python developer's understanding of concurrency choices?",
+              "options": [
+                "Always defaulting to threading for every workload",
+                "Choosing threading, multiprocessing, or asyncio deliberately based on whether work is I/O-bound or CPU-bound, and combining them correctly",
+                "Avoiding concurrency entirely in production",
+                "Relying solely on the free-threaded build for all problems"
+              ],
+              "correctIndex": 1,
+              "explanation": "Senior engineers match the concurrency model to the workload — asyncio/threading for I/O-bound work, multiprocessing for CPU-bound work — and understand how to combine them appropriately.",
+              "tag": "Must Know"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sectionId": "scoring-guide",
+      "title": "Scoring Guide — How Well Did You Do?",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "Tally your correct answers out of 60 and use the table below to gauge your current readiness level."
+        },
+        {
+          "type": "comparisonTable",
+          "headers": [
+            "Score",
+            "Level",
+            "Recommendation"
+          ],
+          "rows": [
+            [
+              "50–60 correct",
+              "Interview Ready (Senior)",
+              "You have strong command of internals and concurrency — focus remaining prep time on system design and behavioral rounds."
+            ],
+            [
+              "35–49 correct",
+              "Solid Mid-Level",
+              "Revisit the sections you missed, especially Exception Handling and Modern Python — then retake the quiz."
+            ],
+            [
+              "20–34 correct",
+              "Fresher Foundation Building",
+              "Focus on Q1–Q20 fundamentals first; concurrency and internals will click much faster once basics are automatic."
+            ],
+            [
+              "Below 20 correct",
+              "Just Getting Started",
+              "Work through the companion Python Interview Questions guide topic by topic before retaking this quiz."
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "sectionId": "conclusion-heading",
+      "title": "Conclusion — Turning MCQ Practice Into Interview Success",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "MCQs are how most companies <strong>filter candidates before the technical interview</strong> even begins — online assessments on platforms like HackerRank, CoderByte, and internal ATS tools frequently use exactly this format. Speed and accuracy under time pressure matter as much as raw knowledge."
+        },
+        {
+          "type": "bulletList",
+          "items": [
+            {
+              "strong": "🔥 Time yourself",
+              "text": " — Aim for under 60 seconds per question on a first pass; most online assessments enforce a strict per-question or total time limit."
+            },
+            {
+              "strong": "🔥 Read output-prediction code twice",
+              "text": " — Many wrong answers come from misreading a slice, an operator, or a mutable default, not from lacking the concept."
+            },
+            {
+              "strong": "🔥 Retake weak sections",
+              "text": " — Don't just re-read explanations; retake the specific 15–20 question block you scored lowest on after a day's gap to test real retention."
+            },
+            {
+              "strong": "💡 Pair this with the interview guide",
+              "text": " — MCQs test recognition; the companion 100-question interview guide tests EXPLANATION, which is what the live interview round will actually demand."
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "faq": {
+    "sectionId": "faq-heading",
+    "title": "Frequently Asked Questions (FAQ)",
+    "items": [
+      {
+        "q": "Are these Python MCQs suitable for beginners with no prior experience?",
+        "a": "Yes — Q1 to Q20 are designed specifically for absolute beginners and cover only core basics: data types, operators, functions, and OOP fundamentals, with no assumed prior interview experience."
+      },
+      {
+        "q": "How is an MCQ round different from a live coding interview round?",
+        "a": "MCQ rounds test recognition and quick reasoning under a strict time limit, usually as an automated first-pass filter before any human interview. Live coding and verbal interview rounds test deeper explanation, trade-off reasoning, and the ability to write working code from scratch — both skills are necessary, and MCQs alone are not sufficient interview preparation."
+      },
+      {
+        "q": "What is the passing score typically expected for a Python MCQ screening round?",
+        "a": "This varies by company, but scoring above 70-75% (roughly 42-45 out of 60 here) is generally considered a strong result for mid-to-senior screening rounds; fresher-level assessments are often more lenient, sometimes accepting 55-60%."
+      },
+      {
+        "q": "Should I memorize these exact questions, or focus on understanding the concepts?",
+        "a": "Focus on understanding — MCQ pools in real assessments are drawn from large randomized question banks and will not exactly match any single guide. Understanding WHY an answer is correct (not just which letter to pick) is what transfers to new, unseen questions in an actual test."
+      },
+      {
+        "q": "How long does it take to complete all 60 questions?",
+        "a": "Most candidates complete all 60 questions, including reading explanations, in about 45-60 minutes. As a timed practice run without reading explanations, aim to complete all 60 in under 40 minutes to simulate real assessment conditions."
+      }
+    ]
+  },
+  "nav": {
+    "prev": {
+      "label": "← Previous: Python Home",
+      "path": "/python/python-number-programs/"
+    },
+    "next": {
+      "label": "Next: Python Interview Questions →",
+      "path": "/python/python-interview/"
+    }
+  },
+  "sidebar": {
+    "quickFacts": [
+      {
+        "dt": "Total Questions",
+        "dd": "100 MCQs"
+      },
+      {
+        "dt": "Fresher Level",
+        "dd": "Q1–Q25"
+      },
+      {
+        "dt": "Mid Level",
+        "dd": "Q26–Q70"
+      },
+      {
+        "dt": "Senior Level",
+        "dd": "Q71–Q100"
+      },
+      {
+        "dt": "Topics",
+        "dd": "16 Major Topics"
+      },
+      {
+        "dt": "Updated",
+        "dd": "July 2026"
+      }
+    ],
+    "tags": [
+      "PythonMCQ",
+      "PythonQuiz",
+      "PythonFresherMCQ",
+      "PythonMidLevelMCQ",
+      "PythonSeniorMCQ",
+      "PythonOOP",
+      "PythonDataStructures",
+      "GIL",
+      "Threading",
+      "Multiprocessing",
+      "Asyncio",
+      "Decorators",
+      "Generators",
+      "CPythonInternals"
+    ]
+  }
+}

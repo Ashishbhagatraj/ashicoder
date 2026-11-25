@@ -1,0 +1,776 @@
+{
+  "meta": {
+    "title": "C Language Introduction | Complete Beginner's Guide to C Programming 2026 | Tech Sustainify",
+    "description": "A complete introduction to C programming language for beginners in 2026. Learn C program structure, tokens, keywords, identifiers, variables, comments, compilation process, syntax rules, and write your first C program with detailed explanations.",
+    "keywords": "c language introduction, introduction to c programming, c program structure, c tokens, c keywords, c identifiers, c syntax rules, c comments, c compilation process, learn c basics, c for beginners 2026, first c program, c tutorial introduction",
+    "author": "Tech Sustainify",
+    "canonical": "https://techsustainify.com/c/c-intro/",
+    "ogTitle": "C Language Introduction | Complete Beginner's Guide to C Programming 2026 | Tech Sustainify",
+    "ogDescription": "Learn the fundamentals of C programming — program structure, tokens, keywords, identifiers, variables, comments, and the compilation process — explained step by step for absolute beginners.",
+    "ogUrl": "https://techsustainify.com/c/c-intro/",
+    "ogSiteName": "Tech Sustainify",
+    "twitterReadingTime": "22 minutes",
+    "twitterLevel": "Beginner",
+    "schemaDatePublished": "2024-01-05",
+    "schemaDateModified": "2026-03-20",
+    "schemaProficiencyLevel": "Beginner",
+    "schemaWordCount": 8000
+  },
+
+  "breadcrumbs": [
+    { "position": 1, "name": "Home",       "path": "/" },
+    { "position": 2, "name": "C Tutorial", "path": "/c/c-home/" },
+    { "position": 3, "name": "C Introduction" }
+  ],
+
+  "articleHeader": {
+    "badge": "🚀 C Language Basics",
+    "title": "Introduction to C Programming Language",
+    "subtitle": "A complete, beginner-friendly walkthrough of how a C program is built — structure, tokens, keywords, identifiers, variables, comments, and the journey from source code to a running executable."
+  },
+
+  "infoCards": [
+    { "icon": "📅", "label": "Last Updated", "isTime": true, "dateTime": "2026-03-20", "value": "March 2026" },
+    { "icon": "⏱️", "label": "Read Time",    "value": "22 min" },
+    { "icon": "🎯", "label": "Level",         "value": "Beginner" }
+  ],
+
+  "sections": [
+
+    {
+      "sectionId": "intro-heading",
+      "title": "Introduction to C Programming",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "Learning C begins with a simple truth: <strong>C is the most direct way to talk to a computer without writing raw machine instructions</strong>. Every C program you write is a small, precise set of instructions that the compiler translates into native code the processor can execute. There is no hidden interpreter, no invisible runtime doing extra work behind your back — what you write is, almost literally, what the machine does. This directness is exactly why C has remained the entry point into 'real' programming for over five decades."
+        },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "Before you write a single line of C, it helps to understand what a C program actually <em>is</em>. At its core, a C program is a plain text file containing a sequence of <strong>statements</strong> organised into <strong>functions</strong>. One function, called <code>main()</code>, is mandatory — it is the entry point the operating system calls when your program starts running. Everything else — variables, loops, conditions, calculations, input, output — happens inside functions, built from smaller building blocks called <strong>tokens</strong>."
+        },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "This introduction chapter focuses on those building blocks: the anatomy of a C program, the rules the compiler enforces, the vocabulary (keywords, identifiers, operators) you need to know, and the invisible pipeline that turns your <code>.c</code> file into an executable program. Master this chapter and every later topic — variables, data types, loops, functions, pointers — will make far more sense, because you will already understand the skeleton they all live inside."
+        },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "By the end of this guide, you will be able to read any small C program and explain, line by line, exactly what each part does and why it is written the way it is — a skill that separates people who memorise syntax from people who genuinely understand the language."
+        }
+      ]
+    },
+
+    {
+      "sectionId": "structure-heading",
+      "title": "Structure of a C Program",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "Every C program, no matter how large or small, follows the same general skeleton. Understanding this skeleton up front removes most of the confusion beginners face when they see their first real C file. A typical C program is made up of <strong>six logical sections</strong>, though small programs may not use all of them explicitly."
+        },
+        {
+          "type": "bulletList",
+          "items": [
+            { "strong": "1. Documentation / Comments", "text": " — Optional lines at the top describing what the program does, who wrote it, and when. These are ignored by the compiler and exist purely for humans." },
+            { "strong": "2. Preprocessor Directives", "text": " — Lines starting with # such as #include and #define. These run before compilation begins and prepare the source code — for example, pulling in the declarations for printf() from stdio.h." },
+            { "strong": "3. Global Declarations", "text": " — Variables, constants, or function prototypes declared outside any function. These are visible to every function in the file and exist for the entire lifetime of the program." },
+            { "strong": "4. The main() Function", "text": " — The mandatory entry point. Execution always begins here, regardless of how many other functions exist in the file. Without main(), the linker cannot produce a runnable program." },
+            { "strong": "5. User-Defined Functions", "text": " — Additional functions you write to organise logic into reusable, named blocks. These can appear before or after main(), as long as they are declared before use." },
+            { "strong": "6. Statements and Expressions", "text": " — The actual instructions inside functions: assignments, function calls, loops, conditionals — each ending with a semicolon, grouped inside curly braces { }." }
+          ]
+        },
+        {
+          "type": "codeBox",
+          "lang": "🖥️ C",
+          "label": "structure.c",
+          "lines": [
+            "/* Documentation: demonstrates the six-part structure of a C program */",
+            "",
+            "#include <stdio.h>      // Preprocessor directive",
+            "#define PI 3.14159      // Preprocessor directive (macro)",
+            "",
+            "int totalUsers = 0;     // Global declaration",
+            "",
+            "void greetUser(void);   // Function prototype",
+            "",
+            "int main() {            // Entry point",
+            "    totalUsers++;",
+            "    greetUser();",
+            "    printf(\"Value of PI: %f\\n\", PI);",
+            "    return 0;",
+            "}",
+            "",
+            "void greetUser(void) {  // User-defined function",
+            "    printf(\"Welcome to C programming!\\n\");",
+            "}"
+          ]
+        },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "Notice that <strong>order matters</strong> in C. The compiler reads your file from top to bottom, once. If <code>greetUser()</code> were called before either its full definition or a prototype appeared earlier in the file, the compiler would reject the program with an 'implicit declaration' error. This top-to-bottom reading model is one of the most important mental models to build early, because it explains a huge fraction of beginner compile errors."
+        }
+      ]
+    },
+
+    {
+      "sectionId": "tokens-heading",
+      "title": "Tokens in C — The Building Blocks",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "A <strong>token</strong> is the smallest individual unit in a C program that the compiler recognises as meaningful — similar to how a word is the smallest meaningful unit in a sentence. The compiler's first job (after preprocessing) is to break your source code into a stream of tokens before it can understand the grammar of your program. C recognises six categories of tokens."
+        },
+        {
+          "type": "featureCards",
+          "items": [
+            { "icon": "🔑", "title": "Keywords", "text": "Reserved words with a fixed meaning to the compiler, such as int, return, if, while, and for. C has only 32 keywords in the original standard (a few more were added in later standards like C99, C11, and C23). Keywords cannot be used as variable names." },
+            { "icon": "🏷️", "title": "Identifiers", "text": "Names you choose for variables, functions, arrays, and other user-defined items — for example totalUsers, calculateArea, or main. Identifiers must follow strict naming rules covered in the next section." },
+            { "icon": "🔢", "title": "Constants", "text": "Fixed values that do not change during execution — such as 42 (integer constant), 3.14 (floating constant), 'A' (character constant), or \"Hello\" (string literal)." },
+            { "icon": "➕", "title": "Operators", "text": "Symbols that perform operations on values, such as + (addition), == (equality), && (logical AND), and -> (structure pointer access). C has over 40 operators grouped by precedence and associativity." },
+            { "icon": "🧩", "title": "Special Symbols", "text": "Punctuation with structural meaning: { } define blocks, ( ) group expressions and hold function parameters, ; terminates statements, [ ] index arrays, and , separates items in a list." },
+            { "icon": "📝", "title": "Strings", "text": "A sequence of characters enclosed in double quotes, such as \"Tech Sustainify\". Internally, C stores every string as a character array terminated by a special null character '\\0'." }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "Understanding tokens matters because almost every beginner compiler error is really a <strong>token-level mistake</strong> — a missing semicolon, a misspelled keyword, an unmatched brace, or an identifier that accidentally collides with a keyword. Once you can mentally 'tokenise' a line of code the way the compiler does, error messages stop feeling mysterious."
+        }
+      ]
+    },
+
+    {
+      "sectionId": "keywords-table",
+      "title": "C Keywords — The Reserved Vocabulary",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "The 32 original C keywords are grouped below by what they are used for. These words are reserved by the language itself and can never be repurposed as variable or function names."
+        },
+        {
+          "type": "comparisonTable",
+          "headers": ["Category", "Keywords", "Purpose"],
+          "rows": [
+            ["Data Types", "int, char, float, double, void", "Declare the type of data a variable can hold"],
+            ["Type Modifiers", "short, long, signed, unsigned", "Adjust the size or sign behaviour of a base type"],
+            ["Storage Classes", "auto, register, static, extern", "Control a variable's lifetime, scope, and memory location"],
+            ["Control Flow", "if, else, switch, case, default", "Direct which statements execute based on conditions"],
+            ["Loops", "for, while, do", "Repeat a block of statements"],
+            ["Jump Statements", "break, continue, goto, return", "Alter the normal top-to-bottom flow of execution"],
+            ["Derived Types", "struct, union, enum, typedef", "Build custom, composite, or aliased data types"],
+            ["Others", "const, volatile, sizeof", "Qualify variables or query type/object size at compile time"]
+          ]
+        },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "Later standards expanded this vocabulary. <strong>C99</strong> added <code>inline</code>, <code>restrict</code>, and <code>_Bool</code>. <strong>C11</strong> added <code>_Atomic</code>, <code>_Thread_local</code>, and <code>_Static_assert</code>. <strong>C23</strong> introduced <code>nullptr</code>, <code>typeof</code>, <code>constexpr</code>, and <code>true</code>/<code>false</code> as first-class keywords instead of macros. For an absolute beginner, though, the original 32 cover almost everything you will write in your first few months."
+        }
+      ]
+    },
+
+    {
+      "sectionId": "identifiers-heading",
+      "title": "Identifiers in C — Naming Rules",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "An <strong>identifier</strong> is any name you invent — for a variable, function, array, struct, or macro. C enforces a small set of strict rules for what counts as a valid identifier, and a much larger set of informal conventions that make code readable to other humans."
+        },
+        {
+          "type": "subHeading",
+          "text": "Compiler-Enforced Rules"
+        },
+        {
+          "type": "bulletList",
+          "items": [
+            { "strong": "Allowed characters", "text": " — Only letters (A–Z, a–z), digits (0–9), and the underscore (_) are permitted. No spaces, hyphens, or special symbols like @ or $." },
+            { "strong": "Cannot start with a digit", "text": " — 2total is invalid; total2 is valid. This rule exists so the compiler can immediately distinguish a number token from a name token." },
+            { "strong": "Case-sensitive", "text": " — total, Total, and TOTAL are three completely different identifiers to the compiler." },
+            { "strong": "Cannot be a keyword", "text": " — You cannot name a variable int, for, or return, since these words already carry fixed meaning." },
+            { "strong": "No length limit in practice", "text": " — The C standard guarantees at least 31 significant characters for internal identifiers and 63 for external ones, though modern compilers support far longer names without issue." }
+          ]
+        },
+        {
+          "type": "subHeading",
+          "text": "Professional Naming Conventions (Not Enforced, But Expected)"
+        },
+        {
+          "type": "bulletList",
+          "items": [
+            { "strong": "camelCase for variables/functions", "text": " — totalMarks, calculateArea() — the first word lowercase, each subsequent word capitalised." },
+            { "strong": "ALL_CAPS for macros and constants", "text": " — #define MAX_USERS 100 — instantly signals 'this value never changes' to anyone reading the code." },
+            { "strong": "Descriptive over short", "text": " — studentCount is far clearer than sc, even though both compile identically. Clear names reduce bugs more than any clever trick." },
+            { "strong": "Avoid leading underscores", "text": " — Names like _temp or __init are reserved by the C standard for compiler and library internals — using them risks silent name clashes." }
+          ]
+        },
+        {
+          "type": "codeBox",
+          "lang": "🖥️ C",
+          "label": "identifiers.c",
+          "lines": [
+            "int studentAge = 20;      // Valid: camelCase, starts with a letter",
+            "float _score = 88.5;      // Valid but discouraged: leading underscore",
+            "int total_students = 40;  // Valid: snake_case is also acceptable",
+            "// int 2ndPlace = 5;      // INVALID: cannot start with a digit",
+            "// int float = 10;       // INVALID: 'float' is a reserved keyword"
+          ]
+        }
+      ]
+    },
+
+    {
+      "sectionId": "comments-heading",
+      "title": "Comments in C",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "A <strong>comment</strong> is text the compiler completely ignores — it exists purely to explain code to human readers, including your future self. C supports two comment styles, and knowing when to use each is a small but genuine mark of professional habits."
+        },
+        {
+          "type": "bulletList",
+          "items": [
+            { "html": "<code>/* ... */</code> — Multi-line (block) comments. Everything between the opening <code>/*</code> and closing <code>*/</code> is ignored, even across several lines. Cannot be nested inside another block comment." },
+            { "html": "<code>// ...</code> — Single-line comments, introduced formally in C99 (though most compilers supported them earlier as an extension). Everything from <code>//</code> to the end of the line is ignored." }
+          ]
+        },
+        {
+          "type": "codeBox",
+          "lang": "🖥️ C",
+          "label": "comments.c",
+          "lines": [
+            "/*",
+            "  Program: Area of a circle",
+            "  Author:  Tech Sustainify",
+            "  Purpose: Demonstrates block and line comments",
+            "*/",
+            "",
+            "#include <stdio.h>",
+            "",
+            "int main() {",
+            "    float radius = 5.0;   // radius of the circle in cm",
+            "    float area;",
+            "",
+            "    area = 3.14159 * radius * radius;  /* area = pi * r^2 */",
+            "",
+            "    printf(\"Area: %.2f\\n\", area);",
+            "    return 0;",
+            "}"
+          ]
+        },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "Good comments explain <strong>why</strong>, not <strong>what</strong> — the code itself already shows what is happening. A comment like <code>// add 1 to x</code> above <code>x = x + 1;</code> adds no value. A comment like <code>// compensate for zero-indexed array</code> above the same line explains something the code alone cannot."
+        }
+      ]
+    },
+
+    {
+      "sectionId": "syntax-rules",
+      "title": "Basic Syntax Rules Every Beginner Must Know",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "C's grammar is strict but small. These seven rules cover the vast majority of syntax that trips up first-time learners."
+        },
+        {
+          "type": "bulletList",
+          "items": [
+            { "strong": "Every statement ends with a semicolon", "text": " — int x = 5; not int x = 5. Forgetting this is the single most common beginner compile error." },
+            { "strong": "Curly braces { } define a block", "text": " — Everything between a matching pair of braces belongs to the same function, loop, or conditional. Unlike Python, indentation is purely cosmetic in C — the compiler only cares about braces." },
+            { "strong": "C is case-sensitive everywhere", "text": " — Main() is not the same as main(), and the compiler will refuse to link a program without a lowercase main()." },
+            { "strong": "Whitespace is generally ignored", "text": " — int   x=5   ; compiles identically to int x = 5;, though consistent spacing makes code readable." },
+            { "strong": "Every variable must be declared with a type", "text": " — C is statically typed; you cannot write x = 5; without first declaring int x; (or combine both: int x = 5;)." },
+            { "strong": "Function calls always use parentheses", "text": " — printf(\"Hi\"); not printf \"Hi\";, even when a function takes no arguments: main()." },
+            { "strong": "The program always starts at main()", "text": " — regardless of where main() is physically positioned in the file, or how many other functions surround it." }
+          ]
+        }
+      ]
+    },
+
+    {
+      "sectionId": "flowchart-heading",
+      "title": "How C Code Executes — From Source File to Output",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "Once your source file follows the correct structure and syntax, it still has to pass through several distinct stages before you see any output. The flowchart below traces exactly what happens between typing <code>gcc hello.c -o hello</code> and seeing text appear on your screen."
+        },
+        {
+          "type": "flowchart",
+          "nodes": [
+            { "id": "1", "label": "📝 Write Source Code",     "sublabel": "intro.c — your text editor",         "type": "start" },
+            { "id": "2", "label": "🔍 Preprocessing",          "sublabel": "Expands #include and #define",       "type": "process" },
+            { "id": "3", "label": "🔤 Tokenisation",           "sublabel": "Breaks code into keywords, identifiers, operators", "type": "process" },
+            { "id": "4", "label": "🧠 Syntax & Semantic Check", "sublabel": "Compiler verifies grammar and types", "type": "decision" },
+            { "id": "5", "label": "⚙️ Code Generation",        "sublabel": "Produces Assembly (.s) then Object code (.o)", "type": "process" },
+            { "id": "6", "label": "🔗 Linking",                "sublabel": "Combines object files + C Standard Library", "type": "data" },
+            { "id": "7", "label": "🖥️ Executable Created",     "sublabel": "Native binary — hello.exe / a.out",  "type": "process" },
+            { "id": "8", "label": "🖨️ Program Runs",           "sublabel": "Output printed to console",           "type": "end" }
+          ],
+          "edges": [
+            { "from": "1", "to": "2", "label": "gcc reads file" },
+            { "from": "2", "to": "3", "label": "preprocessed .i" },
+            { "from": "3", "to": "4", "label": "token stream" },
+            { "from": "4", "to": "5", "label": "no errors found" },
+            { "from": "5", "to": "6", "label": "generates .o file" },
+            { "from": "6", "to": "7", "label": "resolves function calls" },
+            { "from": "7", "to": "8", "label": "./hello executed" }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "The single most important box in this flowchart for beginners is <strong>Syntax & Semantic Check</strong>. This is the stage where the vast majority of your early error messages come from — a missing semicolon, an undeclared variable, or a type mismatch is caught here, before a single byte of machine code is generated. If your program reaches the 'Linking' stage, you already know your syntax is correct; any remaining errors at that point are usually about missing function definitions."
+        }
+      ]
+    },
+
+    {
+      "sectionId": "compilation-stages",
+      "title": "The Four Compilation Stages Explained",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "The flowchart above compresses four genuinely separate stages of transformation. Understanding each one individually makes debugging far less mysterious — you start to know which stage produced a given error just from reading the message."
+        },
+        { "type": "subHeading", "text": "Stage 1: Preprocessing" },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "The preprocessor is a simple text-substitution engine that runs before real compilation. It expands <code>#include</code> directives by literally pasting in the contents of header files, replaces <code>#define</code> macros with their values, and resolves conditional blocks like <code>#ifdef</code>. You can see this stage's raw output with <code>gcc -E hello.c</code> — the result is a much larger file with every header fully expanded inline."
+        },
+        { "type": "subHeading", "text": "Stage 2: Compilation" },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "The compiler proper takes the preprocessed code and converts it into <strong>assembly language</strong> — a human-readable, processor-specific set of instructions. This is where syntax errors, type mismatches, and undeclared identifiers are caught. View this stage with <code>gcc -S hello.c</code>, which produces a <code>.s</code> file you can actually open and read."
+        },
+        { "type": "subHeading", "text": "Stage 3: Assembly" },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "The assembler converts the human-readable assembly file into <strong>object code</strong> — raw machine instructions stored in a <code>.o</code> file. This code is correct but not yet runnable, because references to external functions like <code>printf</code> have not been resolved to actual addresses yet."
+        },
+        { "type": "subHeading", "text": "Stage 4: Linking" },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "The linker combines your object file with the object code of any library functions you used (from the C Standard Library) and produces a single, self-contained <strong>executable binary</strong>. 'Undefined reference' errors — a very common beginner error message — always happen at this stage, and mean the linker could not find the actual code for a function you called."
+        },
+        {
+          "type": "comparisonTable",
+          "headers": ["Stage", "Input", "Output", "GCC Flag to Inspect"],
+          "rows": [
+            ["Preprocessing", ".c file", ".i file", "gcc -E file.c"],
+            ["Compilation", ".i file", ".s file (assembly)", "gcc -S file.c"],
+            ["Assembly", ".s file", ".o file (object code)", "gcc -c file.c"],
+            ["Linking", ".o file(s) + libraries", "Executable binary", "gcc file.c -o file"]
+          ]
+        }
+      ]
+    },
+
+    {
+      "sectionId": "code-heading",
+      "title": "Writing Your First Real C Program",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "With structure, tokens, identifiers, and the compilation pipeline covered, you now have every concept needed to read a slightly more complete C program than a bare 'Hello, World!'. The example below introduces a variable, takes no input yet performs a small calculation, and prints a formatted result — a realistic first program."
+        },
+        {
+          "type": "codeBox",
+          "lang": "🖥️ C",
+          "label": "first_program.c",
+          "lines": [
+            "#include <stdio.h>",
+            "",
+            "int main() {",
+            "    int items = 4;",
+            "    float pricePerItem = 149.50;",
+            "    float total;",
+            "",
+            "    total = items * pricePerItem;",
+            "",
+            "    printf(\"Items purchased: %d\\n\", items);",
+            "    printf(\"Total amount: %.2f\\n\", total);",
+            "",
+            "    return 0;",
+            "}"
+          ]
+        },
+        {
+          "type": "outputBox",
+          "lines": ["Items purchased: 4", "Total amount: 598.00"]
+        },
+        {
+          "type": "subHeading",
+          "text": "Practice This Code — Live Editor"
+        },
+        {
+          "type": "liveEditor",
+          "initialCode": "#include <stdio.h>\n\nint main() {\n    int items = 4;\n    float pricePerItem = 149.50;\n    float total;\n\n    total = items * pricePerItem;\n\n    printf(\"Items purchased: %d\\n\", items);\n    printf(\"Total amount: %.2f\\n\", total);\n\n    return 0;\n}"
+        },
+        {
+          "type": "subHeading",
+          "text": "Line-by-Line Explanation"
+        },
+        {
+          "type": "bulletList",
+          "items": [
+            { "html": "<code>#include &lt;stdio.h&gt;</code> — Preprocessor directive that pulls in declarations for <code>printf()</code> before compilation." },
+            { "html": "<code>int items = 4;</code> — A variable declaration and initialisation in one step. <code>int</code> is the type keyword, <code>items</code> is the identifier, <code>4</code> is an integer constant." },
+            { "html": "<code>float pricePerItem = 149.50;</code> — A floating-point variable, needed because item prices can have decimal values that <code>int</code> cannot represent." },
+            { "html": "<code>float total;</code> — A declaration without initialisation. The variable exists in memory but holds an unpredictable (garbage) value until assigned." },
+            { "html": "<code>total = items * pricePerItem;</code> — An assignment statement. The <code>*</code> operator multiplies the two operands; C automatically converts <code>items</code> to a float for this calculation." },
+            { "html": "<code>printf(\"Total amount: %.2f\\n\", total);</code> — <code>%.2f</code> is a format specifier meaning 'print a float rounded to 2 decimal places'. The value of <code>total</code> fills that placeholder." },
+            { "html": "<code>return 0;</code> — Signals successful completion to the operating system, following long-standing C convention." }
+          ]
+        }
+      ]
+    },
+
+    {
+      "sectionId": "diagram-heading",
+      "title": "Conceptual Layers of a Running C Program",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "It helps to see where your source code sits relative to the compiler, the standard library, and the hardware it eventually controls. The layered diagram below places everything covered in this introduction into one picture."
+        },
+        {
+          "type": "architectureDiagram",
+          "layers": [
+            {
+              "label": "Your Source Code",
+              "color": "#6366f1",
+              "items": ["Comments", "Preprocessor directives", "Global declarations", "main() and user functions"]
+            },
+            {
+              "label": "Preprocessor",
+              "color": "#0ea5e9",
+              "items": ["#include expansion", "#define macro substitution", "Produces the .i intermediate file"]
+            },
+            {
+              "label": "Compiler Front End",
+              "color": "#10b981",
+              "items": ["Tokeniser (keywords, identifiers, constants, operators)", "Syntax parser", "Semantic / type checker"]
+            },
+            {
+              "label": "Compiler Back End",
+              "color": "#f59e0b",
+              "items": ["Assembly code generation", "Optimiser (-O1, -O2, -O3)", "Assembler → object code (.o)"]
+            },
+            {
+              "label": "Linker & Standard Library",
+              "color": "#ef4444",
+              "items": ["Resolves printf, scanf, malloc, etc.", "Combines all object files", "Produces final executable"]
+            },
+            {
+              "label": "Operating System & Hardware",
+              "color": "#8b5cf6",
+              "items": ["Loads executable into memory", "CPU executes machine instructions", "Output returned to the console"]
+            }
+          ]
+        }
+      ]
+    },
+
+    {
+      "sectionId": "why-intro-matters",
+      "title": "Why This Foundation Matters Before Moving Forward",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "It is tempting to skip past program structure, tokens, and the compilation pipeline to get to 'exciting' topics like loops or pointers. Resist that temptation — the concepts in this introduction quietly explain almost every confusing moment you will hit later."
+        },
+        {
+          "type": "bulletList",
+          "items": [
+            { "strong": "🧩 Error messages make sense", "text": " — Knowing which compilation stage produced an error (preprocessing, compiling, or linking) tells you instantly what kind of mistake to look for." },
+            { "strong": "🏗️ Program structure becomes predictable", "text": " — Once you know C always executes top-to-bottom starting at main(), unfamiliar codebases stop feeling random." },
+            { "strong": "🔑 Naming mistakes disappear", "text": " — Understanding identifier rules prevents an entire class of 'why won't this compile' frustration." },
+            { "strong": "📚 Later chapters build directly on this one", "text": " — Data types, operators, control flow, and functions are all extensions of the tokens and structure introduced here — nothing here is thrown away." },
+            { "strong": "💼 It mirrors how professionals actually debug", "text": " — Experienced C developers reason about code in exactly these terms: tokens, scope, and compilation stage — this introduction teaches you to think like they do from day one." }
+          ]
+        }
+      ]
+    },
+
+    {
+      "sectionId": "c-vs-pseudocode",
+      "title": "C Syntax vs. Everyday Pseudocode",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "If you have ever written pseudocode or studied algorithms informally, this table maps familiar plain-English ideas onto the precise C syntax you now need to use."
+        },
+        {
+          "type": "comparisonTable",
+          "headers": ["Everyday Idea", "C Syntax", "Notes"],
+          "rows": [
+            ["Store a number called age", "int age = 25;", "Type keyword + identifier + value, ending in a semicolon"],
+            ["If age is at least 18", "if (age >= 18) { ... }", "Condition always in parentheses, block in braces"],
+            ["Repeat 10 times", "for (int i = 0; i < 10; i++) { ... }", "Init; condition; update — all three separated by semicolons"],
+            ["Print a message", "printf(\"Hello\\n\");", "Function call with parentheses, string in double quotes"],
+            ["A group of related values", "struct Student { ... };", "Defines a new composite type, not a variable itself"],
+            ["Get input from the user", "scanf(\"%d\", &age);", "Requires the address-of operator & to store the result"]
+          ]
+        }
+      ]
+    },
+
+    {
+      "sectionId": "common-mistakes",
+      "title": "Common Beginner Mistakes in C Introduction Topics",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "These mistakes account for the overwhelming majority of first-week compiler errors. Recognising them by name makes them far faster to fix when you see them in your own code."
+        },
+        {
+          "type": "prosConsTable",
+          "pros": [
+            { "title": "Consistent Bracing Style", "text": "Adopting one consistent style for placing { and } from day one — whether K&R style or Allman style — makes nested blocks far easier to read and debug later." },
+            { "title": "Declaring Before Using", "text": "Getting comfortable with declaring variables and function prototypes before they are used avoids a whole category of 'implicit declaration' warnings." },
+            { "title": "Reading Errors Top to Bottom", "text": "The first error message in a long list is usually the real cause — later ones are often just confused side effects of the first." },
+            { "title": "Using -Wall From the Start", "text": "Compiling with gcc -Wall from your very first program surfaces subtle mistakes (like using = instead of ==) before they become runtime bugs." }
+          ],
+          "cons": [
+            { "title": "Missing Semicolons", "text": "Forgetting the terminating ; is the single most common beginner error — the compiler often reports the error on the following line, which is initially confusing." },
+            { "title": "Confusing = and ==", "text": "Using the assignment operator inside an if condition silently assigns a value instead of comparing — one of C's most notorious beginner traps." },
+            { "title": "Mismatched Braces", "text": "An unclosed { anywhere in the file produces a confusing cascade of errors, often reported far from the actual missing brace." },
+            { "title": "Case Mismatches", "text": "Typing Main() instead of main(), or Printf() instead of printf(), fails silently with a linker or 'undeclared function' error rather than an obvious typo warning." },
+            { "title": "Using a Keyword as an Identifier", "text": "Beginners sometimes try to name a variable int or char, not realising these words are permanently reserved by the language." }
+          ]
+        }
+      ]
+    },
+
+    {
+      "sectionId": "interview-questions",
+      "title": "C Introduction — Interview Questions",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "These fundamentals-focused questions are extremely common in <strong>entry-level and campus placement interviews</strong> — interviewers use them to check whether a candidate truly understands the language basics, not just memorised syntax."
+        },
+        {
+          "type": "interviewQA",
+          "items": [
+            {
+              "q": "Q1. What are the essential parts of a C program?",
+              "a": "At minimum, a valid C program needs a main() function, since execution always starts there. In practice, a well-structured program also includes preprocessor directives (like #include <stdio.h> for I/O functions), any global declarations needed across functions, and the statements inside main() itself. Comments and additional user-defined functions are optional but common in real programs.",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q2. What is a token in C? Name its types.",
+              "a": "A token is the smallest individual unit of a C program that the compiler recognises as meaningful, similar to a word in a sentence. C has six types of tokens: keywords (reserved words like int, if), identifiers (user-defined names like total), constants (fixed values like 42 or 3.14), strings (text in double quotes), operators (symbols like + or ==), and special symbols (like { }, ( ), and ;).",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q3. What is the difference between a keyword and an identifier?",
+              "a": "A keyword is a reserved word with a fixed, predefined meaning to the C compiler — such as int, for, or return — and cannot be used as a variable or function name. An identifier is a name the programmer chooses for a variable, function, or other user-defined entity, such as totalMarks or calculateArea. Keywords are fixed by the language standard; identifiers are entirely user-defined, subject to naming rules.",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q4. What are the rules for naming an identifier in C?",
+              "a": "An identifier can only contain letters, digits, and underscores; it cannot start with a digit; it is case-sensitive, so total and Total are different names; and it cannot be identical to any reserved keyword. There is no practical length limit on modern compilers, though the standard formally guarantees at least 31 significant characters.",
+              "tag": "Frequently Asked"
+            },
+            {
+              "q": "Q5. What is the difference between #include <stdio.h> and #include \"myheader.h\"?",
+              "a": "Angle brackets < > tell the preprocessor to search the compiler's standard system include directories first — used for standard library headers like stdio.h. Double quotes \" \" tell the preprocessor to search the current directory first, before falling back to system directories — used for your own custom header files within a project.",
+              "tag": "Frequently Asked"
+            },
+            {
+              "q": "Q6. What happens during the preprocessing stage of compilation?",
+              "a": "The preprocessor performs pure text substitution before real compilation begins. It expands #include directives by inserting the full content of the referenced header file, replaces #define macros with their defined values everywhere they appear, and resolves conditional compilation blocks like #ifdef and #ifndef. The output is a single expanded source file, sometimes viewable with gcc -E.",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q7. Why must every C program have a main() function?",
+              "a": "The operating system needs a single, fixed, predictable entry point to start any program. In C, that entry point is always the function named main(). Without it, the compiler will successfully compile individual object files, but the linker will fail with an 'undefined reference to main' error, because it has no starting instruction to hand control to when the program launches.",
+              "tag": "Must Know"
+            },
+            {
+              "q": "Q8. What is the difference between declaration and definition in C?",
+              "a": "A declaration tells the compiler that something exists and describes its type, without allocating memory or providing a function body — for example, a function prototype like void greet(void); or an extern variable declaration. A definition actually creates the thing — allocating memory for a variable or providing the full body of a function. A function or variable can be declared multiple times but defined only once.",
+              "tag": "Frequently Asked"
+            },
+            {
+              "q": "Q9. What is the difference between compile-time and run-time in C?",
+              "a": "Compile-time refers to the phase when the compiler translates your source code into machine code — syntax errors, type mismatches, and undeclared identifiers are caught here, before the program ever runs. Run-time refers to the phase when the compiled executable is actually running on the machine — errors here (like division by zero or accessing invalid memory) are not caught by the compiler and can cause crashes during execution.",
+              "tag": "Common Trap"
+            },
+            {
+              "q": "Q10. Can a C program run without any preprocessor directives?",
+              "a": "Yes, technically. A program like int main() { return 0; } has no #include directives at all and compiles successfully, because it uses no library functions. However, the moment you need functionality like printf() or scanf(), you must include the header declaring that function's signature — otherwise the compiler cannot verify the call is correct, and modern compilers will refuse to compile it without at least a warning or error.",
+              "tag": "Current Affairs"
+            }
+          ]
+        }
+      ]
+    },
+
+    {
+      "sectionId": "practice-questions",
+      "title": "Practice Questions — Test Your Understanding",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "Try to answer each question yourself before checking the explanation — actively recalling these fundamentals is far more effective than simply re-reading them."
+        },
+        {
+          "type": "practiceQuestions",
+          "items": [
+            {
+              "q": "1. Identify which of the following are valid C identifiers: totalAge, 3rdPlace, _temp, float, student_1.",
+              "a": "Valid: totalAge (starts with a letter), _temp (starts with underscore, though discouraged), student_1 (letters, digits, underscore). Invalid: 3rdPlace (starts with a digit), float (this is a reserved keyword and cannot be used as an identifier).",
+              "difficulty": "Easy"
+            },
+            {
+              "q": "2. What is the output, if any, of this program: int main() { printf(\"Hi\"); return 0; } — without #include <stdio.h>?",
+              "a": "Modern compilers (C99 and later) will refuse to compile this, producing an error such as 'implicit declaration of function printf' because the compiler has no prototype telling it what printf expects or returns. Some older or more lenient compilers may still link successfully against the C library and print 'Hi', but this behaviour is non-standard and should never be relied upon.",
+              "difficulty": "Medium"
+            },
+            {
+              "q": "3. What is the difference between int main() and int main(void) in C?",
+              "a": "int main(void) explicitly states the function takes no parameters — the compiler will flag any attempt to call it with arguments. int main() in C (unlike C++) is an older style meaning 'unspecified parameters', which is more permissive but less safe. Professional C style strongly prefers int main(void) for this exact reason.",
+              "difficulty": "Medium"
+            },
+            {
+              "q": "4. Which compilation stage would catch a missing semicolon, and which would catch an unresolved function call to a library you forgot to link?",
+              "a": "A missing semicolon is a syntax error caught during the compilation stage (specifically, syntax parsing) — the program will not even reach assembly generation. An unresolved function call, such as forgetting to link the math library for sqrt(), is only caught at the linking stage, since compilation only checks that the function's prototype exists, not that its actual code is available yet.",
+              "difficulty": "Hard"
+            },
+            {
+              "q": "5. Why does C require a semicolon at the end of every statement instead of using line breaks like Python?",
+              "a": "C was designed to allow flexible, free-form formatting — statements can span multiple lines or share a single line, and whitespace/indentation carries no syntactic meaning. Since the compiler cannot rely on line breaks to know where a statement ends, the semicolon acts as an unambiguous, explicit terminator, letting the compiler parse the code correctly regardless of how it is visually formatted.",
+              "difficulty": "Medium"
+            },
+            {
+              "q": "6. What category of token does the value 3.14 belong to, and what about the word return?",
+              "a": "3.14 is a constant token, specifically a floating-point constant, since it represents a fixed numeric value that does not change. return is a keyword token, since it is a reserved word with a fixed meaning defined by the C language itself — it cannot be repurposed as a variable name.",
+              "difficulty": "Easy"
+            },
+            {
+              "q": "7. A beginner writes: in total = 10; and gets a compile error. What mistake was made, and how would you classify it?",
+              "a": "The identifier in is not a valid type keyword in C (the correct keyword is int), so the compiler does not recognise this as a valid declaration. This is a syntax-level error caught during the compilation stage — the compiler will likely report something like 'unknown type name in' or an unexpected token error, since it cannot make sense of the statement's grammar.",
+              "difficulty": "Medium"
+            },
+            {
+              "q": "8. Why is it good practice to declare a function prototype before main() even if the function is defined after main() in the same file?",
+              "a": "C compiles a file strictly from top to bottom in a single pass. If main() calls a function that has not yet been declared or defined earlier in the file, the compiler has no way to verify the call's correctness (parameter types, return type) at that point. Declaring a prototype beforehand — even without the full definition — satisfies the compiler immediately, letting the actual definition appear anywhere later in the file.",
+              "difficulty": "Hard"
+            }
+          ]
+        }
+      ]
+    },
+
+    {
+      "sectionId": "conclusion-heading",
+      "title": "Conclusion — What You Should Know Now",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "This introduction covered far more ground than it might have looked at first glance. You now understand the <strong>six-part structure</strong> every C program follows, the <strong>six categories of tokens</strong> that make up its vocabulary, the strict but small set of <strong>identifier and syntax rules</strong> the compiler enforces, and the <strong>four-stage journey</strong> your source file takes on its way to becoming a running program."
+        },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "None of this knowledge is throwaway trivia. Every later topic in C — data types, operators, control flow, arrays, functions, and eventually pointers — is simply a deeper exploration of the same skeleton introduced here. When you hit a confusing compiler error in week three or week thirty, the ability to ask 'which stage failed, and what token or rule did I violate?' will get you to the answer faster than almost anything else."
+        },
+        {
+          "type": "comparisonTable",
+          "headers": ["Concept Covered", "Why It Matters Later"],
+          "rows": [
+            ["Program structure (6 parts)", "Every file you read or write follows this same shape"],
+            ["Tokens (keywords, identifiers, etc.)", "The compiler's error messages are phrased in exactly these terms"],
+            ["Identifier naming rules", "Prevents an entire class of 'why won't this compile' errors"],
+            ["Comments", "Foundation of maintainable, professional code"],
+            ["Compilation pipeline", "Lets you diagnose errors by knowing which stage produced them"],
+            ["Basic syntax rules", "Removes 80% of first-week beginner frustration"]
+          ]
+        },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "The next logical step is <strong>C Installation</strong> — setting up GCC or Clang on your machine — followed by a deep dive into <strong>Variables and Data Types</strong>, where the <code>int</code>, <code>float</code>, and <code>char</code> keywords introduced here get their full, detailed treatment. Take what you've learned in this chapter with you — it is the map you will keep referring back to."
+        },
+        {
+          "type": "paragraph",
+          "isHtml": true,
+          "text": "<strong>You now know how a C program is built, named, organised, and compiled — the true starting point of real programming.</strong> Everything from here is addition, not replacement. 🚀"
+        }
+      ]
+    }
+
+  ],
+
+  "faq": {
+    "sectionId": "faq-heading",
+    "title": "Frequently Asked Questions (FAQ)",
+    "items": [
+      {
+        "q": "Do I need to memorise all 32 C keywords before moving forward?",
+        "a": "No. Focus on recognising the dozen or so you will use constantly in your first month — int, char, float, if, else, for, while, return, void — and let the rest sink in naturally as you encounter them in real programs. Memorising an exhaustive list up front rarely sticks; using keywords repeatedly in actual code is what makes them second nature."
+      },
+      {
+        "q": "Why does C use curly braces instead of indentation like Python?",
+        "a": "C was designed in an era where source code needed to be parsed unambiguously regardless of formatting style, and where terminals had very limited display capabilities. Braces give the compiler an explicit, visible marker for where a block starts and ends, independent of whitespace. This also means C code can technically be formatted however you like — though consistent indentation remains essential for human readers."
+      },
+      {
+        "q": "Is understanding the compilation process really necessary for a beginner?",
+        "a": "Yes, at least at a conceptual level. You do not need to memorise every internal detail of how GCC works, but knowing that preprocessing, compiling, assembling, and linking are four separate stages will save you enormous confusion the first time you see an 'undefined reference' linker error versus a syntax error — they look completely different and mean completely different things."
+      },
+      {
+        "q": "What is the most common mistake beginners make in their very first week of C?",
+        "a": "By a wide margin, it is forgetting a semicolon at the end of a statement, closely followed by mismatched curly braces and confusing the assignment operator = with the equality operator ==. All three are token-level and syntax-level mistakes, which is exactly why understanding tokens and syntax rules early pays off so quickly."
+      },
+      {
+        "q": "Should I use #include <stdio.h> in every C program I write?",
+        "a": "Only if your program actually needs functions declared in that header, such as printf() or scanf(). A program that performs no input or output at all technically does not need it. In practice, though, almost every learning program prints something to verify its output, so stdio.h ends up in the vast majority of beginner programs."
+      },
+      {
+        "q": "What should I learn right after this C introduction chapter?",
+        "a": "The natural next steps are setting up your compiler (GCC or Clang) if you haven't already, followed by a detailed look at C's data types and variables, then operators and expressions, and finally control flow (if/else, loops). Each of these topics builds directly on the tokens, structure, and syntax rules introduced in this chapter."
+      }
+    ]
+  },
+
+  "nav": {
+    "prev": { "label": "← C Home",              "path": "/c/c-home/" },
+    "next": { "label": "Next: C Installation →", "path": "/c/c-installation/" }
+  },
+
+  "sidebar": {
+    "quickFacts": [
+      { "dt": "Program entry point", "dd": "main() function" },
+      { "dt": "Statement terminator", "dd": "Semicolon ;" },
+      { "dt": "Block delimiters",     "dd": "{ } curly braces" },
+      { "dt": "Original keywords",   "dd": "32 (C89 standard)" },
+      { "dt": "Compilation stages",  "dd": "4 (Preprocess, Compile, Assemble, Link)" },
+      { "dt": "Case sensitivity",    "dd": "Yes — total ≠ Total" }
+    ],
+    "tags": ["Tokens","Keywords","Identifiers","Comments","Syntax Rules","Preprocessor","Compilation","GCC","main function","Program Structure","C89","C99","C23"]
+  }
+}
